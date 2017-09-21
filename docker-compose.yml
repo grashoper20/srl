@@ -1,0 +1,26 @@
+version: '3'
+services:
+  nginx:
+    image: nginx:stable-alpine
+    networks:
+      - sickrage
+    ports:
+      - "8000:80"
+    volumes:
+      - ./:/var/www/html/:ro
+      - ./resources/nginx/conf.d:/etc/nginx/conf.d:ro
+    links:
+      - fpm
+  fpm:
+    image: local-fpm:7.1
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    networks:
+      - sickrage
+    volumes:
+      - ./:/var/www/html/:rw
+networks:
+  sickrage:
+volumes:
+  laravel-storage:
