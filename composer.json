@@ -1,6 +1,6 @@
 {
-    "name": "laravel/laravel",
-    "description": "The Laravel Framework.",
+    "name": "grashoper20/sickragelaravel",
+    "description": "SickRage implemented in Laravel.",
     "keywords": ["framework", "laravel"],
     "license": "MIT",
     "type": "project",
@@ -22,7 +22,7 @@
             "database/factories"
         ],
         "psr-4": {
-            "App\\": "app/"
+            "SickRage\\": "app/"
         }
     },
     "autoload-dev": {
