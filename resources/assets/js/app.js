@@ -9,7 +9,7 @@ require('./bootstrap');
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 
-Vue.use(VueRouter)
+Vue.use(VueRouter);
 
 // Pull in some templates.
 import Shows from './components/Shows.vue';
