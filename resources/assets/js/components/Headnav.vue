@@ -1,6 +1,6 @@
 <template>
     <nav class="main navbar navbar-expand-md navbar-static-top navbar-dark">
-        <router-link to="/" class="navbar-brand">logo</router-link>
+        <router-link :to="{name: 'show_list'}" class="navbar-brand">logo</router-link>
         <div class="collapse navbar-collapse" id="mainNavbar">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item dropdown dropdown-hover">
@@ -8,13 +8,13 @@
                        aria-haspopup="true" aria-expanded="false">Shows</a>
                     <ul class="dropdown-menu" aria-labelledby="dropdown01">
                         <li class="dropdown-item">
-                            <router-link to="/shows">List shows</router-link>
+                            <router-link :to="{name: 'show_list'}">List shows</router-link>
                         </li>
                         <li class="dropdown-item">
-                            <router-link to="/shows/add">Add show</router-link>
+                            <router-link :to="{name: 'show_add'}">Add show</router-link>
                         </li>
                         <li class="dropdown-item">
-                            <router-link to="/shows/process">Manually process shows</router-link>
+                            <router-link :to="{name: 'show_process'}">Manually process shows</router-link>
                         </li>
                     </ul>
                 </li>

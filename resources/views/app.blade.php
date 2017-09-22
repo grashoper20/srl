@@ -13,7 +13,7 @@
     <body>
         <div id="app">
             <headnav></headnav>
-            <section style="padding-top:60px;">
+            <section>
                 <router-view></router-view>
             </section>
         </div>

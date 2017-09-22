@@ -12,9 +12,13 @@ import VueRouter from 'vue-router';
 Vue.use(VueRouter);
 
 // Pull in some templates.
+import Show from './components/Show.vue';
+
+Vue.component('show', Show);
 import Shows from './components/Shows.vue';
 import ShowsAdd from './components/ShowsAdd.vue';
 import ShowsProcess from './components/ShowsProcess.vue';
+import ShowFull from './components/ShowFull.vue';
 import Default from './components/Example.vue';
 
 Vue.component('headnav', require('./components/Headnav.vue'));
@@ -22,10 +26,30 @@ Vue.component('headnav', require('./components/Headnav.vue'));
 // Vue.extend(), or just a component options object.
 // We'll talk about nested routes later.
 const routes = [
-    {path: '/', component: Shows}, // TODO redirect to shows?
-    {path: '/shows', component: Shows},
-    {path: '/shows/add', component: ShowsAdd},
-    {path: '/shows/process', component: ShowsProcess},
+    {
+        path: '/',
+        component: Shows, // TODO redirect to shows?
+    },
+    {
+        path: '/show',
+        component: Shows,
+        name: 'show_list',
+    },
+    // {
+    //     path: '/show/add',
+    //     component: ShowsAdd,
+    //     name: 'show_add',
+    // },
+    // {
+    //     path: '/show/process',
+    //     component: ShowsProcess,
+    //     name: 'show_process',
+    // },
+    {
+        path: '/show/:id',
+        component: ShowFull,
+        name: 'show',
+    },
     {path: '/schedule', component: Default},
     {path: '/history', component: Default},
     // TODO Mass update, backlock overview, search, and episode management are probably just one page.
