@@ -1,6 +1,6 @@
 <template>
     <nav class="main navbar navbar-expand-md navbar-static-top navbar-dark">
-        <router-link :to="{name: 'show_list'}" class="navbar-brand">logo</router-link>
+        <router-link :to="{name: 'show_list'}" class="navbar-brand">SRL</router-link>
         <div class="collapse navbar-collapse" id="mainNavbar">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item dropdown dropdown-hover">
@@ -42,8 +42,8 @@
                         </li>
                     </ul>
                 </li>
-                <li class="nav-item">Gear</li>
-                <li class="nav-item">Toolbox</li>
+                <li class="nav-item"><a class="nav-link">Gear</a></li>
+                <li class="nav-item"><a class="nav-link">Toolbox</a></li>
             </ul>
         </div>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
