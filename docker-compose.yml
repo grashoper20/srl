@@ -20,6 +20,23 @@ services:
       - sickrage
     volumes:
       - ./:/var/www/html/:rw
+      - /mnt/Files/sickbeard/:/var/www/sickrage/:ro
+  npm-watch:
+    image: node:8-alpine
+    networks:
+      - sickrage
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./:/var/www/html/:rw
+    working_dir: /var/www/html/
+    entrypoint:
+      - /bin/sh
+      - -c
+      - |
+        yarn install
+        NODE_ENV=development node node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js --host=0.0.0.0
+
 networks:
   sickrage:
 volumes:
