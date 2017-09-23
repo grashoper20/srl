@@ -15,5 +15,6 @@ Route::get('/', function () {
     return view('app');
 });
 Route::resource('/api/show', 'ShowController', ['param' => 'show_id']);
+Route::resource('/api/imdb', 'ImdbInfoController', ['param' => 'indexer_id']);
 Route::get('/filecache/network/{id}', 'FileCache@getPoster');
 Route::get('/filecache/poster/{id}/{type}/{thumbnail?}', 'FileCache@getPoster');

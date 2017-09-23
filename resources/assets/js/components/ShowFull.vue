@@ -11,7 +11,10 @@
                 </div>
                 <div class="show-full--info col-9">
                     <header class="show-full--info-header">
-                        <div>imdb stuff</div>
+                        <div>
+                            <div>{{imdb_info.rating}} {{imdb_info.countries}} ({{imdb_info.year}}) - {{imdb_info.runtimes}} minutes</div>
+                            <div>{{imdb_info.genres}}</div>
+                        </div>
                         <img style="max-height: 50px; border: 1px solid black;" :src="bannerThumbnail"/>
                     </header>
                     <div class="show-full--details row" style="height: 200px">
@@ -35,17 +38,26 @@
         data: () => ({
             id: 0,
             show: {},
+            imdb_info: {},
         }),
         created() {
             this.id = this.$route.params.id;
             axios.get('/api/show/' + this.id)
                 .then(response => {
                     this.show = response.data;
+                    axios.get('/api/imdb/' + this.show.indexer_id)
+                        .then(response => {
+                            this.imdb_info = response.data;
+                        })
+                        .catch(e => {
+                            console.log(e);
+                            this.errors.push(e)
+                        });
                 })
                 .catch(e => {
                     console.log(e);
                     this.errors.push(e)
-                })
+                });
         },
         computed: {
             getBackgroundImage: function () {
