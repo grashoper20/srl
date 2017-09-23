@@ -49078,7 +49078,7 @@ exports = module.exports = __webpack_require__(2)(undefined);
 
 
 // module
-exports.push([module.i, "\n.shows--list {\n  display: flex;\n  flex-flow: row wrap;\n  justify-content: center;\n}\n", ""]);
+exports.push([module.i, "\n.shows--search .form-control {\n  margin-left: 5px;\n}\n.shows--list {\n  display: flex;\n  flex-flow: row wrap;\n  justify-content: center;\n}\n", ""]);
 
 // exports
 
@@ -49122,6 +49122,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 
@@ -49136,7 +49142,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             shows: [],
             anime: [],
             search: '',
-            fuse: {}
+            fuse: {},
+            showType: 1
         };
     },
     created: function created() {
@@ -49204,7 +49211,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container", attrs: { id: "content" } }, [
-    _c("header", { staticClass: "form-inline" }, [
+    _c("header", { staticClass: "form-inline shows--search" }, [
       _c("label", { staticClass: "sr-only", attrs: { for: "show-search" } }, [
         _vm._v("Search")
       ]),
@@ -49213,10 +49220,52 @@ var render = function() {
         staticClass: "form-control",
         attrs: { id: "show-search", type: "search", placeholder: "Search" },
         on: { input: _vm.debounceInput }
-      })
+      }),
+      _vm._v(" "),
+      _c("label", { attrs: { for: "search-show-type" } }, [
+        _vm._v("Show type: ")
+      ]),
+      _vm._v(" "),
+      _c(
+        "select",
+        {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.showType,
+              expression: "showType"
+            }
+          ],
+          staticClass: "form-control",
+          attrs: { id: "search-show-type" },
+          on: {
+            change: function($event) {
+              var $$selectedVal = Array.prototype.filter
+                .call($event.target.options, function(o) {
+                  return o.selected
+                })
+                .map(function(o) {
+                  var val = "_value" in o ? o._value : o.value
+                  return val
+                })
+              _vm.showType = $event.target.multiple
+                ? $$selectedVal
+                : $$selectedVal[0]
+            }
+          }
+        },
+        [
+          _c("option", { attrs: { value: "1" } }, [_vm._v("All")]),
+          _vm._v(" "),
+          _c("option", { attrs: { value: "2" } }, [_vm._v("Shows")]),
+          _vm._v(" "),
+          _c("option", { attrs: { value: "3" } }, [_vm._v("Anime")])
+        ]
+      )
     ]),
     _vm._v(" "),
-    _vm.shows && _vm.shows.length
+    _vm.shows && _vm.shows.length && _vm.showType != 3
       ? _c("div", { staticClass: "shows" }, [
           _c("h2", [_vm._v("Shows")]),
           _vm._v(" "),
@@ -49230,7 +49279,7 @@ var render = function() {
         ])
       : _vm._e(),
     _vm._v(" "),
-    _vm.anime && _vm.anime.length
+    _vm.anime && _vm.anime.length && _vm.showType != 2
       ? _c("div", { staticClass: "anime" }, [
           _c("h2", [_vm._v("Anime")]),
           _vm._v(" "),
