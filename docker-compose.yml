@@ -1,30 +1,21 @@
 version: '3'
 services:
-  nginx:
-    image: nginx:stable-alpine
-    networks:
-      - sickrage
-    ports:
-      - "8000:80"
-    volumes:
-      - ./:/var/www/html/:ro
-      - ./resources/nginx/conf.d:/etc/nginx/conf.d:ro
-    links:
-      - fpm
-  fpm:
-    image: local-fpm:7.1
+  srl:
+    image: grashoper20/srl:local
     build:
       context: ./
       dockerfile: Dockerfile
+    ports:
+      - "8000:80"
     networks:
-      - sickrage
+      - srl
     volumes:
       - ./:/var/www/html/:rw
-      - /mnt/Files/sickbeard/:/var/www/sickrage/:ro
+      - $SICKBEARDLOCATION:/var/www/sickrage/:ro
   npm-watch:
     image: node:8-alpine
     networks:
-      - sickrage
+      - srl
     ports:
       - "8080:8080"
     volumes:
@@ -40,6 +31,6 @@ services:
 #        NODE_ENV=development node node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js --host=0.0.0.0
 
 networks:
-  sickrage:
+  srl:
 volumes:
   laravel-storage:

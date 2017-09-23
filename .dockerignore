@@ -1,0 +1,12 @@
+Dockerfile
+vendor
+node_modules
+storage/app/public/*
+storage/framework/cache/*
+storage/framework/sessions/*
+storage/framework/testing/*
+storage/framework/views/*
+storage/logs/*
+.env
+.ide
+.git
