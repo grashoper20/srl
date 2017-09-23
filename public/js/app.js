@@ -49121,6 +49121,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 
 
@@ -49201,38 +49204,47 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container", attrs: { id: "content" } }, [
-    _c("input", {
-      directives: [
-        {
-          name: "model",
-          rawName: "v-model",
-          value: _vm.search,
-          expression: "search"
-        }
-      ],
-      attrs: { type: "text" },
-      domProps: { value: _vm.search },
-      on: {
-        input: function($event) {
-          if ($event.target.composing) {
-            return
-          }
-          _vm.search = $event.target.value
-        }
-      }
-    }),
-    _vm._v(" "),
-    _c("div", { staticClass: "shows" }, [
-      _c("h2", [_vm._v("Shows")]),
+    _c("header", { staticClass: "form-inline" }, [
+      _c("label", { staticClass: "sr-only", attrs: { for: "show-search" } }, [
+        _vm._v("Search")
+      ]),
       _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "shows--list" },
-        _vm._l(_vm.shows, function(show) {
-          return _c("show", { key: show.show_id, attrs: { show: show } })
-        })
-      )
+      _c("input", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.search,
+            expression: "search"
+          }
+        ],
+        staticClass: "form-control",
+        attrs: { id: "show-search", type: "search", placeholder: "Search" },
+        domProps: { value: _vm.search },
+        on: {
+          input: function($event) {
+            if ($event.target.composing) {
+              return
+            }
+            _vm.search = $event.target.value
+          }
+        }
+      })
     ]),
+    _vm._v(" "),
+    _vm.shows && _vm.shows.length
+      ? _c("div", { staticClass: "shows" }, [
+          _c("h2", [_vm._v("Shows")]),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "shows--list" },
+            _vm._l(_vm.shows, function(show) {
+              return _c("show", { key: show.show_id, attrs: { show: show } })
+            })
+          )
+        ])
+      : _vm._e(),
     _vm._v(" "),
     _vm.anime && _vm.anime.length
       ? _c("div", { staticClass: "anime" }, [

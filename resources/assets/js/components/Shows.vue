@@ -1,7 +1,10 @@
 <template>
     <div id="content" class="container">
-        <input type="text" v-model="search">
-        <div class="shows">
+        <header class="form-inline">
+            <label for="show-search" class="sr-only">Search</label>
+            <input class="form-control" id="show-search" type="search" v-model="search" placeholder="Search">
+        </header>
+        <div class="shows" v-if="shows && shows.length">
             <h2>Shows</h2>
             <div class="shows--list">
                 <show v-for="show in shows" :key="show.show_id" v-bind:show="show"></show>
