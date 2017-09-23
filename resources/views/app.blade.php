@@ -8,7 +8,7 @@
 
 
         <title>SRL</title>
-        <link rel="stylesheet" href="/css/app.css">
+        <link rel="stylesheet" href="{{url('/css/app.css')}}">
     </head>
     <body>
         <div id="app">
@@ -17,7 +17,7 @@
                 <router-view></router-view>
             </section>
         </div>
-        <script src="{{ mix('js/app.js') }}"></script>
+        <script src="{{ url(mix('js/app.js')) }}"></script>
         {{--<script src="/js/app.js"></script>--}}
     </body>
 </html>
