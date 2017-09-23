@@ -2,7 +2,7 @@
     <div id="content" class="container">
         <header class="form-inline">
             <label for="show-search" class="sr-only">Search</label>
-            <input class="form-control" id="show-search" type="search" v-model="search" placeholder="Search">
+            <input class="form-control" id="show-search" type="search" v-on:input="debounceInput" placeholder="Search">
         </header>
         <div class="shows" v-if="shows && shows.length">
             <h2>Shows</h2>
@@ -28,6 +28,7 @@
 <script>
     import axios from 'axios';
     import Fuse from 'fuse.js';
+    import * as _ from "lodash";
 
     export default {
         data: () => ({
@@ -61,7 +62,6 @@
         },
         watch: {
             search() {
-                console.log('triggering search');
                 this.triggerSearch();
             },
             full_list() {
@@ -83,15 +83,17 @@
             },
         },
         methods: {
-            triggerSearch: function() {
-                console.log("search triggered:" + this.search);
+            triggerSearch: function () {
                 let keyworks = this.search.trim();
                 if (keyworks === '') {
                     this.filtered_list = this.full_list;
                 } else {
                     this.filtered_list = this.fuse.search(keyworks);
                 }
-            }
+            },
+            debounceInput: _.debounce(function (e) {
+                this.search = e.target.value;
+            }, 250),
         }
     }
 </script>

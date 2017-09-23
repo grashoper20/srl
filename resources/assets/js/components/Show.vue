@@ -29,9 +29,6 @@
         props: [
             'show'
         ],
-        mounted() {
-            console.log('show');
-        },
         computed: {
             progressClass: function () {
                 return 'progress-' + Math.max((Math.floor(this.progress / 20) * 20), 20);

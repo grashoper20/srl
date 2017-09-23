@@ -48916,10 +48916,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         };
     },
     props: ['show'],
-    mounted: function mounted() {
-        console.log('show');
-    },
-
     computed: {
         progressClass: function progressClass() {
             return 'progress-' + Math.max(Math.floor(this.progress / 20) * 20, 20);
@@ -49097,6 +49093,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_fuse_js__ = __webpack_require__(79);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_fuse_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_fuse_js__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_lodash__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_lodash___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_lodash__);
 //
 //
 //
@@ -49124,6 +49122,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+
 
 
 
@@ -49161,7 +49160,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     watch: {
         search: function search() {
-            console.log('triggering search');
             this.triggerSearch();
         },
         full_list: function full_list() {
@@ -49184,14 +49182,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     methods: {
         triggerSearch: function triggerSearch() {
-            console.log("search triggered:" + this.search);
             var keyworks = this.search.trim();
             if (keyworks === '') {
                 this.filtered_list = this.full_list;
             } else {
                 this.filtered_list = this.fuse.search(keyworks);
             }
-        }
+        },
+        debounceInput: __WEBPACK_IMPORTED_MODULE_2_lodash__["debounce"](function (e) {
+            this.search = e.target.value;
+        }, 250)
     }
 });
 
@@ -49210,25 +49210,9 @@ var render = function() {
       ]),
       _vm._v(" "),
       _c("input", {
-        directives: [
-          {
-            name: "model",
-            rawName: "v-model",
-            value: _vm.search,
-            expression: "search"
-          }
-        ],
         staticClass: "form-control",
         attrs: { id: "show-search", type: "search", placeholder: "Search" },
-        domProps: { value: _vm.search },
-        on: {
-          input: function($event) {
-            if ($event.target.composing) {
-              return
-            }
-            _vm.search = $event.target.value
-          }
-        }
+        on: { input: _vm.debounceInput }
       })
     ]),
     _vm._v(" "),
