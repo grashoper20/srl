@@ -19,5 +19,8 @@
         "popper.js": "^1.12.5",
         "vue": "^2.1.10",
         "vue-router": "^2.7.0"
+    },
+    "dependencies": {
+        "fuse.js": "^3.1.0"
     }
 }
