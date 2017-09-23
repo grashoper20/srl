@@ -41,23 +41,21 @@ class ImdbInfoController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \SickRage\imdb_info $imdb_info
+     * @param  \SickRage\imdb_info $imdb
      * @return \Illuminate\Http\Response
      */
-    public function show(imdb_info $imdb_info, $indexer_id)
+    public function show(imdb_info $imdb)
     {
-        // TODO fix binding to use correct id.
-        $imdb_info = imdb_info::find($indexer_id);
-        return response()->json($imdb_info);
+        return response()->json($imdb);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \SickRage\imdb_info $imdb_info
+     * @param  \SickRage\imdb_info $imdb
      * @return \Illuminate\Http\Response
      */
-    public function edit(imdb_info $imdb_info)
+    public function edit(imdb_info $imdb)
     {
         //
     }
@@ -66,10 +64,10 @@ class ImdbInfoController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request $request
-     * @param  \SickRage\imdb_info $imdb_info
+     * @param  \SickRage\imdb_info $imdb
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, imdb_info $imdb_info)
+    public function update(Request $request, imdb_info $imdb)
     {
         //
     }
@@ -77,10 +75,10 @@ class ImdbInfoController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \SickRage\imdb_info $imdb_info
+     * @param  \SickRage\imdb_info $imdb
      * @return \Illuminate\Http\Response
      */
-    public function destroy(imdb_info $imdb_info)
+    public function destroy(imdb_info $imdb)
     {
         //
     }

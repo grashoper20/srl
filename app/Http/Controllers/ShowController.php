@@ -12,8 +12,7 @@ class ShowController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
+    public function index() {
         return response()->json(tv_show::all());
     }
 
@@ -22,68 +21,58 @@ class ShowController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
+    public function create() {
         //
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
+    public function store(Request $request) {
         //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \SickRage\tv_show  $tv_show
+     * @param  \SickRage\tv_show $show
      * @return \Illuminate\Http\Response
      */
-    public function show(tv_show $tv_show, $show_id)
-    {
-
-//        var_dump($tv_show);
-        // TODO fix binding to use correct id.
-        $tv_show = tv_show::find($show_id);
-        return response()->json($tv_show);
+    public function show(tv_show $show) {
+        return response()->json($show);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \SickRage\tv_show  $tv_show
+     * @param  \SickRage\tv_show $show
      * @return \Illuminate\Http\Response
      */
-    public function edit(tv_show $tv_show)
-    {
+    public function edit(tv_show $show) {
         //
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \SickRage\tv_show  $tv_show
+     * @param  \Illuminate\Http\Request $request
+     * @param  \SickRage\tv_show $show
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, tv_show $tv_show)
-    {
+    public function update(Request $request, tv_show $show) {
         //
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \SickRage\tv_show  $tv_show
+     * @param  \SickRage\tv_show $show
      * @return \Illuminate\Http\Response
      */
-    public function destroy(tv_show $tv_show)
-    {
+    public function destroy(tv_show $show) {
         //
     }
 }
