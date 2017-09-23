@@ -7,7 +7,7 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
 
-        <title>Laravel</title>
+        <title>SRL</title>
         <link rel="stylesheet" href="/css/app.css">
     </head>
     <body>

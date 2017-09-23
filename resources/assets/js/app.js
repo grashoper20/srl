@@ -35,11 +35,11 @@ const routes = [
         component: Shows,
         name: 'show_list',
     },
-    // {
-    //     path: '/show/add',
-    //     component: ShowsAdd,
-    //     name: 'show_add',
-    // },
+    {
+        path: '/show/add',
+        component: ShowsAdd,
+        name: 'show_add',
+    },
     // {
     //     path: '/show/process',
     //     component: ShowsProcess,

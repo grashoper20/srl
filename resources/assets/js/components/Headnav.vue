@@ -57,7 +57,7 @@
 <script>
     export default {
         mounted() {
-            console.log('HEAD!')
+//            console.log('HEAD!')
         }
     }
 </script>
@@ -76,6 +76,7 @@
 
         background: $background-light linear-gradient($background-light, $background-dark);
         border-bottom: 1px solid $background-dark;
+        margin-bottom: .5rem;
 
         .nav-item {
             border-right: 1px solid white;
