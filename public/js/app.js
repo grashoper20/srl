@@ -48839,7 +48839,7 @@ exports = module.exports = __webpack_require__(2)(undefined);
 
 
 // module
-exports.push([module.i, "\n.show {\n  width: 188px;\n  margin: 4px;\n  background-color: #F3F3F3;\n  border: 6px solid #F3F3F3;\n  border-radius: 6px;\n  overflow: hidden;\n  box-shadow: 1px 1px 3px 0 rgba(0, 0, 0, 0.31);\n}\n.show--image img {\n  overflow: hidden;\n  max-width: 100%;\n}\n.show--title {\n  white-space: nowrap;\n  font-size: .8rem;\n  margin: 6px 4px 0;\n}\n.show--date {\n  white-space: nowrap;\n  font-size: .75rem;\n  margin: 0 4px 4px;\n  color: #949494;\n}\n.show--details {\n  height: 32px;\n  overflow: hidden;\n  position: relative;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n.show--count, .show--network, .show--quality {\n  font-size: .7rem;\n  vertical-align: middle;\n  width: 33%;\n}\n.show--network {\n  text-align: center;\n}\n.show--quality {\n  text-align: right;\n}\n.show--progress {\n  height: 7px;\n  border: 1px solid #111111;\n  border-right-width: 0;\n  border-left-width: 0;\n  overflow: hidden;\n}\n.show--progress .show--progress_bar {\n    height: 100%;\n}\n.show--progress .progress-100 {\n    background-image: linear-gradient(#A6CF41, #5B990D);\n}\n.show--progress .progress-80 {\n    background-image: linear-gradient(#E1FF97, #9DB269);\n}\n.show--progress .progress-60 {\n    background-image: linear-gradient(#FAD440, #F2A70D);\n}\n.show--progress .progress-40 {\n    background-image: linear-gradient(#FAB543, #F2700D);\n}\n.show--progress .progress-20 {\n    background-image: linear-gradient(#DA5945, #B11A10);\n}\n", ""]);
+exports.push([module.i, "\n.show--wrapper {\n  width: 188px;\n  margin: 4px;\n  background-color: #F3F3F3;\n  border: 6px solid #F3F3F3;\n  border-radius: 6px;\n  overflow: hidden;\n  box-shadow: 1px 1px 3px 0 rgba(0, 0, 0, 0.31);\n}\n.show--image img {\n  overflow: hidden;\n  max-width: 100%;\n}\n.show--title {\n  white-space: nowrap;\n  font-size: .8rem;\n  margin: 6px 4px 0;\n}\n.show--date {\n  white-space: nowrap;\n  font-size: .75rem;\n  margin: 0 4px 4px;\n  color: #949494;\n}\n.show--details {\n  height: 32px;\n  overflow: hidden;\n  position: relative;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n.show--count, .show--network, .show--quality {\n  font-size: .7rem;\n  vertical-align: middle;\n  width: 33%;\n}\n.show--network {\n  text-align: center;\n}\n.show--quality {\n  text-align: right;\n}\n.show--progress {\n  height: 7px;\n  border: 1px solid #111111;\n  border-right-width: 0;\n  border-left-width: 0;\n  overflow: hidden;\n}\n.show--progress .show--progress_bar {\n    height: 100%;\n}\n.show--progress .progress-100 {\n    background-image: linear-gradient(#A6CF41, #5B990D);\n}\n.show--progress .progress-80 {\n    background-image: linear-gradient(#E1FF97, #9DB269);\n}\n.show--progress .progress-60 {\n    background-image: linear-gradient(#FAD440, #F2A70D);\n}\n.show--progress .progress-40 {\n    background-image: linear-gradient(#FAB543, #F2700D);\n}\n.show--progress .progress-20 {\n    background-image: linear-gradient(#DA5945, #B11A10);\n}\n", ""]);
 
 // exports
 
@@ -48946,7 +48946,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "show" }, [
+  return _c("div", { staticClass: "show--wrapper" }, [
     _c(
       "div",
       { staticClass: "show--image" },
@@ -49551,7 +49551,7 @@ exports = module.exports = __webpack_require__(2)(undefined);
 
 
 // module
-exports.push([module.i, "\n.show-full--head {\n  display: flex;\n  justify-content: space-between;\n  border-bottom: 1px solid #888;\n  padding-bottom: .5rem;\n}\n.show-full--head h1 {\n    margin: 0;\n}\n.show-full--seasons {\n  align-self: flex-end;\n}\n.show-full--backdrop {\n  position: fixed;\n  top: 0;\n  z-index: -9999;\n  height: 100vh;\n  width: 100%;\n  opacity: 0.4;\n  background: no-repeat center center fixed;\n  background-size: cover;\n}\n", ""]);
+exports.push([module.i, "\n.show-full--poster {\n  width: 100%;\n}\n.show-full--head {\n  display: flex;\n  justify-content: space-between;\n  border-bottom: 1px solid #888;\n  padding-bottom: .5rem;\n  margin-bottom: 1rem;\n}\n.show-full--head h1 {\n    margin: 0;\n}\n.show-full--seasons {\n  align-self: flex-end;\n}\n.show-full--info .show-full--info-header {\n  display: flex;\n  justify-content: space-between;\n}\n.show-full--info .show-full--details {\n  margin: .25rem 0;\n  padding: .5rem;\n  background: #efefef;\n}\n.show-full--episode-list {\n  margin: .5rem 0;\n}\n.show-full--backdrop {\n  position: fixed;\n  top: 0;\n  z-index: -9999;\n  height: 100vh;\n  width: 100%;\n  opacity: 0.4;\n  background: no-repeat center center fixed;\n  background-size: cover;\n}\n", ""]);
 
 // exports
 
@@ -49577,6 +49577,26 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -49584,7 +49604,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     data: function data() {
         return {
             id: 0,
-            show: {}
+            show: {},
+            imdb_info: {}
         };
     },
     created: function created() {
@@ -49593,6 +49614,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         this.id = this.$route.params.id;
         __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('/api/show/' + this.id).then(function (response) {
             _this.show = response.data;
+            __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('/api/imdb/' + _this.show.indexer_id).then(function (response) {
+                _this.imdb_info = response.data;
+            }).catch(function (e) {
+                console.log(e);
+                _this.errors.push(e);
+            });
         }).catch(function (e) {
             console.log(e);
             _this.errors.push(e);
@@ -49605,6 +49632,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 return '';
             }
             return '/filecache/poster/' + this.show.indexer_id + '/fanart';
+        },
+        poster: function poster() {
+            return '/filecache/poster/' + this.show.indexer_id + '/poster/thumbnail';
+        },
+        banner: function banner() {
+            return '/filecache/poster/' + this.show.indexer_id + '/banner';
+        },
+        bannerThumbnail: function bannerThumbnail() {
+            return '/filecache/poster/' + this.show.indexer_id + '/banner/thumbnail';
         }
     },
     mounted: function mounted() {
@@ -49628,7 +49664,45 @@ var render = function() {
         _vm._m(0)
       ]),
       _vm._v(" "),
-      _c("p", [_vm._v("some content.")])
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col" }, [
+          _c("img", {
+            staticClass: "show-full--poster",
+            staticStyle: { width: "100%" },
+            attrs: { src: _vm.poster }
+          })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "show-full--info col-9" }, [
+          _c("header", { staticClass: "show-full--info-header" }, [
+            _c("div", [
+              _c("div", [
+                _vm._v(
+                  _vm._s(_vm.imdb_info.rating) +
+                    " " +
+                    _vm._s(_vm.imdb_info.countries) +
+                    " (" +
+                    _vm._s(_vm.imdb_info.year) +
+                    ") - " +
+                    _vm._s(_vm.imdb_info.runtimes) +
+                    " minutes"
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", [_vm._v(_vm._s(_vm.imdb_info.genres))])
+            ]),
+            _vm._v(" "),
+            _c("img", {
+              staticStyle: { "max-height": "50px", border: "1px solid black" },
+              attrs: { src: _vm.bannerThumbnail }
+            })
+          ]),
+          _vm._v(" "),
+          _vm._m(1)
+        ])
+      ]),
+      _vm._v(" "),
+      _vm._m(2)
     ]),
     _vm._v(" "),
     _c("div", {
@@ -49647,6 +49721,31 @@ var staticRenderFns = [
       _c("a", [_vm._v("1")]),
       _vm._v("|"),
       _c("a", [_vm._v("2")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      {
+        staticClass: "show-full--details row",
+        staticStyle: { height: "200px" }
+      },
+      [
+        _c("div", { staticClass: "col-8" }, [_vm._v("first details")]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-4" }, [_vm._v("second details")])
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "show-full--episode-list" }, [
+      _c("h4", [_vm._v("Episode list")])
     ])
   }
 ]

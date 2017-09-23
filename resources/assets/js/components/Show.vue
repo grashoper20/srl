@@ -1,5 +1,5 @@
 <template>
-    <div class="show">
+    <div class="show--wrapper">
         <div class="show--image">
             <router-link :to="{name: 'show', params: {id: show.show_id}}">
                 <img v-bind:src="poster"/>
@@ -52,8 +52,8 @@
 </script>
 
 <style lang="scss">
-    //
-    .show {
+    // use wrapper because "show" conflicts with bootstrap.
+    .show--wrapper {
         width: 188px;
         margin: 4px;
         background-color: #F3F3F3;
