@@ -28,8 +28,6 @@ services:
         yarn install
         npm run watch
 
-#        NODE_ENV=development node node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js --host=0.0.0.0
-
 networks:
   srl:
 volumes:

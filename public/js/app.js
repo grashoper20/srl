@@ -18316,6 +18316,7 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('show', __WEBPACK_IMPORTED
 
 
 
+__WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('episode-list', __webpack_require__(80));
 
 
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('headnav', __webpack_require__(70));
@@ -49128,6 +49129,25 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -49211,58 +49231,106 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container", attrs: { id: "content" } }, [
-    _c("header", { staticClass: "form-inline shows--search" }, [
-      _c("label", { staticClass: "sr-only", attrs: { for: "show-search" } }, [
-        _vm._v("Search")
-      ]),
-      _vm._v(" "),
-      _c("input", {
-        staticClass: "form-control",
-        attrs: { id: "show-search", type: "search", placeholder: "Search" },
-        on: { input: _vm.debounceInput }
-      }),
-      _vm._v(" "),
-      _c("label", { attrs: { for: "search-show-type" } }, [
-        _vm._v("Show type: ")
-      ]),
-      _vm._v(" "),
-      _c(
-        "select",
-        {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.showType,
-              expression: "showType"
-            }
-          ],
+    _c("header", { staticClass: "shows--search" }, [
+      _c("div", { staticClass: "form-inline " }, [
+        _c("label", { staticClass: "sr-only", attrs: { for: "show-search" } }, [
+          _vm._v("Search")
+        ]),
+        _vm._v(" "),
+        _c("input", {
           staticClass: "form-control",
-          attrs: { id: "search-show-type" },
-          on: {
-            change: function($event) {
-              var $$selectedVal = Array.prototype.filter
-                .call($event.target.options, function(o) {
-                  return o.selected
-                })
-                .map(function(o) {
-                  var val = "_value" in o ? o._value : o.value
-                  return val
-                })
-              _vm.showType = $event.target.multiple
-                ? $$selectedVal
-                : $$selectedVal[0]
+          attrs: { id: "show-search", type: "search", placeholder: "Search" },
+          on: { input: _vm.debounceInput }
+        }),
+        _vm._v(" "),
+        _c("label", { attrs: { for: "search-show-type" } }, [
+          _vm._v("Show type: ")
+        ]),
+        _vm._v(" "),
+        _c(
+          "select",
+          {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.showType,
+                expression: "showType"
+              }
+            ],
+            staticClass: "form-control",
+            attrs: { id: "search-show-type" },
+            on: {
+              change: function($event) {
+                var $$selectedVal = Array.prototype.filter
+                  .call($event.target.options, function(o) {
+                    return o.selected
+                  })
+                  .map(function(o) {
+                    var val = "_value" in o ? o._value : o.value
+                    return val
+                  })
+                _vm.showType = $event.target.multiple
+                  ? $$selectedVal
+                  : $$selectedVal[0]
+              }
             }
-          }
-        },
-        [
-          _c("option", { attrs: { value: "1" } }, [_vm._v("All")]),
-          _vm._v(" "),
-          _c("option", { attrs: { value: "2" } }, [_vm._v("Shows")]),
-          _vm._v(" "),
-          _c("option", { attrs: { value: "3" } }, [_vm._v("Anime")])
-        ]
-      )
+          },
+          [
+            _c("option", { attrs: { value: "1" } }, [_vm._v("Name")]),
+            _vm._v(" "),
+            _c("option", { attrs: { value: "2" } }, [_vm._v("Next Episode")]),
+            _vm._v(" "),
+            _c("option", { attrs: { value: "3" } }, [_vm._v("Network")]),
+            _vm._v(" "),
+            _c("option", { attrs: { value: "3" } }, [_vm._v("Progress")])
+          ]
+        ),
+        _vm._v(" "),
+        _c("label", { attrs: { for: "search-layout" } }, [_vm._v("Layout")]),
+        _vm._v(" "),
+        _c(
+          "select",
+          {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.showType,
+                expression: "showType"
+              }
+            ],
+            staticClass: "form-control",
+            attrs: { id: "search-layout" },
+            on: {
+              change: function($event) {
+                var $$selectedVal = Array.prototype.filter
+                  .call($event.target.options, function(o) {
+                    return o.selected
+                  })
+                  .map(function(o) {
+                    var val = "_value" in o ? o._value : o.value
+                    return val
+                  })
+                _vm.showType = $event.target.multiple
+                  ? $$selectedVal
+                  : $$selectedVal[0]
+              }
+            }
+          },
+          [
+            _c("option", { attrs: { value: "1" } }, [_vm._v("Name")]),
+            _vm._v(" "),
+            _c("option", { attrs: { value: "2" } }, [_vm._v("Next Episode")]),
+            _vm._v(" "),
+            _c("option", { attrs: { value: "3" } }, [_vm._v("Network")]),
+            _vm._v(" "),
+            _c("option", { attrs: { value: "3" } }, [_vm._v("Progress")])
+          ]
+        )
+      ]),
+      _vm._v(" "),
+      _vm._m(0)
     ]),
     _vm._v(" "),
     _vm.shows && _vm.shows.length && _vm.showType != 3
@@ -49305,7 +49373,28 @@ var render = function() {
       : _vm._e()
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-inline " }, [
+      _c("label", { attrs: { for: "search-sort" } }, [_vm._v("Sort")]),
+      _vm._v(" "),
+      _c(
+        "select",
+        { staticClass: "form-control", attrs: { id: "search-sort" } },
+        [
+          _c("option", { attrs: { value: "1" } }, [_vm._v("All")]),
+          _vm._v(" "),
+          _c("option", { attrs: { value: "2" } }, [_vm._v("Shows")]),
+          _vm._v(" "),
+          _c("option", { attrs: { value: "3" } }, [_vm._v("Anime")])
+        ]
+      )
+    ])
+  }
+]
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
@@ -49708,6 +49797,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 
 
@@ -49716,7 +49808,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         return {
             id: 0,
             show: {},
-            imdb_info: {}
+            imdb_info: {},
+            episodes: []
         };
     },
     created: function created() {
@@ -49733,6 +49826,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             });
         }).catch(function (e) {
             console.log(e);
+            _this.errors.push(e);
+        });
+        __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('/api/show/' + this.id + '/episodes').then(function (response) {
+            _this.episodes = response.data;
+        }).catch(function (e) {
+            console.error(e);
             _this.errors.push(e);
         });
     },
@@ -49789,14 +49888,15 @@ var render = function() {
             _c("div", [
               _c("div", [
                 _vm._v(
-                  _vm._s(_vm.imdb_info.rating) +
+                  "\n                            " +
+                    _vm._s(_vm.imdb_info.rating) +
                     " " +
                     _vm._s(_vm.imdb_info.countries) +
                     " (" +
                     _vm._s(_vm.imdb_info.year) +
                     ") - " +
                     _vm._s(_vm.imdb_info.runtimes) +
-                    " minutes"
+                    " minutes\n                        "
                 )
               ]),
               _vm._v(" "),
@@ -49813,7 +49913,16 @@ var render = function() {
         ])
       ]),
       _vm._v(" "),
-      _vm._m(2)
+      _c(
+        "div",
+        { staticClass: "show-full--episode-list" },
+        [
+          _c("h4", [_vm._v("Episode list")]),
+          _vm._v(" "),
+          _c("episode-list", { attrs: { episodes: _vm.episodes } })
+        ],
+        1
+      )
     ]),
     _vm._v(" "),
     _c("div", {
@@ -49850,14 +49959,6 @@ var staticRenderFns = [
         _c("div", { staticClass: "col-4" }, [_vm._v("second details")])
       ]
     )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "show-full--episode-list" }, [
-      _c("h4", [_vm._v("Episode list")])
-    ])
   }
 ]
 render._withStripped = true
@@ -51401,6 +51502,266 @@ module.exports = Fuse;
 /******/ ]);
 });
 //# sourceMappingURL=fuse.js.map
+
+/***/ }),
+/* 80 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(83)
+}
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(81)
+/* template */
+var __vue_template__ = __webpack_require__(82)
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/ShowEpisodeList.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] ShowEpisodeList.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-089d98cd", Component.options)
+  } else {
+    hotAPI.reload("data-v-089d98cd", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 81 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            columns: ['NFO', 'TBN', 'Episode', 'Name', 'Airdate', 'Status', 'Search'],
+            episodeList: []
+        };
+    },
+    props: ['episodes'],
+    watch: {
+        episodes: function episodes() {
+            var tmp = [];
+            this.episodes.forEach(function (episode) {
+                if (!(episode.season in tmp)) {
+                    tmp[episode.season] = [];
+                }
+                tmp[episode.season].push(episode);
+            });
+            this.episodeList = tmp;
+        }
+    },
+    computed: {
+        orderedEpisodeList: function orderedEpisodeList() {
+            if (!this.episodeList || !this.episodeList.length) {
+                return [];
+            }
+            return this.episodeList.slice().reverse();
+        }
+    },
+    methods: {
+        episodeClass: function episodeClass(state) {
+            //    const UNAIRED = 1;  # episodes that haven't aired yet
+            //              const SNATCHED = 2;  # qualified with quality
+            //                  const WANTED = 3;  # episodes we don't have but want to get
+            //              const DOWNLOADED = 4;  # qualified with quality
+            //                  const SKIPPED = 5;  # episodes we don't want
+            //              const ARCHIVED = 6;  # episodes that you don't have locally (counts toward download completion stats)
+            //              const IGNORED = 7;  # episodes that you don't want included in your download stats
+            //
+            switch (state) {
+                case '1':
+                case 1:
+                    return 'unaired';
+                case '2':
+                case 2:
+                case '9':
+                case 9:
+                case '12':
+                case 12:
+                    return 'snatched';
+                case '3':
+                case 3:
+                    return 'wanted';
+                case '4':
+                case 4:
+                    return 'good';
+                case '5':
+                case 5:
+                    return 'skipped';
+                    return 'good';
+                case '50':
+                case 50:
+                    return 'qual';
+                default:
+                    console.log(state);
+                    return 'weird-' + state;
+            }
+        }
+    }
+});
+
+/***/ }),
+/* 82 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "episode_list" },
+    _vm._l(_vm.orderedEpisodeList, function(seasonList) {
+      return _c("div", [
+        _c("h4", [_vm._v("Season " + _vm._s(seasonList[0].season))]),
+        _vm._v(" "),
+        _c("table", [
+          _vm._m(0, true),
+          _vm._v(" "),
+          _c(
+            "tbody",
+            _vm._l(seasonList.slice().reverse(), function(episode) {
+              return _c("tr", { class: _vm.episodeClass(episode.status) }, [
+                _c("td", [_vm._v(_vm._s(episode.hasnfo == "1" ? "Y" : "N"))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(episode.hastbn == "1" ? "Y" : "N"))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(episode.episode))]),
+                _vm._v(" "),
+                _c("td", { staticClass: "w-100" }, [
+                  _vm._v(_vm._s(episode.name))
+                ])
+              ])
+            })
+          )
+        ])
+      ])
+    })
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", [_vm._v("NFO")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("TBN")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Episode")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Name")])
+      ])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-089d98cd", module.exports)
+  }
+}
+
+/***/ }),
+/* 83 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(84);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(3)("51a35298", content, false);
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-089d98cd\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/sass-loader/lib/loader.js!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ShowEpisodeList.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-089d98cd\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/sass-loader/lib/loader.js!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ShowEpisodeList.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 84 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(2)(undefined);
+// imports
+
+
+// module
+exports.push([module.i, "\n.episode_list table {\n  width: 100%;\n  background-color: #ddd;\n}\n.episode_list th {\n  padding: 0 .25rem;\n}\n.episode_list th, .episode_list td {\n  border: 1px solid white;\n}\n.episode_list .unaired {\n  background-color: #F5F1E4;\n}\n.episode_list .good {\n  background-color: #C3E3C8;\n}\n.episode_list .qual {\n  background-color: #FFDA8A;\n}\n.episode_list .skipped {\n  background-color: #BEDEED;\n}\n.episode_list .wanted {\n  background-color: #FFB0B0;\n}\n.episode_list .snatched {\n  background-color: #EBC1EA;\n}\n", ""]);
+
+// exports
+
 
 /***/ })
 /******/ ]);

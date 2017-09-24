@@ -12,7 +12,9 @@
                 <div class="show-full--info col-9">
                     <header class="show-full--info-header">
                         <div>
-                            <div>{{imdb_info.rating}} {{imdb_info.countries}} ({{imdb_info.year}}) - {{imdb_info.runtimes}} minutes</div>
+                            <div>
+                                {{imdb_info.rating}} {{imdb_info.countries}} ({{imdb_info.year}}) - {{imdb_info.runtimes}} minutes
+                            </div>
                             <div>{{imdb_info.genres}}</div>
                         </div>
                         <img style="max-height: 50px; border: 1px solid black;" :src="bannerThumbnail"/>
@@ -25,6 +27,7 @@
             </div>
             <div class="show-full--episode-list">
                 <h4>Episode list</h4>
+                <episode-list v-bind:episodes="episodes"></episode-list>
             </div>
         </div>
         <div class="show-full--backdrop" :style="{backgroundImage: 'url(' + getBackgroundImage + ')'}"></div>
@@ -39,6 +42,7 @@
             id: 0,
             show: {},
             imdb_info: {},
+            episodes: [],
         }),
         created() {
             this.id = this.$route.params.id;
@@ -56,6 +60,14 @@
                 })
                 .catch(e => {
                     console.log(e);
+                    this.errors.push(e)
+                });
+            axios.get('/api/show/' + this.id + '/episodes')
+                .then(response => {
+                    this.episodes = response.data;
+                })
+                .catch(e => {
+                    console.error(e);
                     this.errors.push(e)
                 });
         },

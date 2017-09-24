@@ -19,6 +19,7 @@ import Shows from './components/Shows.vue';
 import ShowsAdd from './components/ShowsAdd.vue';
 import ShowsProcess from './components/ShowsProcess.vue';
 import ShowFull from './components/ShowFull.vue';
+Vue.component('episode-list', require('./components/ShowEpisodeList.vue'));
 import Default from './components/Example.vue';
 
 Vue.component('headnav', require('./components/Headnav.vue'));
