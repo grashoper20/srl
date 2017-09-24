@@ -53,6 +53,7 @@ return [
     */
 
     'url' => env('APP_URL', 'http://localhost'),
+    'force_url' => env('APP_FORCE_URL', FALSE),
 
     /*
     |--------------------------------------------------------------------------
