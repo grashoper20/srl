@@ -2,6 +2,7 @@
 
 namespace SickRage\Http\Controllers;
 
+use Illuminate\Database\Query\Builder as QueryBuilder;
 use SickRage\tv_episode;
 
 class ShowEpisodesController extends Controller
@@ -9,7 +10,7 @@ class ShowEpisodesController extends Controller
 
     public function index($show_id) {
         // Show Id is really indexer id. indexer id is not... its weird.
-        $query = tv_episode::where('showid', function ($query) use ($show_id) {
+        $query = tv_episode::where('showid', function (QueryBuilder $query) use ($show_id) {
             $query->from('tv_shows')
                 ->select('indexer_id')
                 ->where('show_id', '=', $show_id);
