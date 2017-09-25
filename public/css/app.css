@@ -3794,7 +3794,7 @@ tbody.collapse.show {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  padding: 0.5rem 1rem;
+  padding: 0 1rem;
 }
 
 .navbar > .container,
@@ -3814,8 +3814,8 @@ tbody.collapse.show {
 
 .navbar-brand {
   display: inline-block;
-  padding-top: 0.3125rem;
-  padding-bottom: 0.3125rem;
+  padding-top: 0;
+  padding-bottom: 0;
   margin-right: 1rem;
   font-size: 1.25rem;
   line-height: inherit;
@@ -9191,17 +9191,19 @@ body {
   height: 100vh;
 }
 
-nav.main .dropdown-menu:after {
-  position: absolute;
-  top: -12px;
-  right: 12px;
-  display: inline-block;
-  border: 6px solid transparent;
-  border-bottom: 6px solid #F5F1E4;
-  content: "";
-}
+@media (min-width: 768px) {
+  nav.main .dropdown-menu:after {
+    position: absolute;
+    top: -12px;
+    right: 12px;
+    display: inline-block;
+    border: 6px solid transparent;
+    border-bottom-color: #F5F1E4;
+    content: "";
+  }
 
-.dropdown-hover:hover > .dropdown-menu {
-  display: block;
+  .dropdown-hover:hover > .dropdown-menu {
+    display: block;
+  }
 }
 

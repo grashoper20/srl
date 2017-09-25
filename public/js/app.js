@@ -51504,7 +51504,7 @@ exports = module.exports = __webpack_require__(2)(undefined);
 
 
 // module
-exports.push([module.i, "\nnav.main {\n  height: 50px;\n  color: white;\n  /*position: fixed;*/\n  /*z-index: 1030;*/\n  background: #555 linear-gradient(#555, #333);\n  border-bottom: 1px solid #333;\n  margin-bottom: .5rem;\n}\nnav.main .nav-item {\n    border-right: 1px solid white;\n}\nnav.main .nav-item .dropdown-toggle,\n    nav.main .nav-item > a {\n      display: inline-block;\n      line-height: 50px;\n      padding: 0 10px;\n}\nnav.main .nav-item > .router-link-active {\n      background: #333;\n}\nnav.main .dropdown-menu {\n    margin: 0;\n    left: auto;\n    right: 0;\n}\nnav.main .dropdown-menu li {\n      padding: 0;\n}\nnav.main .dropdown-menu a {\n      display: block;\n      padding: 0.25rem 1.5rem;\n      color: #333;\n}\n", ""]);
+exports.push([module.i, "\nnav.main {\n  min-height: 50px;\n  color: white;\n  background: #555 linear-gradient(#555, #333);\n  margin-bottom: .5rem;\n  border-bottom: 1px solid #333;\n}\nnav.main .navbar-toggler {\n    padding: .25em .5em;\n}\nnav.main .navbar-toggler-icon {\n    height: 1em;\n    width: 1em;\n}\nnav.main #mainNavbar,\n  nav.main .navbar-brand {\n    line-height: 50px;\n}\nnav.main .navbar-brand {\n    font-size: 2.0rem;\n}\nnav.main .nav-item .dropdown-toggle,\n  nav.main .nav-item > a {\n    display: inline-block;\n    padding: 0 10px;\n}\nnav.main .nav-item > .router-link-active {\n    background: #333;\n}\nnav.main .dropdown-menu {\n    margin: 0;\n    left: auto;\n    right: 0;\n}\nnav.main .dropdown-menu li {\n      padding: 0;\n}\nnav.main .dropdown-menu a {\n      display: block;\n      padding: 0.25rem 1.5rem;\n      color: #333;\n}\n", ""]);
 
 // exports
 
@@ -51598,6 +51598,8 @@ var render = function() {
         [_vm._v("SRL")]
       ),
       _vm._v(" "),
+      _vm._m(0),
+      _vm._v(" "),
       _c(
         "div",
         {
@@ -51610,12 +51612,13 @@ var render = function() {
               _c(
                 "a",
                 {
-                  staticClass: "dropdown-toggle",
+                  staticClass: "nav-link dropdown-toggle",
                   attrs: {
                     id: "dropdown01",
                     "data-toggle": "dropdown",
                     "aria-haspopup": "true",
-                    "aria-expanded": "false"
+                    "aria-expanded": "false",
+                    href: "#"
                   }
                 },
                 [_vm._v("Shows")]
@@ -51700,12 +51703,13 @@ var render = function() {
               _c(
                 "a",
                 {
-                  staticClass: "dropdown-toggle",
+                  staticClass: "nav-link dropdown-toggle",
                   attrs: {
                     id: "dropdown02",
                     "data-toggle": "dropdown",
                     "aria-haspopup": "true",
-                    "aria-expanded": "false"
+                    "aria-expanded": "false",
+                    href: "#"
                   }
                 },
                 [_vm._v("Manage")]
@@ -51765,35 +51769,17 @@ var render = function() {
               )
             ]),
             _vm._v(" "),
-            _vm._m(0),
+            _vm._m(1),
             _vm._v(" "),
-            _vm._m(1)
+            _vm._m(2)
           ])
         ]
-      ),
-      _vm._v(" "),
-      _vm._m(2)
+      )
     ],
     1
   )
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", { staticClass: "nav-item" }, [
-      _c("a", { staticClass: "nav-link" }, [_vm._v("Gear")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", { staticClass: "nav-item" }, [
-      _c("a", { staticClass: "nav-link" }, [_vm._v("Toolbox")])
-    ])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -51813,6 +51799,22 @@ var staticRenderFns = [
       },
       [_c("span", { staticClass: "navbar-toggler-icon" })]
     )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", { staticClass: "nav-item" }, [
+      _c("a", { staticClass: "nav-link" }, [_vm._v("Gear")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", { staticClass: "nav-item" }, [
+      _c("a", { staticClass: "nav-link" }, [_vm._v("Toolbox")])
+    ])
   }
 ]
 render._withStripped = true
