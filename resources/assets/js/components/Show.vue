@@ -20,7 +20,8 @@
 
 <script>
 
-    import {random} from "lodash";
+    import {random} from 'lodash';
+    import FileCacheService from '../services/FileCacheService';
 
     export default {
         data: () => ({
@@ -38,7 +39,7 @@
                 return this.show.network;
             },
             poster: function () {
-                return '/filecache/poster/' + this.show.indexer_id + '/poster/thumbnail';
+                return FileCacheService.getFileCachePosterUrl(this.show, 'poster/thumbnail');
             },
             airDate: function () {
                 // TODO calculate actual air date and fallback on status.

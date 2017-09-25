@@ -35,7 +35,8 @@
 </template>
 
 <script>
-    import axios from 'axios';
+    import axios from 'axios'
+    import FileCacheService from '../services/FileCacheService';
 
     export default {
         data: () => ({
@@ -72,28 +73,19 @@
         },
         computed: {
             getBackgroundImage: function () {
-
-                return this.getFileCachePoster(this.show, 'fanart');
+                return FileCacheService.getFileCachePosterUrl(this.show, 'fanart');
             },
             poster: function () {
-                return this.getFileCachePoster(this.show, 'poster');
+                return FileCacheService.getFileCachePosterUrl(this.show, 'poster');
             },
             posterThumbnail: function () {
-                return this.getFileCachePoster(this.show, 'poster/thumbnail');
+                return FileCacheService.getFileCachePosterUrl(this.show, 'poster/thumbnail');
             },
             banner: function() {
-                return this.getFileCachePoster(this.show, 'banner');
+                return FileCacheService.getFileCachePosterUrl(this.show, 'banner');
             },
             bannerThumbnail: function() {
-                return this.getFileCachePoster(this.show, 'banner/thumbnail');
-            },
-        },
-        methods: {
-            getFileCachePoster: (show, type) => {
-                if (typeof show.indexer_id === 'undefined') {
-                    return '';
-                }
-                return '/filecache/poster/' + show.indexer_id + '/' + type;
+                return FileCacheService.getFileCachePosterUrl(this.show, 'banner/thumbnail');
             },
         },
         mounted() {

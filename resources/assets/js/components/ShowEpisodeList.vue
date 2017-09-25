@@ -79,7 +79,6 @@
                     case '5':
                     case 5:
                         return 'skipped';
-                        return 'good';
                     case '50':
                     case 50:
                         return 'qual';
@@ -108,7 +107,6 @@
                     case '5':
                     case 5:
                         return 'skipped';
-                        return 'good';
                     case '50':
                     case 50:
                         return 'qual';

@@ -48885,6 +48885,7 @@ module.exports = function listToStyles (parentId, list) {
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_lodash__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_lodash___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_lodash__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_FileCacheService__ = __webpack_require__(85);
 //
 //
 //
@@ -48905,6 +48906,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+
 
 
 
@@ -48925,7 +48927,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             return this.show.network;
         },
         poster: function poster() {
-            return '/filecache/poster/' + this.show.indexer_id + '/poster/thumbnail';
+            return __WEBPACK_IMPORTED_MODULE_1__services_FileCacheService__["a" /* default */].getFileCachePosterUrl(this.show, 'poster/thumbnail');
         },
         airDate: function airDate() {
             // TODO calculate actual air date and fallback on status.
@@ -50764,6 +50766,7 @@ exports.push([module.i, "\n.show-full--poster {\n  width: 100%;\n}\n.show-full--
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_FileCacheService__ = __webpack_require__(85);
 //
 //
 //
@@ -50800,6 +50803,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+
 
 
 
@@ -50837,28 +50841,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     computed: {
         getBackgroundImage: function getBackgroundImage() {
-
-            return this.getFileCachePoster(this.show, 'fanart');
+            return __WEBPACK_IMPORTED_MODULE_1__services_FileCacheService__["a" /* default */].getFileCachePosterUrl(this.show, 'fanart');
         },
         poster: function poster() {
-            return this.getFileCachePoster(this.show, 'poster');
+            return __WEBPACK_IMPORTED_MODULE_1__services_FileCacheService__["a" /* default */].getFileCachePosterUrl(this.show, 'poster');
         },
         posterThumbnail: function posterThumbnail() {
-            return this.getFileCachePoster(this.show, 'poster/thumbnail');
+            return __WEBPACK_IMPORTED_MODULE_1__services_FileCacheService__["a" /* default */].getFileCachePosterUrl(this.show, 'poster/thumbnail');
         },
         banner: function banner() {
-            return this.getFileCachePoster(this.show, 'banner');
+            return __WEBPACK_IMPORTED_MODULE_1__services_FileCacheService__["a" /* default */].getFileCachePosterUrl(this.show, 'banner');
         },
         bannerThumbnail: function bannerThumbnail() {
-            return this.getFileCachePoster(this.show, 'banner/thumbnail');
-        }
-    },
-    methods: {
-        getFileCachePoster: function getFileCachePoster(show, type) {
-            if (typeof show.indexer_id === 'undefined') {
-                return '';
-            }
-            return '/filecache/poster/' + show.indexer_id + '/' + type;
+            return __WEBPACK_IMPORTED_MODULE_1__services_FileCacheService__["a" /* default */].getFileCachePosterUrl(this.show, 'banner/thumbnail');
         }
     },
     mounted: function mounted() {
@@ -51157,7 +51152,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 case '5':
                 case 5:
                     return 'skipped';
-                    return 'good';
                 case '50':
                 case 50:
                     return 'qual';
@@ -51186,7 +51180,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 case '5':
                 case 5:
                     return 'skipped';
-                    return 'good';
                 case '50':
                 case 50:
                     return 'qual';
@@ -51802,6 +51795,43 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 82 */,
+/* 83 */,
+/* 84 */,
+/* 85 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__UrlService__ = __webpack_require__(86);
+
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+    getFileCacheUrl: function getFileCacheUrl(type, id, subtype) {
+        return __WEBPACK_IMPORTED_MODULE_0__UrlService__["a" /* default */].url('/filecache/' + type + '/' + id + '/' + subtype);
+    },
+    getFileCachePosterUrl: function getFileCachePosterUrl(show, type) {
+        if (typeof show.indexer_id === 'undefined') {
+            return '';
+        }
+        return this.getFileCacheUrl('poster', show.indexer_id, type);
+    }
+});
+
+/***/ }),
+/* 86 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony default export */ __webpack_exports__["a"] = ({
+    url: function url(path) {
+        if (window.srl.settings.baseURL) {
+            return window.srl.settings.baseURL + path;
+        }
+        return path;
+    }
+});
 
 /***/ })
 /******/ ]);
