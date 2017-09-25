@@ -83,7 +83,7 @@
                     this.full_list = response.data;
                 })
                 .catch(e => {
-                    this.errors.push(e)
+                    this.errors.push(e);
                 })
         },
         watch: {

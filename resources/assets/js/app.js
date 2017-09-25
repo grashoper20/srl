@@ -53,7 +53,7 @@ const routes = [
     },
     {path: '/schedule', component: Default},
     {path: '/history', component: Default},
-    // TODO Mass update, backlock overview, search, and episode management are probably just one page.
+    // TODO Mass update, backlog overview, search, and episode management are probably just one page.
     {path: '/manage', component: Default},
     {path: '/manage/backlog', component: Default},
     {path: '/manage/search', component: Default},

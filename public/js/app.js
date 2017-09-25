@@ -18343,7 +18343,7 @@ var routes = [{
     component: __WEBPACK_IMPORTED_MODULE_6__components_ShowFull_vue___default.a,
     name: 'show'
 }, { path: '/schedule', component: __WEBPACK_IMPORTED_MODULE_7__components_Example_vue___default.a }, { path: '/history', component: __WEBPACK_IMPORTED_MODULE_7__components_Example_vue___default.a },
-// TODO Mass update, backlock overview, search, and episode management are probably just one page.
+// TODO Mass update, backlog overview, search, and episode management are probably just one page.
 { path: '/manage', component: __WEBPACK_IMPORTED_MODULE_7__components_Example_vue___default.a }, { path: '/manage/backlog', component: __WEBPACK_IMPORTED_MODULE_7__components_Example_vue___default.a }, { path: '/manage/search', component: __WEBPACK_IMPORTED_MODULE_7__components_Example_vue___default.a }, { path: '/manage/episodes', component: __WEBPACK_IMPORTED_MODULE_7__components_Example_vue___default.a }];
 var router = new __WEBPACK_IMPORTED_MODULE_1_vue_router__["a" /* default */]({
     routes: routes // short for `routes: routes`
@@ -50809,7 +50809,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             id: 0,
             show: {},
             imdb_info: {},
-            episodes: []
+            episodes: [],
+            errors: []
         };
     },
     created: function created() {
@@ -50821,7 +50822,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('/api/imdb/' + _this.show.indexer_id).then(function (response) {
                 _this.imdb_info = response.data;
             }).catch(function (e) {
-                console.log(e);
                 _this.errors.push(e);
             });
         }).catch(function (e) {
@@ -50831,26 +50831,34 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('/api/show/' + this.id + '/episodes').then(function (response) {
             _this.episodes = response.data;
         }).catch(function (e) {
-            console.error(e);
             _this.errors.push(e);
         });
     },
 
     computed: {
         getBackgroundImage: function getBackgroundImage() {
-            if (typeof this.show.indexer_id === 'undefined') {
-                return '';
-            }
-            return '/filecache/poster/' + this.show.indexer_id + '/fanart';
+
+            return this.getFileCachePoster(this.show, 'fanart');
         },
         poster: function poster() {
-            return '/filecache/poster/' + this.show.indexer_id + '/poster/thumbnail';
+            return this.getFileCachePoster(this.show, 'poster');
+        },
+        posterThumbnail: function posterThumbnail() {
+            return this.getFileCachePoster(this.show, 'poster/thumbnail');
         },
         banner: function banner() {
-            return '/filecache/poster/' + this.show.indexer_id + '/banner';
+            return this.getFileCachePoster(this.show, 'banner');
         },
         bannerThumbnail: function bannerThumbnail() {
-            return '/filecache/poster/' + this.show.indexer_id + '/banner/thumbnail';
+            return this.getFileCachePoster(this.show, 'banner/thumbnail');
+        }
+    },
+    methods: {
+        getFileCachePoster: function getFileCachePoster(show, type) {
+            if (typeof show.indexer_id === 'undefined') {
+                return '';
+            }
+            return '/filecache/poster/' + show.indexer_id + '/' + type;
         }
     },
     mounted: function mounted() {
@@ -50879,7 +50887,7 @@ var render = function() {
           _c("img", {
             staticClass: "show-full--poster",
             staticStyle: { width: "100%" },
-            attrs: { src: _vm.poster }
+            attrs: { src: _vm.posterThumbnail }
           })
         ]),
         _vm._v(" "),

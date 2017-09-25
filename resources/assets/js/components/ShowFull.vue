@@ -7,7 +7,7 @@
             </header>
             <div class="row">
                 <div class="col">
-                    <img class="show-full--poster" style="width:100%" :src="poster"/>
+                    <img class="show-full--poster" style="width:100%" :src="posterThumbnail"/>
                 </div>
                 <div class="show-full--info col-9">
                     <header class="show-full--info-header">
@@ -43,6 +43,7 @@
             show: {},
             imdb_info: {},
             episodes: [],
+            errors: [],
         }),
         created() {
             this.id = this.$route.params.id;
@@ -54,7 +55,6 @@
                             this.imdb_info = response.data;
                         })
                         .catch(e => {
-                            console.log(e);
                             this.errors.push(e)
                         });
                 })
@@ -67,25 +67,33 @@
                     this.episodes = response.data;
                 })
                 .catch(e => {
-                    console.error(e);
                     this.errors.push(e)
                 });
         },
         computed: {
             getBackgroundImage: function () {
-                if (typeof this.show.indexer_id === 'undefined') {
-                    return '';
-                }
-                return '/filecache/poster/' + this.show.indexer_id + '/fanart';
+
+                return this.getFileCachePoster(this.show, 'fanart');
             },
             poster: function () {
-                return '/filecache/poster/' + this.show.indexer_id + '/poster/thumbnail';
+                return this.getFileCachePoster(this.show, 'poster');
             },
-            banner: function () {
-                return '/filecache/poster/' + this.show.indexer_id + '/banner';
+            posterThumbnail: function () {
+                return this.getFileCachePoster(this.show, 'poster/thumbnail');
             },
-            bannerThumbnail: function () {
-                return '/filecache/poster/' + this.show.indexer_id + '/banner/thumbnail';
+            banner: function() {
+                return this.getFileCachePoster(this.show, 'banner');
+            },
+            bannerThumbnail: function() {
+                return this.getFileCachePoster(this.show, 'banner/thumbnail');
+            },
+        },
+        methods: {
+            getFileCachePoster: (show, type) => {
+                if (typeof show.indexer_id === 'undefined') {
+                    return '';
+                }
+                return '/filecache/poster/' + show.indexer_id + '/' + type;
             },
         },
         mounted() {
