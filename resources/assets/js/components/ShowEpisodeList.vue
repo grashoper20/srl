@@ -10,6 +10,8 @@
                     <th>TBN</th>
                     <th>Episode</th>
                     <th>Name</th>
+                    <th>Air Date</th>
+                    <th>Status</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -18,6 +20,8 @@
                     <td>{{episode.hastbn == '1' ? 'Y' : 'N'}}</td>
                     <td>{{episode.episode}}</td>
                     <td class="w-100">{{episode.name}}</td>
+                    <td>{{episode.airdate}}</td>
+                    <td>{{episodeStatusText(episode.status)}}</td>
                 </tr>
                 </tbody>
             </table>
@@ -28,9 +32,6 @@
 <script>
     export default {
         data: () => ({
-            columns: [
-                'NFO', 'TBN', 'Episode', 'Name', 'Airdate', 'Status', 'Search',
-            ],
             episodeList: [],
         }),
         props: [
@@ -53,48 +54,69 @@
                 if (!this.episodeList || !this.episodeList.length) {
                     return [];
                 }
-                return this.episodeList.slice().reverse();
+                return this.episodeList.slice().reverse().filter(ep => typeof ep !== 'undefined');
             }
         },
         methods: {
-          episodeClass(state) {
-              //    const UNAIRED = 1;  # episodes that haven't aired yet
-//              const SNATCHED = 2;  # qualified with quality
-//                  const WANTED = 3;  # episodes we don't have but want to get
-//              const DOWNLOADED = 4;  # qualified with quality
-//                  const SKIPPED = 5;  # episodes we don't want
-//              const ARCHIVED = 6;  # episodes that you don't have locally (counts toward download completion stats)
-//              const IGNORED = 7;  # episodes that you don't want included in your download stats
-//
-              switch (state) {
-                  case '1':
-                  case 1:
-                          return 'unaired';
-                  case '2':
-                  case 2:
-                  case '9':
-                  case 9:
-                  case '12':
-                  case 12:
-                      return 'snatched';
-                  case '3':
-                  case 3:
-                      return 'wanted';
-                  case '4':
-                  case 4:
-                      return 'good';
-                  case '5':
-                  case 5:
-                      return 'skipped';
-                      return 'good';
-                  case '50':
-                  case 50:
-                      return 'qual';
-                  default:
-                      console.log(state);
-                      return 'weird-' + state;
-              }
-          }
+            episodeClass(state) {
+                switch (state) {
+                    case '1':
+                    case 1:
+                        return 'unaired';
+                    case '2':
+                    case 2:
+                    case '9':
+                    case 9:
+                    case '12':
+                    case 12:
+                        return 'snatched';
+                    case '3':
+                    case 3:
+                        return 'wanted';
+                    case '4':
+                    case 4:
+                        return 'good';
+                    case '5':
+                    case 5:
+                        return 'skipped';
+                        return 'good';
+                    case '50':
+                    case 50:
+                        return 'qual';
+                }
+                console.log(state);
+                return 'weird-' + state;
+            },
+            episodeStatusText(state) {
+                switch (state) {
+                    case '1':
+                    case 1:
+                        return 'unaired';
+                    case '2':
+                    case 2:
+                    case '9':
+                    case 9:
+                    case '12':
+                    case 12:
+                        return 'snatched';
+                    case '3':
+                    case 3:
+                        return 'wanted';
+                    case '4':
+                    case 4:
+                        return 'good';
+                    case '5':
+                    case 5:
+                        return 'skipped';
+                        return 'good';
+                    case '50':
+                    case 50:
+                        return 'qual';
+                    default:
+                        console.log(state);
+                        return 'weird-' + state;
+                }
+            }
         },
     };
 </script>
@@ -107,6 +129,7 @@
         }
         th {
             padding: 0 .25rem;
+            white-space: nowrap;
         }
         th, td {
             border: 1px solid white;

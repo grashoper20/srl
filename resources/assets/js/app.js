@@ -41,11 +41,11 @@ const routes = [
         component: ShowsAdd,
         name: 'show_add',
     },
-    // {
-    //     path: '/show/process',
-    //     component: ShowsProcess,
-    //     name: 'show_process',
-    // },
+    {
+        path: '/show/process',
+        component: ShowsProcess,
+        name: 'show_process',
+    },
     {
         path: '/show/:id',
         component: ShowFull,
