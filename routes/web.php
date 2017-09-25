@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('app');
-});
+Route::get('/', 'App@index');
 Route::resource('/api/show', 'ShowController');
 Route::get('/api/show/{show_id}/episodes', 'ShowEpisodesController@index'); // List episodes.
 Route::get('/api/show/{show_id}/stats', 'ShowEpisodesController@stats'); // Episode stats.
