@@ -4,7 +4,7 @@ RUN composer install --no-dev
 
 FROM node:alpine
 COPY . /app
-RUN cd /app && yarn install && npm run production
+RUN cd /app && yarn install && yarn run production
 
 FROM php:7.1-fpm-alpine
 ENTRYPOINT ["/entrypoint.sh"]
@@ -20,7 +20,6 @@ RUN apk -U add $DEPS \
     && apk del $DEPS \
     && rm -rf /tmp/* \
     && rm -rf /var/cache/apk/*
-
 
 COPY ./resources/docker/entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
