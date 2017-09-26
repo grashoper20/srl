@@ -103,6 +103,7 @@
     }
 
     .show--progress {
+        transition: width .5s;
         height: 7px;
         border: 1px solid #111111;
         border-right-width: 0;

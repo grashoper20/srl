@@ -48859,7 +48859,7 @@ exports = module.exports = __webpack_require__(2)(undefined);
 
 
 // module
-exports.push([module.i, "\n.show--wrapper {\n  width: 188px;\n  margin: 4px;\n  background-color: #F3F3F3;\n  border: 6px solid #F3F3F3;\n  border-radius: 6px;\n  overflow: hidden;\n  box-shadow: 1px 1px 3px 0 rgba(0, 0, 0, 0.31);\n}\n.show--image img {\n  overflow: hidden;\n  max-width: 100%;\n}\n.show--title {\n  white-space: nowrap;\n  font-size: .8rem;\n  margin: 6px 4px 0;\n}\n.show--date {\n  white-space: nowrap;\n  font-size: .75rem;\n  margin: 0 4px 4px;\n  color: #949494;\n}\n.show--details {\n  height: 32px;\n  overflow: hidden;\n  position: relative;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n.show--count, .show--network, .show--quality {\n  font-size: .7rem;\n  vertical-align: middle;\n  width: 33%;\n}\n.show--network {\n  text-align: center;\n}\n.show--quality {\n  text-align: right;\n}\n.show--progress {\n  height: 7px;\n  border: 1px solid #111111;\n  border-right-width: 0;\n  border-left-width: 0;\n  overflow: hidden;\n}\n.show--progress .show--progress_bar {\n    height: 100%;\n}\n.show--progress .progress-100 {\n    background-image: linear-gradient(#A6CF41, #5B990D);\n}\n.show--progress .progress-80 {\n    background-image: linear-gradient(#E1FF97, #9DB269);\n}\n.show--progress .progress-60 {\n    background-image: linear-gradient(#FAD440, #F2A70D);\n}\n.show--progress .progress-40 {\n    background-image: linear-gradient(#FAB543, #F2700D);\n}\n.show--progress .progress-20 {\n    background-image: linear-gradient(#DA5945, #B11A10);\n}\n", ""]);
+exports.push([module.i, "\n.show--wrapper {\n  width: 188px;\n  margin: 4px;\n  background-color: #F3F3F3;\n  border: 6px solid #F3F3F3;\n  border-radius: 6px;\n  overflow: hidden;\n  box-shadow: 1px 1px 3px 0 rgba(0, 0, 0, 0.31);\n}\n.show--image img {\n  overflow: hidden;\n  max-width: 100%;\n}\n.show--title {\n  white-space: nowrap;\n  font-size: .8rem;\n  margin: 6px 4px 0;\n}\n.show--date {\n  white-space: nowrap;\n  font-size: .75rem;\n  margin: 0 4px 4px;\n  color: #949494;\n}\n.show--details {\n  height: 32px;\n  overflow: hidden;\n  position: relative;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n.show--count, .show--network, .show--quality {\n  font-size: .7rem;\n  vertical-align: middle;\n  width: 33%;\n}\n.show--network {\n  text-align: center;\n}\n.show--quality {\n  text-align: right;\n}\n.show--progress {\n  transition: width .5s;\n  height: 7px;\n  border: 1px solid #111111;\n  border-right-width: 0;\n  border-left-width: 0;\n  overflow: hidden;\n}\n.show--progress .show--progress_bar {\n    height: 100%;\n}\n.show--progress .progress-100 {\n    background-image: linear-gradient(#A6CF41, #5B990D);\n}\n.show--progress .progress-80 {\n    background-image: linear-gradient(#E1FF97, #9DB269);\n}\n.show--progress .progress-60 {\n    background-image: linear-gradient(#FAD440, #F2A70D);\n}\n.show--progress .progress-40 {\n    background-image: linear-gradient(#FAB543, #F2700D);\n}\n.show--progress .progress-20 {\n    background-image: linear-gradient(#DA5945, #B11A10);\n}\n", ""]);
 
 // exports
 
@@ -51166,27 +51166,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     methods: {
         episodeClass: function episodeClass(state) {
+            state = parseInt(state);
             switch (state) {
-                case '1':
                 case 1:
                     return 'unaired';
-                case '2':
                 case 2:
-                case '9':
                 case 9:
-                case '12':
                 case 12:
                     return 'snatched';
-                case '3':
                 case 3:
                     return 'wanted';
-                case '4':
                 case 4:
                     return 'good';
-                case '5':
                 case 5:
                     return 'skipped';
-                case '50':
                 case 50:
                     return 'qual';
             }
@@ -51194,27 +51187,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             return 'weird-' + state;
         },
         episodeStatusText: function episodeStatusText(state) {
+            state = parseInt(state);
             switch (state) {
-                case '1':
                 case 1:
                     return 'unaired';
-                case '2':
                 case 2:
-                case '9':
                 case 9:
-                case '12':
                 case 12:
                     return 'snatched';
-                case '3':
                 case 3:
                     return 'wanted';
-                case '4':
                 case 4:
                     return 'good';
-                case '5':
                 case 5:
                     return 'skipped';
-                case '50':
                 case 50:
                     return 'qual';
                 default:

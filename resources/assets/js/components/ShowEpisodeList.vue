@@ -59,27 +59,20 @@
         },
         methods: {
             episodeClass(state) {
+                state = parseInt(state);
                 switch (state) {
-                    case '1':
                     case 1:
                         return 'unaired';
-                    case '2':
                     case 2:
-                    case '9':
                     case 9:
-                    case '12':
                     case 12:
                         return 'snatched';
-                    case '3':
                     case 3:
                         return 'wanted';
-                    case '4':
                     case 4:
                         return 'good';
-                    case '5':
                     case 5:
                         return 'skipped';
-                    case '50':
                     case 50:
                         return 'qual';
                 }
@@ -87,27 +80,20 @@
                 return 'weird-' + state;
             },
             episodeStatusText(state) {
+                state = parseInt(state);
                 switch (state) {
-                    case '1':
                     case 1:
                         return 'unaired';
-                    case '2':
                     case 2:
-                    case '9':
                     case 9:
-                    case '12':
                     case 12:
                         return 'snatched';
-                    case '3':
                     case 3:
                         return 'wanted';
-                    case '4':
                     case 4:
                         return 'good';
-                    case '5':
                     case 5:
                         return 'skipped';
-                    case '50':
                     case 50:
                         return 'qual';
                     default:
