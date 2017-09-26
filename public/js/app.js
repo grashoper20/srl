@@ -51167,6 +51167,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     methods: {
         episodeClass: function episodeClass(state) {
             state = parseInt(state);
+            if (state > 100) {
+                state %= 100;
+            }
             switch (state) {
                 case 1:
                     return 'unaired';
@@ -51188,6 +51191,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         episodeStatusText: function episodeStatusText(state) {
             state = parseInt(state);
+            if (state > 100) {
+                state %= 100;
+            }
             switch (state) {
                 case 1:
                     return 'unaired';

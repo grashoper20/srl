@@ -60,6 +60,9 @@
         methods: {
             episodeClass(state) {
                 state = parseInt(state);
+                if (state > 100) {
+                    state %= 100;
+                }
                 switch (state) {
                     case 1:
                         return 'unaired';
@@ -81,6 +84,9 @@
             },
             episodeStatusText(state) {
                 state = parseInt(state);
+                if (state > 100) {
+                    state %= 100;
+                }
                 switch (state) {
                     case 1:
                         return 'unaired';
