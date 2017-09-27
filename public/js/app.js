@@ -19172,11 +19172,11 @@ var index_esm = {
     getFileCacheUrl: function getFileCacheUrl(type, id, subtype) {
         return __WEBPACK_IMPORTED_MODULE_0__UrlService__["a" /* default */].url('/filecache/' + type + '/' + id + '/' + subtype);
     },
-    getFileCachePosterUrl: function getFileCachePosterUrl(show, type) {
-        if (typeof show.indexer_id === 'undefined') {
+    getFileCachePosterUrl: function getFileCachePosterUrl(id, type) {
+        if (typeof id === 'undefined') {
             return '';
         }
-        return this.getFileCacheUrl('poster', show.indexer_id, type);
+        return this.getFileCacheUrl('poster', id, type);
     }
 });
 
@@ -49932,7 +49932,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             return this.show.network;
         },
         poster: function poster() {
-            return __WEBPACK_IMPORTED_MODULE_1__services_FileCacheService__["a" /* default */].getFileCachePosterUrl(this.show, 'poster/thumbnail');
+            return __WEBPACK_IMPORTED_MODULE_1__services_FileCacheService__["a" /* default */].getFileCachePosterUrl(this.show.show_id, 'poster/thumbnail');
         },
         airDate: function airDate() {
             // TODO calculate actual air date and fallback on status.
@@ -51854,19 +51854,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     computed: {
         getBackgroundImage: function getBackgroundImage() {
-            return __WEBPACK_IMPORTED_MODULE_1__services_FileCacheService__["a" /* default */].getFileCachePosterUrl(this.show, 'fanart');
+            return __WEBPACK_IMPORTED_MODULE_1__services_FileCacheService__["a" /* default */].getFileCachePosterUrl(this.id, 'fanart');
         },
         poster: function poster() {
-            return __WEBPACK_IMPORTED_MODULE_1__services_FileCacheService__["a" /* default */].getFileCachePosterUrl(this.show, 'poster');
+            return __WEBPACK_IMPORTED_MODULE_1__services_FileCacheService__["a" /* default */].getFileCachePosterUrl(this.id, 'poster');
         },
         posterThumbnail: function posterThumbnail() {
-            return __WEBPACK_IMPORTED_MODULE_1__services_FileCacheService__["a" /* default */].getFileCachePosterUrl(this.show, 'poster/thumbnail');
+            return __WEBPACK_IMPORTED_MODULE_1__services_FileCacheService__["a" /* default */].getFileCachePosterUrl(this.id, 'poster/thumbnail');
         },
         banner: function banner() {
-            return __WEBPACK_IMPORTED_MODULE_1__services_FileCacheService__["a" /* default */].getFileCachePosterUrl(this.show, 'banner');
+            return __WEBPACK_IMPORTED_MODULE_1__services_FileCacheService__["a" /* default */].getFileCachePosterUrl(this.id, 'banner');
         },
         bannerThumbnail: function bannerThumbnail() {
-            return __WEBPACK_IMPORTED_MODULE_1__services_FileCacheService__["a" /* default */].getFileCachePosterUrl(this.show, 'banner/thumbnail');
+            return __WEBPACK_IMPORTED_MODULE_1__services_FileCacheService__["a" /* default */].getFileCachePosterUrl(this.id, 'banner/thumbnail');
         }
     }
 });
@@ -52341,6 +52341,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
     mounted: function mounted() {
         console.log('Component mounted.');
+    },
+
+    computed: {
+        route: function route() {
+            return this.$route.path;
+        }
     }
 });
 
@@ -52352,32 +52358,25 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container" }, [
-      _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col-md-8 col-md-offset-2" }, [
-          _c("div", { staticClass: "panel panel-default" }, [
-            _c("div", { staticClass: "panel-heading" }, [
-              _vm._v("Placeholder")
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "panel-body" }, [
-              _vm._v(
-                "\n                    Placeholder content for pages that haven't been created yet.\n                "
-              )
-            ])
+  return _c("div", { staticClass: "container" }, [
+    _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-md-8 col-md-offset-2" }, [
+        _c("div", { staticClass: "panel panel-default" }, [
+          _c("div", { staticClass: "panel-heading" }, [
+            _vm._v("Placeholder " + _vm._s(_vm.route))
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "panel-body" }, [
+            _vm._v(
+              "\n                    Placeholder content for pages that haven't been created yet.\n                "
+            )
           ])
         ])
       ])
     ])
-  }
-]
+  ])
+}
+var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {

@@ -39,7 +39,7 @@
                 return this.show.network;
             },
             poster: function () {
-                return FileCacheService.getFileCachePosterUrl(this.show, 'poster/thumbnail');
+                return FileCacheService.getFileCachePosterUrl(this.show.show_id, 'poster/thumbnail');
             },
             airDate: function () {
                 // TODO calculate actual air date and fallback on status.

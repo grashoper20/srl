@@ -74,19 +74,19 @@
         },
         computed: {
             getBackgroundImage: function () {
-                return FileCacheService.getFileCachePosterUrl(this.show, 'fanart');
+                return FileCacheService.getFileCachePosterUrl(this.id, 'fanart');
             },
             poster: function () {
-                return FileCacheService.getFileCachePosterUrl(this.show, 'poster');
+                return FileCacheService.getFileCachePosterUrl(this.id, 'poster');
             },
             posterThumbnail: function () {
-                return FileCacheService.getFileCachePosterUrl(this.show, 'poster/thumbnail');
+                return FileCacheService.getFileCachePosterUrl(this.id, 'poster/thumbnail');
             },
             banner: function () {
-                return FileCacheService.getFileCachePosterUrl(this.show, 'banner');
+                return FileCacheService.getFileCachePosterUrl(this.id, 'banner');
             },
             bannerThumbnail: function () {
-                return FileCacheService.getFileCachePosterUrl(this.show, 'banner/thumbnail');
+                return FileCacheService.getFileCachePosterUrl(this.id, 'banner/thumbnail');
             },
         }
     }
