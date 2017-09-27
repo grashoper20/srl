@@ -48202,12 +48202,11 @@ var debug = "development" !== 'production';
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_Shows_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__components_Shows_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_ShowsAdd_vue__ = __webpack_require__(64);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_ShowsAdd_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__components_ShowsAdd_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_ShowsProcess_vue__ = __webpack_require__(69);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_ShowsProcess_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__components_ShowsProcess_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_ShowFull_vue__ = __webpack_require__(74);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_ShowFull_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__components_ShowFull_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_Example_vue__ = __webpack_require__(84);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_Example_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6__components_Example_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_ShowFull_vue__ = __webpack_require__(74);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_ShowFull_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__components_ShowFull_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_Example_vue__ = __webpack_require__(84);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_Example_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__components_Example_vue__);
+
 
 
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vue_router__["a" /* default */]);
@@ -48231,16 +48230,32 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vue_
         component: __WEBPACK_IMPORTED_MODULE_3__components_ShowsAdd_vue___default.a,
         name: 'show_add'
     }, {
-        path: '/show/process',
-        component: __WEBPACK_IMPORTED_MODULE_4__components_ShowsProcess_vue___default.a,
-        name: 'show_process'
-    }, {
         path: '/show/:id',
-        component: __WEBPACK_IMPORTED_MODULE_5__components_ShowFull_vue___default.a,
+        component: __WEBPACK_IMPORTED_MODULE_4__components_ShowFull_vue___default.a,
         name: 'show'
-    }, { path: '/schedule', component: __WEBPACK_IMPORTED_MODULE_6__components_Example_vue___default.a }, { path: '/history', component: __WEBPACK_IMPORTED_MODULE_6__components_Example_vue___default.a },
+    }, { path: '/schedule', component: __WEBPACK_IMPORTED_MODULE_5__components_Example_vue___default.a }, { path: '/history', component: __WEBPACK_IMPORTED_MODULE_5__components_Example_vue___default.a },
     // TODO Mass update, backlog overview, search, and episode management are probably just one page.
-    { path: '/manage', component: __WEBPACK_IMPORTED_MODULE_6__components_Example_vue___default.a }, { path: '/manage/backlog', component: __WEBPACK_IMPORTED_MODULE_6__components_Example_vue___default.a }, { path: '/manage/search', component: __WEBPACK_IMPORTED_MODULE_6__components_Example_vue___default.a }, { path: '/manage/episodes', component: __WEBPACK_IMPORTED_MODULE_6__components_Example_vue___default.a }]
+    {
+        path: '/manage',
+        component: __WEBPACK_IMPORTED_MODULE_5__components_Example_vue___default.a,
+        name: 'manage_update'
+    }, {
+        path: '/manage/process',
+        component: __WEBPACK_IMPORTED_MODULE_5__components_Example_vue___default.a,
+        name: 'manage_process'
+    }, {
+        path: '/manage/backlog',
+        component: __WEBPACK_IMPORTED_MODULE_5__components_Example_vue___default.a,
+        name: 'manage_backlog'
+    }, {
+        path: '/manage/search',
+        component: __WEBPACK_IMPORTED_MODULE_5__components_Example_vue___default.a,
+        name: 'manage_search'
+    }, {
+        path: '/manage/episodes',
+        component: __WEBPACK_IMPORTED_MODULE_5__components_Example_vue___default.a,
+        name: 'manage_episodes'
+    }]
 }));
 
 /***/ }),
@@ -51716,138 +51731,11 @@ if (false) {
 }
 
 /***/ }),
-/* 69 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-function injectStyle (ssrContext) {
-  if (disposed) return
-  __webpack_require__(70)
-}
-var normalizeComponent = __webpack_require__(1)
-/* script */
-var __vue_script__ = __webpack_require__(72)
-/* template */
-var __vue_template__ = __webpack_require__(73)
-/* styles */
-var __vue_styles__ = injectStyle
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources/assets/js/components/ShowsProcess.vue"
-if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] ShowsProcess.vue: functional components are not supported with templates, they should use render functions.")}
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-d0979a10", Component.options)
-  } else {
-    hotAPI.reload("data-v-d0979a10", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 70 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(71);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(3)("3212acb6", content, false);
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-d0979a10\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/sass-loader/lib/loader.js!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ShowsProcess.vue", function() {
-     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-d0979a10\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/sass-loader/lib/loader.js!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ShowsProcess.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 71 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(2)(undefined);
-// imports
-
-
-// module
-exports.push([module.i, "", ""]);
-
-// exports
-
-
-/***/ }),
-/* 72 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-    mounted: function mounted() {
-        console.log('Manually process show.');
-        //
-    }
-});
-
-/***/ }),
-/* 73 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("div", { attrs: { id: "content" } }, [
-    _vm._v("\n    Manual process.\n")
-  ])
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-d0979a10", module.exports)
-  }
-}
-
-/***/ }),
+/* 69 */,
+/* 70 */,
+/* 71 */,
+/* 72 */,
+/* 73 */,
 /* 74 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -52823,7 +52711,20 @@ var render = function() {
                     [
                       _c(
                         "router-link",
-                        { attrs: { to: { name: "show_process" } } },
+                        { attrs: { to: { name: "manage_update" } } },
+                        [_vm._v("Mass update")]
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "li",
+                    { staticClass: "dropdown-item" },
+                    [
+                      _c(
+                        "router-link",
+                        { attrs: { to: { name: "manage_process" } } },
                         [_vm._v("Manually process shows")]
                       )
                     ],
@@ -52834,9 +52735,11 @@ var render = function() {
                     "li",
                     { staticClass: "dropdown-item" },
                     [
-                      _c("router-link", { attrs: { to: "/manage" } }, [
-                        _vm._v("Mass update")
-                      ])
+                      _c(
+                        "router-link",
+                        { attrs: { to: { name: "manage_backlog" } } },
+                        [_vm._v("Backlog overview")]
+                      )
                     ],
                     1
                   ),
@@ -52845,9 +52748,11 @@ var render = function() {
                     "li",
                     { staticClass: "dropdown-item" },
                     [
-                      _c("router-link", { attrs: { to: "/manage/backlog" } }, [
-                        _vm._v("Backlog overview")
-                      ])
+                      _c(
+                        "router-link",
+                        { attrs: { to: { name: "manage_search" } } },
+                        [_vm._v("Searches")]
+                      )
                     ],
                     1
                   ),
@@ -52856,20 +52761,11 @@ var render = function() {
                     "li",
                     { staticClass: "dropdown-item" },
                     [
-                      _c("router-link", { attrs: { to: "/manage/search" } }, [
-                        _vm._v("Searches")
-                      ])
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "li",
-                    { staticClass: "dropdown-item" },
-                    [
-                      _c("router-link", { attrs: { to: "/manage/episodes" } }, [
-                        _vm._v("Episode management")
-                      ])
+                      _c(
+                        "router-link",
+                        { attrs: { to: { name: "manage_episodes" } } },
+                        [_vm._v("Episode management")]
+                      )
                     ],
                     1
                   )

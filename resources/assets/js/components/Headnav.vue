@@ -22,19 +22,19 @@
                        aria-haspopup="true" aria-expanded="false" href="#">Manage</a>
                     <ul class="dropdown-menu" aria-labelledby="dropdown02">
                         <li class="dropdown-item">
-                            <router-link :to="{name: 'show_process'}">Manually process shows</router-link>
+                            <router-link :to="{name: 'manage_update'}">Mass update</router-link>
                         </li>
                         <li class="dropdown-item">
-                            <router-link to="/manage">Mass update</router-link>
+                            <router-link :to="{name: 'manage_process'}">Manually process shows</router-link>
                         </li>
                         <li class="dropdown-item">
-                            <router-link to="/manage/backlog">Backlog overview</router-link>
+                            <router-link :to="{name: 'manage_backlog'}">Backlog overview</router-link>
                         </li>
                         <li class="dropdown-item">
-                            <router-link to="/manage/search">Searches</router-link>
+                            <router-link :to="{name: 'manage_search'}">Searches</router-link>
                         </li>
                         <li class="dropdown-item">
-                            <router-link to="/manage/episodes">Episode management</router-link>
+                            <router-link :to="{name: 'manage_episodes'}">Episode management</router-link>
                         </li>
                     </ul>
                 </li>
