@@ -28204,9 +28204,9 @@ module.exports = Vue$3;
 
 "use strict";
 /* unused harmony export Store */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return mapState; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return mapState; });
 /* unused harmony export mapMutations */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return mapGetters; });
+/* unused harmony export mapGetters */
 /* unused harmony export mapActions */
 /* unused harmony export createNamespacedHelpers */
 /**
@@ -48142,36 +48142,10 @@ var debug = "development" !== 'production';
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
 
 
-function sortHelper(list, field, descending) {
-    try {
-        return list.sort(function (a, b) {
-            var comp_strings = [];
-            [a[field], b[field]].forEach(function (x) {
-                // TODO Logic to converge to comparable strings.
-                if (typeof x === 'undefined' || x === null) {
-                    x = '';
-                }
-                comp_strings.push(x);
-            });
-
-            var comparison = comp_strings[0].localeCompare(comp_strings[1]);
-            if (comparison === 0 && field !== 'show_name') {
-                comparison = a.show_name.localeCompare(b.show_name);
-            }
-            return descending ? comparison * -1 : comparison;
-        });
-    } catch (e) {
-        console.error(e);
-        return [];
-    }
-}
-
 /* harmony default export */ __webpack_exports__["a"] = ({
     namespaced: true,
     state: {
-        list: [],
-        sortField: 'show_name',
-        sortDescending: false
+        list: []
     },
     mutations: {
         set: function set(state, shows) {
@@ -48179,10 +48153,6 @@ function sortHelper(list, field, descending) {
         },
         push: function push(state, show) {
             state.list.push(show);
-        },
-        sort: function sort(state, payload) {
-            state.sortField = payload.field;
-            state.sortDescending = payload.descending;
         }
     },
     actions: {
@@ -48217,18 +48187,7 @@ function sortHelper(list, field, descending) {
             });
         }
     },
-    getters: {
-        shows: function shows(state) {
-            return sortHelper(state.list.filter(function (show) {
-                return !parseInt(show.anime);
-            }), state.sortField, state.sortDescending);
-        },
-        anime: function anime(state) {
-            return sortHelper(state.list.filter(function (show) {
-                return parseInt(show.anime);
-            }), state.sortField, state.sortDescending);
-        }
-    }
+    getters: {}
 });
 
 /***/ }),
@@ -50925,15 +50884,13 @@ module.exports = function listToStyles (parentId, list) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_fuse_js__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_fuse_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_fuse_js__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_lodash__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_lodash___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_lodash__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_vuex__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Shows_Cards_vue__ = __webpack_require__(52);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Shows_Cards_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__Shows_Cards_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_fuse_js__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_fuse_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_fuse_js__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_lodash__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_lodash___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_lodash__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vuex__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Shows_Cards_vue__ = __webpack_require__(52);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Shows_Cards_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__Shows_Cards_vue__);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 //
@@ -50988,19 +50945,18 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 
 
-
 /* harmony default export */ __webpack_exports__["default"] = ({
     components: {
-        'show-cards': __WEBPACK_IMPORTED_MODULE_4__Shows_Cards_vue___default.a
+        'show-cards': __WEBPACK_IMPORTED_MODULE_3__Shows_Cards_vue___default.a
     },
     data: function data() {
         return {
-            errors: [],
-            filtered_list: [],
             search: '',
-            fuse: {},
             showType: 1,
-            sortField: 'show_name'
+            sortField: 'show_name',
+            sortDescending: false,
+            errors: [],
+            fuse_options: {}
         };
     },
     created: function created() {
@@ -51015,15 +50971,29 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
         };
     },
     mounted: function mounted() {
-        var _this = this;
-
-        this.$store.dispatch('shows/sync').then(function () {
-            _this.fuse = new __WEBPACK_IMPORTED_MODULE_1_fuse_js___default.a(_this.full_list, _this.fuse_options);
-            _this.triggerSearch();
-        });
+        this.$store.dispatch('shows/sync');
     },
 
-    computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_3_vuex__["b" /* mapGetters */])('shows', ['shows', 'anime']), Object(__WEBPACK_IMPORTED_MODULE_3_vuex__["c" /* mapState */])('shows', {
+    computed: _extends({
+        anime: function anime() {
+            var list = this.full_list.filter(function (show) {
+                return parseInt(show.anime);
+            });
+            if (this.search) {
+                return new __WEBPACK_IMPORTED_MODULE_0_fuse_js___default.a(list, this.fuse_options).search(this.search);
+            }
+            return this.sortHelper(list, this.sortField, this.sortDescending);
+        },
+        shows: function shows() {
+            var list = this.full_list.filter(function (show) {
+                return !parseInt(show.anime);
+            });
+            if (this.search) {
+                return new __WEBPACK_IMPORTED_MODULE_0_fuse_js___default.a(list, this.fuse_options).search(this.search);
+            }
+            return this.sortHelper(list, this.sortField, this.sortDescending);
+        }
+    }, Object(__WEBPACK_IMPORTED_MODULE_2_vuex__["b" /* mapState */])('shows', {
         full_list: function full_list(state) {
             return state.list;
         }
@@ -51034,24 +51004,35 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
                 field: this.sortField,
                 descending: false
             });
-            console.log(this.sortField);
-        },
-        search: function search() {
-            this.triggerSearch();
         }
     },
     methods: {
-        triggerSearch: function triggerSearch() {
-            var keyworks = this.search.trim();
-            if (keyworks === '') {
-                this.filtered_list = this.full_list;
-            } else {
-                this.filtered_list = this.fuse.search(keyworks);
+        debounceInput: __WEBPACK_IMPORTED_MODULE_1_lodash__["debounce"](function (e) {
+            this.search = e.target.value.trim();
+        }, 250),
+        sortHelper: function sortHelper(list, field, descending) {
+            try {
+                return list.sort(function (a, b) {
+                    var comp_strings = [];
+                    [a[field], b[field]].forEach(function (x) {
+                        // TODO Logic to converge to comparable strings.
+                        if (typeof x === 'undefined' || x === null) {
+                            x = '';
+                        }
+                        comp_strings.push(x);
+                    });
+
+                    var comparison = comp_strings[0].localeCompare(comp_strings[1]);
+                    if (comparison === 0 && field !== 'show_name') {
+                        comparison = a.show_name.localeCompare(b.show_name);
+                    }
+                    return descending ? comparison * -1 : comparison;
+                });
+            } catch (e) {
+                console.error(e);
+                return [];
             }
-        },
-        debounceInput: __WEBPACK_IMPORTED_MODULE_2_lodash__["debounce"](function (e) {
-            this.search = e.target.value;
-        }, 250)
+        }
     }
 });
 

@@ -45,10 +45,9 @@
 </template>
 
 <script>
-    import axios from 'axios';
-    import Fuse from 'fuse.js';
+    import fuse from 'fuse.js';
     import * as _ from 'lodash';
-    import {mapState, mapGetters} from 'vuex';
+    import {mapState} from 'vuex';
     import ShowCards from './Shows-Cards.vue';
 
     export default {
@@ -56,12 +55,12 @@
             'show-cards': ShowCards,
         },
         data: () => ({
-            errors: [],
-            filtered_list: [],
             search: '',
-            fuse: {},
             showType: 1,
             sortField: 'show_name',
+            sortDescending: false,
+            errors: [],
+            fuse_options: {},
         }),
         created() {
             this.fuse_options = {
@@ -77,16 +76,27 @@
             };
         },
         mounted() {
-            this.$store.dispatch('shows/sync').then(() => {
-                this.fuse = new Fuse(this.full_list, this.fuse_options);
-                this.triggerSearch();
-            });
+            this.$store.dispatch('shows/sync');
         },
         computed: {
-            ...mapGetters('shows', [
-                'shows',
-                'anime',
-            ]),
+            anime() {
+                let list = this.full_list
+                    .filter(show => parseInt(show.anime));
+                if (this.search) {
+                    return (new fuse(list, this.fuse_options))
+                        .search(this.search);
+                }
+                return this.sortHelper(list, this.sortField, this.sortDescending);
+            },
+            shows() {
+                let list = this.full_list
+                    .filter(show => !parseInt(show.anime));
+                if (this.search) {
+                    return (new fuse(list, this.fuse_options))
+                        .search(this.search);
+                }
+                return this.sortHelper(list, this.sortField, this.sortDescending);
+            },
             ...mapState('shows', {
                 full_list: state => state.list,
             }),
@@ -97,25 +107,39 @@
                     field: this.sortField,
                     descending: false,
                 });
-                console.log(this.sortField);
-            },
-            search() {
-                this.triggerSearch();
             },
         },
         methods: {
-            triggerSearch: function () {
-                let keyworks = this.search.trim();
-                if (keyworks === '') {
-                    this.filtered_list = this.full_list;
-                } else {
-                    this.filtered_list = this.fuse.search(keyworks);
+            debounceInput: _.debounce(function (e) {
+                this.search = e.target.value.trim();
+            }, 250),
+            sortHelper(list, field, descending) {
+                try {
+                    return list.sort(function (a, b) {
+                        let comp_strings = [];
+                        [a[field], b[field]].forEach((x) => {
+                            // TODO Logic to converge to comparable strings.
+                            if (typeof x === 'undefined' || x === null) {
+                                x = '';
+                            }
+                            comp_strings.push(x);
+                        });
+
+                        let comparison = comp_strings[0]
+                            .localeCompare(comp_strings[1]);
+                        if (comparison === 0 && field !== 'show_name') {
+                            comparison = a.show_name
+                                .localeCompare(b.show_name);
+                        }
+                        return (descending ? comparison * -1 : comparison);
+                    });
+                }
+                catch (e) {
+                    console.error(e);
+                    return [];
                 }
             },
-            debounceInput: _.debounce(function (e) {
-                this.search = e.target.value;
-            }, 250),
-        }
+        },
     }
 </script>
 
