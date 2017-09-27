@@ -19194,22 +19194,10 @@ module.exports = __webpack_require__(86);
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(41);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue_router__ = __webpack_require__(42);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__store__ = __webpack_require__(90);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_Show_vue__ = __webpack_require__(45);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_Show_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__components_Show_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_Shows_vue__ = __webpack_require__(52);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_Shows_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__components_Shows_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_ShowsAdd_vue__ = __webpack_require__(58);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_ShowsAdd_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__components_ShowsAdd_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_ShowsProcess_vue__ = __webpack_require__(63);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_ShowsProcess_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6__components_ShowsProcess_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_ShowFull_vue__ = __webpack_require__(68);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_ShowFull_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7__components_ShowFull_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__components_Example_vue__ = __webpack_require__(78);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__components_Example_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8__components_Example_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__store__ = __webpack_require__(90);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__router__ = __webpack_require__(92);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vue__ = __webpack_require__(41);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_vue__);
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -19221,52 +19209,15 @@ __webpack_require__(17);
 
 
 
-__WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vue_router__["a" /* default */]);
 
 
+__WEBPACK_IMPORTED_MODULE_2_vue___default.a.component('show', __webpack_require__(45));
+__WEBPACK_IMPORTED_MODULE_2_vue___default.a.component('episode-list', __webpack_require__(73));
+__WEBPACK_IMPORTED_MODULE_2_vue___default.a.component('headnav', __webpack_require__(81));
 
-// Pull in some templates.
-
-__WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('show', __WEBPACK_IMPORTED_MODULE_3__components_Show_vue___default.a);
-
-
-
-
-__WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('episode-list', __webpack_require__(73));
-
-__WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('headnav', __webpack_require__(81));
-
-// Vue.extend(), or just a component options object.
-// We'll talk about nested routes later.
-var routes = [{
-    path: '/',
-    component: __WEBPACK_IMPORTED_MODULE_4__components_Shows_vue___default.a // TODO redirect to shows?
-}, {
-    path: '/show',
-    component: __WEBPACK_IMPORTED_MODULE_4__components_Shows_vue___default.a,
-    name: 'show_list'
-}, {
-    path: '/show/add',
-    component: __WEBPACK_IMPORTED_MODULE_5__components_ShowsAdd_vue___default.a,
-    name: 'show_add'
-}, {
-    path: '/show/process',
-    component: __WEBPACK_IMPORTED_MODULE_6__components_ShowsProcess_vue___default.a,
-    name: 'show_process'
-}, {
-    path: '/show/:id',
-    component: __WEBPACK_IMPORTED_MODULE_7__components_ShowFull_vue___default.a,
-    name: 'show'
-}, { path: '/schedule', component: __WEBPACK_IMPORTED_MODULE_8__components_Example_vue___default.a }, { path: '/history', component: __WEBPACK_IMPORTED_MODULE_8__components_Example_vue___default.a },
-// TODO Mass update, backlog overview, search, and episode management are probably just one page.
-{ path: '/manage', component: __WEBPACK_IMPORTED_MODULE_8__components_Example_vue___default.a }, { path: '/manage/backlog', component: __WEBPACK_IMPORTED_MODULE_8__components_Example_vue___default.a }, { path: '/manage/search', component: __WEBPACK_IMPORTED_MODULE_8__components_Example_vue___default.a }, { path: '/manage/episodes', component: __WEBPACK_IMPORTED_MODULE_8__components_Example_vue___default.a }];
-var router = new __WEBPACK_IMPORTED_MODULE_1_vue_router__["a" /* default */]({
-    routes: routes // short for `routes: routes`
-});
-
-var app = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
-    router: router,
-    store: __WEBPACK_IMPORTED_MODULE_2__store__["a" /* default */]
+var app = new __WEBPACK_IMPORTED_MODULE_2_vue___default.a({
+  router: __WEBPACK_IMPORTED_MODULE_1__router__["a" /* default */],
+  store: __WEBPACK_IMPORTED_MODULE_0__store__["a" /* default */]
 }).$mount('#app');
 
 /***/ }),
@@ -52788,6 +52739,59 @@ var debug = "development" !== 'production';
         }
     }
 });
+
+/***/ }),
+/* 92 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(41);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue_router__ = __webpack_require__(42);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_Shows_vue__ = __webpack_require__(52);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_Shows_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__components_Shows_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_ShowsAdd_vue__ = __webpack_require__(58);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_ShowsAdd_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__components_ShowsAdd_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_ShowsProcess_vue__ = __webpack_require__(63);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_ShowsProcess_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__components_ShowsProcess_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_ShowFull_vue__ = __webpack_require__(68);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_ShowFull_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__components_ShowFull_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_Example_vue__ = __webpack_require__(78);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_Example_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6__components_Example_vue__);
+
+
+__WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vue_router__["a" /* default */]);
+
+// Pull in some templates.
+
+
+
+
+
+/* harmony default export */ __webpack_exports__["a"] = (new __WEBPACK_IMPORTED_MODULE_1_vue_router__["a" /* default */]({
+    routes: [{
+        path: '/',
+        component: __WEBPACK_IMPORTED_MODULE_2__components_Shows_vue___default.a // TODO redirect to shows?
+    }, {
+        path: '/show',
+        component: __WEBPACK_IMPORTED_MODULE_2__components_Shows_vue___default.a,
+        name: 'show_list'
+    }, {
+        path: '/show/add',
+        component: __WEBPACK_IMPORTED_MODULE_3__components_ShowsAdd_vue___default.a,
+        name: 'show_add'
+    }, {
+        path: '/show/process',
+        component: __WEBPACK_IMPORTED_MODULE_4__components_ShowsProcess_vue___default.a,
+        name: 'show_process'
+    }, {
+        path: '/show/:id',
+        component: __WEBPACK_IMPORTED_MODULE_5__components_ShowFull_vue___default.a,
+        name: 'show'
+    }, { path: '/schedule', component: __WEBPACK_IMPORTED_MODULE_6__components_Example_vue___default.a }, { path: '/history', component: __WEBPACK_IMPORTED_MODULE_6__components_Example_vue___default.a },
+    // TODO Mass update, backlog overview, search, and episode management are probably just one page.
+    { path: '/manage', component: __WEBPACK_IMPORTED_MODULE_6__components_Example_vue___default.a }, { path: '/manage/backlog', component: __WEBPACK_IMPORTED_MODULE_6__components_Example_vue___default.a }, { path: '/manage/search', component: __WEBPACK_IMPORTED_MODULE_6__components_Example_vue___default.a }, { path: '/manage/episodes', component: __WEBPACK_IMPORTED_MODULE_6__components_Example_vue___default.a }]
+}));
 
 /***/ })
 /******/ ]);
