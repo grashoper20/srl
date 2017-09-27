@@ -78,9 +78,10 @@
             };
         },
         mounted() {
+            console.log('t');
+            console.log(this.$search);
             this.$store.dispatch('shows/sync').then(() => {
                 this.fuse = new Fuse(this.full_list, this.fuse_options);
-                this.triggerSearch();
             });
         },
         computed: {
@@ -101,18 +102,10 @@
                 console.log(this.sortField);
             },
             search() {
-                this.triggerSearch();
+                this.$store.commit('search', this.search.trim());
             },
         },
         methods: {
-            triggerSearch: function () {
-                let keyworks = this.search.trim();
-                if (keyworks === '') {
-                    this.filtered_list = this.full_list;
-                } else {
-                    this.filtered_list = this.fuse.search(keyworks);
-                }
-            },
             debounceInput: _.debounce(function (e) {
                 this.search = e.target.value;
             }, 250),

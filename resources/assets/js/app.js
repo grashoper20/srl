@@ -8,8 +8,10 @@ require('./bootstrap');
 
 import store from './store';
 import router from './router';
-
 import Vue from 'vue';
+import VueFuse from 'vue-fuse'
+
+Vue.use(VueFuse);
 
 Vue.component('headnav', require('./components/Headnav.vue'));
 

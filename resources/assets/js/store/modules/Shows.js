@@ -1,4 +1,18 @@
 import axios from 'axios';
+import VueFuse from 'vue-fuse'
+
+const fuse_options = {
+    shouldSort: true,
+    threshold: 0.2,
+    location: 0,
+    distance: 100,
+    maxPatternLength: 32,
+    minMatchCharLength: 1,
+    keys: [
+        'show_name',
+    ]
+};
+//this.fuse = new Fuse(this.full_list, this.fuse_options);
 
 function sortHelper(list, field, descending) {
     try {
@@ -33,6 +47,7 @@ export default {
         list: [],
         sortField: 'show_name',
         sortDescending: false,
+        keywords: '',
     },
     mutations: {
         set(state, shows) {
@@ -44,10 +59,14 @@ export default {
         sort(state, payload) {
             state.sortField = payload.field;
             state.sortDescending = payload.descending;
-        }
+        },
+        search(state, keywords) {
+            state.keywords = keywords;
+        },
     },
     actions: {
         sync({commit}) {
+            console.log(VueFuse);
             axios.get('/api/show')
                 .then(response => {
                     commit('set', response.data);
