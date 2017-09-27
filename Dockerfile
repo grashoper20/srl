@@ -25,5 +25,7 @@ COPY ./resources/docker/entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 COPY ./resources/docker/nginx.conf /etc/nginx/nginx.conf
 COPY ./resources/docker/conf.d/site.conf /etc/nginx/conf.d/srl.conf
+COPY ./resources/docker/www-fpm.conf /usr/local/etc/php-fpm.d/www.conf
+
 COPY --from=0 /app /var/www/html
 COPY --from=1 /app/public /var/www/html/public
