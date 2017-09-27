@@ -52221,7 +52221,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 case 4:
                     return 'good';
                 case 5:
+                case 7:
                     return 'skipped';
+                case 6:
+                    return 'archived';
                 case 50:
                     return 'qual';
             }
@@ -52246,6 +52249,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     return 'good';
                 case 5:
                     return 'skipped';
+                case 6:
+                    return 'archived';
+                case 7:
+                    return 'ignored';
                 case 50:
                     return 'qual';
                 default:
