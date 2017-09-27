@@ -14,14 +14,13 @@
                 </select>
                 <label for="search-layout">Layout</label>
                 <select class="form-control" id="search-layout">
-                    <option value="1">Name</option>
-                    <option value="2">Next Episode</option>
-                    <option value="3">Network</option>
-                    <option value="3">Progress</option>
+                    <option value="1">Poster</option>
+                    <option value="2">Small poster</option>
+                    <option value="3">Banner</option>
+                    <option value="3">Simple</option>
                 </select>
             </div>
-            <div class="form-inline ">
-                <label for="search-show-type">Show type</label>
+            <div class="form-inline "><label for="search-show-type">Show type</label>
                 <select class="form-control" id="search-show-type" v-model="showType">
                     <option value="1">All</option>
                     <option value="2">Shows</option>
@@ -31,17 +30,12 @@
         </header>
         <div class="shows" v-if="shows && shows.length && showType != 3">
             <h2>Shows</h2>
-            <div class="shows--list">
-                <show v-for="show in shows" :key="show.show_id" v-bind:show="show"></show>
-            </div>
+            <show-cards v-bind:shows="shows"></show-cards>
         </div>
-        <div class="anime" v-if="anime && anime.length && showType != 2">
-            <h2>Anime</h2>
-            <div class="shows--list">
-                <show v-for="show in anime" :key="show.show_id" v-bind:show="show"></show>
-            </div>
+        <div class="shows" v-if="anime && anime.length && showType != 2">
+            <h2>Shows</h2>
+            <show-cards v-bind:shows="anime"></show-cards>
         </div>
-
         <ul v-if="errors && errors.length">
             <li v-for="error in errors">
                 {{error.message}}
@@ -54,12 +48,12 @@
     import axios from 'axios';
     import Fuse from 'fuse.js';
     import * as _ from 'lodash';
-    import {mapState, mapGetters} from 'vuex'
-    import Show from './Show.vue';
+    import {mapState, mapGetters} from 'vuex';
+    import ShowCards from './Shows-Cards.vue';
 
     export default {
         components: {
-            'show': Show,
+            'show-cards': ShowCards,
         },
         data: () => ({
             errors: [],
@@ -123,11 +117,5 @@
         .form-control {
             margin-left: 5px;
         }
-    }
-
-    .shows--list {
-        display: flex;
-        flex-flow: row wrap;
-        justify-content: center;
     }
 </style>
