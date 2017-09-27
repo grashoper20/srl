@@ -8,13 +8,10 @@ require('./bootstrap');
 
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import Vuex from 'vuex';
 
 Vue.use(VueRouter);
-Vue.use(Vuex);
 
-import VuexStore from './vuex/store';
-const store = new Vuex.Store(VuexStore);
+import store from './store';
 
 // Pull in some templates.
 import Show from './components/Show.vue';

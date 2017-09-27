@@ -19197,20 +19197,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(41);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue_router__ = __webpack_require__(42);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vuex__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__vuex_store__ = __webpack_require__(43);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_Show_vue__ = __webpack_require__(45);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_Show_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__components_Show_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_Shows_vue__ = __webpack_require__(52);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_Shows_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__components_Shows_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_ShowsAdd_vue__ = __webpack_require__(58);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_ShowsAdd_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6__components_ShowsAdd_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_ShowsProcess_vue__ = __webpack_require__(63);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_ShowsProcess_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7__components_ShowsProcess_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__components_ShowFull_vue__ = __webpack_require__(68);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__components_ShowFull_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8__components_ShowFull_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__components_Example_vue__ = __webpack_require__(78);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__components_Example_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9__components_Example_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__store__ = __webpack_require__(90);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_Show_vue__ = __webpack_require__(45);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_Show_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__components_Show_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_Shows_vue__ = __webpack_require__(52);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_Shows_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__components_Shows_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_ShowsAdd_vue__ = __webpack_require__(58);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_ShowsAdd_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__components_ShowsAdd_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_ShowsProcess_vue__ = __webpack_require__(63);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_ShowsProcess_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6__components_ShowsProcess_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_ShowFull_vue__ = __webpack_require__(68);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_ShowFull_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7__components_ShowFull_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__components_Example_vue__ = __webpack_require__(78);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__components_Example_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8__components_Example_vue__);
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -19222,16 +19221,13 @@ __webpack_require__(17);
 
 
 
-
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vue_router__["a" /* default */]);
-__WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_2_vuex__["a" /* default */]);
 
 
-var store = new __WEBPACK_IMPORTED_MODULE_2_vuex__["a" /* default */].Store(__WEBPACK_IMPORTED_MODULE_3__vuex_store__["a" /* default */]);
 
 // Pull in some templates.
 
-__WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('show', __WEBPACK_IMPORTED_MODULE_4__components_Show_vue___default.a);
+__WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('show', __WEBPACK_IMPORTED_MODULE_3__components_Show_vue___default.a);
 
 
 
@@ -19244,33 +19240,33 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('headnav', __webpack_requi
 // We'll talk about nested routes later.
 var routes = [{
     path: '/',
-    component: __WEBPACK_IMPORTED_MODULE_5__components_Shows_vue___default.a // TODO redirect to shows?
+    component: __WEBPACK_IMPORTED_MODULE_4__components_Shows_vue___default.a // TODO redirect to shows?
 }, {
     path: '/show',
-    component: __WEBPACK_IMPORTED_MODULE_5__components_Shows_vue___default.a,
+    component: __WEBPACK_IMPORTED_MODULE_4__components_Shows_vue___default.a,
     name: 'show_list'
 }, {
     path: '/show/add',
-    component: __WEBPACK_IMPORTED_MODULE_6__components_ShowsAdd_vue___default.a,
+    component: __WEBPACK_IMPORTED_MODULE_5__components_ShowsAdd_vue___default.a,
     name: 'show_add'
 }, {
     path: '/show/process',
-    component: __WEBPACK_IMPORTED_MODULE_7__components_ShowsProcess_vue___default.a,
+    component: __WEBPACK_IMPORTED_MODULE_6__components_ShowsProcess_vue___default.a,
     name: 'show_process'
 }, {
     path: '/show/:id',
-    component: __WEBPACK_IMPORTED_MODULE_8__components_ShowFull_vue___default.a,
+    component: __WEBPACK_IMPORTED_MODULE_7__components_ShowFull_vue___default.a,
     name: 'show'
-}, { path: '/schedule', component: __WEBPACK_IMPORTED_MODULE_9__components_Example_vue___default.a }, { path: '/history', component: __WEBPACK_IMPORTED_MODULE_9__components_Example_vue___default.a },
+}, { path: '/schedule', component: __WEBPACK_IMPORTED_MODULE_8__components_Example_vue___default.a }, { path: '/history', component: __WEBPACK_IMPORTED_MODULE_8__components_Example_vue___default.a },
 // TODO Mass update, backlog overview, search, and episode management are probably just one page.
-{ path: '/manage', component: __WEBPACK_IMPORTED_MODULE_9__components_Example_vue___default.a }, { path: '/manage/backlog', component: __WEBPACK_IMPORTED_MODULE_9__components_Example_vue___default.a }, { path: '/manage/search', component: __WEBPACK_IMPORTED_MODULE_9__components_Example_vue___default.a }, { path: '/manage/episodes', component: __WEBPACK_IMPORTED_MODULE_9__components_Example_vue___default.a }];
+{ path: '/manage', component: __WEBPACK_IMPORTED_MODULE_8__components_Example_vue___default.a }, { path: '/manage/backlog', component: __WEBPACK_IMPORTED_MODULE_8__components_Example_vue___default.a }, { path: '/manage/search', component: __WEBPACK_IMPORTED_MODULE_8__components_Example_vue___default.a }, { path: '/manage/episodes', component: __WEBPACK_IMPORTED_MODULE_8__components_Example_vue___default.a }];
 var router = new __WEBPACK_IMPORTED_MODULE_1_vue_router__["a" /* default */]({
     routes: routes // short for `routes: routes`
 });
 
 var app = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
     router: router,
-    store: store
+    store: __WEBPACK_IMPORTED_MODULE_2__store__["a" /* default */]
 }).$mount('#app');
 
 /***/ }),
@@ -49675,91 +49671,8 @@ if (inBrowser && window.Vue) {
 
 
 /***/ }),
-/* 43 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__modules_Shows__ = __webpack_require__(44);
-
-
-/* harmony default export */ __webpack_exports__["a"] = ({
-    modules: {
-        shows: __WEBPACK_IMPORTED_MODULE_0__modules_Shows__["a" /* default */]
-    },
-    actions: {},
-    strict: true
-});
-
-/***/ }),
-/* 44 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
-
-
-/* harmony default export */ __webpack_exports__["a"] = ({
-    namespaced: true,
-    state: {
-        list: []
-    },
-    mutations: {
-        set: function set(state, shows) {
-            state.list = shows;
-        },
-        push: function push(state, show) {
-            state.list.push(show);
-        }
-    },
-    actions: {
-        sync: function sync(_ref) {
-            var commit = _ref.commit;
-
-            __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('/api/show').then(function (response) {
-                commit('set', response.data);
-            }).catch(function (e) {
-                // this.errors.push(e);
-            });
-        },
-        find: function find(_ref2, id) {
-            var state = _ref2.state,
-                commit = _ref2.commit;
-
-            return new Promise(function (resolve, reject) {
-                var show = state.list.find(function (show) {
-                    return show.show_id == id;
-                });
-                if (typeof show !== 'undefined') {
-                    console.log('optimistically loaded from full list.');
-                    resolve(show);
-                    return;
-                }
-                __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('/api/show/' + id).then(function (response) {
-                    commit('push', response.data);
-                    resolve(response.data);
-                }).catch(function (e) {
-                    console.error(e);
-                    reject(e);
-                });
-            });
-        }
-    },
-    getters: {
-        shows: function shows(state) {
-            return state.list.filter(function (show) {
-                return !parseInt(show.anime);
-            });
-        },
-        anime: function anime(state) {
-            return state.list.filter(function (show) {
-                return parseInt(show.anime);
-            });
-        }
-    }
-});
-
-/***/ }),
+/* 43 */,
+/* 44 */,
 /* 45 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -52142,7 +52055,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 case 50:
                     return 'qual';
             }
-            console.log(state);
+            console.warn('Unhandled state class: ' + state);
             return 'weird-' + state;
         },
         episodeStatusText: function episodeStatusText(state) {
@@ -52166,7 +52079,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 case 50:
                     return 'qual';
                 default:
-                    console.log(state);
+                    console.warn('Unhandled state text: ' + state);
                     return 'weird-' + state;
             }
         }
@@ -52778,6 +52691,103 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 87 */,
+/* 88 */,
+/* 89 */,
+/* 90 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(41);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuex__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modules_Shows__ = __webpack_require__(91);
+
+
+
+
+__WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */]);
+
+var debug = "development" !== 'production';
+
+/* harmony default export */ __webpack_exports__["a"] = (new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
+  modules: {
+    shows: __WEBPACK_IMPORTED_MODULE_2__modules_Shows__["a" /* default */]
+  },
+  actions: {},
+  strict: debug
+}));
+
+/***/ }),
+/* 91 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
+
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+    namespaced: true,
+    state: {
+        list: []
+    },
+    mutations: {
+        set: function set(state, shows) {
+            state.list = shows;
+        },
+        push: function push(state, show) {
+            state.list.push(show);
+        }
+    },
+    actions: {
+        sync: function sync(_ref) {
+            var commit = _ref.commit;
+
+            __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('/api/show').then(function (response) {
+                commit('set', response.data);
+            }).catch(function (e) {
+                // this.errors.push(e);
+            });
+        },
+        find: function find(_ref2, id) {
+            var state = _ref2.state,
+                commit = _ref2.commit;
+
+            return new Promise(function (resolve, reject) {
+                var show = state.list.find(function (show) {
+                    return show.show_id == id;
+                });
+                if (typeof show !== 'undefined') {
+                    console.log('optimistically loaded from full list.');
+                    resolve(show);
+                    return;
+                }
+                __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('/api/show/' + id).then(function (response) {
+                    commit('push', response.data);
+                    resolve(response.data);
+                }).catch(function (e) {
+                    console.error(e);
+                    reject(e);
+                });
+            });
+        }
+    },
+    getters: {
+        shows: function shows(state) {
+            return state.list.filter(function (show) {
+                return !parseInt(show.anime);
+            });
+        },
+        anime: function anime(state) {
+            return state.list.filter(function (show) {
+                return parseInt(show.anime);
+            });
+        }
+    }
+});
 
 /***/ })
 /******/ ]);

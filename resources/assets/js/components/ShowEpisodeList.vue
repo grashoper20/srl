@@ -79,7 +79,7 @@
                     case 50:
                         return 'qual';
                 }
-                console.log(state);
+                console.warn('Unhandled state class: ' + state);
                 return 'weird-' + state;
             },
             episodeStatusText(state) {
@@ -103,7 +103,7 @@
                     case 50:
                         return 'qual';
                     default:
-                        console.log(state);
+                        console.warn('Unhandled state text: ' + state);
                         return 'weird-' + state;
                 }
             }
