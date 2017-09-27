@@ -57,7 +57,6 @@
         },
         data: () => ({
             errors: [],
-//            full_list: [],
             filtered_list: [],
             search: '',
             fuse: {},

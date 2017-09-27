@@ -8,20 +8,8 @@
         </button>
         <div class="collapse navbar-collapse" id="mainNavbar">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item dropdown dropdown-hover">
-                    <a class="nav-link dropdown-toggle" id="dropdown01" data-toggle="dropdown"
-                       aria-haspopup="true" aria-expanded="false" href="#">Shows</a>
-                    <ul class="dropdown-menu" aria-labelledby="dropdown01">
-                        <li class="dropdown-item">
-                            <router-link :to="{name: 'show_list'}">List shows</router-link>
-                        </li>
-                        <li class="dropdown-item">
-                            <router-link :to="{name: 'show_add'}">Add show</router-link>
-                        </li>
-                        <li class="dropdown-item">
-                            <router-link :to="{name: 'show_process'}">Manually process shows</router-link>
-                        </li>
-                    </ul>
+                <li class="nav-item">
+                    <router-link :to="{name: 'show_list'}" class="nav-link">List shows</router-link>
                 </li>
                 <li class="nav-item">
                     <router-link to="/schedule" class="nav-link">Schedule</router-link>
@@ -33,6 +21,9 @@
                     <a class="nav-link dropdown-toggle" id="dropdown02" data-toggle="dropdown"
                        aria-haspopup="true" aria-expanded="false" href="#">Manage</a>
                     <ul class="dropdown-menu" aria-labelledby="dropdown02">
+                        <li class="dropdown-item">
+                            <router-link :to="{name: 'show_process'}">Manually process shows</router-link>
+                        </li>
                         <li class="dropdown-item">
                             <router-link to="/manage">Mass update</router-link>
                         </li>
