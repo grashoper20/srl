@@ -8,12 +8,16 @@ require('./bootstrap');
 
 import Vue from 'vue';
 import VueRouter from 'vue-router';
+import Vuex from 'vuex';
 
 Vue.use(VueRouter);
+Vue.use(Vuex);
+
+import VuexStore from './vuex/store';
+const store = new Vuex.Store(VuexStore);
 
 // Pull in some templates.
 import Show from './components/Show.vue';
-
 Vue.component('show', Show);
 import Shows from './components/Shows.vue';
 import ShowsAdd from './components/ShowsAdd.vue';
@@ -21,8 +25,8 @@ import ShowsProcess from './components/ShowsProcess.vue';
 import ShowFull from './components/ShowFull.vue';
 Vue.component('episode-list', require('./components/ShowEpisodeList.vue'));
 import Default from './components/Example.vue';
-
 Vue.component('headnav', require('./components/Headnav.vue'));
+
 
 // Vue.extend(), or just a component options object.
 // We'll talk about nested routes later.
@@ -64,5 +68,6 @@ const router = new VueRouter({
 });
 
 const app = new Vue({
-    router
+    router,
+    store,
 }).$mount('#app');

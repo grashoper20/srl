@@ -13,14 +13,16 @@
         "axios": "^0.16.2",
         "bootstrap": "4.0.0-beta",
         "cross-env": "^5.0.1",
+        "fuse.js": "^3.1.0",
         "jquery": "^3.2.1",
         "laravel-mix": "^1.0",
         "lodash": "^4.17.4",
         "popper.js": "^1.12.5",
         "vue": "^2.1.10",
-        "vue-router": "^2.7.0"
+        "vue-router": "^2.7.0",
+        "vuex": "^2.4.0"
     },
     "dependencies": {
-        "fuse.js": "^3.1.0"
+        "babel-plugin-transform-object-rest-spread": "^6.26.0"
     }
 }

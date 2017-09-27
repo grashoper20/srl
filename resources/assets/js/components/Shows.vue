@@ -53,15 +53,15 @@
 <script>
     import axios from 'axios';
     import Fuse from 'fuse.js';
-    import * as _ from "lodash";
+    import * as _ from 'lodash';
+    import {mapState, mapGetters} from 'vuex'
+
 
     export default {
         data: () => ({
             errors: [],
-            full_list: [],
+//            full_list: [],
             filtered_list: [],
-            shows: [],
-            anime: [],
             search: '',
             fuse: {},
             showType: 1,
@@ -78,34 +78,25 @@
                     'show_name',
                 ]
             };
-            axios.get('/api/show')
-                .then(response => {
-                    this.full_list = response.data;
-                })
-                .catch(e => {
-                    this.errors.push(e);
-                })
+        },
+        mounted() {
+            this.$store.dispatch('shows/sync').then(() => {
+                this.fuse = new Fuse(this.full_list, this.fuse_options);
+                this.triggerSearch();
+            });
+        },
+        computed: {
+            ...mapGetters('shows', [
+                'shows',
+                'anime',
+            ]),
+            ...mapState('shows', {
+                full_list: state => state.list,
+            }),
         },
         watch: {
             search() {
                 this.triggerSearch();
-            },
-            full_list() {
-                this.fuse = new Fuse(this.full_list, this.fuse_options);
-                this.triggerSearch();
-            },
-            filtered_list() {
-                let anime = [], shows = [];
-                this.filtered_list.forEach(function (show) {
-                    if (parseInt(show.anime)) {
-                        anime.push(show);
-                    }
-                    else {
-                        shows.push(show);
-                    }
-                });
-                this.anime = anime;
-                this.shows = shows;
             },
         },
         methods: {

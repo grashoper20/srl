@@ -48,10 +48,19 @@
         }),
         created() {
             this.id = this.$route.params.id;
-            axios.get('/api/show/' + this.id)
+            axios.get('/api/show/' + this.id + '/episodes')
                 .then(response => {
-                    this.show = response.data;
-                    axios.get('/api/imdb/' + this.show.indexer_id)
+                    this.episodes = response.data;
+                })
+                .catch(e => {
+                    this.errors.push(e)
+                });
+        },
+        mounted() {
+            this.$store.dispatch('shows/find', this.id)
+                .then((show) => {
+                    this.show = show;
+                    axios.get('/api/imdb/' + show.indexer_id)
                         .then(response => {
                             this.imdb_info = response.data;
                         })
@@ -59,16 +68,8 @@
                             this.errors.push(e)
                         });
                 })
-                .catch(e => {
-                    console.log(e);
-                    this.errors.push(e)
-                });
-            axios.get('/api/show/' + this.id + '/episodes')
-                .then(response => {
-                    this.episodes = response.data;
-                })
-                .catch(e => {
-                    this.errors.push(e)
+                .catch((reason) => {
+                    this.errors.push(reason);
                 });
         },
         computed: {
@@ -81,15 +82,12 @@
             posterThumbnail: function () {
                 return FileCacheService.getFileCachePosterUrl(this.show, 'poster/thumbnail');
             },
-            banner: function() {
+            banner: function () {
                 return FileCacheService.getFileCachePosterUrl(this.show, 'banner');
             },
-            bannerThumbnail: function() {
+            bannerThumbnail: function () {
                 return FileCacheService.getFileCachePosterUrl(this.show, 'banner/thumbnail');
             },
-        },
-        mounted() {
-            console.log('show');
         }
     }
 </script>
