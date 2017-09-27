@@ -37,8 +37,12 @@
 <script>
     import axios from 'axios'
     import FileCacheService from '../services/FileCacheService';
+    import EpisodeList from './ShowEpisodeList.vue';
 
     export default {
+        components: {
+            'episode-list': EpisodeList,
+        },
         data: () => ({
             id: 0,
             show: {},

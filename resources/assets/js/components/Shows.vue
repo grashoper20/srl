@@ -21,7 +21,7 @@
                 </select>
             </div>
             <div class="form-inline ">
-                <label for="search-show-type">Show type: </label>
+                <label for="search-show-type">Show type</label>
                 <select class="form-control" id="search-show-type" v-model="showType">
                     <option value="1">All</option>
                     <option value="2">Shows</option>
@@ -55,9 +55,12 @@
     import Fuse from 'fuse.js';
     import * as _ from 'lodash';
     import {mapState, mapGetters} from 'vuex'
-
+    import Show from './Show.vue';
 
     export default {
+        components: {
+            'show': Show,
+        },
         data: () => ({
             errors: [],
 //            full_list: [],

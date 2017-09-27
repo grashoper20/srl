@@ -19211,8 +19211,6 @@ __webpack_require__(17);
 
 
 
-__WEBPACK_IMPORTED_MODULE_2_vue___default.a.component('show', __webpack_require__(45));
-__WEBPACK_IMPORTED_MODULE_2_vue___default.a.component('episode-list', __webpack_require__(73));
 __WEBPACK_IMPORTED_MODULE_2_vue___default.a.component('headnav', __webpack_require__(81));
 
 var app = new __WEBPACK_IMPORTED_MODULE_2_vue___default.a({
@@ -49981,6 +49979,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_lodash__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_lodash___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_lodash__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_vuex__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Show_vue__ = __webpack_require__(45);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Show_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__Show_vue__);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 //
@@ -50041,7 +50041,11 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
+    components: {
+        'show': __WEBPACK_IMPORTED_MODULE_4__Show_vue___default.a
+    },
     data: function data() {
         return {
             errors: [],
@@ -51130,7 +51134,7 @@ var render = function() {
       _vm._v(" "),
       _c("div", { staticClass: "form-inline " }, [
         _c("label", { attrs: { for: "search-show-type" } }, [
-          _vm._v("Show type: ")
+          _vm._v("Show type")
         ]),
         _vm._v(" "),
         _c(
@@ -51621,6 +51625,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_FileCacheService__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ShowEpisodeList_vue__ = __webpack_require__(73);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ShowEpisodeList_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__ShowEpisodeList_vue__);
 //
 //
 //
@@ -51657,11 +51663,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+
 
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+    components: {
+        'episode-list': __WEBPACK_IMPORTED_MODULE_2__ShowEpisodeList_vue___default.a
+    },
     data: function data() {
         return {
             id: 0,

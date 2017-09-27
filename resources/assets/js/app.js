@@ -11,8 +11,6 @@ import router from './router';
 
 import Vue from 'vue';
 
-Vue.component('show', require('./components/Show.vue'));
-Vue.component('episode-list', require('./components/ShowEpisodeList.vue'));
 Vue.component('headnav', require('./components/Headnav.vue'));
 
 const app = new Vue({
