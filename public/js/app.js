@@ -51255,6 +51255,16 @@ var render = function() {
           on: { input: _vm.debounceInput }
         }),
         _vm._v(" "),
+        _c("label", { attrs: { for: "search-sort" } }, [_vm._v("Sort")]),
+        _vm._v(" "),
+        _vm._m(0),
+        _vm._v(" "),
+        _c("label", { attrs: { for: "search-layout" } }, [_vm._v("Layout")]),
+        _vm._v(" "),
+        _vm._m(1)
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "form-inline " }, [
         _c("label", { attrs: { for: "search-show-type" } }, [
           _vm._v("Show type: ")
         ]),
@@ -51289,60 +51299,14 @@ var render = function() {
             }
           },
           [
-            _c("option", { attrs: { value: "1" } }, [_vm._v("Name")]),
+            _c("option", { attrs: { value: "1" } }, [_vm._v("All")]),
             _vm._v(" "),
-            _c("option", { attrs: { value: "2" } }, [_vm._v("Next Episode")]),
+            _c("option", { attrs: { value: "2" } }, [_vm._v("Shows")]),
             _vm._v(" "),
-            _c("option", { attrs: { value: "3" } }, [_vm._v("Network")]),
-            _vm._v(" "),
-            _c("option", { attrs: { value: "3" } }, [_vm._v("Progress")])
-          ]
-        ),
-        _vm._v(" "),
-        _c("label", { attrs: { for: "search-layout" } }, [_vm._v("Layout")]),
-        _vm._v(" "),
-        _c(
-          "select",
-          {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.showType,
-                expression: "showType"
-              }
-            ],
-            staticClass: "form-control",
-            attrs: { id: "search-layout" },
-            on: {
-              change: function($event) {
-                var $$selectedVal = Array.prototype.filter
-                  .call($event.target.options, function(o) {
-                    return o.selected
-                  })
-                  .map(function(o) {
-                    var val = "_value" in o ? o._value : o.value
-                    return val
-                  })
-                _vm.showType = $event.target.multiple
-                  ? $$selectedVal
-                  : $$selectedVal[0]
-              }
-            }
-          },
-          [
-            _c("option", { attrs: { value: "1" } }, [_vm._v("Name")]),
-            _vm._v(" "),
-            _c("option", { attrs: { value: "2" } }, [_vm._v("Next Episode")]),
-            _vm._v(" "),
-            _c("option", { attrs: { value: "3" } }, [_vm._v("Network")]),
-            _vm._v(" "),
-            _c("option", { attrs: { value: "3" } }, [_vm._v("Progress")])
+            _c("option", { attrs: { value: "3" } }, [_vm._v("Anime")])
           ]
         )
-      ]),
-      _vm._v(" "),
-      _vm._m(0)
+      ])
     ]),
     _vm._v(" "),
     _vm.shows && _vm.shows.length && _vm.showType != 3
@@ -51390,21 +51354,37 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-inline " }, [
-      _c("label", { attrs: { for: "search-sort" } }, [_vm._v("Sort")]),
-      _vm._v(" "),
-      _c(
-        "select",
-        { staticClass: "form-control", attrs: { id: "search-sort" } },
-        [
-          _c("option", { attrs: { value: "1" } }, [_vm._v("All")]),
-          _vm._v(" "),
-          _c("option", { attrs: { value: "2" } }, [_vm._v("Shows")]),
-          _vm._v(" "),
-          _c("option", { attrs: { value: "3" } }, [_vm._v("Anime")])
-        ]
-      )
-    ])
+    return _c(
+      "select",
+      { staticClass: "form-control", attrs: { id: "search-sort" } },
+      [
+        _c("option", { attrs: { value: "1" } }, [_vm._v("Name")]),
+        _vm._v(" "),
+        _c("option", { attrs: { value: "2" } }, [_vm._v("Next Episode")]),
+        _vm._v(" "),
+        _c("option", { attrs: { value: "3" } }, [_vm._v("Network")]),
+        _vm._v(" "),
+        _c("option", { attrs: { value: "3" } }, [_vm._v("Progress")])
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "select",
+      { staticClass: "form-control", attrs: { id: "search-layout" } },
+      [
+        _c("option", { attrs: { value: "1" } }, [_vm._v("Name")]),
+        _vm._v(" "),
+        _c("option", { attrs: { value: "2" } }, [_vm._v("Next Episode")]),
+        _vm._v(" "),
+        _c("option", { attrs: { value: "3" } }, [_vm._v("Network")]),
+        _vm._v(" "),
+        _c("option", { attrs: { value: "3" } }, [_vm._v("Progress")])
+      ]
+    )
   }
 ]
 render._withStripped = true

@@ -5,15 +5,15 @@
                 <label for="show-search" class="sr-only">Search</label>
                 <input class="form-control" id="show-search" type="search" v-on:input="debounceInput"
                        placeholder="Search">
-                <label for="search-show-type">Show type: </label>
-                <select class="form-control" id="search-show-type" v-model="showType">
+                <label for="search-sort">Sort</label>
+                <select class="form-control" id="search-sort">
                     <option value="1">Name</option>
                     <option value="2">Next Episode</option>
                     <option value="3">Network</option>
                     <option value="3">Progress</option>
                 </select>
                 <label for="search-layout">Layout</label>
-                <select class="form-control" id="search-layout" v-model="showType">
+                <select class="form-control" id="search-layout">
                     <option value="1">Name</option>
                     <option value="2">Next Episode</option>
                     <option value="3">Network</option>
@@ -21,8 +21,8 @@
                 </select>
             </div>
             <div class="form-inline ">
-                <label for="search-sort">Sort</label>
-                <select class="form-control" id="search-sort">
+                <label for="search-show-type">Show type: </label>
+                <select class="form-control" id="search-show-type" v-model="showType">
                     <option value="1">All</option>
                     <option value="2">Shows</option>
                     <option value="3">Anime</option>
