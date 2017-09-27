@@ -6,11 +6,11 @@
                 <input class="form-control" id="show-search" type="search" v-on:input="debounceInput"
                        placeholder="Search">
                 <label for="search-sort">Sort</label>
-                <select class="form-control" id="search-sort">
-                    <option value="1">Name</option>
-                    <option value="2">Next Episode</option>
-                    <option value="3">Network</option>
-                    <option value="3">Progress</option>
+                <select class="form-control" id="search-sort" v-model="sortField">
+                    <option value="show_name">Name</option>
+                    <option value="show_name">Next Episode</option>
+                    <option value="network">Network</option>
+                    <option value="show_name">Progress</option>
                 </select>
                 <label for="search-layout">Layout</label>
                 <select class="form-control" id="search-layout">
@@ -33,7 +33,7 @@
             <show-cards v-bind:shows="shows"></show-cards>
         </div>
         <div class="shows" v-if="anime && anime.length && showType != 2">
-            <h2>Shows</h2>
+            <h2>Anime</h2>
             <show-cards v-bind:shows="anime"></show-cards>
         </div>
         <ul v-if="errors && errors.length">
@@ -62,6 +62,7 @@
             search: '',
             fuse: {},
             showType: 1,
+            sortField: 'show_name',
         }),
         created() {
             this.fuse_options = {
@@ -92,6 +93,13 @@
             }),
         },
         watch: {
+            sortField() {
+                this.$store.commit('shows/sort', {
+                    field: this.sortField,
+                    descending: false,
+                });
+                console.log(this.sortField);
+            },
             search() {
                 this.triggerSearch();
             },
