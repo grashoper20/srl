@@ -48118,6 +48118,8 @@ module.exports = function spread(callback) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuex__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modules_Shows__ = __webpack_require__(44);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__modules_Stats__ = __webpack_require__(100);
+
 
 
 
@@ -48128,7 +48130,8 @@ var debug = "development" !== 'production';
 
 /* harmony default export */ __webpack_exports__["a"] = (new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
   modules: {
-    shows: __WEBPACK_IMPORTED_MODULE_2__modules_Shows__["a" /* default */]
+    shows: __WEBPACK_IMPORTED_MODULE_2__modules_Shows__["a" /* default */],
+    stats: __WEBPACK_IMPORTED_MODULE_3__modules_Stats__["a" /* default */]
   },
   actions: {},
   strict: debug
@@ -50987,6 +50990,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
         };
     },
     mounted: function mounted() {
+        this.$store.dispatch('stats/sync');
         this.$store.dispatch('shows/sync');
     },
 
@@ -52844,6 +52848,68 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 97 */,
+/* 98 */,
+/* 99 */,
+/* 100 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
+
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+    namespaced: true,
+    state: {
+        stats: []
+    },
+    mutations: {
+        set: function set(state, stats) {
+            state.stats = stats;
+        },
+        push: function push(state, stat) {
+            state.stats[stat.show_id] = stat;
+        }
+    },
+    actions: {
+        sync: function sync(_ref) {
+            var commit = _ref.commit;
+
+            __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('/api/stats').then(function (response) {
+                commit('set', response.data);
+            }).catch(function (e) {
+                // this.errors.push(e);
+            });
+        },
+        find: function find(_ref2, id) {
+            var state = _ref2.state,
+                commit = _ref2.commit;
+
+            return new Promise(function (resolve, reject) {
+                var stat = state.stats[id];
+                if (typeof stat !== 'undefined') {
+                    resolve(stat);
+                } else {
+                    __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('/api/show/' + id + '/stats').then(function (response) {
+                        var stats = [];
+                        response.data.forEach(function (stat) {
+                            return stats[stat.show_id] = stat;
+                        });
+                        commit('push', stats);
+                        resolve(stats);
+                    }).catch(function (e) {
+                        console.error(e);
+                        reject(e);
+                    });
+                }
+            });
+        }
+    },
+    getters: {}
+});
 
 /***/ })
 /******/ ]);

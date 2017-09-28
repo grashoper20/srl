@@ -76,6 +76,7 @@
             };
         },
         mounted() {
+            this.$store.dispatch('stats/sync');
             this.$store.dispatch('shows/sync');
         },
         computed: {

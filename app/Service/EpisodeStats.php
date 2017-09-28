@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use Grashoper\GregorianOrdinal\Date;
 use Illuminate\Cache\Repository;
 use Illuminate\Database\Query\Builder as QueryBuilder;
+use Illuminate\Support\Collection;
 use SickRage\Status;
 use SickRage\tv_show;
 
@@ -24,11 +25,12 @@ class EpisodeStats
     public function getStat($show_id)
     {
         $stats = $this->getAllStats();
-        if (!isset($stats[$show_id])) {
-            return [];
+        $stat = (new Collection($stats))->where('show_id', '=', $show_id);
+        if (empty($stat)) {
+            return new \stdClass();
         }
 
-        return $stats[$show_id];
+        return $stat->first();
     }
 
     public function getAllStats()
@@ -44,7 +46,9 @@ class EpisodeStats
         $shows = tv_show::all(['show_id', 'indexer_id']);
         $results = [];
         foreach ($shows as $show) {
-            $results[$show->show_id] = $stats[$show->indexer_id];
+            $stat = (object) $stats[$show->indexer_id];
+            $stat->show_id = $show->show_id;
+            $results[] = $stat;
         }
 
         return $results;

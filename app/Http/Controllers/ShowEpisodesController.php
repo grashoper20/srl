@@ -34,7 +34,7 @@ class ShowEpisodesController extends Controller
 
     public function stats($show_id)
     {
-        return $this->stats->getStat($show_id);
+        return response()->json($this->stats->getStat($show_id));
     }
 
 }
