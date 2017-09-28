@@ -61,6 +61,8 @@ use Illuminate\Database\Eloquent\Model;
  */
 class tv_episode extends Model
 {
+    protected $primaryKey = 'episode_id';
+
     # Episode statuses
     const UNKNOWN = -1;  # should never happen
     const UNAIRED = 1;  # episodes that haven't aired yet
