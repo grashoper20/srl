@@ -16,7 +16,7 @@
                                 {{imdb_info.rating}} {{imdb_info.countries}} ({{imdb_info.year}}) - {{imdb_info.runtimes}} minutes
                             </div>
                             <div class="show-full--genres">
-                                <div class="show-full--genre" v-for="genre in imdb_info.genres.split('|')">{{genre}}</div>
+                                <div class="show-full--genre" v-for="genre in genres">{{genre}}</div>
                             </div>
                         </div>
                         <img style="max-height: 50px; border: 1px solid black;" :src="bannerThumbnail"/>
@@ -93,6 +93,12 @@
             },
             bannerThumbnail: function () {
                 return FileCacheService.getFileCachePosterUrl(this.id, 'banner/thumbnail');
+            },
+            genres: function () {
+                if (typeof this.imdb_info.genres === 'undefined') {
+                    return [];
+                }
+                return this.imdb_info.genres.split('|');
             },
         }
     }

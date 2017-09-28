@@ -51925,6 +51925,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         bannerThumbnail: function bannerThumbnail() {
             return __WEBPACK_IMPORTED_MODULE_1__services_FileCacheService__["a" /* default */].getFileCachePosterUrl(this.id, 'banner/thumbnail');
+        },
+        genres: function genres() {
+            if (typeof this.imdb_info.genres === 'undefined') {
+                return [];
+            }
+            return this.imdb_info.genres.split('|');
         }
     }
 });
@@ -52267,7 +52273,7 @@ var render = function() {
               _c(
                 "div",
                 { staticClass: "show-full--genres" },
-                _vm._l(_vm.imdb_info.genres.split("|"), function(genre) {
+                _vm._l(_vm.genres, function(genre) {
                   return _c("div", { staticClass: "show-full--genre" }, [
                     _vm._v(_vm._s(genre))
                   ])
