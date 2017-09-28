@@ -7,6 +7,7 @@ use Grashoper\GregorianOrdinal\Date;
 use Illuminate\Cache\Repository;
 use Illuminate\Database\Query\Builder as QueryBuilder;
 use SickRage\Status;
+use SickRage\tv_show;
 
 class EpisodeStats
 {
@@ -20,24 +21,36 @@ class EpisodeStats
         $this->repository = $repository;
     }
 
-    public function getStat($indexer_id)
+    public function getStat($show_id)
     {
         $stats = $this->getAllStats();
-        if (!isset($stats[$indexer_id])) {
+        if (!isset($stats[$show_id])) {
             return [];
         }
 
-        return $stats[$indexer_id];
+        return $stats[$show_id];
     }
 
     public function getAllStats()
     {
         return $this->repository->remember('episode_stats', 5, function () {
-            return $this->doGetAllStats();
+            return $this->doGetStatsByShowId();
         });
     }
 
-    public function doGetAllStats()
+    private function doGetStatsByShowId()
+    {
+        $stats = $this->doGetAllStats();
+        $shows = tv_show::all(['show_id', 'indexer_id']);
+        $results = [];
+        foreach ($shows as $show) {
+            $results[$show->show_id] = $stats[$show->indexer_id];
+        }
+
+        return $results;
+    }
+
+    private function doGetAllStats()
     {
         $status_snatched = [
             Status::SNATCHED,

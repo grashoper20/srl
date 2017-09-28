@@ -12,9 +12,5 @@
 */
 
 Route::get('/', 'App@index');
-Route::resource('/api/show', 'ShowController');
-Route::get('/api/show/{show_id}/episodes', 'ShowEpisodesController@index'); // List episodes.
-Route::get('/api/show/{show_id}/stats', 'ShowEpisodesController@stats'); // Episode stats.
-Route::resource('/api/imdb', 'ImdbInfoController');
 Route::get('/filecache/network/{id}', 'FileCache@getPoster');
 Route::get('/filecache/poster/{id}/{type}/{thumbnail?}', 'FileCache@getPoster');
