@@ -11,9 +11,10 @@ import router from './router';
 
 import Vue from 'vue';
 
-Vue.component('headnav', require('./components/Headnav.vue'));
-
 const app = new Vue({
     router,
     store,
+    components: {
+        'headnav': require('./components/Headnav.vue'),
+    },
 }).$mount('#app');

@@ -15,7 +15,9 @@
                             <div>
                                 {{imdb_info.rating}} {{imdb_info.countries}} ({{imdb_info.year}}) - {{imdb_info.runtimes}} minutes
                             </div>
-                            <div>{{imdb_info.genres}}</div>
+                            <div class="show-full--genres">
+                                <div class="show-full--genre" v-for="genre in imdb_info.genres.split('|')">{{genre}}</div>
+                            </div>
                         </div>
                         <img style="max-height: 50px; border: 1px solid black;" :src="bannerThumbnail"/>
                     </header>
@@ -98,6 +100,16 @@
 <style lang="scss">
     .show-full--poster {
         width: 100%;
+    }
+
+    .show-full--genre {
+        display: inline-block;
+        border-radius: 3px;
+        background: #555;
+        border: 1px solid #111;
+        color: white;
+        padding: 0 .25em;
+        margin: 0 .25em;
     }
 
     .show-full--head {

@@ -30412,11 +30412,12 @@ __webpack_require__(19);
 
 
 
-__WEBPACK_IMPORTED_MODULE_2_vue___default.a.component('headnav', __webpack_require__(91));
-
 var app = new __WEBPACK_IMPORTED_MODULE_2_vue___default.a({
-  router: __WEBPACK_IMPORTED_MODULE_1__router__["a" /* default */],
-  store: __WEBPACK_IMPORTED_MODULE_0__store__["a" /* default */]
+    router: __WEBPACK_IMPORTED_MODULE_1__router__["a" /* default */],
+    store: __WEBPACK_IMPORTED_MODULE_0__store__["a" /* default */],
+    components: {
+        'headnav': __webpack_require__(91)
+    }
 }).$mount('#app');
 
 /***/ }),
@@ -51013,14 +51014,6 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
             return state.list;
         }
     })),
-    watch: {
-        sortField: function sortField() {
-            this.$store.commit('shows/sort', {
-                field: this.sortField,
-                descending: false
-            });
-        }
-    },
     methods: {
         debounceInput: __WEBPACK_IMPORTED_MODULE_1_lodash__["debounce"](function (e) {
             this.search = e.target.value.trim();
@@ -51471,7 +51464,7 @@ var render = function() {
           [
             _c("option", { attrs: { value: "show_name" } }, [_vm._v("Name")]),
             _vm._v(" "),
-            _c("option", { attrs: { value: "show_name" } }, [
+            _c("option", { attrs: { value: "air_by_date" } }, [
               _vm._v("Next Episode")
             ]),
             _vm._v(" "),
@@ -51820,7 +51813,7 @@ exports = module.exports = __webpack_require__(2)(undefined);
 
 
 // module
-exports.push([module.i, "\n.show-full--poster {\n  width: 100%;\n}\n.show-full--head {\n  display: flex;\n  justify-content: space-between;\n  border-bottom: 1px solid #888;\n  padding-bottom: .5rem;\n  margin-bottom: 1rem;\n}\n.show-full--head h1 {\n    margin: 0;\n}\n.show-full--seasons {\n  align-self: flex-end;\n}\n.show-full--info .show-full--info-header {\n  display: flex;\n  justify-content: space-between;\n}\n.show-full--info .show-full--details {\n  margin: .25rem 0;\n  padding: .5rem;\n  background: #efefef;\n}\n.show-full--episode-list {\n  margin: .5rem 0;\n}\n.show-full--backdrop {\n  position: fixed;\n  top: 0;\n  z-index: -9999;\n  height: 100vh;\n  width: 100%;\n  opacity: 0.4;\n  background: no-repeat center center fixed;\n  background-size: cover;\n}\n", ""]);
+exports.push([module.i, "\n.show-full--poster {\n  width: 100%;\n}\n.show-full--genre {\n  display: inline-block;\n  border-radius: 3px;\n  background: #555;\n  border: 1px solid #111;\n  color: white;\n  padding: 0 .25em;\n  margin: 0 .25em;\n}\n.show-full--head {\n  display: flex;\n  justify-content: space-between;\n  border-bottom: 1px solid #888;\n  padding-bottom: .5rem;\n  margin-bottom: 1rem;\n}\n.show-full--head h1 {\n    margin: 0;\n}\n.show-full--seasons {\n  align-self: flex-end;\n}\n.show-full--info .show-full--info-header {\n  display: flex;\n  justify-content: space-between;\n}\n.show-full--info .show-full--details {\n  margin: .25rem 0;\n  padding: .5rem;\n  background: #efefef;\n}\n.show-full--episode-list {\n  margin: .5rem 0;\n}\n.show-full--backdrop {\n  position: fixed;\n  top: 0;\n  z-index: -9999;\n  height: 100vh;\n  width: 100%;\n  opacity: 0.4;\n  background: no-repeat center center fixed;\n  background-size: cover;\n}\n", ""]);
 
 // exports
 
@@ -51836,6 +51829,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_FileCacheService__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ShowEpisodeList_vue__ = __webpack_require__(78);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ShowEpisodeList_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__ShowEpisodeList_vue__);
+//
+//
 //
 //
 //
@@ -52269,7 +52264,15 @@ var render = function() {
                 )
               ]),
               _vm._v(" "),
-              _c("div", [_vm._v(_vm._s(_vm.imdb_info.genres))])
+              _c(
+                "div",
+                { staticClass: "show-full--genres" },
+                _vm._l(_vm.imdb_info.genres.split("|"), function(genre) {
+                  return _c("div", { staticClass: "show-full--genre" }, [
+                    _vm._v(_vm._s(genre))
+                  ])
+                })
+              )
             ]),
             _vm._v(" "),
             _c("img", {

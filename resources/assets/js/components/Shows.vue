@@ -8,7 +8,7 @@
                 <label for="search-sort">Sort</label>
                 <select class="form-control" id="search-sort" v-model="sortField">
                     <option value="show_name">Name</option>
-                    <option value="show_name">Next Episode</option>
+                    <option value="air_by_date">Next Episode</option>
                     <option value="network">Network</option>
                     <option value="show_name">Progress</option>
                 </select>
@@ -100,14 +100,6 @@
             ...mapState('shows', {
                 full_list: state => state.list,
             }),
-        },
-        watch: {
-            sortField() {
-                this.$store.commit('shows/sort', {
-                    field: this.sortField,
-                    descending: false,
-                });
-            },
         },
         methods: {
             debounceInput: _.debounce(function (e) {
