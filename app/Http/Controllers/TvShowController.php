@@ -108,7 +108,7 @@ class TvShowController extends Controller
      */
     protected function process($show)
     {
-        $stats = $this->stats->getStat($show->show_id);
+        $stats = $this->stats->getStat($show->indexer_id);
         if ($stats->total == 0) { // div by 0 is bad.
             $show->progress = 0;
         }

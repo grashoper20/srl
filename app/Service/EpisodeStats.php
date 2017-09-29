@@ -22,36 +22,25 @@ class EpisodeStats
         $this->repository = $repository;
     }
 
-    public function getStat($show_id)
+    public function getStat($indexer_id)
     {
         $stats = $this->getAllStats();
-        $stat = (new Collection($stats))->where('show_id', '=', $show_id);
-        if (empty($stat)) {
+        if (!isset($stats[$indexer_id])) {
             return new \stdClass();
         }
 
-        return $stat->first();
+        return $stats[$indexer_id];
     }
 
     public function getAllStats()
     {
-        return $this->repository->remember('episode_stats', 5, function () {
-            return $this->doGetStatsByShowId();
-        });
-    }
-
-    private function doGetStatsByShowId()
-    {
-        $stats = $this->doGetAllStats();
-        $shows = tv_show::all(['show_id', 'indexer_id']);
-        $results = [];
-        foreach ($shows as $show) {
-            $stat = (object) $stats[$show->indexer_id];
-            $stat->show_id = $show->show_id;
-            $results[] = $stat;
-        }
-
-        return $results;
+        return $this->repository->remember(
+            'episode_stats',
+            5,
+            function () {
+                return $this->doGetAllStats();
+            }
+        );
     }
 
     private function doGetAllStats()
@@ -81,21 +70,30 @@ class EpisodeStats
             ->selectRaw('showid, COUNT(episode_id) as total')
             ->where('season', '>', 0)
             ->where('airdate', '>', 1)
-            ->where(function (QueryBuilder $query) use (
-                $status_snatched,
-                $downloaded_where
-            ) {
-                // If downloaded or downloading.
-                $query->whereIn('status', $status_snatched);
-                $query->orWhere($downloaded_where);
-                // Or old and has a non-failure-ish state.
-                $query->orWhere(function (QueryBuilder $query) {
-                    $query->where('airdate', '<=',
-                        Date::ordinalFromDate(Carbon::today()));
-                    $query->whereIn('status',
-                        [Status::SKIPPED, Status::WANTED, STATUS::FAILED]);
-                });
-            })
+            ->where(
+                function (QueryBuilder $query) use (
+                    $status_snatched,
+                    $downloaded_where
+                ) {
+                    // If downloaded or downloading.
+                    $query->whereIn('status', $status_snatched);
+                    $query->orWhere($downloaded_where);
+                    // Or old and has a non-failure-ish state.
+                    $query->orWhere(
+                        function (QueryBuilder $query) {
+                            $query->where(
+                                'airdate',
+                                '<=',
+                                Date::ordinalFromDate(Carbon::today())
+                            );
+                            $query->whereIn(
+                                'status',
+                                [Status::SKIPPED, Status::WANTED, STATUS::FAILED]
+                            );
+                        }
+                    );
+                }
+            )
             ->groupBy('showid');
         $next_airs_sql = \DB::table('tv_episodes')
             ->selectRaw('showid, MIN(airdate) as next_air')
@@ -132,14 +130,14 @@ class EpisodeStats
         foreach ($stats as $key => $collection) {
             foreach ($collection->keyBy('showid') as $indexer_id => $stat) {
                 if (empty($result[$indexer_id])) {
-                    $result[$indexer_id] = $default;
+                    $result[$indexer_id] = (object)$default;
+                    $result[$indexer_id]->indexer_id = $indexer_id;
                 }
-                $result[$indexer_id][$key] = $stat->{$key};
+                $result[$indexer_id]->{$key} = $stat->{$key};
             };
         }
 
         return $result;
     }
-
 
 }

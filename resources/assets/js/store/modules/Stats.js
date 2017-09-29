@@ -10,7 +10,7 @@ export default {
             state.stats = stats;
         },
         push(state, stat) {
-            state.stats[stat.show_id] = stat;
+            state.stats[stat.indexer_id] = stat;
         },
     },
     actions: {
@@ -18,7 +18,7 @@ export default {
             axios.get('/api/stats')
                 .then(response => {
                     let stats = [];
-                    response.data.forEach((stat) => stats[stat.show_id] = stat);
+                    response.data.forEach((stat) => stats[stat.indexer_id] = stat);
                     commit('set', stats);
                 })
                 .catch(e => {

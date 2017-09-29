@@ -62772,7 +62772,7 @@ var debug = "development" !== 'production';
             state.stats = stats;
         },
         push: function push(state, stat) {
-            state.stats[stat.show_id] = stat;
+            state.stats[stat.indexer_id] = stat;
         }
     },
     actions: {
@@ -62782,7 +62782,7 @@ var debug = "development" !== 'production';
             __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('/api/stats').then(function (response) {
                 var stats = [];
                 response.data.forEach(function (stat) {
-                    return stats[stat.show_id] = stat;
+                    return stats[stat.indexer_id] = stat;
                 });
                 commit('set', stats);
             }).catch(function (e) {
