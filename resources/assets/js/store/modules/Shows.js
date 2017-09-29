@@ -44,5 +44,9 @@ export default {
         },
     },
     getters: {
+        getShowById: (state, getters) => (id) => {
+            let show = state.list.find(show => show.indexer_id == id);
+            return show === undefined ? {} : show;
+        }
     },
 };

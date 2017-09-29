@@ -62741,7 +62741,16 @@ var debug = "development" !== 'production';
             });
         }
     },
-    getters: {}
+    getters: {
+        getShowById: function getShowById(state, getters) {
+            return function (id) {
+                var show = state.list.find(function (show) {
+                    return show.indexer_id == id;
+                });
+                return show === undefined ? {} : show;
+            };
+        }
+    }
 });
 
 /***/ }),
@@ -67511,6 +67520,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_FileCacheService__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ShowEpisodeList_vue__ = __webpack_require__(190);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ShowEpisodeList_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__ShowEpisodeList_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_vuex__ = __webpack_require__(6);
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 //
 //
 //
@@ -67549,6 +67561,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+
 
 
 
@@ -67561,7 +67574,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     data: function data() {
         return {
             id: 0,
-            show: {},
             imdb_info: {},
             episodes: [],
             errors: []
@@ -67583,17 +67595,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         });
         this.$store.dispatch('shows/find', this.id);
     },
-    mounted: function mounted() {
-        var _this2 = this;
 
-        this.$store.dispatch('shows/find', this.id).then(function (show) {
-            _this2.show = show;
-        }).catch(function (reason) {
-            _this2.errors.push(reason);
-        });
-    },
-
-    computed: {
+    computed: _extends({
         getBackgroundImage: function getBackgroundImage() {
             return __WEBPACK_IMPORTED_MODULE_1__services_FileCacheService__["a" /* default */].getFileCachePosterUrl(this.id, 'fanart');
         },
@@ -67614,8 +67617,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 return [];
             }
             return this.imdb_info.genres.split('|');
+        },
+        show: function show() {
+            return this.getShowById(this.id);
         }
-    }
+    }, Object(__WEBPACK_IMPORTED_MODULE_3_vuex__["b" /* mapGetters */])('shows', ['getShowById']))
 });
 
 /***/ }),

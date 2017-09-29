@@ -40,6 +40,7 @@
     import axios from 'axios'
     import FileCacheService from '../services/FileCacheService';
     import EpisodeList from './ShowEpisodeList.vue';
+    import {mapGetters} from 'vuex';
 
     export default {
         components: {
@@ -47,7 +48,6 @@
         },
         data: () => ({
             id: 0,
-            show: {},
             imdb_info: {},
             episodes: [],
             errors: [],
@@ -69,15 +69,6 @@
                     this.errors.push(e)
                 });
             this.$store.dispatch('shows/find', this.id)
-        },
-        mounted() {
-            this.$store.dispatch('shows/find', this.id)
-                .then((show) => {
-                    this.show = show;
-                })
-                .catch((reason) => {
-                    this.errors.push(reason);
-                });
         },
         computed: {
             getBackgroundImage: function () {
@@ -101,6 +92,12 @@
                 }
                 return this.imdb_info.genres.split('|');
             },
+            show() {
+                return this.getShowById(this.id);
+            },
+            ...mapGetters('shows', [
+                'getShowById'
+            ]),
         }
     }
 </script>
