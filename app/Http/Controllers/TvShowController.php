@@ -7,7 +7,7 @@ use SickRage\Service\EpisodeStats;
 use SickRage\tv_show;
 use Illuminate\Http\Request;
 
-class ShowController extends Controller
+class TvShowController extends Controller
 {
 
     /**

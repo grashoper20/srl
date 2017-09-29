@@ -11,7 +11,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 class FileCache
 {
 
-    private const FILETYPE = [
+    private const FILE_TYPE = [
         'banner' => TRUE,
         'poster' => TRUE,
         'fanart' => TRUE,
@@ -25,20 +25,10 @@ class FileCache
 </svg>');
     }
 
-    public function getPoster($id, $type = 'banner', $thumbnail = FALSE) {
-        if (!isset(static::FILETYPE[$type])) {
+    public function getPoster($indexer_id, $type = 'banner', $thumbnail = FALSE) {
+        if (!isset(static::FILE_TYPE[$type])) {
             throw new BadRequestHttpException();
         }
-
-        $indexer_id = tv_show::whereShowId($id)
-          ->pluck('indexer_id');
-        if ($indexer_id) {
-            $indexer_id = (int) $indexer_id[0];
-        }
-        else {
-            throw new NotFoundHttpException();
-        }
-
 
         $path = '/var/www/sickrage/cache/images/';
         $file = "${indexer_id}.${type}.jpg";

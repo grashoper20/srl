@@ -62724,9 +62724,10 @@ var debug = "development" !== 'production';
 
             return new Promise(function (resolve, reject) {
                 var show = state.list.find(function (show) {
-                    return show.show_id == id;
+                    return show.indexer_id == id;
                 });
                 if (typeof show !== 'undefined') {
+                    console.log('cached load');
                     resolve(show);
                     return;
                 }
@@ -66947,7 +66948,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
             return this.show.network;
         },
         poster: function poster() {
-            return __WEBPACK_IMPORTED_MODULE_0__services_FileCacheService__["a" /* default */].getFileCachePosterUrl(this.show.show_id, 'poster/thumbnail');
+            return __WEBPACK_IMPORTED_MODULE_0__services_FileCacheService__["a" /* default */].getFileCachePosterUrl(this.show.indexer_id, 'poster/thumbnail');
         },
         airDate: function airDate() {
             // TODO calculate actual air date and fallback on status.
@@ -66985,7 +66986,9 @@ var render = function() {
       [
         _c(
           "router-link",
-          { attrs: { to: { name: "show", params: { id: _vm.show.show_id } } } },
+          {
+            attrs: { to: { name: "show", params: { id: _vm.show.indexer_id } } }
+          },
           [_c("img", { attrs: { src: _vm.poster } })]
         )
       ],
@@ -67573,17 +67576,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         }).catch(function (e) {
             _this.errors.push(e);
         });
+        __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('/api/imdb/' + this.id).then(function (response) {
+            _this.imdb_info = response.data;
+        }).catch(function (e) {
+            _this.errors.push(e);
+        });
+        this.$store.dispatch('shows/find', this.id);
     },
     mounted: function mounted() {
         var _this2 = this;
 
         this.$store.dispatch('shows/find', this.id).then(function (show) {
             _this2.show = show;
-            __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('/api/imdb/' + show.indexer_id).then(function (response) {
-                _this2.imdb_info = response.data;
-            }).catch(function (e) {
-                _this2.errors.push(e);
-            });
         }).catch(function (reason) {
             _this2.errors.push(reason);
         });

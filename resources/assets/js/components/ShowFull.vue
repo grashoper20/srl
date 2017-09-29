@@ -61,18 +61,19 @@
                 .catch(e => {
                     this.errors.push(e)
                 });
+            axios.get('/api/imdb/' + this.id)
+                .then(response => {
+                    this.imdb_info = response.data;
+                })
+                .catch(e => {
+                    this.errors.push(e)
+                });
+            this.$store.dispatch('shows/find', this.id)
         },
         mounted() {
             this.$store.dispatch('shows/find', this.id)
                 .then((show) => {
                     this.show = show;
-                    axios.get('/api/imdb/' + show.indexer_id)
-                        .then(response => {
-                            this.imdb_info = response.data;
-                        })
-                        .catch(e => {
-                            this.errors.push(e)
-                        });
                 })
                 .catch((reason) => {
                     this.errors.push(reason);

@@ -1,7 +1,7 @@
 <template>
     <div class="show--wrapper">
         <div class="show--image">
-            <router-link :to="{name: 'show', params: {id: show.show_id}}">
+            <router-link :to="{name: 'show', params: {id: show.indexer_id}}">
                 <img v-bind:src="poster"/>
             </router-link>
         </div>
@@ -43,7 +43,7 @@
                 return this.show.network;
             },
             poster() {
-                return FileCacheService.getFileCachePosterUrl(this.show.show_id, 'poster/thumbnail');
+                return FileCacheService.getFileCachePosterUrl(this.show.indexer_id, 'poster/thumbnail');
             },
             airDate() {
                 // TODO calculate actual air date and fallback on status.
