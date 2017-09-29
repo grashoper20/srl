@@ -2,6 +2,7 @@
 
 namespace SickRage\Http\Controllers;
 
+use Grashoper\GregorianOrdinal\Date;
 use SickRage\Service\EpisodeStats;
 use SickRage\tv_show;
 use Illuminate\Http\Request;
@@ -28,7 +29,7 @@ class ShowController extends Controller
     {
         $shows = tv_show::all();
         foreach ($shows as $show) {
-            $this->setProgress($show);
+            $this->process($show);
         }
 
         return response()->json($shows);
@@ -63,7 +64,7 @@ class ShowController extends Controller
      */
     public function show(tv_show $show)
     {
-        $this->setProgress($show);
+        $this->process($show);
 
         return response()->json($show);
     }
@@ -102,13 +103,21 @@ class ShowController extends Controller
         //
     }
 
-    protected function setProgress($show)
+    /**
+     * @param tv_show $show
+     */
+    protected function process($show)
     {
         $stats = $this->stats->getStat($show->show_id);
         if ($stats->total == 0) { // div by 0 is bad.
             $show->progress = 0;
         }
-        $show->progress = $stats->downloaded / $stats->total;
+        else {
+            $show->progress = $stats->downloaded / $stats->total;
+        }
+        if ($show->air_by_date) {
+            $show->air_by_date = Date::timeFromOrdinal($show->air_by_date);
+        }
     }
 
 }

@@ -14,10 +14,10 @@ use Illuminate\Http\Request;
 */
 
 Route::resource('/show', 'ShowController');
-Route::get('/show/{show_id}/episodes', 'ShowEpisodesController@index'); // List episodes.
-Route::get('/show/{show_id}/stats', 'ShowEpisodesController@stats'); // Episode stats.
+Route::get('/show/{show_id}/episodes', 'EpisodeController@indexByShow'); // List episodes.
+Route::get('/show/{show_id}/stats', 'EpisodeController@statsByShow'); // Episode stats.
+Route::get('/stats', 'EpisodeController@statsIndex');
 Route::resource('/imdb', 'ImdbInfoController');
-Route::get('/stats', 'EpisodeController@stats');
 
 //Route::middleware('auth:api')->get('/user', function (Request $request) {
 //    return $request->user();

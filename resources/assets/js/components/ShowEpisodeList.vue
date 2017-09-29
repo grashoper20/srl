@@ -20,7 +20,7 @@
                     <td>{{episode.hastbn == '1' ? 'Y' : 'N'}}</td>
                     <td>{{episode.episode}}</td>
                     <td class="w-100">{{episode.name}}</td>
-                    <td>{{episode.airdate}}</td>
+                    <td>{{formatAirDate(episode.airdate)}}</td>
                     <td>{{episodeStatusText(episode.status)}}</td>
                 </tr>
                 </tbody>
@@ -30,6 +30,8 @@
 </template>
 
 <script>
+    import moment from 'moment';
+
     export default {
         data: () => ({
             episodeList: [],
@@ -55,9 +57,15 @@
                     return [];
                 }
                 return this.episodeList.slice().reverse().filter(ep => typeof ep !== 'undefined');
-            }
+            },
         },
         methods: {
+            formatAirDate(airdate) {
+                if (airdate == 1) {
+                    return 'Never';
+                }
+                return moment(airdate).format('YYYY-MM-DD');
+            },
             episodeClass(state) {
                 state = parseInt(state);
                 if (state > 100) {
