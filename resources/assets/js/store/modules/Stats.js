@@ -17,7 +17,9 @@ export default {
         sync({commit}) {
             axios.get('/api/stats')
                 .then(response => {
-                    commit('set', response.data);
+                    let stats = [];
+                    response.data.forEach((stat) => stats[stat.show_id] = stat);
+                    commit('set', stats);
                 })
                 .catch(e => {
                     // this.errors.push(e);
@@ -32,10 +34,8 @@ export default {
                 else {
                     axios.get('/api/show/' + id + '/stats')
                         .then(response => {
-                            let stats = [];
-                            response.data.forEach((stat) => stats[stat.show_id] = stat);
-                            commit('push', stats);
-                            resolve(stats);
+                            commit('push', response.data);
+                            resolve(response.data);
                         })
                         .catch(e => {
                             console.error(e);
@@ -45,5 +45,14 @@ export default {
             });
         },
     },
-    getters: {},
+    getters: {
+        getById: (state, getters) => (id) => {
+            let stat = state.stats[id];
+            if (stat === undefined) {
+                console.log('skipping stat');
+                return {};
+            }
+            return stat;
+        },
+    },
 };

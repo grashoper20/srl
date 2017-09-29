@@ -2,18 +2,36 @@
 
 namespace SickRage\Http\Controllers;
 
+use SickRage\Service\EpisodeStats;
 use SickRage\tv_show;
 use Illuminate\Http\Request;
 
 class ShowController extends Controller
 {
+
+    /**
+     * @var \SickRage\Service\EpisodeStats
+     */
+    private $stats;
+
+    public function __construct(EpisodeStats $stats)
+    {
+        $this->stats = $stats;
+    }
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index() {
-        return response()->json(tv_show::all());
+    public function index()
+    {
+        $shows = tv_show::all();
+        foreach ($shows as $show) {
+            $this->setProgress($show);
+        }
+
+        return response()->json($shows);
     }
 
     /**
@@ -21,7 +39,8 @@ class ShowController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create() {
+    public function create()
+    {
         //
     }
 
@@ -31,7 +50,8 @@ class ShowController extends Controller
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request) {
+    public function store(Request $request)
+    {
         //
     }
 
@@ -41,7 +61,10 @@ class ShowController extends Controller
      * @param  \SickRage\tv_show $show
      * @return \Illuminate\Http\Response
      */
-    public function show(tv_show $show) {
+    public function show(tv_show $show)
+    {
+        $this->setProgress($show);
+
         return response()->json($show);
     }
 
@@ -51,7 +74,8 @@ class ShowController extends Controller
      * @param  \SickRage\tv_show $show
      * @return \Illuminate\Http\Response
      */
-    public function edit(tv_show $show) {
+    public function edit(tv_show $show)
+    {
         //
     }
 
@@ -62,7 +86,8 @@ class ShowController extends Controller
      * @param  \SickRage\tv_show $show
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, tv_show $show) {
+    public function update(Request $request, tv_show $show)
+    {
         //
     }
 
@@ -72,7 +97,18 @@ class ShowController extends Controller
      * @param  \SickRage\tv_show $show
      * @return \Illuminate\Http\Response
      */
-    public function destroy(tv_show $show) {
+    public function destroy(tv_show $show)
+    {
         //
     }
+
+    protected function setProgress($show)
+    {
+        $stats = $this->stats->getStat($show->show_id);
+        if ($stats->total == 0) { // div by 0 is bad.
+            $show->progress = 0;
+        }
+        $show->progress = $stats->downloaded / $stats->total;
+    }
+
 }

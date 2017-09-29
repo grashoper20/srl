@@ -20,32 +20,39 @@
 
 <script>
 
-    import {random} from 'lodash';
     import FileCacheService from '../services/FileCacheService';
+    import {mapGetters} from 'vuex'
 
     export default {
-        data: () => ({
-            progress: random(0, 100),
-        }),
+        data: () => ({}),
         props: [
             'show'
         ],
+        created() {
+//            this.$store.dispatch('stats/find', this.show.show_id);
+        },
         computed: {
-            progressClass: function () {
+            progress() {
+                return 100 * this.show.progress;
+            },
+            progressClass() {
                 return 'progress-' + Math.max((Math.floor(this.progress / 20) * 20), 20);
             },
-            networkImage: function () {
+            networkImage() {
                 // TODO Figure out how to do this in a legit way.
                 return this.show.network;
             },
-            poster: function () {
+            poster() {
                 return FileCacheService.getFileCachePosterUrl(this.show.show_id, 'poster/thumbnail');
             },
-            airDate: function () {
+            airDate() {
                 // TODO calculate actual air date and fallback on status.
                 return this.show.status;
-            }
-        }
+            },
+            ...mapGetters('stats', [
+                'getById',
+            ]),
+        },
     }
 </script>
 

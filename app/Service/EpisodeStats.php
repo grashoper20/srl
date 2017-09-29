@@ -120,9 +120,20 @@ class EpisodeStats
             'previous_air' => $previous_airs_sql->get(),
             'show_size'    => $show_size_sql->get(),
         ];
+        $default = [
+            'snatched'     => 0,
+            'downloaded'   => 0,
+            'total'        => 0,
+            'next_air'     => 0,
+            'previous_air' => 0,
+            'show_size'    => 0,
+        ];
         $result = [];
         foreach ($stats as $key => $collection) {
             foreach ($collection->keyBy('showid') as $indexer_id => $stat) {
+                if (empty($result[$indexer_id])) {
+                    $result[$indexer_id] = $default;
+                }
                 $result[$indexer_id][$key] = $stat->{$key};
             };
         }

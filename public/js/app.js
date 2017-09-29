@@ -28204,9 +28204,9 @@ module.exports = Vue$3;
 
 "use strict";
 /* unused harmony export Store */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return mapState; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return mapState; });
 /* unused harmony export mapMutations */
-/* unused harmony export mapGetters */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return mapGetters; });
 /* unused harmony export mapActions */
 /* unused harmony export createNamespacedHelpers */
 /**
@@ -50910,6 +50910,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vuex__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Shows_Cards_vue__ = __webpack_require__(52);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Shows_Cards_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__Shows_Cards_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_jquery__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_jquery___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_jquery__);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 //
@@ -50958,6 +50960,12 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 //
 //
 //
+//
+//
+//
+//
+//
+
 
 
 
@@ -50973,7 +50981,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
             search: '',
             showType: 1,
             sortField: 'show_name',
-            sortDescending: false,
+            sortDescending: 1,
             errors: [],
             fuse_options: {}
         };
@@ -51002,7 +51010,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
             if (this.search) {
                 return new __WEBPACK_IMPORTED_MODULE_0_fuse_js___default.a(list, this.fuse_options).search(this.search);
             }
-            return this.sortHelper(list, this.sortField, this.sortDescending);
+            return this.sortHelper(list, this.sortField, this.sortDescending - 1);
         },
         shows: function shows() {
             var list = this.full_list.filter(function (show) {
@@ -51011,32 +51019,40 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
             if (this.search) {
                 return new __WEBPACK_IMPORTED_MODULE_0_fuse_js___default.a(list, this.fuse_options).search(this.search);
             }
-            return this.sortHelper(list, this.sortField, this.sortDescending);
+            return this.sortHelper(list, this.sortField, this.sortDescending - 1);
         }
-    }, Object(__WEBPACK_IMPORTED_MODULE_2_vuex__["b" /* mapState */])('shows', {
+    }, Object(__WEBPACK_IMPORTED_MODULE_2_vuex__["c" /* mapState */])('shows', {
         full_list: function full_list(state) {
             return state.list;
         }
     })),
+    watch: {
+        sortDescending: function sortDescending() {
+            console.log(this.sortDescending);
+        }
+    },
     methods: {
         debounceInput: __WEBPACK_IMPORTED_MODULE_1_lodash__["debounce"](function (e) {
             this.search = e.target.value.trim();
         }, 250),
         sortHelper: function sortHelper(list, field, descending) {
             try {
+                var isNumber = false;
+                list.forEach(function (x) {
+                    isNumber |= __WEBPACK_IMPORTED_MODULE_4_jquery___default.a.isNumeric(x);
+                });
                 return list.sort(function (a, b) {
                     var comp_strings = [];
                     [a[field], b[field]].forEach(function (x) {
-                        // TODO Logic to converge to comparable strings.
                         if (typeof x === 'undefined' || x === null) {
                             x = '';
                         }
-                        comp_strings.push(x);
+                        comp_strings.push(x.toString());
                     });
 
                     var comparison = comp_strings[0].localeCompare(comp_strings[1]);
                     if (comparison === 0 && field !== 'show_name') {
-                        comparison = a.show_name.localeCompare(b.show_name);
+                        comparison = a.show_name.localeCompare(b.show_name, { numeric: isNumber });
                     }
                     return descending ? comparison * -1 : comparison;
                 });
@@ -51261,9 +51277,10 @@ exports.push([module.i, "\n.show--wrapper {\n  width: 188px;\n  margin: 4px;\n  
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_lodash__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_lodash___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_lodash__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_FileCacheService__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__services_FileCacheService__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuex__ = __webpack_require__(9);
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 //
 //
 //
@@ -51291,12 +51308,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
-        return {
-            progress: Object(__WEBPACK_IMPORTED_MODULE_0_lodash__["random"])(0, 100)
-        };
+        return {};
     },
     props: ['show'],
-    computed: {
+    created: function created() {
+        //            this.$store.dispatch('stats/find', this.show.show_id);
+    },
+
+    computed: _extends({
+        progress: function progress() {
+            return 100 * this.show.progress;
+        },
         progressClass: function progressClass() {
             return 'progress-' + Math.max(Math.floor(this.progress / 20) * 20, 20);
         },
@@ -51305,13 +51327,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             return this.show.network;
         },
         poster: function poster() {
-            return __WEBPACK_IMPORTED_MODULE_1__services_FileCacheService__["a" /* default */].getFileCachePosterUrl(this.show.show_id, 'poster/thumbnail');
+            return __WEBPACK_IMPORTED_MODULE_0__services_FileCacheService__["a" /* default */].getFileCachePosterUrl(this.show.show_id, 'poster/thumbnail');
         },
         airDate: function airDate() {
             // TODO calculate actual air date and fallback on status.
             return this.show.status;
         }
-    }
+    }, Object(__WEBPACK_IMPORTED_MODULE_1_vuex__["b" /* mapGetters */])('stats', ['getById']))
 });
 
 /***/ }),
@@ -51474,15 +51496,53 @@ var render = function() {
             _vm._v(" "),
             _c("option", { attrs: { value: "network" } }, [_vm._v("Network")]),
             _vm._v(" "),
-            _c("option", { attrs: { value: "show_name" } }, [
-              _vm._v("Progress")
-            ])
+            _c("option", { attrs: { value: "progress" } }, [_vm._v("Progress")])
           ]
         ),
         _vm._v(" "),
         _c("label", { attrs: { for: "search-layout" } }, [_vm._v("Layout")]),
         _vm._v(" "),
-        _vm._m(0)
+        _vm._m(0),
+        _vm._v(" "),
+        _c("label", { attrs: { for: "search-direction" } }, [
+          _vm._v("Direction")
+        ]),
+        _vm._v(" "),
+        _c(
+          "select",
+          {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.sortDescending,
+                expression: "sortDescending"
+              }
+            ],
+            staticClass: "form-control",
+            attrs: { id: "search-direction" },
+            on: {
+              change: function($event) {
+                var $$selectedVal = Array.prototype.filter
+                  .call($event.target.options, function(o) {
+                    return o.selected
+                  })
+                  .map(function(o) {
+                    var val = "_value" in o ? o._value : o.value
+                    return val
+                  })
+                _vm.sortDescending = $event.target.multiple
+                  ? $$selectedVal
+                  : $$selectedVal[0]
+              }
+            }
+          },
+          [
+            _c("option", { attrs: { value: "1" } }, [_vm._v("Asc")]),
+            _vm._v(" "),
+            _c("option", { attrs: { value: "2" } }, [_vm._v("Desc")])
+          ]
+        )
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "form-inline " }, [
@@ -52879,7 +52939,11 @@ if (false) {
             var commit = _ref.commit;
 
             __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('/api/stats').then(function (response) {
-                commit('set', response.data);
+                var stats = [];
+                response.data.forEach(function (stat) {
+                    return stats[stat.show_id] = stat;
+                });
+                commit('set', stats);
             }).catch(function (e) {
                 // this.errors.push(e);
             });
@@ -52894,12 +52958,8 @@ if (false) {
                     resolve(stat);
                 } else {
                     __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('/api/show/' + id + '/stats').then(function (response) {
-                        var stats = [];
-                        response.data.forEach(function (stat) {
-                            return stats[stat.show_id] = stat;
-                        });
-                        commit('push', stats);
-                        resolve(stats);
+                        commit('push', response.data);
+                        resolve(response.data);
                     }).catch(function (e) {
                         console.error(e);
                         reject(e);
@@ -52908,7 +52968,18 @@ if (false) {
             });
         }
     },
-    getters: {}
+    getters: {
+        getById: function getById(state, getters) {
+            return function (id) {
+                var stat = state.stats[id];
+                if (stat === undefined) {
+                    console.log('skipping stat');
+                    return {};
+                }
+                return stat;
+            };
+        }
+    }
 });
 
 /***/ })

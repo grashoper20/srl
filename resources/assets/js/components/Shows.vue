@@ -10,7 +10,7 @@
                     <option value="show_name">Name</option>
                     <option value="air_by_date">Next Episode</option>
                     <option value="network">Network</option>
-                    <option value="show_name">Progress</option>
+                    <option value="progress">Progress</option>
                 </select>
                 <label for="search-layout">Layout</label>
                 <select class="form-control" id="search-layout">
@@ -18,6 +18,11 @@
                     <option value="2">Small poster</option>
                     <option value="3">Banner</option>
                     <option value="3">Simple</option>
+                </select>
+                <label for="search-direction">Direction</label>
+                <select class="form-control" id="search-direction" v-model="sortDescending">
+                    <option value="1">Asc</option>
+                    <option value="2">Desc</option>
                 </select>
             </div>
             <div class="form-inline "><label for="search-show-type">Show type</label>
@@ -49,6 +54,7 @@
     import * as _ from 'lodash';
     import {mapState} from 'vuex';
     import ShowCards from './Shows-Cards.vue';
+    import jQuery from 'jquery';
 
     export default {
         components: {
@@ -58,7 +64,7 @@
             search: '',
             showType: 1,
             sortField: 'show_name',
-            sortDescending: false,
+            sortDescending: 1,
             errors: [],
             fuse_options: {},
         }),
@@ -87,7 +93,7 @@
                     return (new fuse(list, this.fuse_options))
                         .search(this.search);
                 }
-                return this.sortHelper(list, this.sortField, this.sortDescending);
+                return this.sortHelper(list, this.sortField, this.sortDescending - 1);
             },
             shows() {
                 let list = this.full_list
@@ -96,11 +102,16 @@
                     return (new fuse(list, this.fuse_options))
                         .search(this.search);
                 }
-                return this.sortHelper(list, this.sortField, this.sortDescending);
+                return this.sortHelper(list, this.sortField, this.sortDescending - 1);
             },
             ...mapState('shows', {
                 full_list: state => state.list,
             }),
+        },
+        watch: {
+            sortDescending: function() {
+                console.log(this.sortDescending);
+            },
         },
         methods: {
             debounceInput: _.debounce(function (e) {
@@ -108,21 +119,24 @@
             }, 250),
             sortHelper(list, field, descending) {
                 try {
+                    let isNumber = false;
+                    list.forEach((x) => {
+                        isNumber |= jQuery.isNumeric(x);
+                    });
                     return list.sort(function (a, b) {
                         let comp_strings = [];
                         [a[field], b[field]].forEach((x) => {
-                            // TODO Logic to converge to comparable strings.
                             if (typeof x === 'undefined' || x === null) {
                                 x = '';
                             }
-                            comp_strings.push(x);
+                            comp_strings.push(x.toString());
                         });
 
                         let comparison = comp_strings[0]
                             .localeCompare(comp_strings[1]);
                         if (comparison === 0 && field !== 'show_name') {
                             comparison = a.show_name
-                                .localeCompare(b.show_name);
+                                .localeCompare(b.show_name, {numeric: isNumber});
                         }
                         return (descending ? comparison * -1 : comparison);
                     });
