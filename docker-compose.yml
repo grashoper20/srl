@@ -13,7 +13,10 @@ services:
       - ./:/var/www/html/:rw
       - $SICKBEARDLOCATION:/var/www/sickrage/:ro
   npm-watch:
-    image: node:8-alpine
+    image: grashoper20/srl:node-watcher
+    build:
+      context: ./
+      dockerfile: ./resources/docker/Dockerfile.npm-watcher
     networks:
       - srl
     ports:
