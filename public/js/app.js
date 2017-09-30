@@ -66965,15 +66965,11 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    data: function data() {
-        return {};
-    },
     props: ['show'],
-    created: function created() {
-        //            this.$store.dispatch('stats/find', this.show.show_id);
-    },
-
     computed: _extends({
+        completed: function completed() {
+            return this.show.stats === undefined ? '0/0' : this.show.stats.downloaded + '/' + this.show.stats.total;
+        },
         progress: function progress() {
             return 100 * this.show.progress;
         },
@@ -67047,7 +67043,9 @@ var render = function() {
     _c("div", { staticClass: "show--date" }, [_vm._v(_vm._s(_vm.airDate))]),
     _vm._v(" "),
     _c("div", { staticClass: "show--details" }, [
-      _c("div", { staticClass: "show--count" }, [_vm._v("1/1")]),
+      _c("div", { staticClass: "show--count" }, [
+        _vm._v(_vm._s(_vm.completed))
+      ]),
       _vm._v(" "),
       _c("div", { staticClass: "show--network" }, [
         _vm._v(_vm._s(_vm.networkImage))

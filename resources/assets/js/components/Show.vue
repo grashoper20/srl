@@ -11,7 +11,7 @@
         <h4 class="show--title">{{show.show_name}}</h4>
         <div class="show--date">{{airDate}}</div>
         <div class="show--details">
-            <div class="show--count">1/1</div>
+            <div class="show--count">{{completed}}</div>
             <div class="show--network">{{networkImage}}</div>
             <div class="show--quality">{{show.quality}}</div>
         </div>
@@ -24,14 +24,15 @@
     import {mapGetters} from 'vuex'
 
     export default {
-        data: () => ({}),
         props: [
             'show'
         ],
-        created() {
-//            this.$store.dispatch('stats/find', this.show.show_id);
-        },
         computed: {
+            completed() {
+                return this.show.stats === undefined
+                    ? '0/0'
+                    : this.show.stats.downloaded + '/' + this.show.stats.total;
+            },
             progress() {
                 return 100 * this.show.progress;
             },
