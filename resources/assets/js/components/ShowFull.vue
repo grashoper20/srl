@@ -106,18 +106,17 @@
                 return this.getShowById(this.id);
             },
             orderedEpisodeList: function () {
-                let tmp = [];
+                let episodes = [];
                 this.episodes.forEach(function (episode) {
-                    if (!(episode.season in tmp)) {
-                        tmp[episode.season] = [];
+                    if (!(episode.season in episodes)) {
+                        episodes[episode.season] = [];
                     }
-                    tmp[episode.season].push(episode);
+                    episodes[episode.season].push(episode);
                 });
-                if (!tmp || !tmp.length) {
+                if (!episodes || !episodes.length) {
                     return [];
                 }
-                console.log(tmp);
-                return tmp.slice().reverse().filter(ep => typeof ep !== 'undefined');
+                return episodes.slice().reverse().filter(ep => typeof ep !== 'undefined');
             },
         },
         methods: {
