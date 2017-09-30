@@ -3,7 +3,9 @@
         <div class="container">
             <header class="show-full--head">
                 <h1>{{show.show_name}}</h1>
-                <div class="show-full--seasons">Seasons: <a>1</a>|<a>2</a></div>
+                <div class="show-full--seasons">Seasons: <a
+                        v-for="season in orderedEpisodeList" :href="'#season-' + season[0].season">{{seasonName(season)}}</a>
+                </div>
             </header>
             <div class="row">
                 <div class="col">
@@ -29,7 +31,7 @@
             </div>
             <div class="show-full--episode-list">
                 <h4>Episode list</h4>
-                <episode-list v-bind:episodes="episodes"></episode-list>
+                <episode-list v-bind:seasons="orderedEpisodeList"></episode-list>
             </div>
         </div>
         <div class="show-full--backdrop" :style="{backgroundImage: 'url(' + getBackgroundImage + ')'}"></div>
@@ -71,6 +73,9 @@
             this.$store.dispatch('shows/find', this.id)
         },
         computed: {
+            ...mapGetters('shows', [
+                'getShowById'
+            ]),
             getBackgroundImage: function () {
                 return FileCacheService.getFileCachePosterUrl(this.id, 'fanart');
             },
@@ -95,9 +100,25 @@
             show() {
                 return this.getShowById(this.id);
             },
-            ...mapGetters('shows', [
-                'getShowById'
-            ]),
+            orderedEpisodeList: function () {
+                let tmp = [];
+                this.episodes.forEach(function (episode) {
+                    if (!(episode.season in tmp)) {
+                        tmp[episode.season] = [];
+                    }
+                    tmp[episode.season].push(episode);
+                });
+                if (!tmp || !tmp.length) {
+                    return [];
+                }
+                console.log(tmp);
+                return tmp.slice().reverse().filter(ep => typeof ep !== 'undefined');
+            },
+        },
+        methods: {
+            seasonName(season) {
+                return parseInt(season[0].season) || 'Specials';
+            }
         }
     }
 </script>
@@ -129,6 +150,14 @@
 
     .show-full--seasons {
         align-self: flex-end;
+        a {
+            color: #337ab7;
+            padding: 0 .5rem;
+            border-right: 1px solid black;
+        }
+        a:last-child {
+            border: none;
+        }
     }
 
     .show-full--info {

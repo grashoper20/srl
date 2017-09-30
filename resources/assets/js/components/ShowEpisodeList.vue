@@ -1,7 +1,7 @@
 <template>
     <div class="episode_list">
-        <div v-for="seasonList in orderedEpisodeList">
-            <h4>Season {{seasonList[0].season}}</h4>
+        <div v-for="episodes in seasons" :id="'season-' + episodes[0].season">
+            <h4>Season {{episodes[0].season}}</h4>
             <!-- TODO Handle Season 0 - Specials -->
             <table>
                 <thead>
@@ -15,13 +15,13 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr v-bind:class="episodeClass(episode.status)" v-for="episode in seasonList.slice().reverse()">
-                    <td>{{episode.hasnfo == '1' ? 'Y' : 'N'}}</td>
-                    <td>{{episode.hastbn == '1' ? 'Y' : 'N'}}</td>
-                    <td>{{episode.episode}}</td>
-                    <td class="w-100">{{episode.name}}</td>
-                    <td>{{formatAirDate(episode.airdate)}}</td>
-                    <td>{{episodeStatusText(episode.status)}}</td>
+                <tr v-bind:class="episodeClass(episode.status)" v-for="episode in episodes.slice().reverse()">
+                    <td class="episode--info">{{episode.hasnfo == '1' ? 'Y' : 'N'}}</td>
+                    <td class="episode--tbn">{{episode.hastbn == '1' ? 'Y' : 'N'}}</td>
+                    <td class="episode--episode">{{episode.episode}}</td>
+                    <td class="episode--name w-100">{{episode.name}}</td>
+                    <td class="episode--airdate">{{formatAirDate(episode.airdate)}}</td>
+                    <td class="episode--status">{{episodeStatusText(episode.status)}}</td>
                 </tr>
                 </tbody>
             </table>
@@ -33,31 +33,10 @@
     import moment from 'moment';
 
     export default {
-        data: () => ({
-            episodeList: [],
-        }),
         props: [
-            'episodes'
+            'seasons'
         ],
-        watch: {
-            episodes() {
-                let tmp = [];
-                this.episodes.forEach(function (episode) {
-                    if (!(episode.season in tmp)) {
-                        tmp[episode.season] = [];
-                    }
-                    tmp[episode.season].push(episode);
-                });
-                this.episodeList = tmp;
-            }
-        },
         computed: {
-            orderedEpisodeList: function () {
-                if (!this.episodeList || !this.episodeList.length) {
-                    return [];
-                }
-                return this.episodeList.slice().reverse().filter(ep => typeof ep !== 'undefined');
-            },
         },
         methods: {
             formatAirDate(airdate) {
@@ -138,6 +117,14 @@
         }
         th, td {
             border: 1px solid white;
+        }
+        td {
+            white-space: nowrap;
+            padding: .25rem .75rem;
+            text-align: center;
+        }
+        td.episode--name {
+            text-align: left;
         }
         .unaired {
             background-color: #F5F1E4;

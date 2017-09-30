@@ -67530,7 +67530,7 @@ exports = module.exports = __webpack_require__(3)(undefined);
 
 
 // module
-exports.push([module.i, "\n.show-full--poster {\n  width: 100%;\n}\n.show-full--genre {\n  display: inline-block;\n  border-radius: 3px;\n  background: #555;\n  border: 1px solid #111;\n  color: white;\n  padding: 0 .25em;\n  margin: 0 .25em;\n}\n.show-full--head {\n  display: flex;\n  justify-content: space-between;\n  border-bottom: 1px solid #888;\n  padding-bottom: .5rem;\n  margin-bottom: 1rem;\n}\n.show-full--head h1 {\n    margin: 0;\n}\n.show-full--seasons {\n  align-self: flex-end;\n}\n.show-full--info .show-full--info-header {\n  display: flex;\n  justify-content: space-between;\n}\n.show-full--info .show-full--details {\n  margin: .25rem 0;\n  padding: .5rem;\n  background: #efefef;\n}\n.show-full--episode-list {\n  margin: .5rem 0;\n}\n.show-full--backdrop {\n  position: fixed;\n  top: 0;\n  z-index: -9999;\n  height: 100vh;\n  width: 100%;\n  opacity: 0.4;\n  background: no-repeat center center fixed;\n  background-size: cover;\n}\n", ""]);
+exports.push([module.i, "\n.show-full--poster {\n  width: 100%;\n}\n.show-full--genre {\n  display: inline-block;\n  border-radius: 3px;\n  background: #555;\n  border: 1px solid #111;\n  color: white;\n  padding: 0 .25em;\n  margin: 0 .25em;\n}\n.show-full--head {\n  display: flex;\n  justify-content: space-between;\n  border-bottom: 1px solid #888;\n  padding-bottom: .5rem;\n  margin-bottom: 1rem;\n}\n.show-full--head h1 {\n    margin: 0;\n}\n.show-full--seasons {\n  align-self: flex-end;\n}\n.show-full--seasons a {\n    color: #337ab7;\n    padding: 0 .5rem;\n    border-right: 1px solid black;\n}\n.show-full--seasons a:last-child {\n    border: none;\n}\n.show-full--info .show-full--info-header {\n  display: flex;\n  justify-content: space-between;\n}\n.show-full--info .show-full--details {\n  margin: .25rem 0;\n  padding: .5rem;\n  background: #efefef;\n}\n.show-full--episode-list {\n  margin: .5rem 0;\n}\n.show-full--backdrop {\n  position: fixed;\n  top: 0;\n  z-index: -9999;\n  height: 100vh;\n  width: 100%;\n  opacity: 0.4;\n  background: no-repeat center center fixed;\n  background-size: cover;\n}\n", ""]);
 
 // exports
 
@@ -67549,6 +67549,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_vuex__ = __webpack_require__(5);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
+//
+//
 //
 //
 //
@@ -67622,7 +67624,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
         this.$store.dispatch('shows/find', this.id);
     },
 
-    computed: _extends({
+    computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_3_vuex__["b" /* mapGetters */])('shows', ['getShowById']), {
         getBackgroundImage: function getBackgroundImage() {
             return __WEBPACK_IMPORTED_MODULE_1__services_FileCacheService__["a" /* default */].getFileCachePosterUrl(this.id, 'fanart');
         },
@@ -67646,8 +67648,30 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
         },
         show: function show() {
             return this.getShowById(this.id);
+        },
+
+        orderedEpisodeList: function orderedEpisodeList() {
+            var tmp = [];
+            this.episodes.forEach(function (episode) {
+                if (!(episode.season in tmp)) {
+                    tmp[episode.season] = [];
+                }
+                tmp[episode.season].push(episode);
+            });
+            if (!tmp || !tmp.length) {
+                return [];
+            }
+            console.log(tmp);
+            return tmp.slice().reverse().filter(function (ep) {
+                return typeof ep !== 'undefined';
+            });
         }
-    }, Object(__WEBPACK_IMPORTED_MODULE_3_vuex__["b" /* mapGetters */])('shows', ['getShowById']))
+    }),
+    methods: {
+        seasonName: function seasonName(season) {
+            return parseInt(season[0].season) || 'Specials';
+        }
+    }
 });
 
 /***/ }),
@@ -67735,7 +67759,7 @@ exports = module.exports = __webpack_require__(3)(undefined);
 
 
 // module
-exports.push([module.i, "\n.episode_list table {\n  width: 100%;\n  background-color: #ddd;\n}\n.episode_list th {\n  padding: 0 .25rem;\n  white-space: nowrap;\n}\n.episode_list th, .episode_list td {\n  border: 1px solid white;\n}\n.episode_list .unaired {\n  background-color: #F5F1E4;\n}\n.episode_list .good {\n  background-color: #C3E3C8;\n}\n.episode_list .qual {\n  background-color: #FFDA8A;\n}\n.episode_list .skipped {\n  background-color: #BEDEED;\n}\n.episode_list .wanted {\n  background-color: #FFB0B0;\n}\n.episode_list .snatched {\n  background-color: #EBC1EA;\n}\n", ""]);
+exports.push([module.i, "\n.episode_list table {\n  width: 100%;\n  background-color: #ddd;\n}\n.episode_list th {\n  padding: 0 .25rem;\n  white-space: nowrap;\n}\n.episode_list th, .episode_list td {\n  border: 1px solid white;\n}\n.episode_list td {\n  white-space: nowrap;\n  padding: .25rem .75rem;\n  text-align: center;\n}\n.episode_list td.episode--name {\n  text-align: left;\n}\n.episode_list .unaired {\n  background-color: #F5F1E4;\n}\n.episode_list .good {\n  background-color: #C3E3C8;\n}\n.episode_list .qual {\n  background-color: #FFDA8A;\n}\n.episode_list .skipped {\n  background-color: #BEDEED;\n}\n.episode_list .wanted {\n  background-color: #FFB0B0;\n}\n.episode_list .snatched {\n  background-color: #EBC1EA;\n}\n", ""]);
 
 // exports
 
@@ -67783,34 +67807,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    data: function data() {
-        return {
-            episodeList: []
-        };
-    },
-    props: ['episodes'],
-    watch: {
-        episodes: function episodes() {
-            var tmp = [];
-            this.episodes.forEach(function (episode) {
-                if (!(episode.season in tmp)) {
-                    tmp[episode.season] = [];
-                }
-                tmp[episode.season].push(episode);
-            });
-            this.episodeList = tmp;
-        }
-    },
-    computed: {
-        orderedEpisodeList: function orderedEpisodeList() {
-            if (!this.episodeList || !this.episodeList.length) {
-                return [];
-            }
-            return this.episodeList.slice().reverse().filter(function (ep) {
-                return typeof ep !== 'undefined';
-            });
-        }
-    },
+    props: ['seasons'],
+    computed: {},
     methods: {
         formatAirDate: function formatAirDate(airdate) {
             if (airdate == 1) {
@@ -68140,30 +68138,38 @@ var render = function() {
   return _c(
     "div",
     { staticClass: "episode_list" },
-    _vm._l(_vm.orderedEpisodeList, function(seasonList) {
-      return _c("div", [
-        _c("h4", [_vm._v("Season " + _vm._s(seasonList[0].season))]),
+    _vm._l(_vm.seasons, function(episodes) {
+      return _c("div", { attrs: { id: "season-" + episodes[0].season } }, [
+        _c("h4", [_vm._v("Season " + _vm._s(episodes[0].season))]),
         _vm._v(" "),
         _c("table", [
           _vm._m(0, true),
           _vm._v(" "),
           _c(
             "tbody",
-            _vm._l(seasonList.slice().reverse(), function(episode) {
+            _vm._l(episodes.slice().reverse(), function(episode) {
               return _c("tr", { class: _vm.episodeClass(episode.status) }, [
-                _c("td", [_vm._v(_vm._s(episode.hasnfo == "1" ? "Y" : "N"))]),
+                _c("td", { staticClass: "episode--info" }, [
+                  _vm._v(_vm._s(episode.hasnfo == "1" ? "Y" : "N"))
+                ]),
                 _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(episode.hastbn == "1" ? "Y" : "N"))]),
+                _c("td", { staticClass: "episode--tbn" }, [
+                  _vm._v(_vm._s(episode.hastbn == "1" ? "Y" : "N"))
+                ]),
                 _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(episode.episode))]),
+                _c("td", { staticClass: "episode--episode" }, [
+                  _vm._v(_vm._s(episode.episode))
+                ]),
                 _vm._v(" "),
-                _c("td", { staticClass: "w-100" }, [
+                _c("td", { staticClass: "episode--name w-100" }, [
                   _vm._v(_vm._s(episode.name))
                 ]),
                 _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(_vm.formatAirDate(episode.airdate)))]),
+                _c("td", { staticClass: "episode--airdate" }, [
+                  _vm._v(_vm._s(_vm.formatAirDate(episode.airdate)))
+                ]),
                 _vm._v(" "),
-                _c("td", [
+                _c("td", { staticClass: "episode--status" }, [
                   _vm._v(_vm._s(_vm.episodeStatusText(episode.status)))
                 ])
               ])
@@ -68218,7 +68224,21 @@ var render = function() {
       _c("header", { staticClass: "show-full--head" }, [
         _c("h1", [_vm._v(_vm._s(_vm.show.show_name))]),
         _vm._v(" "),
-        _vm._m(0)
+        _c(
+          "div",
+          { staticClass: "show-full--seasons" },
+          [
+            _vm._v("Seasons: "),
+            _vm._l(_vm.orderedEpisodeList, function(season) {
+              return _c(
+                "a",
+                { attrs: { href: "#season-" + season[0].season } },
+                [_vm._v(_vm._s(_vm.seasonName(season)))]
+              )
+            })
+          ],
+          2
+        )
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "row" }, [
@@ -68264,7 +68284,7 @@ var render = function() {
             })
           ]),
           _vm._v(" "),
-          _vm._m(1)
+          _vm._m(0)
         ])
       ]),
       _vm._v(" "),
@@ -68274,7 +68294,7 @@ var render = function() {
         [
           _c("h4", [_vm._v("Episode list")]),
           _vm._v(" "),
-          _c("episode-list", { attrs: { episodes: _vm.episodes } })
+          _c("episode-list", { attrs: { seasons: _vm.orderedEpisodeList } })
         ],
         1
       )
@@ -68287,17 +68307,6 @@ var render = function() {
   ])
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "show-full--seasons" }, [
-      _vm._v("Seasons: "),
-      _c("a", [_vm._v("1")]),
-      _vm._v("|"),
-      _c("a", [_vm._v("2")])
-    ])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
