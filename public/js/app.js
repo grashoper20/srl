@@ -62698,7 +62698,8 @@ var debug = "development" !== 'production';
 /* harmony default export */ __webpack_exports__["a"] = ({
     namespaced: true,
     state: {
-        list: []
+        list: [],
+        stats: []
     },
     mutations: {
         set: function set(state, shows) {
@@ -62706,6 +62707,12 @@ var debug = "development" !== 'production';
         },
         push: function push(state, show) {
             state.list.push(show);
+        },
+        setStats: function setStats(state, stats) {
+            state.stats = stats;
+        },
+        pushStat: function pushStat(state, stat) {
+            state.stats[stat.indexer_id] = stat;
         }
     },
     actions: {
@@ -62715,7 +62722,12 @@ var debug = "development" !== 'production';
             __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('/api/show').then(function (response) {
                 commit('set', response.data);
             }).catch(function (e) {
-                // this.errors.push(e);
+                console.error(e);
+            });
+            __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('/api/stats').then(function (response) {
+                commit('setStats', response.data);
+            }).catch(function (e) {
+                console.error(e);
             });
         },
         find: function find(_ref2, id) {
@@ -62729,25 +62741,56 @@ var debug = "development" !== 'production';
                 if (typeof show !== 'undefined') {
                     console.log('cached load');
                     resolve(show);
-                    return;
+                } else {
+                    __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('/api/show/' + id).then(function (response) {
+                        var show = response.data;
+                        commit('push', show);
+                        __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('/api/show/' + id).then(function (response) {
+                            show.stats = response.data;
+                            commit('pushStat', response.data);
+                            resolve(show);
+                        });
+                    }).catch(function (e) {
+                        console.error(e);
+                        reject(e);
+                    });
                 }
-                __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('/api/show/' + id).then(function (response) {
-                    commit('push', response.data);
-                    resolve(response.data);
-                }).catch(function (e) {
-                    console.error(e);
-                    reject(e);
-                });
             });
         }
     },
     getters: {
+        getAllShows: function getAllShows(state) {
+            console.log('loading shows');
+            var shows = state.list,
+                stat_index = [];
+            // Build a temporary sparse array indexing stats.
+            state.stats.forEach(function (stat, index) {
+                stat_index[stat.indexer_id] = index;
+            });
+
+            shows.forEach(function (show) {
+                show.stats = state.stats[stat_index[show.indexer_id]];
+            });
+            return shows;
+        },
+        getAnime: function getAnime(state, getters) {
+            return getters.getAllShows.filter(function (show) {
+                return !!parseInt(show.anime);
+            });
+        },
+        getShows: function getShows(state, getters) {
+            return getters.getAllShows.filter(function (show) {
+                return !parseInt(show.anime);
+            });
+        },
         getShowById: function getShowById(state, getters) {
             return function (id) {
                 var show = state.list.find(function (show) {
                     return show.indexer_id == id;
                 });
-                return show === undefined ? {} : show;
+                if (show === undefined) return {};
+                show.stats = state.stats[id];
+                return show;
             };
         }
     }
@@ -65627,40 +65670,29 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
         };
     },
     mounted: function mounted() {
-        this.$store.dispatch('stats/sync');
         this.$store.dispatch('shows/sync');
     },
 
     computed: _extends({
         anime: function anime() {
-            var list = this.full_list.filter(function (show) {
-                return parseInt(show.anime);
-            });
+            return this.filterShows(this.getAnime);
+        },
+        shows: function shows() {
+            return this.filterShows(this.getShows);
+        }
+    }, Object(__WEBPACK_IMPORTED_MODULE_2_vuex__["b" /* mapGetters */])('shows', ['getAnime', 'getShows']), Object(__WEBPACK_IMPORTED_MODULE_2_vuex__["c" /* mapState */])('shows', {
+        full_list: function full_list(state) {
+            return state.list;
+        }
+    })),
+    methods: {
+        filterShows: function filterShows(list) {
             if (this.search) {
                 return new __WEBPACK_IMPORTED_MODULE_0_fuse_js___default.a(list, this.fuse_options).search(this.search);
             }
             return this.sortHelper(list, this.sortField, this.sortDescending - 1);
         },
-        shows: function shows() {
-            var list = this.full_list.filter(function (show) {
-                return !parseInt(show.anime);
-            });
-            if (this.search) {
-                return new __WEBPACK_IMPORTED_MODULE_0_fuse_js___default.a(list, this.fuse_options).search(this.search);
-            }
-            return this.sortHelper(list, this.sortField, this.sortDescending - 1);
-        }
-    }, Object(__WEBPACK_IMPORTED_MODULE_2_vuex__["c" /* mapState */])('shows', {
-        full_list: function full_list(state) {
-            return state.list;
-        }
-    })),
-    watch: {
-        sortDescending: function sortDescending() {
-            console.log(this.sortDescending);
-        }
-    },
-    methods: {
+
         debounceInput: __WEBPACK_IMPORTED_MODULE_1_lodash__["debounce"](function (e) {
             this.search = e.target.value.trim();
         }, 250),

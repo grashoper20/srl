@@ -4,6 +4,7 @@ export default {
     namespaced: true,
     state: {
         list: [],
+        stats: [],
     },
     mutations: {
         set(state, shows) {
@@ -11,6 +12,12 @@ export default {
         },
         push(state, show) {
             state.list.push(show);
+        },
+        setStats(state, stats) {
+            state.stats = stats;
+        },
+        pushStat(state, stat) {
+            state.stats[stat.indexer_id] = stat;
         },
     },
     actions: {
@@ -20,8 +27,15 @@ export default {
                     commit('set', response.data);
                 })
                 .catch(e => {
-                    // this.errors.push(e);
+                    console.error(e);
+                });
+            axios.get('/api/stats')
+                .then(response => {
+                    commit('setStats', response.data);
                 })
+                .catch(e => {
+                    console.error(e);
+                });
         },
         find({state, commit}, id) {
             return new Promise((resolve, reject) => {
@@ -29,24 +43,54 @@ export default {
                 if (typeof show !== 'undefined') {
                     console.log('cached load');
                     resolve(show);
-                    return;
+                } else {
+                    axios.get('/api/show/' + id)
+                        .then(response => {
+                            let show = response.data;
+                            commit('push', show);
+                            axios.get('/api/show/' + id)
+                                .then(response => {
+                                    show.stats = response.data;
+                                    commit('pushStat', response.data);
+                                    resolve(show);
+                                });
+                        })
+                        .catch(e => {
+                            console.error(e);
+                            reject(e);
+                        });
                 }
-                axios.get('/api/show/' + id)
-                    .then(response => {
-                        commit('push', response.data);
-                        resolve(response.data);
-                    })
-                    .catch(e => {
-                        console.error(e);
-                        reject(e);
-                    });
             });
         },
     },
     getters: {
+        getAllShows: (state) => {
+            console.log('loading shows');
+            let shows = state.list,
+                stat_index = [];
+            // Build a temporary sparse array indexing stats.
+            state.stats.forEach((stat, index) => {
+                stat_index[stat.indexer_id] = index
+            });
+
+            shows.forEach(show => {
+                show.stats = state.stats[stat_index[show.indexer_id]];
+            });
+            return shows;
+        },
+        getAnime: (state, getters) => {
+            return getters.getAllShows
+                .filter(show => !!parseInt(show.anime));
+        },
+        getShows: (state, getters) => {
+            return getters.getAllShows
+                .filter(show => !parseInt(show.anime));
+        },
         getShowById: (state, getters) => (id) => {
             let show = state.list.find(show => show.indexer_id == id);
-            return show === undefined ? {} : show;
-        }
+            if (show === undefined) return {};
+            show.stats = state.stats[id];
+            return show;
+        },
     },
 };

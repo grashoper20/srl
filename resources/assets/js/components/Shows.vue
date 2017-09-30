@@ -52,7 +52,7 @@
 <script>
     import fuse from 'fuse.js';
     import * as _ from 'lodash';
-    import {mapState} from 'vuex';
+    import {mapState, mapGetters} from 'vuex';
     import ShowCards from './Shows-Cards.vue';
     import jQuery from 'jquery';
 
@@ -82,38 +82,31 @@
             };
         },
         mounted() {
-            this.$store.dispatch('stats/sync');
             this.$store.dispatch('shows/sync');
         },
         computed: {
             anime() {
-                let list = this.full_list
-                    .filter(show => parseInt(show.anime));
-                if (this.search) {
-                    return (new fuse(list, this.fuse_options))
-                        .search(this.search);
-                }
-                return this.sortHelper(list, this.sortField, this.sortDescending - 1);
+                return this.filterShows(this.getAnime);
             },
             shows() {
-                let list = this.full_list
-                    .filter(show => !parseInt(show.anime));
-                if (this.search) {
-                    return (new fuse(list, this.fuse_options))
-                        .search(this.search);
-                }
-                return this.sortHelper(list, this.sortField, this.sortDescending - 1);
+                return this.filterShows(this.getShows);
             },
+            ...mapGetters('shows', [
+                'getAnime',
+                'getShows',
+            ]),
             ...mapState('shows', {
                 full_list: state => state.list,
             }),
         },
-        watch: {
-            sortDescending: function() {
-                console.log(this.sortDescending);
-            },
-        },
         methods: {
+            filterShows(list) {
+                if (this.search) {
+                    return (new fuse(list, this.fuse_options))
+                        .search(this.search);
+                }
+                return this.sortHelper(list, this.sortField, this.sortDescending - 1);
+            },
             debounceInput: _.debounce(function (e) {
                 this.search = e.target.value.trim();
             }, 250),
