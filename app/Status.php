@@ -16,4 +16,8 @@ class Status
     const SUBTITLED       = 10;
     const FAILED          = 11;
     const SNATCHED_BEST   = 12;
+
+    function test() {
+        mix();
+    }
 }
