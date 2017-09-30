@@ -1,6 +1,8 @@
 FROM composer
 COPY . /app
-RUN composer install --no-dev
+RUN composer install --no-dev \
+    && find ./vendor -name tests -exec rm -rf {} + \
+    && find ./vendor -name Tests -exec rm -rf {} +
 
 FROM node:alpine
 COPY . /app
