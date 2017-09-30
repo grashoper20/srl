@@ -52,7 +52,7 @@
 <script>
     import fuse from 'fuse.js';
     import * as _ from 'lodash';
-    import {mapState, mapGetters} from 'vuex';
+    import {mapGetters} from 'vuex';
     import ShowCards from './Shows-Cards.vue';
     import jQuery from 'jquery';
 
@@ -95,9 +95,6 @@
                 'getAnime',
                 'getShows',
             ]),
-            ...mapState('shows', {
-                full_list: state => state.list,
-            }),
         },
         methods: {
             filterShows(list) {
