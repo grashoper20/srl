@@ -10,6 +10,9 @@ import store from './store';
 import router from './router';
 
 import Vue from 'vue';
+import VModal from 'vue-js-modal';
+
+Vue.use(VModal);
 
 const app = new Vue({
     router,

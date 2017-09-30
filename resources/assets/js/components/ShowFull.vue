@@ -9,7 +9,12 @@
             </header>
             <div class="row">
                 <div class="col">
-                    <img class="show-full--poster" style="width:100%" :src="posterThumbnail"/>
+                    <img v-on:click="showModal" class="show-full--poster-thumb" :src="posterThumbnail"/>
+                    <modal name="full-poster" :height="'100%'">
+                        <div class="show-full--poster" :style="{backgroundImage: 'url(' + poster + ')'}">
+                            <button @click="$modal.hide('full-poster')">❌</button>
+                        </div>
+                    </modal>
                 </div>
                 <div class="show-full--info col-9">
                     <header class="show-full--info-header">
@@ -118,13 +123,37 @@
         methods: {
             seasonName(season) {
                 return parseInt(season[0].season) || 'Specials';
-            }
+            },
+            showModal() {
+                this.$modal.show('full-poster');
+            },
         }
     }
 </script>
 <style lang="scss">
-    .show-full--poster {
+    .show-full {
+        .v--modal-overlay {
+            background-color: rgba(0, 0, 0, .75);
+        }
+    }
+
+    .show-full--poster-thumb {
         width: 100%;
+    }
+
+    .show-full--poster {
+        background: black no-repeat center center;
+        background-size: contain;
+        height: 100%;
+        button {
+            opacity: .5;
+            transition: opacity 0.5s;
+            position: absolute;
+            right: 0;
+        }
+        &:hover button {
+            opacity: 1;
+        }
     }
 
     .show-full--genre {
