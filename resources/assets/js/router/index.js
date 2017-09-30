@@ -8,9 +8,12 @@ import Shows from '../components/Shows.vue';
 import ShowsAdd from '../components/ShowsAdd.vue';
 import ShowFull from '../components/ShowFull.vue';
 import Default from '../components/Example.vue';
+import NotFound from '../components/NotFound.vue';
 
 export default new VueRouter({
+    mode: 'history',
     routes: [
+        { path: '*', component: NotFound },
         {
             path: '/',
             component: Shows, // TODO redirect to shows?
