@@ -55223,7 +55223,7 @@ return zhTw;
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(135);
-module.exports = __webpack_require__(207);
+module.exports = __webpack_require__(211);
 
 
 /***/ }),
@@ -55236,7 +55236,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__router__ = __webpack_require__(161);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vue__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_vue_js_modal__ = __webpack_require__(211);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_vue_js_modal__ = __webpack_require__(205);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_vue_js_modal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_vue_js_modal__);
 /**
  * First we will load all of this project's JavaScript dependencies which
@@ -55258,7 +55258,7 @@ var app = new __WEBPACK_IMPORTED_MODULE_2_vue___default.a({
     router: __WEBPACK_IMPORTED_MODULE_1__router__["a" /* default */],
     store: __WEBPACK_IMPORTED_MODULE_0__store__["a" /* default */],
     components: {
-        'headnav': __webpack_require__(202)
+        'headnav': __webpack_require__(206)
     }
 }).$mount('#app');
 
@@ -62885,9 +62885,9 @@ var debug = "development" !== 'production';
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_ShowsAdd_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__components_ShowsAdd_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_ShowFull_vue__ = __webpack_require__(186);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_ShowFull_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__components_ShowFull_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_Example_vue__ = __webpack_require__(197);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_Example_vue__ = __webpack_require__(200);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_Example_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__components_Example_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_NotFound_vue__ = __webpack_require__(200);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_NotFound_vue__ = __webpack_require__(203);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_NotFound_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6__components_NotFound_vue__);
 
 
@@ -67467,7 +67467,7 @@ var normalizeComponent = __webpack_require__(2)
 /* script */
 var __vue_script__ = __webpack_require__(189)
 /* template */
-var __vue_template__ = __webpack_require__(196)
+var __vue_template__ = __webpack_require__(199)
 /* styles */
 var __vue_styles__ = injectStyle
 /* scopeId */
@@ -67539,7 +67539,7 @@ exports = module.exports = __webpack_require__(3)(undefined);
 
 
 // module
-exports.push([module.i, "\n.show-full--poster {\n  width: 100%;\n}\n.show-full--genre {\n  display: inline-block;\n  border-radius: 3px;\n  background: #555;\n  border: 1px solid #111;\n  color: white;\n  padding: 0 .25em;\n  margin: 0 .25em;\n}\n.show-full--head {\n  display: flex;\n  justify-content: space-between;\n  border-bottom: 1px solid #888;\n  padding-bottom: .5rem;\n  margin-bottom: 1rem;\n}\n.show-full--head h1 {\n    margin: 0;\n}\n.show-full--seasons {\n  align-self: flex-end;\n}\n.show-full--seasons a {\n    color: #337ab7;\n    padding: 0 .5rem;\n    border-right: 1px solid black;\n}\n.show-full--seasons a:last-child {\n    border: none;\n}\n.show-full--info .show-full--info-header {\n  display: flex;\n  justify-content: space-between;\n}\n.show-full--info .show-full--details {\n  margin: .25rem 0;\n  padding: .5rem;\n  background: #efefef;\n}\n.show-full--episode-list {\n  margin: .5rem 0;\n}\n.show-full--backdrop {\n  position: fixed;\n  top: 0;\n  z-index: -9999;\n  height: 100vh;\n  width: 100%;\n  opacity: 0.4;\n  background: no-repeat center center fixed;\n  background-size: cover;\n}\n", ""]);
+exports.push([module.i, "\n.show-full .v--modal-overlay {\n  background-color: rgba(0, 0, 0, 0.75);\n}\n.show-full--poster-thumb {\n  width: 100%;\n}\n.show-full--poster {\n  background: black no-repeat center center;\n  background-size: contain;\n  height: 100%;\n}\n.show-full--poster button {\n    opacity: .5;\n    transition: opacity 0.5s;\n    position: absolute;\n    right: 0;\n}\n.show-full--poster:hover button {\n    opacity: 1;\n}\n.show-full--genre {\n  display: inline-block;\n  border-radius: 3px;\n  background: #555;\n  border: 1px solid #111;\n  color: white;\n  padding: 0 .25em;\n  margin: 0 .25em;\n}\n.show-full--head {\n  display: flex;\n  justify-content: space-between;\n  border-bottom: 1px solid #888;\n  padding-bottom: .5rem;\n  margin-bottom: 1rem;\n}\n.show-full--head h1 {\n    margin: 0;\n}\n.show-full--seasons {\n  align-self: flex-end;\n}\n.show-full--seasons a {\n    color: #337ab7;\n    padding: 0 .5rem;\n    border-right: 1px solid black;\n}\n.show-full--seasons a:last-child {\n    border: none;\n}\n.show-full--info .show-full--info-header {\n  display: flex;\n  justify-content: space-between;\n}\n.show-full--info .show-full--details {\n  margin: .25rem 0;\n  padding: .5rem;\n  background: #efefef;\n}\n.show-full--episode-list {\n  margin: .5rem 0;\n}\n.show-full--backdrop {\n  position: fixed;\n  top: 0;\n  z-index: -9999;\n  height: 100vh;\n  width: 100%;\n  opacity: 0.4;\n  background: no-repeat center center fixed;\n  background-size: cover;\n}\n", ""]);
 
 // exports
 
@@ -67555,7 +67555,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_FileCacheService__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ShowEpisodeList_vue__ = __webpack_require__(190);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ShowEpisodeList_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__ShowEpisodeList_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_vuex__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__QualityPills_vue__ = __webpack_require__(196);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__QualityPills_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__QualityPills_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_vuex__ = __webpack_require__(5);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 //
@@ -67601,6 +67603,11 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 //
 //
 //
+//
+//
+//
+//
+
 
 
 
@@ -67609,7 +67616,8 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     components: {
-        'episode-list': __WEBPACK_IMPORTED_MODULE_2__ShowEpisodeList_vue___default.a
+        'episode-list': __WEBPACK_IMPORTED_MODULE_2__ShowEpisodeList_vue___default.a,
+        'quality-pill': __WEBPACK_IMPORTED_MODULE_3__QualityPills_vue___default.a
     },
     data: function data() {
         return {
@@ -67636,7 +67644,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
         this.$store.dispatch('shows/find', this.id);
     },
 
-    computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_3_vuex__["b" /* mapGetters */])('shows', ['getShowById']), {
+    computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_4_vuex__["b" /* mapGetters */])('shows', ['getShowById']), {
         getBackgroundImage: function getBackgroundImage() {
             return __WEBPACK_IMPORTED_MODULE_1__services_FileCacheService__["a" /* default */].getFileCachePosterUrl(this.id, 'fanart');
         },
@@ -67663,18 +67671,17 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
         },
 
         orderedEpisodeList: function orderedEpisodeList() {
-            var tmp = [];
+            var episodes = [];
             this.episodes.forEach(function (episode) {
-                if (!(episode.season in tmp)) {
-                    tmp[episode.season] = [];
+                if (!(episode.season in episodes)) {
+                    episodes[episode.season] = [];
                 }
-                tmp[episode.season].push(episode);
+                episodes[episode.season].push(episode);
             });
-            if (!tmp || !tmp.length) {
+            if (!episodes || !episodes.length) {
                 return [];
             }
-            console.log(tmp);
-            return tmp.slice().reverse().filter(function (ep) {
+            return episodes.slice().reverse().filter(function (ep) {
                 return typeof ep !== 'undefined';
             });
         }
@@ -68230,6 +68237,180 @@ if (false) {
 /* 196 */
 /***/ (function(module, exports, __webpack_require__) {
 
+var disposed = false
+var normalizeComponent = __webpack_require__(2)
+/* script */
+var __vue_script__ = __webpack_require__(197)
+/* template */
+var __vue_template__ = __webpack_require__(198)
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/QualityPills.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] QualityPills.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-04f6bbcc", Component.options)
+  } else {
+    hotAPI.reload("data-v-04f6bbcc", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 197 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['quality'],
+  data: function data() {
+    return {
+      id: 0,
+      imdb_info: {},
+      episodes: [],
+      errors: []
+    };
+  },
+  computed: {
+    title: function title() {
+      return 'Some things about the quality.';
+    },
+    qualityString: function qualityString() {
+      return 'HDSP';
+    },
+    qualityClass: function qualityClass() {
+      return 'quality-hdsp';
+    }
+  }
+
+  /**
+  <%def name="renderQualityPill(quality, showTitle=False, overrideClass=None)">
+  <%
+  # Build a string of quality names to use as title attribute
+  if showTitle:
+  allowed_qualities, preferred_qualities = Quality.splitQuality(quality)
+  title = _('Allowed Quality:') + '\n'
+  for curQual in allowed_qualities or [None]:
+  title += "  " + Quality.qualityStrings[curQual] + "\n"
+  title += "\n" + _('Preferred Quality:') + "\n"
+  for curQual in preferred_qualities or [None]:
+  title += "  " + Quality.qualityStrings[curQual] + "\n"
+  else:
+  title = ""
+  sum_allowed_qualities = quality & 0xFFFF
+  sum_preferred_qualities = quality >> 16
+  set_hdtv = {Quality.HDTV, Quality.RAWHDTV, Quality.FULLHDTV}
+  set_webdl = {Quality.HDWEBDL, Quality.FULLHDWEBDL, Quality.UHD_4K_WEBDL, Quality.UHD_8K_WEBDL}
+  set_bluray = {Quality.HDBLURAY, Quality.FULLHDBLURAY, Quality.UHD_4K_BLURAY, Quality.UHD_8K_BLURAY}
+  set_1080p = {Quality.FULLHDTV, Quality.FULLHDWEBDL, Quality.FULLHDBLURAY}
+  set_720p = {Quality.HDTV, Quality.RAWHDTV, Quality.HDWEBDL, Quality.HDBLURAY}
+  set_uhd_4k = {Quality.UHD_4K_TV, Quality.UHD_4K_BLURAY, Quality.UHD_4K_WEBDL}
+  set_uhd_8k = {Quality.UHD_8K_TV, Quality.UHD_8K_BLURAY, Quality.UHD_8K_WEBDL}
+  # If allowed and preferred qualities are the same, show pill as allowed quality
+  if sum_allowed_qualities == sum_preferred_qualities:
+  quality = sum_allowed_qualities
+  if quality in qualityPresets:
+  cssClass = qualityPresetStrings[quality]
+  qualityString = qualityPresetStrings[quality]
+  elif quality in Quality.combinedQualityStrings:
+  cssClass = Quality.cssClassStrings[quality]
+  qualityString = Quality.combinedQualityStrings[quality]
+  elif quality in Quality.qualityStrings:
+  cssClass = Quality.cssClassStrings[quality]
+  qualityString = Quality.qualityStrings[quality]
+  # Check if all sources are HDTV
+  elif set(allowed_qualities).issubset(set_hdtv)and set(preferred_qualities).issubset(set_hdtv):
+  cssClass = Quality.cssClassStrings[Quality.ANYHDTV]
+  qualityString = 'HDTV'
+  # Check if all sources are WEB-DL
+  elif set(allowed_qualities).issubset(set_webdl)and set(preferred_qualities).issubset(set_webdl):
+  cssClass = Quality.cssClassStrings[Quality.ANYWEBDL]
+  qualityString = 'WEB-DL'
+  # Check if all sources are BLURAY
+  elif set(allowed_qualities).issubset(set_bluray)and set(preferred_qualities).issubset(set_bluray):
+  cssClass = Quality.cssClassStrings[Quality.ANYBLURAY]
+  qualityString = 'BLURAY'
+  # Check if all resolutions are 1080p
+  elif set(allowed_qualities).issubset(set_1080p)and set(preferred_qualities).issubset(set_1080p):
+  cssClass = Quality.cssClassStrings[Quality.FULLHDBLURAY]
+  qualityString = '1080p'
+  # Check if all resolutions are 720p
+  elif set(allowed_qualities).issubset(set_720p)and set(preferred_qualities).issubset(set_720p):
+  cssClass = Quality.cssClassStrings[Quality.HDBLURAY]
+  qualityString = '720p'
+  # Check if all resolutions are 4K UHD
+  elif set(allowed_qualities).issubset(set_uhd_4k)and set(preferred_qualities).issubset(set_uhd_4k):
+  cssClass = Quality.cssClassStrings[Quality.HDBLURAY]
+  qualityString = '4K-UHD'
+  # Check if all resolutions are 8K UHD
+  elif set(allowed_qualities).issubset(set_uhd_8k)and set(preferred_qualities).issubset(set_uhd_8k):
+  cssClass = Quality.cssClassStrings[Quality.HDBLURAY]
+  qualityString = '8K-UHD'
+  else:
+  cssClass = "Custom"
+  qualityString = "Custom"
+  cssClass = overrideClass or "quality " + cssClass
+  %>
+  */
+
+});
+
+/***/ }),
+/* 198 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("span", { class: _vm.qualityClass, attrs: { title: _vm.title } }, [
+    _vm._v(_vm._s(_vm.qualityString))
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-04f6bbcc", module.exports)
+  }
+}
+
+/***/ }),
+/* 199 */
+/***/ (function(module, exports, __webpack_require__) {
+
 var render = function() {
   var _vm = this
   var _h = _vm.$createElement
@@ -68262,16 +68443,32 @@ var render = function() {
           { staticClass: "col" },
           [
             _c("img", {
-              staticClass: "show-full--poster",
+              staticClass: "show-full--poster-thumb",
               attrs: { src: _vm.posterThumbnail },
               on: { click: _vm.showModal }
             }),
             _vm._v(" "),
             _c("modal", { attrs: { name: "full-poster", height: "100%" } }, [
-              _c("div", {
-                staticClass: "full-background",
-                style: { backgroundImage: "url(" + _vm.poster + ")" }
-              })
+              _c(
+                "div",
+                {
+                  staticClass: "show-full--poster",
+                  style: { backgroundImage: "url(" + _vm.poster + ")" }
+                },
+                [
+                  _c(
+                    "button",
+                    {
+                      on: {
+                        click: function($event) {
+                          _vm.$modal.hide("full-poster")
+                        }
+                      }
+                    },
+                    [_vm._v("❌")]
+                  )
+                ]
+              )
             ])
           ],
           1
@@ -68311,7 +68508,27 @@ var render = function() {
             })
           ]),
           _vm._v(" "),
-          _vm._m(0)
+          _c(
+            "div",
+            {
+              staticClass: "show-full--details row",
+              staticStyle: { height: "200px" }
+            },
+            [
+              _c("div", { staticClass: "col-8" }, [
+                _c(
+                  "div",
+                  [
+                    _vm._v("Quality: "),
+                    _c("quality-pill", { attrs: { quality: _vm.show.quality } })
+                  ],
+                  1
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-4" }, [_vm._v("second details")])
+            ]
+          )
         ])
       ]),
       _vm._v(" "),
@@ -68333,25 +68550,7 @@ var render = function() {
     })
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
-        staticClass: "show-full--details row",
-        staticStyle: { height: "200px" }
-      },
-      [
-        _c("div", { staticClass: "col-8" }, [_vm._v("first details")]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-4" }, [_vm._v("second details")])
-      ]
-    )
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
@@ -68362,15 +68561,15 @@ if (false) {
 }
 
 /***/ }),
-/* 197 */
+/* 200 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(2)
 /* script */
-var __vue_script__ = __webpack_require__(198)
+var __vue_script__ = __webpack_require__(201)
 /* template */
-var __vue_template__ = __webpack_require__(199)
+var __vue_template__ = __webpack_require__(202)
 /* styles */
 var __vue_styles__ = null
 /* scopeId */
@@ -68408,7 +68607,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 198 */
+/* 201 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -68443,7 +68642,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 199 */
+/* 202 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -68479,7 +68678,7 @@ if (false) {
 }
 
 /***/ }),
-/* 200 */
+/* 203 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
@@ -68487,7 +68686,7 @@ var normalizeComponent = __webpack_require__(2)
 /* script */
 var __vue_script__ = null
 /* template */
-var __vue_template__ = __webpack_require__(201)
+var __vue_template__ = __webpack_require__(204)
 /* styles */
 var __vue_styles__ = null
 /* scopeId */
@@ -68525,7 +68724,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 201 */
+/* 204 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -68556,386 +68755,7 @@ if (false) {
 }
 
 /***/ }),
-/* 202 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-function injectStyle (ssrContext) {
-  if (disposed) return
-  __webpack_require__(203)
-}
-var normalizeComponent = __webpack_require__(2)
-/* script */
-var __vue_script__ = __webpack_require__(205)
-/* template */
-var __vue_template__ = __webpack_require__(206)
-/* styles */
-var __vue_styles__ = injectStyle
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources/assets/js/components/Headnav.vue"
-if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] Headnav.vue: functional components are not supported with templates, they should use render functions.")}
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-019de8d8", Component.options)
-  } else {
-    hotAPI.reload("data-v-019de8d8", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 203 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(204);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(4)("aca10b9e", content, false);
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-019de8d8\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/sass-loader/lib/loader.js!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Headnav.vue", function() {
-     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-019de8d8\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/sass-loader/lib/loader.js!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Headnav.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 204 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(3)(undefined);
-// imports
-
-
-// module
-exports.push([module.i, "\nnav.main {\n  min-height: 50px;\n  color: white;\n  background: #555 linear-gradient(#555, #333);\n  margin-bottom: .5rem;\n  border-bottom: 1px solid #333;\n}\nnav.main .navbar-toggler {\n    padding: .25em .5em;\n}\nnav.main .navbar-toggler-icon {\n    height: 1em;\n    width: 1em;\n}\nnav.main #mainNavbar,\n  nav.main .navbar-brand {\n    line-height: 50px;\n}\nnav.main .navbar-brand {\n    font-size: 2.0rem;\n}\nnav.main .nav-item .dropdown-toggle,\n  nav.main .nav-item > a {\n    display: inline-block;\n    padding: 0 10px;\n}\nnav.main .nav-item > .router-link-active {\n    background: #333;\n}\nnav.main .dropdown-menu {\n    margin: 0;\n    left: auto;\n    right: 0;\n}\nnav.main .dropdown-menu li {\n      padding: 0;\n}\nnav.main .dropdown-menu a {\n      display: block;\n      padding: 0.25rem 1.5rem;\n      color: #333;\n}\n", ""]);
-
-// exports
-
-
-/***/ }),
 /* 205 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-    mounted: function mounted() {
-        //            console.log('HEAD!')
-    }
-});
-
-/***/ }),
-/* 206 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "nav",
-    {
-      staticClass: "main navbar navbar-expand-md navbar-static-top navbar-dark"
-    },
-    [
-      _c(
-        "router-link",
-        { staticClass: "navbar-brand", attrs: { to: { name: "show_list" } } },
-        [_vm._v("SRL")]
-      ),
-      _vm._v(" "),
-      _vm._m(0),
-      _vm._v(" "),
-      _c(
-        "div",
-        {
-          staticClass: "collapse navbar-collapse",
-          attrs: { id: "mainNavbar" }
-        },
-        [
-          _c("ul", { staticClass: "navbar-nav ml-auto" }, [
-            _c(
-              "li",
-              { staticClass: "nav-item" },
-              [
-                _c(
-                  "router-link",
-                  {
-                    staticClass: "nav-link",
-                    attrs: { to: { name: "show_list" } }
-                  },
-                  [_vm._v("List shows")]
-                )
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _c(
-              "li",
-              { staticClass: "nav-item" },
-              [
-                _c(
-                  "router-link",
-                  { staticClass: "nav-link", attrs: { to: "/schedule" } },
-                  [_vm._v("Schedule")]
-                )
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _c(
-              "li",
-              { staticClass: "nav-item" },
-              [
-                _c(
-                  "router-link",
-                  { staticClass: "nav-link", attrs: { to: "/history" } },
-                  [_vm._v("History")]
-                )
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _c("li", { staticClass: "nav-item dropdown dropdown-hover" }, [
-              _c(
-                "a",
-                {
-                  staticClass: "nav-link dropdown-toggle",
-                  attrs: {
-                    id: "dropdown02",
-                    "data-toggle": "dropdown",
-                    "aria-haspopup": "true",
-                    "aria-expanded": "false",
-                    href: "#"
-                  }
-                },
-                [_vm._v("Manage")]
-              ),
-              _vm._v(" "),
-              _c(
-                "ul",
-                {
-                  staticClass: "dropdown-menu",
-                  attrs: { "aria-labelledby": "dropdown02" }
-                },
-                [
-                  _c(
-                    "li",
-                    { staticClass: "dropdown-item" },
-                    [
-                      _c(
-                        "router-link",
-                        { attrs: { to: { name: "manage_update" } } },
-                        [_vm._v("Mass update")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "li",
-                    { staticClass: "dropdown-item" },
-                    [
-                      _c(
-                        "router-link",
-                        { attrs: { to: { name: "manage_process" } } },
-                        [_vm._v("Manually process shows")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "li",
-                    { staticClass: "dropdown-item" },
-                    [
-                      _c(
-                        "router-link",
-                        { attrs: { to: { name: "manage_backlog" } } },
-                        [_vm._v("Backlog overview")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "li",
-                    { staticClass: "dropdown-item" },
-                    [
-                      _c(
-                        "router-link",
-                        { attrs: { to: { name: "manage_search" } } },
-                        [_vm._v("Searches")]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "li",
-                    { staticClass: "dropdown-item" },
-                    [
-                      _c(
-                        "router-link",
-                        { attrs: { to: { name: "manage_episodes" } } },
-                        [_vm._v("Episode management")]
-                      )
-                    ],
-                    1
-                  )
-                ]
-              )
-            ]),
-            _vm._v(" "),
-            _vm._m(1),
-            _vm._v(" "),
-            _vm._m(2)
-          ])
-        ]
-      )
-    ],
-    1
-  )
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "button",
-      {
-        staticClass: "navbar-toggler navbar-toggler-right",
-        attrs: {
-          type: "button",
-          "data-toggle": "collapse",
-          "data-target": "#mainNavbar",
-          "aria-controls": "mainNavbar",
-          "aria-expanded": "false",
-          "aria-label": "Toggle navigation"
-        }
-      },
-      [_c("span", { staticClass: "navbar-toggler-icon" })]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", { staticClass: "nav-item" }, [
-      _c("a", { staticClass: "nav-link" }, [_vm._v("Gear")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", { staticClass: "nav-item" }, [
-      _c("a", { staticClass: "nav-link" }, [_vm._v("Toolbox")])
-    ])
-  }
-]
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-019de8d8", module.exports)
-  }
-}
-
-/***/ }),
-/* 207 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 208 */,
-/* 209 */,
-/* 210 */,
-/* 211 */
 /***/ (function(module, exports, __webpack_require__) {
 
 !function(root, factory) {
@@ -69803,6 +69623,382 @@ if (false) {
         };
     } ]);
 });
+
+/***/ }),
+/* 206 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(207)
+}
+var normalizeComponent = __webpack_require__(2)
+/* script */
+var __vue_script__ = __webpack_require__(209)
+/* template */
+var __vue_template__ = __webpack_require__(210)
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/Headnav.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] Headnav.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-019de8d8", Component.options)
+  } else {
+    hotAPI.reload("data-v-019de8d8", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 207 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(208);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(4)("aca10b9e", content, false);
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-019de8d8\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/sass-loader/lib/loader.js!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Headnav.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-019de8d8\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/sass-loader/lib/loader.js!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Headnav.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 208 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(3)(undefined);
+// imports
+
+
+// module
+exports.push([module.i, "\nnav.main {\n  min-height: 50px;\n  color: white;\n  background: #555 linear-gradient(#555, #333);\n  margin-bottom: .5rem;\n  border-bottom: 1px solid #333;\n}\nnav.main .navbar-toggler {\n    padding: .25em .5em;\n}\nnav.main .navbar-toggler-icon {\n    height: 1em;\n    width: 1em;\n}\nnav.main #mainNavbar,\n  nav.main .navbar-brand {\n    line-height: 50px;\n}\nnav.main .navbar-brand {\n    font-size: 2.0rem;\n}\nnav.main .nav-item .dropdown-toggle,\n  nav.main .nav-item > a {\n    display: inline-block;\n    padding: 0 10px;\n}\nnav.main .nav-item > .router-link-active {\n    background: #333;\n}\nnav.main .dropdown-menu {\n    margin: 0;\n    left: auto;\n    right: 0;\n}\nnav.main .dropdown-menu li {\n      padding: 0;\n}\nnav.main .dropdown-menu a {\n      display: block;\n      padding: 0.25rem 1.5rem;\n      color: #333;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 209 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    mounted: function mounted() {
+        //            console.log('HEAD!')
+    }
+});
+
+/***/ }),
+/* 210 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "nav",
+    {
+      staticClass: "main navbar navbar-expand-md navbar-static-top navbar-dark"
+    },
+    [
+      _c(
+        "router-link",
+        { staticClass: "navbar-brand", attrs: { to: { name: "show_list" } } },
+        [_vm._v("SRL")]
+      ),
+      _vm._v(" "),
+      _vm._m(0),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass: "collapse navbar-collapse",
+          attrs: { id: "mainNavbar" }
+        },
+        [
+          _c("ul", { staticClass: "navbar-nav ml-auto" }, [
+            _c(
+              "li",
+              { staticClass: "nav-item" },
+              [
+                _c(
+                  "router-link",
+                  {
+                    staticClass: "nav-link",
+                    attrs: { to: { name: "show_list" } }
+                  },
+                  [_vm._v("List shows")]
+                )
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "li",
+              { staticClass: "nav-item" },
+              [
+                _c(
+                  "router-link",
+                  { staticClass: "nav-link", attrs: { to: "/schedule" } },
+                  [_vm._v("Schedule")]
+                )
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "li",
+              { staticClass: "nav-item" },
+              [
+                _c(
+                  "router-link",
+                  { staticClass: "nav-link", attrs: { to: "/history" } },
+                  [_vm._v("History")]
+                )
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c("li", { staticClass: "nav-item dropdown dropdown-hover" }, [
+              _c(
+                "a",
+                {
+                  staticClass: "nav-link dropdown-toggle",
+                  attrs: {
+                    id: "dropdown02",
+                    "data-toggle": "dropdown",
+                    "aria-haspopup": "true",
+                    "aria-expanded": "false",
+                    href: "#"
+                  }
+                },
+                [_vm._v("Manage")]
+              ),
+              _vm._v(" "),
+              _c(
+                "ul",
+                {
+                  staticClass: "dropdown-menu",
+                  attrs: { "aria-labelledby": "dropdown02" }
+                },
+                [
+                  _c(
+                    "li",
+                    { staticClass: "dropdown-item" },
+                    [
+                      _c(
+                        "router-link",
+                        { attrs: { to: { name: "manage_update" } } },
+                        [_vm._v("Mass update")]
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "li",
+                    { staticClass: "dropdown-item" },
+                    [
+                      _c(
+                        "router-link",
+                        { attrs: { to: { name: "manage_process" } } },
+                        [_vm._v("Manually process shows")]
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "li",
+                    { staticClass: "dropdown-item" },
+                    [
+                      _c(
+                        "router-link",
+                        { attrs: { to: { name: "manage_backlog" } } },
+                        [_vm._v("Backlog overview")]
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "li",
+                    { staticClass: "dropdown-item" },
+                    [
+                      _c(
+                        "router-link",
+                        { attrs: { to: { name: "manage_search" } } },
+                        [_vm._v("Searches")]
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "li",
+                    { staticClass: "dropdown-item" },
+                    [
+                      _c(
+                        "router-link",
+                        { attrs: { to: { name: "manage_episodes" } } },
+                        [_vm._v("Episode management")]
+                      )
+                    ],
+                    1
+                  )
+                ]
+              )
+            ]),
+            _vm._v(" "),
+            _vm._m(1),
+            _vm._v(" "),
+            _vm._m(2)
+          ])
+        ]
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "button",
+      {
+        staticClass: "navbar-toggler navbar-toggler-right",
+        attrs: {
+          type: "button",
+          "data-toggle": "collapse",
+          "data-target": "#mainNavbar",
+          "aria-controls": "mainNavbar",
+          "aria-expanded": "false",
+          "aria-label": "Toggle navigation"
+        }
+      },
+      [_c("span", { staticClass: "navbar-toggler-icon" })]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", { staticClass: "nav-item" }, [
+      _c("a", { staticClass: "nav-link" }, [_vm._v("Gear")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", { staticClass: "nav-item" }, [
+      _c("a", { staticClass: "nav-link" }, [_vm._v("Toolbox")])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-019de8d8", module.exports)
+  }
+}
+
+/***/ }),
+/* 211 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
 
 /***/ })
 /******/ ]);

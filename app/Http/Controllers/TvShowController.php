@@ -3,6 +3,7 @@
 namespace SickRage\Http\Controllers;
 
 use Grashoper\GregorianOrdinal\Date;
+use SickRage\Quality;
 use SickRage\Service\EpisodeStats;
 use SickRage\tv_show;
 use Illuminate\Http\Request;
@@ -118,6 +119,7 @@ class TvShowController extends Controller
         if ($show->air_by_date) {
             $show->air_by_date = Date::timeFromOrdinal($show->air_by_date);
         }
+        $show->qualities = Quality::split($show->quality);
     }
 
 }

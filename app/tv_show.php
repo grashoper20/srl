@@ -74,4 +74,7 @@ use Illuminate\Database\Eloquent\Model;
 class tv_show extends Model
 {
     protected $primaryKey = 'indexer_id';
+    protected $hidden = [
+        'show_id',
+    ];
 }

@@ -29,7 +29,9 @@
                         <img style="max-height: 50px; border: 1px solid black;" :src="bannerThumbnail"/>
                     </header>
                     <div class="show-full--details row" style="height: 200px">
-                        <div class="col-8">first details</div>
+                        <div class="col-8">
+                            <div>Quality: <quality-pill :quality="show.quality"></quality-pill></div>
+                        </div>
                         <div class="col-4">second details</div>
                     </div>
                 </div>
@@ -47,11 +49,13 @@
     import axios from 'axios'
     import FileCacheService from '../services/FileCacheService';
     import EpisodeList from './ShowEpisodeList.vue';
+    import QualityPills from './QualityPills.vue';
     import {mapGetters} from 'vuex';
 
     export default {
         components: {
             'episode-list': EpisodeList,
+            'quality-pill': QualityPills,
         },
         data: () => ({
             id: 0,
