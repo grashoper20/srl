@@ -1,22 +1,22 @@
 <template>
     <div class="episode_list">
-        <div v-for="episodes in seasons" :id="'season-' + episodes[0].season">
+        <div class="table-responsive" v-for="episodes in seasons" :id="'season-' + episodes[0].season">
             <h4>Season {{episodes[0].season}}</h4>
             <!-- TODO Handle Season 0 - Specials -->
-            <table>
+            <table class="table">
                 <thead>
                 <tr>
-                    <th>NFO</th>
-                    <th>TBN</th>
-                    <th>Episode</th>
-                    <th>Name</th>
-                    <th>Air Date</th>
-                    <th>Status</th>
+                    <th class="episode--nfo">NFO</th>
+                    <th class="episode--tbn">TBN</th>
+                    <th class="episode--episode">#</th>
+                    <th class="episode--name">Name</th>
+                    <th class="episode--airdate">Air Date</th>
+                    <th class="episode--status">Status</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr v-bind:class="episodeClass(episode.status)" v-for="episode in episodes.slice().reverse()">
-                    <td class="episode--info">{{episode.hasnfo == '1' ? 'Y' : 'N'}}</td>
+                    <td class="episode--nfo">{{episode.hasnfo == '1' ? 'Y' : 'N'}}</td>
                     <td class="episode--tbn">{{episode.hastbn == '1' ? 'Y' : 'N'}}</td>
                     <td class="episode--episode">{{episode.episode}}</td>
                     <td class="episode--name w-100">{{episode.name}}</td>
@@ -36,11 +36,10 @@
         props: [
             'seasons'
         ],
-        computed: {
-        },
+        computed: {},
         methods: {
             formatAirDate(airdate) {
-                if (airdate == 1) {
+                if (airdate === '1') {
                     return 'Never';
                 }
                 return moment(airdate).format('YYYY-MM-DD');
@@ -106,24 +105,40 @@
 </script>
 
 <style lang="scss">
+    // Variables
+    @import "../../sass/variables";
+    // Bootstrap
+    @import "~bootstrap/scss/bootstrap";
+
+    @include media-breakpoint-down(md) {
+        .episode--nfo,
+        .episode--tbn {
+            display: none;
+        }
+    }
+
+    @include media-breakpoint-down(sm) {
+        .episode--airdate,
+        .episode--status {
+            display: none;
+        }
+    }
+
     .episode_list {
         table {
             width: 100%;
             background-color: #ddd;
         }
-        th {
-            padding: 0 .25rem;
-            white-space: nowrap;
-        }
         th, td {
             border: 1px solid white;
-        }
-        td {
             white-space: nowrap;
-            padding: .25rem .75rem;
             text-align: center;
+            padding: .25rem .75rem;
         }
-        td.episode--name {
+        th {
+            padding-bottom: .1rem;
+        }
+        .episode--name {
             text-align: left;
         }
         .unaired {
