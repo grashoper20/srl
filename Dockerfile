@@ -16,7 +16,7 @@ RUN apk -U add $DEPS \
         sqlite \
         zlib \
         nginx \
-    && docker-php-ext-install mbstring pdo pdo_sqlite opcache zip \
+    && docker-php-ext-install opcache zip \
     && pecl install apcu \
     && docker-php-ext-enable apcu \
     && pip install dumb-init \
