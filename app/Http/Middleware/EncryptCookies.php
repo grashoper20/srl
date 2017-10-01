@@ -1,6 +1,6 @@
 <?php
 
-namespace SickRage\Http\Middleware;
+namespace SRL\Http\Middleware;
 
 use Illuminate\Cookie\Middleware\EncryptCookies as Middleware;
 

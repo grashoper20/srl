@@ -1,13 +1,13 @@
 <?php
 
-namespace SickRage;
+namespace SRL;
 
 use Grashoper\GregorianOrdinal\Date;
 use Illuminate\Database\Eloquent\Model;
-use SickRage\Service\EpisodeStats;
+use SRL\Service\EpisodeStats;
 
 /**
- * SickRage\tv_show
+ * SRL\tv_show
  *
  * @property int|null $show_id
  * @property float|null $indexer_id
@@ -40,37 +40,37 @@ use SickRage\Service\EpisodeStats;
  * @property float|null $default_ep_status
  * @property float|null $tmdb_id
  * @property float|null $sub_use_sr_metadata
- * @method static \Illuminate\Database\Eloquent\Builder|\SickRage\tv_show whereAirByDate($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\SickRage\tv_show whereAirs($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\SickRage\tv_show whereAnime($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\SickRage\tv_show whereArchiveFirstmatch($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\SickRage\tv_show whereClassification($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\SickRage\tv_show whereDefaultEpStatus($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\SickRage\tv_show whereDvdorder($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\SickRage\tv_show whereFlattenFolders($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\SickRage\tv_show whereGenre($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\SickRage\tv_show whereImdbId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\SickRage\tv_show whereIndexer($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\SickRage\tv_show whereIndexerId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\SickRage\tv_show whereLang($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\SickRage\tv_show whereLastUpdateIndexer($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\SickRage\tv_show whereLocation($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\SickRage\tv_show whereNetwork($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\SickRage\tv_show whereNotifyList($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\SickRage\tv_show wherePaused($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\SickRage\tv_show whereQuality($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\SickRage\tv_show whereRlsIgnoreWords($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\SickRage\tv_show whereRlsRequireWords($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\SickRage\tv_show whereRuntime($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\SickRage\tv_show whereScene($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\SickRage\tv_show whereShowId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\SickRage\tv_show whereShowName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\SickRage\tv_show whereSports($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\SickRage\tv_show whereStartyear($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\SickRage\tv_show whereStatus($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\SickRage\tv_show whereSubUseSrMetadata($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\SickRage\tv_show whereSubtitles($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\SickRage\tv_show whereTmdbId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\SRL\tv_show whereAirByDate($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\SRL\tv_show whereAirs($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\SRL\tv_show whereAnime($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\SRL\tv_show whereArchiveFirstmatch($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\SRL\tv_show whereClassification($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\SRL\tv_show whereDefaultEpStatus($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\SRL\tv_show whereDvdorder($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\SRL\tv_show whereFlattenFolders($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\SRL\tv_show whereGenre($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\SRL\tv_show whereImdbId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\SRL\tv_show whereIndexer($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\SRL\tv_show whereIndexerId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\SRL\tv_show whereLang($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\SRL\tv_show whereLastUpdateIndexer($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\SRL\tv_show whereLocation($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\SRL\tv_show whereNetwork($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\SRL\tv_show whereNotifyList($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\SRL\tv_show wherePaused($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\SRL\tv_show whereQuality($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\SRL\tv_show whereRlsIgnoreWords($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\SRL\tv_show whereRlsRequireWords($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\SRL\tv_show whereRuntime($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\SRL\tv_show whereScene($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\SRL\tv_show whereShowId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\SRL\tv_show whereShowName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\SRL\tv_show whereSports($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\SRL\tv_show whereStartyear($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\SRL\tv_show whereStatus($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\SRL\tv_show whereSubUseSrMetadata($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\SRL\tv_show whereSubtitles($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\SRL\tv_show whereTmdbId($value)
  * @mixin \Eloquent
  */
 class tv_show extends Model

@@ -1,14 +1,14 @@
 <?php
 
-namespace SickRage\Service;
+namespace SRL\Service;
 
 use Carbon\Carbon;
 use Grashoper\GregorianOrdinal\Date;
 use Illuminate\Cache\Repository;
 use Illuminate\Database\Query\Builder as QueryBuilder;
 use Illuminate\Support\Collection;
-use SickRage\Status;
-use SickRage\tv_show;
+use SRL\Status;
+use SRL\tv_show;
 
 class EpisodeStats
 {

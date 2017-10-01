@@ -13,7 +13,7 @@ use Faker\Generator as Faker;
 |
 */
 
-$factory->define(SickRage\User::class, function (Faker $faker) {
+$factory->define(SRL\User::class, function (Faker $faker) {
     static $password;
 
     return [

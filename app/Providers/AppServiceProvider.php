@@ -1,6 +1,6 @@
 <?php
 
-namespace SickRage\Providers;
+namespace SRL\Providers;
 
 use Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider;
 use Illuminate\Support\ServiceProvider;

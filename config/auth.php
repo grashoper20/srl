@@ -67,7 +67,7 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => SickRage\User::class,
+            'model' => SRL\User::class,
         ],
 
         // 'users' => [

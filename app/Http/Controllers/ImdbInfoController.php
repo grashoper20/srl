@@ -1,8 +1,8 @@
 <?php
 
-namespace SickRage\Http\Controllers;
+namespace SRL\Http\Controllers;
 
-use SickRage\imdb_info;
+use SRL\imdb_info;
 use Illuminate\Http\Request;
 
 class ImdbInfoController extends Controller
@@ -41,7 +41,7 @@ class ImdbInfoController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \SickRage\imdb_info $imdb
+     * @param  \SRL\imdb_info $imdb
      * @return \Illuminate\Http\Response
      */
     public function show(imdb_info $imdb)
@@ -52,7 +52,7 @@ class ImdbInfoController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \SickRage\imdb_info $imdb
+     * @param  \SRL\imdb_info $imdb
      * @return \Illuminate\Http\Response
      */
     public function edit(imdb_info $imdb)
@@ -64,7 +64,7 @@ class ImdbInfoController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request $request
-     * @param  \SickRage\imdb_info $imdb
+     * @param  \SRL\imdb_info $imdb
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, imdb_info $imdb)
@@ -75,7 +75,7 @@ class ImdbInfoController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \SickRage\imdb_info $imdb
+     * @param  \SRL\imdb_info $imdb
      * @return \Illuminate\Http\Response
      */
     public function destroy(imdb_info $imdb)

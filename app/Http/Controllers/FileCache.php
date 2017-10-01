@@ -1,8 +1,8 @@
 <?php
 
-namespace SickRage\Http\Controllers;
+namespace SRL\Http\Controllers;
 
-use SickRage\tv_show;
+use SRL\tv_show;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;

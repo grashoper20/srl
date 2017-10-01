@@ -1,6 +1,6 @@
 <?php
 
-namespace SickRage\Http\Middleware;
+namespace SRL\Http\Middleware;
 
 use Illuminate\Foundation\Http\Middleware\TrimStrings as Middleware;
 

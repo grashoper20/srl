@@ -1,6 +1,6 @@
 <?php
 
-namespace SickRage\Providers;
+namespace SRL\Providers;
 
 use Illuminate\Support\Facades\Event;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -13,8 +13,8 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        'SickRage\Events\Event' => [
-            'SickRage\Listeners\EventListener',
+        'SRL\Events\Event' => [
+            'SRL\Listeners\EventListener',
         ],
     ];
 

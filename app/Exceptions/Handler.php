@@ -1,6 +1,6 @@
 <?php
 
-namespace SickRage\Exceptions;
+namespace SRL\Exceptions;
 
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;

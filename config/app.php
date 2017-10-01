@@ -172,11 +172,11 @@ return [
         /*
          * Application Service Providers...
          */
-        SickRage\Providers\AppServiceProvider::class,
-        SickRage\Providers\AuthServiceProvider::class,
-        // SickRage\Providers\BroadcastServiceProvider::class,
-        SickRage\Providers\EventServiceProvider::class,
-        SickRage\Providers\RouteServiceProvider::class,
+        SRL\Providers\AppServiceProvider::class,
+        SRL\Providers\AuthServiceProvider::class,
+        // SRL\Providers\BroadcastServiceProvider::class,
+        SRL\Providers\EventServiceProvider::class,
+        SRL\Providers\RouteServiceProvider::class,
 
     ],
 

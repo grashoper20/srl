@@ -1,6 +1,6 @@
 <?php
 
-namespace SickRage\Http\Controllers;
+namespace SRL\Http\Controllers;
 
 class App extends Controller
 {

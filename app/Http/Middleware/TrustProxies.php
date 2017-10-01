@@ -1,6 +1,6 @@
 <?php
 
-namespace SickRage\Http\Middleware;
+namespace SRL\Http\Middleware;
 
 use Illuminate\Http\Request;
 use Fideloper\Proxy\TrustProxies as Middleware;

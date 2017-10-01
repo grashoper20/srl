@@ -1,12 +1,12 @@
 <?php
 
-namespace SickRage;
+namespace SRL;
 
 use Grashoper\GregorianOrdinal\Date;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * SickRage\tv_episodes
+ * SRL\tv_episodes
  *
  * @property int|null $episode_id
  * @property float|null $showid
@@ -33,31 +33,31 @@ use Illuminate\Database\Eloquent\Model;
  * @property float|null $scene_absolute_number
  * @property float|null $version
  * @property string|null $release_group
- * @method static \Illuminate\Database\Eloquent\Builder|\SickRage\tv_episode whereAbsoluteNumber($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\SickRage\tv_episode whereAirdate($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\SickRage\tv_episode whereDescription($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\SickRage\tv_episode whereEpisode($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\SickRage\tv_episode whereEpisodeId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\SickRage\tv_episode whereFileSize($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\SickRage\tv_episode whereHasnfo($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\SickRage\tv_episode whereHastbn($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\SickRage\tv_episode whereIndexer($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\SickRage\tv_episode whereIndexerid($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\SickRage\tv_episode whereIsProper($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\SickRage\tv_episode whereLocation($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\SickRage\tv_episode whereName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\SickRage\tv_episode whereReleaseGroup($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\SickRage\tv_episode whereReleaseName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\SickRage\tv_episode whereSceneAbsoluteNumber($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\SickRage\tv_episode whereSceneEpisode($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\SickRage\tv_episode whereSceneSeason($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\SickRage\tv_episode whereSeason($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\SickRage\tv_episode whereShowid($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\SickRage\tv_episode whereStatus($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\SickRage\tv_episode whereSubtitles($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\SickRage\tv_episode whereSubtitlesLastsearch($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\SickRage\tv_episode whereSubtitlesSearchcount($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\SickRage\tv_episode whereVersion($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\SRL\tv_episode whereAbsoluteNumber($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\SRL\tv_episode whereAirdate($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\SRL\tv_episode whereDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\SRL\tv_episode whereEpisode($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\SRL\tv_episode whereEpisodeId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\SRL\tv_episode whereFileSize($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\SRL\tv_episode whereHasnfo($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\SRL\tv_episode whereHastbn($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\SRL\tv_episode whereIndexer($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\SRL\tv_episode whereIndexerid($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\SRL\tv_episode whereIsProper($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\SRL\tv_episode whereLocation($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\SRL\tv_episode whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\SRL\tv_episode whereReleaseGroup($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\SRL\tv_episode whereReleaseName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\SRL\tv_episode whereSceneAbsoluteNumber($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\SRL\tv_episode whereSceneEpisode($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\SRL\tv_episode whereSceneSeason($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\SRL\tv_episode whereSeason($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\SRL\tv_episode whereShowid($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\SRL\tv_episode whereStatus($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\SRL\tv_episode whereSubtitles($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\SRL\tv_episode whereSubtitlesLastsearch($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\SRL\tv_episode whereSubtitlesSearchcount($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\SRL\tv_episode whereVersion($value)
  * @mixin \Eloquent
  */
 class tv_episode extends Model
