@@ -20,4 +20,10 @@ const app = new Vue({
     components: {
         'headnav': require('./components/Headnav.vue'),
     },
+    mounted() {
+        let ShowPoller = setInterval(() => {
+            this.$store.dispatch('shows/sync');
+            console.log('running poller');
+        }, 60000);
+    }
 }).$mount('#app');
