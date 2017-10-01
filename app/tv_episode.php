@@ -2,6 +2,7 @@
 
 namespace SickRage;
 
+use Grashoper\GregorianOrdinal\Date;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -63,18 +64,15 @@ class tv_episode extends Model
 {
     protected $primaryKey = 'episode_id';
 
-    # Episode statuses
-    const UNKNOWN = -1;  # should never happen
-    const UNAIRED = 1;  # episodes that haven't aired yet
-    const SNATCHED = 2;  # qualified with quality
-    const WANTED = 3;  # episodes we don't have but want to get
-    const DOWNLOADED = 4;  # qualified with quality
-    const SKIPPED = 5;  # episodes we don't want
-    const ARCHIVED = 6;  # episodes that you don't have locally (counts toward download completion stats)
-    const IGNORED = 7;  # episodes that you don't want included in your download stats
-    const SNATCHED_PROPER = 9;  # qualified with quality
-    const SUBTITLED = 10;  # qualified with quality
-    const FAILED = 11;  # episode downloaded or snatched we don't want
-    const SNATCHED_BEST = 12;  # episode re-downloaded using best quality
+    public function getAirdateAttribute($value)
+    {
+        return $value > 1 ? 0 : Date::dateFromOrdinal($value)
+            ->format(DATE_RFC2822);
+    }
+
+    public function setAirdateAttribute($value)
+    {
+        return Date::ordinalFromDate($value);
+    }
 
 }

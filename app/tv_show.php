@@ -2,7 +2,9 @@
 
 namespace SickRage;
 
+use Grashoper\GregorianOrdinal\Date;
 use Illuminate\Database\Eloquent\Model;
+use SickRage\Service\EpisodeStats;
 
 /**
  * SickRage\tv_show
@@ -74,4 +76,29 @@ use Illuminate\Database\Eloquent\Model;
 class tv_show extends Model
 {
     protected $primaryKey = 'indexer_id';
+
+    protected $appends = ['progress'];
+
+    public function getAirByDateAttribute($value)
+    {
+        return $value == 0 ? 0 : Date::dateFromOrdinal($value)
+            ->format(DATE_RFC2822);
+    }
+
+    public function setAirByDateAttribute($value)
+    {
+        return Date::ordinalFromDate($value);
+    }
+
+    public function getProgressAttribute()
+    {
+        $stats = app()->make(EpisodeStats::class);
+        $show_stats = $stats->getStat($this->indexer_id);
+        if (empty($show_stats->total)) {
+            return 0;
+        }
+
+        return $show_stats->downloaded / $show_stats->total;
+    }
+
 }

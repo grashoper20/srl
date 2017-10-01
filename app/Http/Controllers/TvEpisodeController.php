@@ -65,8 +65,6 @@ class TvEpisodeController extends Controller
      */
     public function show(tv_episode $episode)
     {
-        $this->processEpisode($episode);
-
         return response()->json($episode);
     }
 
@@ -106,29 +104,11 @@ class TvEpisodeController extends Controller
 
     public function indexByShow(tv_show $show)
     {
-        // Show ID is indexer ID and indexerid is... ???
-        $episodes = tv_episode::whereShowid($show->indexer_id)->get();
-        $episodes->each(function ($episode) {
-            $this->processEpisode($episode);
-        });
-
-        return response()->json($episodes);
-    }
-
-    /**
-     * Process an episode and make it usable by the frontend.
-     *
-     * Note: no type hint because it might just be the table contents, not a
-     * full model object.
-     *
-     * @param tv_episode $episode
-     */
-    private function processEpisode($episode)
-    {
-        if ($episode->airdate > 1) {
-            $episode->airdate = Date::dateFromOrdinal($episode->airdate)
-                ->format(DATE_RFC2822);
-        }
+        // Show ID is the show indexer id not the show id and indexer_id is the
+        // episode indexer id. Confusing but its the way things are.
+        return response()->json(
+            tv_episode::whereShowid($show->indexer_id)->get()
+        );
     }
 
     public function statsIndex()

@@ -27,12 +27,7 @@ class TvShowController extends Controller
      */
     public function index()
     {
-        $shows = tv_show::all();
-        foreach ($shows as $show) {
-            $this->process($show);
-        }
-
-        return response()->json($shows);
+        return response()->json(tv_show::all());
     }
 
     /**
@@ -64,8 +59,6 @@ class TvShowController extends Controller
      */
     public function show(tv_show $show)
     {
-        $this->process($show);
-
         return response()->json($show);
     }
 
@@ -101,23 +94,6 @@ class TvShowController extends Controller
     public function destroy(tv_show $show)
     {
         //
-    }
-
-    /**
-     * @param tv_show $show
-     */
-    protected function process($show)
-    {
-        $stats = $this->stats->getStat($show->indexer_id);
-        if ($stats->total == 0) { // div by 0 is bad.
-            $show->progress = 0;
-        }
-        else {
-            $show->progress = $stats->downloaded / $stats->total;
-        }
-        if ($show->air_by_date) {
-            $show->air_by_date = Date::timeFromOrdinal($show->air_by_date);
-        }
     }
 
 }
