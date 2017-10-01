@@ -54,19 +54,23 @@ class EpisodeStats
             $query->orWhere('status', '>', 100); // Has combined quality status.
             $query->orWhere('status', '=', Status::ARCHIVED);
         };
-        $snatched_sql = \DB::table('tv_episodes')
+        $snatched = \DB::table('tv_episodes')
             ->selectRaw('showid, COUNT(episode_id) as snatched')
             ->where('season', '>', 0)
             ->where('airdate', '>', 1)
             ->whereIn('status', $status_snatched)
-            ->groupBy('showid');
-        $downloaded_sql = \DB::table('tv_episodes')
+            ->groupBy('showid')
+            ->get()
+            ->pluck('snatched', 'showid');
+        $downloaded = \DB::table('tv_episodes')
             ->selectRaw('showid, COUNT(episode_id) as downloaded')
             ->where('season', '>', 0)
             ->where('airdate', '>', 1)
             ->where($downloaded_where)
-            ->groupBy('showid');
-        $total_sql = \DB::table('tv_episodes')
+            ->groupBy('showid')
+            ->get()
+            ->pluck('downloaded', 'showid');
+        $totals = \DB::table('tv_episodes')
             ->selectRaw('showid, COUNT(episode_id) as total')
             ->where('season', '>', 0)
             ->where('airdate', '>', 1)
@@ -88,56 +92,53 @@ class EpisodeStats
                             );
                             $query->whereIn(
                                 'status',
-                                [Status::SKIPPED, Status::WANTED, STATUS::FAILED]
+                                [
+                                    Status::SKIPPED,
+                                    Status::WANTED,
+                                    STATUS::FAILED,
+                                ]
                             );
                         }
                     );
                 }
             )
-            ->groupBy('showid');
-        $next_airs_sql = \DB::table('tv_episodes')
+            ->groupBy('showid')
+            ->get()
+            ->pluck('total', 'showid');
+        $next_airs = \DB::table('tv_episodes')
             ->selectRaw('showid, MIN(airdate) as next_air')
             ->where('airdate', '>=', Carbon::today())
             ->whereIn('status', [Status::UNAIRED, Status::WANTED])
-            ->groupBy('showid');
-        $previous_airs_sql = \DB::table('tv_episodes')
+            ->groupBy('showid')
+            ->get()
+            ->pluck('next_air', 'showid');
+        $previous_airs = \DB::table('tv_episodes')
             ->selectRaw('showid, MAX(airdate) as previous_air')
             ->where('airdate', '>', 1)
             ->where('status', '<>', Status::UNAIRED)
-            ->groupBy('showid');
-        $show_size_sql = \DB::table('tv_episodes')
+            ->groupBy('showid')
+            ->get()
+            ->pluck('previous_air', 'showid');
+        $show_sizes = \DB::table('tv_episodes')
             ->selectRaw('showid, SUM(file_size) as show_size')
-            ->groupBy('showid');
+            ->groupBy('showid')
+            ->get()
+            ->pluck('show_size', 'showid');
 
-        /** @var \Illuminate\Database\Eloquent\Collection[] $stats */
-        $stats = [
-            'snatched'     => $snatched_sql->get(),
-            'downloaded'   => $downloaded_sql->get(),
-            'total'        => $total_sql->get(),
-            'next_air'     => $next_airs_sql->get(),
-            'previous_air' => $previous_airs_sql->get(),
-            'show_size'    => $show_size_sql->get(),
-        ];
-        $default = [
-            'snatched'     => 0,
-            'downloaded'   => 0,
-            'total'        => 0,
-            'next_air'     => 0,
-            'previous_air' => 0,
-            'show_size'    => 0,
-        ];
-        $result = [];
-        foreach ($stats as $key => $collection) {
-            foreach ($collection->keyBy('showid') as $indexer_id => $stat) {
-                if (empty($result[$indexer_id])) {
-                    $result[$indexer_id] = (object)$default;
-                    $result[$indexer_id]->indexer_id = $indexer_id;
-                }
-                $result[$indexer_id]->{$key} = $stat->{$key};
-            };
+        $show_stats = \DB::table('tv_shows')
+            ->get(['indexer_id'])
+            ->keyBy('indexer_id');
+        foreach ($show_stats as $indexer_id => $stat) {
+            $stat->indexer_id = (int)$indexer_id;
+            $stat->snatched = (int)$snatched->get($indexer_id, 0);
+            $stat->downloaded = (int)$downloaded->get($indexer_id, 0);
+            $stat->total = (int)$totals->get($indexer_id, 0);
+            $stat->next_airs = (int)$next_airs->get($indexer_id, 0);
+            $stat->previous_air = (int)$previous_airs->get($indexer_id, 0);
+            $stat->show_size = (int)$show_sizes->get($indexer_id, 0);
         }
 
-        return $result;
+        return $show_stats->toArray();
     }
 
 }
