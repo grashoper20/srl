@@ -79,10 +79,35 @@ class tv_show extends Model
 
     protected $appends = ['progress'];
 
+    protected $hidden = [
+        'show_id', // useless.
+        'sports', // don't think this is used.
+        // for now internal only.
+        'indexer',
+        'last_update_indexer',
+        'tmpdb_id',
+        'dvd_order',
+        'archive_fist_match',
+        'sub_use_sr_metadata',
+    ];
+
+    protected $casts = [
+        'runtime' => 'integer',
+        'quality' => 'integer',
+        'flatten_folders' => 'boolean',
+        'paused' => 'boolean',
+        'subtitles'=> 'boolean',
+        'anime' => 'boolean',
+        'scene' => 'boolean',
+        'default_ep_status' => 'integer',
+    ];
+
     public function getAirByDateAttribute($value)
     {
-        return $value == 0 ? 0 : Date::dateFromOrdinal($value)
-            ->format(DATE_RFC2822);
+        return $value > 1
+            ? Date::dateFromOrdinal($value)
+                ->format(DATE_RFC2822)
+            : $value;
     }
 
     public function setAirByDateAttribute($value)

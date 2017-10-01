@@ -39,7 +39,7 @@ export default {
         },
         find({state, commit}, id) {
             return new Promise((resolve, reject) => {
-                let show = state.list.find(show => show.indexer_id == id);
+                let show = state.list.find(show => show.indexer_id === id);
                 if (typeof show !== 'undefined') {
                     console.log('cached load');
                     resolve(show);
@@ -80,14 +80,14 @@ export default {
         },
         getAnime: (state, getters) => {
             return getters.getAllShows
-                .filter(show => !!parseInt(show.anime));
+                .filter(show => show.anime);
         },
         getShows: (state, getters) => {
             return getters.getAllShows
-                .filter(show => !parseInt(show.anime));
+                .filter(show => !show.anime);
         },
         getShowById: (state, getters) => (id) => {
-            let show = state.list.find(show => show.indexer_id == id);
+            let show = state.list.find(show => show.indexer_id === id);
             if (show === undefined) return {};
             show.stats = state.stats[id];
             return show;

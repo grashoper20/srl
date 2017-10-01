@@ -121,7 +121,7 @@
         },
         methods: {
             seasonName(season) {
-                return parseInt(season[0].season) || 'Specials';
+                return season[0].season || 'Specials';
             },
             showModal() {
                 this.$modal.show('full-poster');

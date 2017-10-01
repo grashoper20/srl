@@ -62741,7 +62741,7 @@ var debug = "development" !== 'production';
 
             return new Promise(function (resolve, reject) {
                 var show = state.list.find(function (show) {
-                    return show.indexer_id == id;
+                    return show.indexer_id === id;
                 });
                 if (typeof show !== 'undefined') {
                     console.log('cached load');
@@ -62780,18 +62780,18 @@ var debug = "development" !== 'production';
         },
         getAnime: function getAnime(state, getters) {
             return getters.getAllShows.filter(function (show) {
-                return !!parseInt(show.anime);
+                return show.anime;
             });
         },
         getShows: function getShows(state, getters) {
             return getters.getAllShows.filter(function (show) {
-                return !parseInt(show.anime);
+                return !show.anime;
             });
         },
         getShowById: function getShowById(state, getters) {
             return function (id) {
                 var show = state.list.find(function (show) {
-                    return show.indexer_id == id;
+                    return show.indexer_id === id;
                 });
                 if (show === undefined) return {};
                 show.stats = state.stats[id];
@@ -67682,7 +67682,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
     }),
     methods: {
         seasonName: function seasonName(season) {
-            return parseInt(season[0].season) || 'Specials';
+            return season[0].season || 'Specials';
         },
         showModal: function showModal() {
             this.$modal.show('full-poster');
@@ -67833,7 +67833,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             return __WEBPACK_IMPORTED_MODULE_0_moment___default()(airdate).format('YYYY-MM-DD');
         },
         episodeClass: function episodeClass(state) {
-            state = parseInt(state);
             if (state > 100) {
                 state %= 100;
             }
@@ -67860,7 +67859,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             return 'weird-' + state;
         },
         episodeStatusText: function episodeStatusText(state) {
-            state = parseInt(state);
             if (state > 100) {
                 state %= 100;
             }
@@ -67887,6 +67885,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     console.warn('Unhandled state text: ' + state);
                     return 'weird-' + state;
             }
+        },
+        seasonName: function seasonName(season) {
+            return season[0].season || 'Specials';
         }
     }
 });
@@ -68162,7 +68163,7 @@ var render = function() {
           attrs: { id: "season-" + episodes[0].season }
         },
         [
-          _c("h4", [_vm._v("Season " + _vm._s(episodes[0].season))]),
+          _c("h4", [_vm._v("Season " + _vm._s(_vm.seasonName(episodes)))]),
           _vm._v(" "),
           _c("table", { staticClass: "table" }, [
             _vm._m(0, true),
@@ -68172,11 +68173,11 @@ var render = function() {
               _vm._l(episodes.slice().reverse(), function(episode) {
                 return _c("tr", { class: _vm.episodeClass(episode.status) }, [
                   _c("td", { staticClass: "episode--nfo" }, [
-                    _vm._v(_vm._s(episode.hasnfo == "1" ? "Y" : "N"))
+                    _vm._v(_vm._s(episode.hasnfo ? "Y" : "N"))
                   ]),
                   _vm._v(" "),
                   _c("td", { staticClass: "episode--tbn" }, [
-                    _vm._v(_vm._s(episode.hastbn == "1" ? "Y" : "N"))
+                    _vm._v(_vm._s(episode.hastbn ? "Y" : "N"))
                   ]),
                   _vm._v(" "),
                   _c("td", { staticClass: "episode--episode" }, [

@@ -1,7 +1,7 @@
 <template>
     <div class="episode_list">
         <div class="table-responsive" v-for="episodes in seasons" :id="'season-' + episodes[0].season">
-            <h4>Season {{episodes[0].season}}</h4>
+            <h4>Season {{seasonName(episodes)}}</h4>
             <!-- TODO Handle Season 0 - Specials -->
             <table class="table">
                 <thead>
@@ -16,8 +16,8 @@
                 </thead>
                 <tbody>
                 <tr v-bind:class="episodeClass(episode.status)" v-for="episode in episodes.slice().reverse()">
-                    <td class="episode--nfo">{{episode.hasnfo == '1' ? 'Y' : 'N'}}</td>
-                    <td class="episode--tbn">{{episode.hastbn == '1' ? 'Y' : 'N'}}</td>
+                    <td class="episode--nfo">{{episode.hasnfo ? 'Y' : 'N'}}</td>
+                    <td class="episode--tbn">{{episode.hastbn ? 'Y' : 'N'}}</td>
                     <td class="episode--episode">{{episode.episode}}</td>
                     <td class="episode--name w-100">{{episode.name}}</td>
                     <td class="episode--airdate">{{formatAirDate(episode.airdate)}}</td>
@@ -45,7 +45,6 @@
                 return moment(airdate).format('YYYY-MM-DD');
             },
             episodeClass(state) {
-                state = parseInt(state);
                 if (state > 100) {
                     state %= 100;
                 }
@@ -72,7 +71,6 @@
                 return 'weird-' + state;
             },
             episodeStatusText(state) {
-                state = parseInt(state);
                 if (state > 100) {
                     state %= 100;
                 }
@@ -99,7 +97,11 @@
                         console.warn('Unhandled state text: ' + state);
                         return 'weird-' + state;
                 }
-            }
+            },
+            seasonName(season) {
+                return season[0].season || 'Specials';
+            },
+
         },
     };
 </script>
