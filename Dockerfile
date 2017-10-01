@@ -1,6 +1,6 @@
 FROM composer
 COPY . /app
-RUN composer install --no-dev \
+RUN composer install --no-dev -o \
     && rm -rf ./public/hot \
     && find ./vendor -name tests -exec rm -rf {} + \
     && find ./vendor -name Tests -exec rm -rf {} +
