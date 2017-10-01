@@ -62903,9 +62903,11 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vue_
 
 /* harmony default export */ __webpack_exports__["a"] = (new __WEBPACK_IMPORTED_MODULE_1_vue_router__["a" /* default */]({
     mode: 'history',
+    base: window.srl.settings.basePath,
     routes: [{ path: '*', component: __WEBPACK_IMPORTED_MODULE_6__components_NotFound_vue___default.a }, {
         path: '/',
-        component: __WEBPACK_IMPORTED_MODULE_2__components_Shows_vue___default.a // TODO redirect to shows?
+        component: __WEBPACK_IMPORTED_MODULE_2__components_Shows_vue___default.a, // TODO redirect to shows?
+        alias: '/show'
     }, {
         path: '/show',
         component: __WEBPACK_IMPORTED_MODULE_2__components_Shows_vue___default.a,

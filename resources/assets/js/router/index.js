@@ -12,11 +12,13 @@ import NotFound from '../components/NotFound.vue';
 
 export default new VueRouter({
     mode: 'history',
+    base: window.srl.settings.basePath,
     routes: [
         { path: '*', component: NotFound },
         {
             path: '/',
             component: Shows, // TODO redirect to shows?
+            alias: '/show',
         },
         {
             path: '/show',

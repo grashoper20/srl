@@ -10,7 +10,8 @@
         <script type="text/javascript">
             var srl = {
                 settings: {
-                    baseURL: '{{ url('/') }}'
+                    baseURL: '{{ url('/') }}',
+                    basePath: '{{ parse_url(url('/'), PHP_URL_PATH) }}',
                 }
             };
         </script>
