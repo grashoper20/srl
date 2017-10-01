@@ -77,7 +77,7 @@ class tv_show extends Model
 {
     protected $primaryKey = 'indexer_id';
 
-    protected $appends = ['progress'];
+    protected $appends = ['progress', 'stats'];
 
     protected $hidden = [
         'show_id', // useless.
@@ -92,13 +92,13 @@ class tv_show extends Model
     ];
 
     protected $casts = [
-        'runtime' => 'integer',
-        'quality' => 'integer',
-        'flatten_folders' => 'boolean',
-        'paused' => 'boolean',
-        'subtitles'=> 'boolean',
-        'anime' => 'boolean',
-        'scene' => 'boolean',
+        'runtime'           => 'integer',
+        'quality'           => 'integer',
+        'flatten_folders'   => 'boolean',
+        'paused'            => 'boolean',
+        'subtitles'         => 'boolean',
+        'anime'             => 'boolean',
+        'scene'             => 'boolean',
         'default_ep_status' => 'integer',
     ];
 
@@ -117,13 +117,30 @@ class tv_show extends Model
 
     public function getProgressAttribute()
     {
-        $stats = app()->make(EpisodeStats::class);
-        $show_stats = $stats->getStat($this->indexer_id);
+        $show_stats = static::getStats()->getStat($this->indexer_id);
         if (empty($show_stats->total)) {
             return 0;
         }
 
         return $show_stats->downloaded / $show_stats->total;
+    }
+
+    public function getStatsAttribute()
+    {
+        return static::getStats()->getStat($this->indexer_id);
+    }
+
+    /**
+     * @return mixed|\SRL\Service\EpisodeStats
+     */
+    private static function getStats()
+    {
+        static $stats_service;
+        if (!isset($stats_service)) {
+            $stats_service = app()->make(EpisodeStats::class);
+        }
+
+        return $stats_service;
     }
 
 }
