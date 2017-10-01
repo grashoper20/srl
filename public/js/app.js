@@ -44130,11 +44130,11 @@ module.exports = Cancel;
     getFileCacheUrl: function getFileCacheUrl(type, id, subtype) {
         return __WEBPACK_IMPORTED_MODULE_0__UrlService__["a" /* default */].url('/filecache/' + type + '/' + id + '/' + subtype);
     },
-    getFileCachePosterUrl: function getFileCachePosterUrl(id, type) {
+    getFileCacheImageUrl: function getFileCacheImageUrl(id, type) {
         if (typeof id === 'undefined') {
             return '';
         }
-        return this.getFileCacheUrl('poster', id, type);
+        return this.getFileCacheUrl('images', id, type);
     }
 });
 
@@ -66992,7 +66992,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
             return this.show.network;
         },
         poster: function poster() {
-            return __WEBPACK_IMPORTED_MODULE_0__services_FileCacheService__["a" /* default */].getFileCachePosterUrl(this.show.indexer_id, 'poster/thumbnail');
+            return __WEBPACK_IMPORTED_MODULE_0__services_FileCacheService__["a" /* default */].getFileCacheImageUrl(this.show.indexer_id, 'poster/thumbnail');
         },
         airDate: function airDate() {
             // TODO calculate actual air date and fallback on status.
@@ -67642,19 +67642,19 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
     computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_3_vuex__["b" /* mapGetters */])('shows', ['getShowById']), {
         getBackgroundImage: function getBackgroundImage() {
-            return __WEBPACK_IMPORTED_MODULE_1__services_FileCacheService__["a" /* default */].getFileCachePosterUrl(this.id, 'fanart');
+            return __WEBPACK_IMPORTED_MODULE_1__services_FileCacheService__["a" /* default */].getFileCacheImageUrl(this.id, 'fanart');
         },
         poster: function poster() {
-            return __WEBPACK_IMPORTED_MODULE_1__services_FileCacheService__["a" /* default */].getFileCachePosterUrl(this.id, 'poster');
+            return __WEBPACK_IMPORTED_MODULE_1__services_FileCacheService__["a" /* default */].getFileCacheImageUrl(this.id, 'poster');
         },
         posterThumbnail: function posterThumbnail() {
-            return __WEBPACK_IMPORTED_MODULE_1__services_FileCacheService__["a" /* default */].getFileCachePosterUrl(this.id, 'poster/thumbnail');
+            return __WEBPACK_IMPORTED_MODULE_1__services_FileCacheService__["a" /* default */].getFileCacheImageUrl(this.id, 'poster/thumbnail');
         },
         banner: function banner() {
-            return __WEBPACK_IMPORTED_MODULE_1__services_FileCacheService__["a" /* default */].getFileCachePosterUrl(this.id, 'banner');
+            return __WEBPACK_IMPORTED_MODULE_1__services_FileCacheService__["a" /* default */].getFileCacheImageUrl(this.id, 'banner');
         },
         bannerThumbnail: function bannerThumbnail() {
-            return __WEBPACK_IMPORTED_MODULE_1__services_FileCacheService__["a" /* default */].getFileCachePosterUrl(this.id, 'banner/thumbnail');
+            return __WEBPACK_IMPORTED_MODULE_1__services_FileCacheService__["a" /* default */].getFileCacheImageUrl(this.id, 'banner/thumbnail');
         },
         genres: function genres() {
             if (typeof this.imdb_info.genres === 'undefined') {

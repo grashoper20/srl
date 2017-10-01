@@ -82,19 +82,19 @@
                 'getShowById'
             ]),
             getBackgroundImage: function () {
-                return FileCacheService.getFileCachePosterUrl(this.id, 'fanart');
+                return FileCacheService.getFileCacheImageUrl(this.id, 'fanart');
             },
             poster: function () {
-                return FileCacheService.getFileCachePosterUrl(this.id, 'poster');
+                return FileCacheService.getFileCacheImageUrl(this.id, 'poster');
             },
             posterThumbnail: function () {
-                return FileCacheService.getFileCachePosterUrl(this.id, 'poster/thumbnail');
+                return FileCacheService.getFileCacheImageUrl(this.id, 'poster/thumbnail');
             },
             banner: function () {
-                return FileCacheService.getFileCachePosterUrl(this.id, 'banner');
+                return FileCacheService.getFileCacheImageUrl(this.id, 'banner');
             },
             bannerThumbnail: function () {
-                return FileCacheService.getFileCachePosterUrl(this.id, 'banner/thumbnail');
+                return FileCacheService.getFileCacheImageUrl(this.id, 'banner/thumbnail');
             },
             genres: function () {
                 if (typeof this.imdb_info.genres === 'undefined') {
