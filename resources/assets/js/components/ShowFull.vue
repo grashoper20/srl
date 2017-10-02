@@ -173,8 +173,10 @@
         background: #555;
         border: 1px solid #111;
         color: white;
-        padding: 0 .25em;
-        margin: 0 .25em;
+        font-size: .8rem;
+        padding: .2rem .25rem;
+        margin-right: .5em;
+        text-shadow: 1px 1px #000;
     }
 
     .show-full--head {
