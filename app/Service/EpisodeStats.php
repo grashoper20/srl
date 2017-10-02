@@ -60,7 +60,6 @@ class EpisodeStats
             ->where('airdate', '>', 1)
             ->whereIn('status', $status_snatched)
             ->groupBy('showid')
-            ->get()
             ->pluck('snatched', 'showid');
         $downloaded = \DB::table('tv_episodes')
             ->selectRaw('showid, COUNT(episode_id) as downloaded')
@@ -68,7 +67,6 @@ class EpisodeStats
             ->where('airdate', '>', 1)
             ->where($downloaded_where)
             ->groupBy('showid')
-            ->get()
             ->pluck('downloaded', 'showid');
         $totals = \DB::table('tv_episodes')
             ->selectRaw('showid, COUNT(episode_id) as total')
@@ -103,26 +101,22 @@ class EpisodeStats
                 }
             )
             ->groupBy('showid')
-            ->get()
             ->pluck('total', 'showid');
         $next_airs = \DB::table('tv_episodes')
             ->selectRaw('showid, MIN(airdate) as next_air')
             ->where('airdate', '>=', Carbon::today())
             ->whereIn('status', [Status::UNAIRED, Status::WANTED])
             ->groupBy('showid')
-            ->get()
             ->pluck('next_air', 'showid');
         $previous_airs = \DB::table('tv_episodes')
             ->selectRaw('showid, MAX(airdate) as previous_air')
             ->where('airdate', '>', 1)
             ->where('status', '<>', Status::UNAIRED)
             ->groupBy('showid')
-            ->get()
             ->pluck('previous_air', 'showid');
         $show_sizes = \DB::table('tv_episodes')
             ->selectRaw('showid, SUM(file_size) as show_size')
             ->groupBy('showid')
-            ->get()
             ->pluck('show_size', 'showid');
 
         $show_stats = \DB::table('tv_shows')
