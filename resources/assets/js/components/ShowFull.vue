@@ -62,7 +62,7 @@
             errors: [],
         }),
         created() {
-            this.id = this.$route.params.id;
+            this.id = parseInt(this.$route.params.id);
             axios.get('/api/show/' + this.id + '/episodes')
                 .then(response => {
                     this.episodes = response.data;
@@ -77,7 +77,7 @@
                 .catch(e => {
                     this.errors.push(e)
                 });
-            this.$store.dispatch('shows/find', this.id)
+            this.$store.dispatch('shows/find', this.id);
         },
         computed: {
             ...mapGetters('shows', [
