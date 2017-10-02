@@ -9,7 +9,7 @@
         <div class="collapse navbar-collapse" id="mainNavbar">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <router-link :to="{name: 'show_list'}" class="nav-link">List shows</router-link>
+                    <router-link :to="{name: 'show_list'}" class="nav-link">Shows</router-link>
                 </li>
                 <li class="nav-item">
                     <router-link to="/schedule" class="nav-link">Schedule</router-link>
