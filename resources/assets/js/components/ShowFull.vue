@@ -8,7 +8,7 @@
                 </div>
             </header>
             <div class="row">
-                <div class="col">
+                <div class="col d-lg-block d-none col-3">
                     <img v-on:click="showModal" class="show-full--poster-thumb" :src="posterThumbnail"/>
                     <modal name="full-poster" :height="'100%'">
                         <div class="show-full--poster" :style="{backgroundImage: 'url(' + poster + ')'}">
@@ -16,8 +16,11 @@
                         </div>
                     </modal>
                 </div>
-                <div class="show-full--info col-9">
-                    <header class="show-full--info-header">
+                <div class="d-lg-none">
+                    <img class="show-full--banner" :src="banner"/>
+                </div>
+                <div class="show-full--info col">
+                    <header class="show-full--info-header row">
                         <div>
                             <div>
                                 {{imdb_info.rating}} {{imdb_info.countries}} ({{imdb_info.year}}) - {{imdb_info.runtimes}} minutes
@@ -26,12 +29,9 @@
                                 <div class="show-full--genre" v-for="genre in genres">{{genre}}</div>
                             </div>
                         </div>
-                        <img style="max-height: 50px; border: 1px solid black;" :src="bannerThumbnail"/>
+                        <img class="show-full--banner-thumb d-none d-lg-block" :src="bannerThumbnail"/>
                     </header>
-                    <div class="show-full--details row" style="height: 200px">
-                        <div class="col-8">first details</div>
-                        <div class="col-4">second details</div>
-                    </div>
+                    <show-details v-bind:show="show"></show-details>
                 </div>
             </div>
             <div class="show-full--episode-list">
@@ -47,11 +47,13 @@
     import axios from 'axios'
     import FileCacheService from '../services/FileCacheService';
     import EpisodeList from './ShowEpisodeList.vue';
+    import ShowFullDetails from './ShowFull-Details.vue';
     import {mapGetters} from 'vuex';
 
     export default {
         components: {
             'episode-list': EpisodeList,
+            'show-details': ShowFullDetails,
         },
         data: () => ({
             id: 0,
@@ -155,6 +157,16 @@
         }
     }
 
+    .show-full--banner-thumb {
+        max-height: 50px;
+        border: 1px solid black;
+    }
+
+    .show-full--banner {
+        width: 100%;
+        border: 1px solid black;
+    }
+
     .show-full--genre {
         display: inline-block;
         border-radius: 3px;
@@ -192,11 +204,7 @@
         .show-full--info-header {
             display: flex;
             justify-content: space-between;
-        }
-        .show-full--details {
-            margin: .25rem 0;
-            padding: .5rem;
-            background: #efefef;
+            padding-bottom: 5px;
         }
     }
 
