@@ -25,5 +25,13 @@ const app = new Vue({
             this.$store.dispatch('shows/sync');
             console.log('running poller');
         }, 60000);
+        // Preload show list.
+        setTimeout(() => {
+            // This check will show false positive if there is only one show
+            // but the fetch will be cheap so not sure it matters.
+            if (this.$store.state.shows.list.length <= 1) {
+                this.$store.dispatch('shows/sync');
+            }
+        }, 1000);
     }
 }).$mount('#app');
