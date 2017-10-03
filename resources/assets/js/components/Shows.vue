@@ -8,7 +8,7 @@
                 <label for="search-sort">Sort</label>
                 <select class="form-control" id="search-sort" v-model="sortField">
                     <option value="show_name">Name</option>
-                    <option value="air_by_date">Next Episode</option>
+                    <option value="show_name">Next Episode</option>
                     <option value="network">Network</option>
                     <option value="progress">Progress</option>
                 </select>
@@ -66,10 +66,7 @@
             sortField: 'show_name',
             sortDescending: 1,
             errors: [],
-            fuse_options: {},
-        }),
-        created() {
-            this.fuse_options = {
+            fuse_options: {
                 shouldSort: true,
                 threshold: 0.2,
                 location: 0,
@@ -79,17 +76,17 @@
                 keys: [
                     'show_name',
                 ]
-            };
-        },
+            },
+        }),
         mounted() {
             this.$store.dispatch('shows/sync');
         },
         computed: {
             anime() {
-                return this.filterShows(this.getAnime);
+                return this.filterShows(this.getAnime.slice(), this.search, this.sortField, this.sortDescending);
             },
             shows() {
-                return this.filterShows(this.getShows);
+                return this.filterShows(this.getShows.slice(), this.search, this.sortField, this.sortDescending);
             },
             ...mapGetters('shows', [
                 'getAnime',
@@ -97,12 +94,12 @@
             ]),
         },
         methods: {
-            filterShows(list) {
-                if (this.search) {
+            filterShows(list, search, sortField, direction) {
+                if (search) {
                     return (new fuse(list, this.fuse_options))
-                        .search(this.search);
+                        .search(search);
                 }
-                return this.sortHelper(list, this.sortField, this.sortDescending - 1);
+                return this.sortHelper(list, sortField, direction - 1);
             },
             debounceInput: _.debounce(function (e) {
                 this.search = e.target.value.trim();
@@ -115,19 +112,16 @@
                     });
                     return list.sort(function (a, b) {
                         let comp_strings = [];
+                        // Stringify.
                         [a[field], b[field]].forEach((x) => {
-                            if (typeof x === 'undefined' || x === null) {
-                                x = '';
-                            }
-                            comp_strings.push(x.toString());
+                            comp_strings.push((typeof x === 'undefined' || x === null)
+                                ? ''
+                                : x.toString());
                         });
-
+                        // Compare.
                         let comparison = comp_strings[0]
-                            .localeCompare(comp_strings[1]);
-                        if (comparison === 0 && field !== 'show_name') {
-                            comparison = a.show_name
-                                .localeCompare(b.show_name, {numeric: isNumber});
-                        }
+                            .localeCompare(comp_strings[1], {numeric: isNumber});
+                        // Apply direction.
                         return (descending ? comparison * -1 : comparison);
                     });
                 }

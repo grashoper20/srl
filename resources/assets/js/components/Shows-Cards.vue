@@ -14,7 +14,7 @@
             'show': Show,
         },
         props: [
-            'shows'
+            'shows',
         ],
     };
 </script>
