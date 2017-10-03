@@ -111,14 +111,4 @@ class TvEpisodeController extends Controller
         );
     }
 
-    public function statsIndex()
-    {
-        return response()->json(array_values($this->stats->getAllStats()));
-    }
-
-    public function statsByShow(tv_show $show)
-    {
-        return response()->json($this->stats->getStat($show->indexer_id));
-    }
-
 }

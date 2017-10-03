@@ -50,9 +50,6 @@
                 // TODO calculate actual air date and fallback on status.
                 return this.show.status;
             },
-            ...mapGetters('stats', [
-                'getById',
-            ]),
         },
     }
 </script>
