@@ -98,7 +98,6 @@
                 return status
                     ? '✔'
                     : '✘';
-                return status;
             }
         }
 

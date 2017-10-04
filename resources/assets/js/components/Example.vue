@@ -8,6 +8,7 @@
                     <div class="panel-body">
                         Placeholder content for pages that haven't been created yet.
                     </div>
+                    <slot></slot>
                 </div>
             </div>
         </div>

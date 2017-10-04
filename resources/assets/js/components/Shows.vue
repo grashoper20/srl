@@ -13,14 +13,15 @@
                     <option value="progress">Progress</option>
                 </select>
                 <label for="search-layout">Layout</label>
-                <select class="form-control" id="search-layout">
+                <select class="form-control" id="search-layout" :value="showLayout" @input="updateShowLayout">
                     <option value="1">Poster</option>
                     <option value="2">Small poster</option>
                     <option value="3">Banner</option>
-                    <option value="3">Simple</option>
+                    <option value="4">Simple</option>
                 </select>
                 <label for="search-direction">Direction</label>
-                <select class="form-control" id="search-direction" :value="sortDescending" @input="updateSortDescending">
+                <select class="form-control" id="search-direction" :value="sortDescending"
+                        @input="updateSortDescending">
                     <option value="1">Asc</option>
                     <option value="2">Desc</option>
                 </select>
@@ -35,11 +36,17 @@
         </header>
         <div class="shows" v-if="shows && shows.length && showType != 3">
             <h2>Shows</h2>
-            <show-cards v-bind:shows="shows"></show-cards>
+            <show-cards v-if="showLayout == 1" v-bind:shows="shows"></show-cards>
+            <small-poster v-if="showLayout == 2">small-poster</small-poster>
+            <banner v-if="showLayout == 3">banner</banner>
+            <simple v-if="showLayout == 4">simple</simple>
         </div>
         <div class="shows" v-if="anime && anime.length && showType != 2">
             <h2>Anime</h2>
-            <show-cards v-bind:shows="anime"></show-cards>
+            <show-cards v-if="showLayout == 1" v-bind:shows="anime"></show-cards>
+            <small-poster v-if="showLayout == 2">small-poster</small-poster>
+            <banner v-if="showLayout == 3">banner</banner>
+            <simple v-if="showLayout == 4">simple</simple>
         </div>
         <ul v-if="errors && errors.length">
             <li v-for="error in errors">
@@ -54,11 +61,15 @@
     import * as _ from 'lodash';
     import {mapGetters, mapMutations} from 'vuex';
     import ShowCards from './Shows-Cards.vue';
+    import Fallback from './Example.vue';
     import jQuery from 'jquery';
 
     export default {
         components: {
             'show-cards': ShowCards,
+            'small-poster': Fallback,
+            'banner': Fallback,
+            'simple': Fallback,
         },
         data: () => ({
             search: '',
@@ -96,6 +107,10 @@
             sortDescending() {
                 return this.$store.state.settings.settings['sortDescending'] || 1;
             },
+            showLayout() {
+                console.log(this.$store.state.settings.settings['showLayout']);
+                return this.$store.state.settings.settings['showLayout'] || 1;
+            }
         },
         methods: {
             updateSortField(e) {
@@ -107,6 +122,12 @@
             updateSortDescending(e) {
                 this.setSetting({
                     key: 'sortDescending',
+                    value: e.target.value,
+                });
+            },
+            updateShowLayout(e) {
+                this.setSetting({
+                    key: 'showLayout',
                     value: e.target.value,
                 });
             },
