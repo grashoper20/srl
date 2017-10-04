@@ -6,7 +6,7 @@
                 <input class="form-control" id="show-search" type="search" v-on:input="debounceInput"
                        placeholder="Search">
                 <label for="search-sort">Sort</label>
-                <select class="form-control" id="search-sort" v-model="sortField">
+                <select class="form-control" id="search-sort" :value="sortField" @input="updateSortField">
                     <option value="show_name">Name</option>
                     <option value="show_name">Next Episode</option>
                     <option value="network">Network</option>
@@ -20,7 +20,7 @@
                     <option value="3">Simple</option>
                 </select>
                 <label for="search-direction">Direction</label>
-                <select class="form-control" id="search-direction" v-model="sortDescending">
+                <select class="form-control" id="search-direction" :value="sortDescending" @input="updateSortDescending">
                     <option value="1">Asc</option>
                     <option value="2">Desc</option>
                 </select>
@@ -52,7 +52,7 @@
 <script>
     import fuse from 'fuse.js';
     import * as _ from 'lodash';
-    import {mapGetters} from 'vuex';
+    import {mapGetters, mapMutations} from 'vuex';
     import ShowCards from './Shows-Cards.vue';
     import jQuery from 'jquery';
 
@@ -63,8 +63,6 @@
         data: () => ({
             search: '',
             showType: 1,
-            sortField: 'show_name',
-            sortDescending: 1,
             errors: [],
             fuse_options: {
                 shouldSort: true,
@@ -92,8 +90,29 @@
                 'getAnime',
                 'getShows',
             ]),
+            sortField() {
+                return this.$store.state.settings.settings['sortField'] || 'show_name';
+            },
+            sortDescending() {
+                return this.$store.state.settings.settings['sortDescending'] || 1;
+            },
         },
         methods: {
+            updateSortField(e) {
+                this.setSetting({
+                    key: 'sortField',
+                    value: e.target.value,
+                });
+            },
+            updateSortDescending(e) {
+                this.setSetting({
+                    key: 'sortDescending',
+                    value: e.target.value,
+                });
+            },
+            ...mapMutations('settings', {
+                setSetting: 'set',
+            }),
             filterShows(list, search, sortField, direction) {
                 if (search) {
                     return (new fuse(list, this.fuse_options))

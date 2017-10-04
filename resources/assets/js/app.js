@@ -33,5 +33,6 @@ const app = new Vue({
                 this.$store.dispatch('shows/sync');
             }
         }, 1000);
+        this.$store.dispatch('settings/syncFromStorage');
     }
 }).$mount('#app');
