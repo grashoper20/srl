@@ -12,7 +12,7 @@
                     <router-link :to="{name: 'show_list'}" class="nav-link">Shows</router-link>
                 </li>
                 <li class="nav-item">
-                    <router-link to="/schedule" class="nav-link">Schedule</router-link>
+                    <router-link :to="{name: 'schedule'}" class="nav-link">Schedule</router-link>
                 </li>
                 <li class="nav-item">
                     <router-link to="/history" class="nav-link">History</router-link>

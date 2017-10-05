@@ -7,6 +7,7 @@ Vue.use(VueRouter);
 import Shows from '../components/Shows.vue';
 import ShowsAdd from '../components/ShowsAdd.vue';
 import ShowFull from '../components/ShowFull.vue';
+import Schedule from '../components/Schedule.vue';
 import Default from '../components/Example.vue';
 import NotFound from '../components/NotFound.vue';
 
@@ -14,7 +15,7 @@ export default new VueRouter({
     mode: 'history',
     base: window.srl.settings.basePath,
     routes: [
-        { path: '*', component: NotFound },
+        {path: '*', component: NotFound},
         {
             path: '/',
             component: Shows, // TODO redirect to shows?
@@ -35,7 +36,11 @@ export default new VueRouter({
             component: ShowFull,
             name: 'show',
         },
-        {path: '/schedule', component: Default},
+        {
+            path: '/schedule',
+            component: Schedule,
+            name: 'schedule',
+        },
         {path: '/history', component: Default},
         // TODO Mass update, backlog overview, search, and episode management are probably just one page.
         {
