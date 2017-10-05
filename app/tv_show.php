@@ -132,4 +132,8 @@ class tv_show extends Model
         return $stats_service;
     }
 
+    public function episodes() {
+        return $this->hasMany(tv_episode::class, 'showid');
+    }
+
 }

@@ -111,4 +111,10 @@ class tv_episode extends Model
         return Date::ordinalFromDate($value);
     }
 
+    public function show() {
+        // Show ID is the show indexer id not the show id and indexer_id is the
+        // episode indexer id. Confusing but its the way things are.
+        return $this->belongsTo(tv_show::class, 'showid');
+    }
+
 }

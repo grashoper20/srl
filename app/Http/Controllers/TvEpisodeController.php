@@ -29,10 +29,6 @@ class TvEpisodeController extends Controller
     public function index()
     {
         $episodes = tv_episode::all();
-        $episodes->each(function ($episode) {
-            $this->processEpisode($episode);
-        });
-
         return response()->json($episodes);
     }
 
@@ -104,10 +100,8 @@ class TvEpisodeController extends Controller
 
     public function indexByShow(tv_show $show)
     {
-        // Show ID is the show indexer id not the show id and indexer_id is the
-        // episode indexer id. Confusing but its the way things are.
         return response()->json(
-            tv_episode::whereShowid($show->indexer_id)->get()
+            $show->episodes()->get()
         );
     }
 
