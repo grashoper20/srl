@@ -26,3 +26,28 @@ html, body {
     display: block;
   }
 }
+
+.status-unaired {
+  background-color: #F5F1E4;
+}
+
+.status-good {
+  background-color: #C3E3C8;
+}
+
+.status-qual {
+  background-color: #FFDA8A;
+}
+
+.status-skipped {
+  background-color: #BEDEED;
+}
+
+.status-wanted {
+  background-color: #FFB0B0;
+}
+
+.status-snatched {
+  background-color: #EBC1EA;
+}
+
