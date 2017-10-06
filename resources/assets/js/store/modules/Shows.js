@@ -1,4 +1,4 @@
-import axios from 'axios';
+import api from '../../api';
 
 export default {
     namespaced: true,
@@ -15,7 +15,7 @@ export default {
     },
     actions: {
         sync({commit}) {
-            axios.get('/api/show')
+            api.show.getShows()
                 .then(response => {
                     commit('set', response.data);
                 })
@@ -30,7 +30,7 @@ export default {
                     console.log('cached load');
                     resolve(show);
                 } else {
-                    axios.get('/api/show/' + id)
+                    api.show.getShow(id)
                         .then(response => {
                             let show = response.data;
                             commit('push', show);

@@ -44,7 +44,7 @@
 </template>
 
 <script>
-    import axios from 'axios'
+    import api from '../api';
     import FileCacheService from '../services/FileCacheService';
     import EpisodeList from './ShowEpisodeList.vue';
     import ShowFullDetails from './ShowFull-Details.vue';
@@ -63,14 +63,14 @@
         }),
         created() {
             this.id = parseInt(this.$route.params.id);
-            axios.get('/api/show/' + this.id + '/episodes')
+            api.show.getEpisodes(this.id)
                 .then(response => {
                     this.episodes = response.data;
                 })
                 .catch(e => {
                     this.errors.push(e)
                 });
-            axios.get('/api/imdb/' + this.id)
+            api.imdb.getShow(this.id)
                 .then(response => {
                     this.imdb_info = response.data;
                 })
