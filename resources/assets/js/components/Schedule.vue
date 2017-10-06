@@ -40,7 +40,7 @@
 </template>
 
 <script>
-    import axios from 'axios';
+    import api from '../api';
     import moment from 'moment';
 
     export default {
@@ -50,9 +50,10 @@
             };
         },
         mounted() {
-            axios.get('api/schedule').then(response => {
-                this.episodes = response.data.data;
-            });
+            api.schedule.getEpisodes()
+                .then(response => {
+                    this.episodes = response.data.data;
+                });
         },
         methods: {
             airdateFormat(date) {
