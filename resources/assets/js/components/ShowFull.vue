@@ -9,15 +9,15 @@
             </header>
             <div class="row">
                 <div class="col d-lg-block d-none col-3">
-                    <img v-on:click="showModal" class="show-full--poster-thumb" :src="posterThumbnail"/>
+                    <img v-on:click="showModal" class="show-full--poster-thumb" :src="getPosterThumbnail(id)"/>
                     <modal name="full-poster" :height="'100%'">
-                        <div class="show-full--poster" :style="{backgroundImage: 'url(' + poster + ')'}">
+                        <div class="show-full--poster" :style="{backgroundImage: 'url(' + getPoster(id) + ')'}">
                             <button @click="$modal.hide('full-poster')">❌</button>
                         </div>
                     </modal>
                 </div>
                 <div class="d-lg-none">
-                    <img class="show-full--banner" :src="banner"/>
+                    <img class="show-full--banner" :src="getBanner(id)"/>
                 </div>
                 <div class="show-full--info col">
                     <header class="show-full--info-header row">
@@ -29,7 +29,7 @@
                                 <div class="show-full--genre" v-for="genre in genres">{{genre}}</div>
                             </div>
                         </div>
-                        <img class="show-full--banner-thumb d-none d-lg-block" :src="bannerThumbnail"/>
+                        <img class="show-full--banner-thumb d-none d-lg-block" :src="getBannerThumbnail(id)"/>
                     </header>
                     <show-details v-bind:show="show"></show-details>
                 </div>
@@ -39,13 +39,13 @@
                 <episode-list v-bind:seasons="orderedEpisodeList"></episode-list>
             </div>
         </div>
-        <div class="show-full--backdrop" :style="{backgroundImage: 'url(' + getBackgroundImage + ')'}"></div>
+        <div class="show-full--backdrop" :style="{backgroundImage: 'url(' + getFanArt(id) + ')'}"></div>
     </div>
 </template>
 
 <script>
     import api from '../api';
-    import FileCacheService from '../services/FileCacheService';
+    import FileCache from '../mixins/FileCache';
     import EpisodeList from './ShowEpisodeList.vue';
     import ShowFullDetails from './ShowFull-Details.vue';
     import {mapGetters} from 'vuex';
@@ -83,21 +83,6 @@
             ...mapGetters('shows', [
                 'getShowById'
             ]),
-            getBackgroundImage: function () {
-                return FileCacheService.getFileCacheImageUrl(this.id, 'fanart');
-            },
-            poster: function () {
-                return FileCacheService.getFileCacheImageUrl(this.id, 'poster');
-            },
-            posterThumbnail: function () {
-                return FileCacheService.getFileCacheImageUrl(this.id, 'poster/thumbnail');
-            },
-            banner: function () {
-                return FileCacheService.getFileCacheImageUrl(this.id, 'banner');
-            },
-            bannerThumbnail: function () {
-                return FileCacheService.getFileCacheImageUrl(this.id, 'banner/thumbnail');
-            },
             genres: function () {
                 if (typeof this.imdb_info.genres === 'undefined') {
                     return [];
@@ -121,6 +106,7 @@
                 return episodes.slice().reverse().filter(ep => typeof ep !== 'undefined');
             },
         },
+        mixins: [FileCache,],
         methods: {
             seasonName(season) {
                 return season[0].season || 'Specials';

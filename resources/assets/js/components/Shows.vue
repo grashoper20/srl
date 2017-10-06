@@ -57,11 +57,12 @@
 </template>
 
 <script>
+    import Fallback from './Example.vue';
+    import FileCache from '../mixins/FileCache';
+    import ShowCards from './Shows-Cards.vue';
     import fuse from 'fuse.js';
     import * as _ from 'lodash';
     import {mapGetters, mapMutations} from 'vuex';
-    import ShowCards from './Shows-Cards.vue';
-    import Fallback from './Example.vue';
     import jQuery from 'jquery';
 
     export default {
@@ -108,10 +109,10 @@
                 return this.$store.state.settings.settings['sortDescending'] || 1;
             },
             showLayout() {
-                console.log(this.$store.state.settings.settings['showLayout']);
                 return this.$store.state.settings.settings['showLayout'] || 1;
             }
         },
+        mixins: [FileCache,],
         methods: {
             updateSortField(e) {
                 this.setSetting({

@@ -2,7 +2,7 @@
     <div class="show--wrapper">
         <div class="show--image">
             <router-link :to="{name: 'show', params: {id: show.indexer_id}}">
-                <img v-bind:src="poster"/>
+                <img :src="getPosterThumbnail(show.indexer_id)"/>
             </router-link>
         </div>
         <div class="show--progress">
@@ -20,7 +20,7 @@
 
 <script>
 
-    import FileCacheService from '../services/FileCacheService';
+    import FileCache from '../mixins/FileCache';
     import {mapGetters} from 'vuex'
 
     export default {
@@ -43,14 +43,12 @@
                 // TODO Figure out how to do this in a legit way.
                 return this.show.network;
             },
-            poster() {
-                return FileCacheService.getFileCacheImageUrl(this.show.indexer_id, 'poster/thumbnail');
-            },
             airDate() {
                 // TODO calculate actual air date and fallback on status.
                 return this.show.status;
             },
         },
+        mixins: [FileCache,],
     }
 </script>
 
