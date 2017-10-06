@@ -24,12 +24,11 @@ class TvEpisodeController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \SRL\tv_episode[]
      */
     public function index()
     {
-        $episodes = tv_episode::all();
-        return response()->json($episodes);
+        return tv_episode::all();
     }
 
     /**
@@ -57,11 +56,11 @@ class TvEpisodeController extends Controller
      * Display the specified resource.
      *
      * @param  \SRL\tv_episode $episode
-     * @return \Illuminate\Http\Response
+     * @return \SRL\tv_episode
      */
     public function show(tv_episode $episode)
     {
-        return response()->json($episode);
+        return $episode;
     }
 
     /**
@@ -100,9 +99,7 @@ class TvEpisodeController extends Controller
 
     public function indexByShow(tv_show $show)
     {
-        return response()->json(
-            $show->episodes()->get()
-        );
+        return $show->episodes()->get();
     }
 
 }

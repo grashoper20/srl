@@ -10,11 +10,11 @@ class ImdbInfoController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \SRL\imdb_info[]
      */
     public function index()
     {
-        return response()->json(imdb_info::all());
+        return imdb_info::all();
     }
 
     /**
@@ -42,11 +42,11 @@ class ImdbInfoController extends Controller
      * Display the specified resource.
      *
      * @param  \SRL\imdb_info $imdb
-     * @return \Illuminate\Http\Response
+     * @return \SRL\imdb_info
      */
     public function show(imdb_info $imdb)
     {
-        return response()->json($imdb);
+        return $imdb;
     }
 
     /**

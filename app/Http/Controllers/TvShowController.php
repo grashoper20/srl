@@ -23,11 +23,11 @@ class TvShowController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \SRL\tv_show[]
      */
     public function index()
     {
-        return response()->json(tv_show::all());
+        return tv_show::all();
     }
 
     /**
@@ -55,11 +55,11 @@ class TvShowController extends Controller
      * Display the specified resource.
      *
      * @param  \SRL\tv_show $show
-     * @return \Illuminate\Http\Response
+     * @return \SRL\tv_show
      */
     public function show(tv_show $show)
     {
-        return response()->json($show);
+        return $show;
     }
 
     /**
