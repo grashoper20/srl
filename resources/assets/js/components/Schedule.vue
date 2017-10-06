@@ -1,5 +1,5 @@
 <template>
-    <div id="schedule" class="container">
+    <div id="schedule" class="container schedule">
         <header class="schedule--search">
             <h1>Schedule</h1>
             <div class="form-inline ">
@@ -30,10 +30,17 @@
         </header>
 
         <table>
-            <tr v-for="episode in episodes">
+            <thead>
+                <th>Airs</th>
+                <th>Show</th>
+                <th>Episode</th>
+                <th>Episode Name</th>
+            </thead>
+            <tr v-for="episode in episodes" :class="statusClass(episode.status)">
                 <td>{{airdateFormat(episode.airdate)}}</td>
-                <td>{{episode.name}}</td>
                 <td>{{episode.show.show_name}}</td>
+                <td>S{{episode.season}}E{{episode.episode}}</td>
+                <td>{{episode.name}}</td>
             </tr>
         </table>
     </div>
@@ -41,6 +48,7 @@
 
 <script>
     import api from '../api';
+    import StatusMixin from '../mixins/Status';
     import moment from 'moment';
 
     export default {
@@ -55,6 +63,7 @@
                     this.episodes = response.data.data;
                 });
         },
+        mixins: [StatusMixin],
         methods: {
             airdateFormat(date) {
                 return moment(date).format('YYYY-MM-DD h:mm:ss a');
@@ -72,4 +81,22 @@
     .form-inline label {
         padding: 0 5px;
     }
+
+    .schedule {
+        table {
+            width: 100%;
+            background-color: #ddd;
+        }
+        th, td {
+            border: 1px solid white;
+            white-space: nowrap;
+            text-align: center;
+            padding: .25rem .75rem;
+        }
+        th {
+            padding-bottom: .1rem;
+        }
+
+    }
+
 </style>
