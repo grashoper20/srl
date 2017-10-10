@@ -29,27 +29,13 @@
             </div>
         </header>
 
-        <table>
-            <thead>
-                <th>Airs</th>
-                <th>Show</th>
-                <th>Episode</th>
-                <th>Episode Name</th>
-            </thead>
-            <tr v-for="episode in episodes" :class="statusClass(episode.status)">
-                <td>{{airdateFormat(episode.airdate)}}</td>
-                <td>{{episode.show.show_name}}</td>
-                <td>S{{episode.season}}E{{episode.episode}}</td>
-                <td>{{episode.name}}</td>
-            </tr>
-        </table>
+        <schedule-list :episodes="episodes"></schedule-list>
     </div>
 </template>
 
 <script>
     import api from '../api';
-    import StatusMixin from '../mixins/Status';
-    import moment from 'moment';
+    import ScheduleList from './Schedule--List';
 
     export default {
         data() {
@@ -57,18 +43,16 @@
                 episodes: [],
             };
         },
+        components: {
+            ScheduleList,
+            'schedule-list': ScheduleList,
+        },
         mounted() {
             api.schedule.getEpisodes()
                 .then(response => {
                     this.episodes = response.data.data;
                 });
         },
-        mixins: [StatusMixin],
-        methods: {
-            airdateFormat(date) {
-                return moment(date).format('YYYY-MM-DD h:mm:ss a');
-            }
-        }
     }
 </script>
 
