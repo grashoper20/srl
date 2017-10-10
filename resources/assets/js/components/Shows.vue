@@ -6,21 +6,21 @@
                 <input class="form-control" id="show-search" type="search" v-on:input="debounceInput"
                        placeholder="Search">
                 <label for="search-sort">Sort</label>
-                <select class="form-control" id="search-sort" :value="sortField" @input="updateSortField">
+                <select class="form-control" id="search-sort" :value="getShowSortField" @input="updateSortField">
                     <option value="show_name">Name</option>
                     <option value="show_name">Next Episode</option>
                     <option value="network">Network</option>
                     <option value="progress">Progress</option>
                 </select>
                 <label for="search-layout">Layout</label>
-                <select class="form-control" id="search-layout" :value="showLayout" @input="updateShowLayout">
+                <select class="form-control" id="search-layout" :value="getShowLayout" @input="updateShowLayout">
                     <option value="1">Poster</option>
                     <option value="2">Small poster</option>
                     <option value="3">Banner</option>
                     <option value="4">Simple</option>
                 </select>
                 <label for="search-direction">Direction</label>
-                <select class="form-control" id="search-direction" :value="sortDescending"
+                <select class="form-control" id="search-direction" :value="getShowSortDescending"
                         @input="updateSortDescending">
                     <option value="1">Asc</option>
                     <option value="2">Desc</option>
@@ -36,17 +36,17 @@
         </header>
         <div class="shows" v-if="shows && shows.length && showType != 3">
             <h2>Shows</h2>
-            <show-cards v-if="showLayout == 1" v-bind:shows="shows"></show-cards>
-            <small-poster v-if="showLayout == 2">small-poster</small-poster>
-            <banner v-if="showLayout == 3">banner</banner>
-            <simple v-if="showLayout == 4">simple</simple>
+            <show-cards v-if="getShowLayout == 1" v-bind:shows="shows"></show-cards>
+            <small-poster v-else-if="getShowLayout == 2">small-poster</small-poster>
+            <banner v-else-if="getShowLayout == 3">banner</banner>
+            <simple v-else-if="getShowLayout == 4">simple</simple>
         </div>
         <div class="shows" v-if="anime && anime.length && showType != 2">
             <h2>Anime</h2>
-            <show-cards v-if="showLayout == 1" v-bind:shows="anime"></show-cards>
-            <small-poster v-if="showLayout == 2">small-poster</small-poster>
-            <banner v-if="showLayout == 3">banner</banner>
-            <simple v-if="showLayout == 4">simple</simple>
+            <show-cards v-if="getShowLayout == 1" v-bind:shows="anime"></show-cards>
+            <small-poster v-else-if="getShowLayout == 2">small-poster</small-poster>
+            <banner v-else-if="getShowLayout == 3">banner</banner>
+            <simple v-else-if="getShowLayout == 4">simple</simple>
         </div>
         <ul v-if="errors && errors.length">
             <li v-for="error in errors">
@@ -93,24 +93,20 @@
         },
         computed: {
             anime() {
-                return this.filterShows(this.getAnime.slice(), this.search, this.sortField, this.sortDescending);
+                return this.filterShows(this.getAnime.slice(), this.search, this.getShowSortField, this.getShowSortDescending);
             },
             shows() {
-                return this.filterShows(this.getShows.slice(), this.search, this.sortField, this.sortDescending);
+                return this.filterShows(this.getShows.slice(), this.search, this.getShowSortField, this.getShowSortDescending);
             },
             ...mapGetters('shows', [
                 'getAnime',
                 'getShows',
             ]),
-            sortField() {
-                return this.$store.state.settings.settings['sortField'] || 'show_name';
-            },
-            sortDescending() {
-                return this.$store.state.settings.settings['sortDescending'] || 1;
-            },
-            showLayout() {
-                return this.$store.state.settings.settings['showLayout'] || 1;
-            }
+            ...mapGetters('settings', [
+                'getShowSortField',
+                'getShowSortDescending',
+                'getShowLayout',
+            ]),
         },
         mixins: [FileCache,],
         methods: {
@@ -133,9 +129,11 @@
                 });
             },
             ...mapMutations('settings', {
-                setSetting: 'set',
+                setSetting: 'setShowSetting',
             }),
             filterShows(list, search, sortField, direction) {
+                sortField = sortField || 'show_name';
+                direction = direction || 1;
                 if (search) {
                     return (new fuse(list, this.fuse_options))
                         .search(search);

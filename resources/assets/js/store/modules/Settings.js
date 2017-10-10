@@ -1,29 +1,46 @@
+import Vue from 'vue';
+import * as _ from 'lodash';
+
+const showSettingsDefaults = {
+    sortField: 'show_name',
+    sortDescending: 1,
+    showLayout: 1,
+};
 
 export default {
     namespaced: true,
     state: {
-        settings: {}
+        showSettings: {}
     },
     mutations: {
-        set(state, payload) {
-            state.settings[payload.key] = payload.value;
-            localStorage.setItem('srlSettings', JSON.stringify(state.settings));
+        setShowSetting(state, payload) {
+            state.showSettings[payload.key] = payload.value;
+            Vue.localStorage.set('srlSettings', state.showSettings);
         },
-        setAll(state, payload) {
-            state.settings = payload;
+        setShowSettings(state, payload) {
+            state.showSettings = payload;
         },
     },
     actions: {
-        syncFromStorage({commit}) {
-            let localSettings = localStorage.getItem('srlSettings');
-            if (localSettings) {
-                commit('setAll', JSON.parse(localSettings));
-            }
+        init({commit}) {
+            Vue.localStorage.addProperty('srlSettings', Object, showSettingsDefaults);
+            // Ensure new properties get default values.
+            let settings = _.extend(showSettingsDefaults, Vue.localStorage.get('srlSettings'));
+            commit('setShowSettings', settings);
         },
     },
     getters: {
-        getSetting: (state) => (key) => {
-            return state.settings[key];
+        getShowSetting: (state) => (key) => {
+            return state.showSettings[key];
+        },
+        getShowSortField: (state, getters) => {
+            return getters.getShowSetting('sortField');
+        },
+        getShowSortDescending: (state, getters) => {
+            return getters.getShowSetting('sortDescending');
+        },
+        getShowLayout: (state, getters) => {
+            return getters.getShowSetting('showLayout');
         },
     },
 };
