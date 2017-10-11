@@ -57,8 +57,7 @@
 <style lang="scss">
     // Variables
     @import "../../sass/variables";
-    // Bootstrap
-    @import "~bootstrap/scss/bootstrap";
+    @import "../../sass/helper";
 
     @include media-breakpoint-down(md) {
         .episode--nfo,
