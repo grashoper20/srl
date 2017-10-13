@@ -100,7 +100,7 @@
 
     .show-full-details {
         min-height: 200px;
-        margin: .25rem 0;
+        margin-top: .25rem;
         padding: .5rem;
         background: $background-off-white;
         font-size: .9rem;
