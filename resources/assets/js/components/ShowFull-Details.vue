@@ -23,7 +23,7 @@
             </div>
             <div class="show-full-details--detail">
                 <div class="show-full-details--detail-label">Size:</div>
-                <div class="show-full-details--detail-value">{{size}}</div>
+                <div class="show-full-details--detail-value">{{size | formatBytes }}</div>
             </div>
         </div>
         <div class="col-4">
@@ -71,29 +71,19 @@
     </div>
 </template>
 <script>
+    import Filters from '../filters';
+
     export default {
         props: [
             'show',
         ],
         computed: {
             size() {
-                let size = 0;
-                if (this.show.stats !== undefined) {
-                    size = this.show.stats.show_size;
-                }
-                return this.formatBytes(size);
+                return this.show.stats !== undefined ? this.show.stats.show_size : 0;
             }
         },
+        filters: Filters,
         methods: {
-            // https://stackoverflow.com/a/18650828.
-            formatBytes(bytes, decimals) {
-                if (bytes == 0) return '0 Bytes';
-                let k = 1024,
-                    dm = decimals || 2,
-                    sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'],
-                    i = Math.floor(Math.log(bytes) / Math.log(k));
-                return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
-            },
             formatStatus(status) {
                 return status
                     ? '✔'
@@ -104,11 +94,15 @@
     };
 </script>
 <style lang="scss">
+    // Variables
+    @import "../../sass/variables";
+    @import "../../sass/helper";
+
     .show-full-details {
         min-height: 200px;
         margin: .25rem 0;
         padding: .5rem;
-        background: #efefef;
+        background: $background-off-white;
         font-size: .9rem;
 
         display: table;
@@ -117,7 +111,7 @@
     .show-full-details--detail {
         display: table-row;
         &:nth-child(odd) {
-            background-color: #ccc;
+            background-color: $background-off-white-dark;
         }
     }
 

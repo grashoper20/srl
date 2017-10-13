@@ -9,7 +9,7 @@
         </tr>
         </thead>
         <tr v-for="episode in episodes" :class="statusClass(episode.status)">
-            <td>{{airdateFormat(episode.airdate)}}</td>
+            <td>{{episode.airdate | formatAirDate}}</td>
             <td>{{episode.show.show_name}}</td>
             <td>S{{episode.season}}E{{episode.episode}}</td>
             <td>{{episode.name}}</td>
@@ -19,6 +19,7 @@
 
 <script>
     import StatusMixin from '../mixins/Status';
+    import Filters from '../filters';
     import moment from 'moment';
 
     export default {
@@ -26,10 +27,6 @@
             'episodes'
         ],
         mixins: [StatusMixin],
-        methods: {
-            airdateFormat(date) {
-                return moment(date).format('YYYY-MM-DD h:mm:ss a');
-            }
-        },
+        filters: Filters,
     };
 </script>

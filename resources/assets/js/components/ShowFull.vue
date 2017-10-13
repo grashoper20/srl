@@ -118,6 +118,8 @@
     }
 </script>
 <style lang="scss">
+    @import "../../sass/variables";
+
     .show-full {
         .v--modal-overlay {
             background-color: rgba(0, 0, 0, .75);
@@ -168,7 +170,7 @@
     .show-full--head {
         display: flex;
         justify-content: space-between;
-        border-bottom: 1px solid #888;
+        border-bottom: 1px solid $border-dark-grey;
         padding-bottom: .5rem;
         margin-bottom: 1rem;
         h1 {

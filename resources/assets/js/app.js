@@ -37,5 +37,5 @@ const app = new Vue({
             }
         }, 1000);
         this.$store.dispatch('settings/init');
-    }
+    },
 }).$mount('#app');

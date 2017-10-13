@@ -20,38 +20,57 @@
                     <option value="shown">Shown</option>
                 </select>
                 <label for="search-layout">Layout</label>
-                <select class="form-control" id="search-layout">
-                    <option value="1">Poster</option>
-                    <option value="2">Calendar</option>
-                    <option value="3">Banner</option>
-                    <option value="4">List</option>
+                <select class="form-control" id="search-layout" :value="getScheduleLayout" @input="updateShowLayout">>
+                    <option value="1">Banner</option>
+                    <option value="2">Poster</option>
+                    <option value="3">List</option>
+                    <option value="4">Calendar</option>
                 </select>
             </div>
         </header>
 
-        <schedule-list :episodes="episodes"></schedule-list>
+        <schedule-banner v-if="getScheduleLayout == 1" :episodes="episodes"></schedule-banner>
+        <schedule-poster v-else-if="getScheduleLayout == 2" :episodes="episodes"></schedule-poster>
+        <schedule-list v-else-if="getScheduleLayout == 3" :episodes="episodes"></schedule-list>
+        <calendar v-else-if="getScheduleLayout == 4"></calendar>
     </div>
 </template>
 
 <script>
     import api from '../api';
+    import Fallback from './Example.vue';
+    import ScheduleBanner from './Schedule--Banner';
+    import SchedulePoster from './Schedule--Poster';
     import ScheduleList from './Schedule--List';
 
     export default {
         data() {
             return {
                 episodes: [],
+                layout: 1,
             };
         },
         components: {
-            ScheduleList,
+            'schedule-banner': ScheduleBanner,
+            'schedule-poster': SchedulePoster,
             'schedule-list': ScheduleList,
+            'calendar': Fallback,
         },
         mounted() {
             api.schedule.getEpisodes()
                 .then(response => {
                     this.episodes = response.data.data;
                 });
+        },
+        computed: {
+            getScheduleLayout() {
+                return this.layout;
+            },
+        },
+        methods: {
+            updateShowLayout(e) {
+                this.layout = e.target.value;
+            },
         },
     }
 </script>

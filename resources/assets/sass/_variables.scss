@@ -2,6 +2,11 @@
 $body-bg: #f5f8fa;
 $body-color: #000;
 
+$background-off-white: #efefef;
+$background-off-white-dark: #ccc;
+
+$border-dark-grey: #888;
+
 $font-weight-base: 100;
 
 $headings-color: #000;
@@ -15,6 +20,7 @@ $navbar-dark-hover-color: $navbar-dark-color;
 $navbar-dark-active-color: $navbar-dark-color;
 $navbar-padding-y: 0;
 $navbar-brand-padding-y: 0;
+
 //
 //// Borders
 //$laravel-border-color: darken($body-bg, 10%);

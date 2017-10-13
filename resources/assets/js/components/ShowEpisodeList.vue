@@ -76,7 +76,7 @@
     .episode_list {
         table {
             width: 100%;
-            background-color: #ddd;
+            background-color: $background-off-white-dark;
         }
         th, td {
             border: 1px solid white;
