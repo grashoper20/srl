@@ -104,8 +104,6 @@
         padding: .5rem;
         background: $background-off-white;
         font-size: .9rem;
-
-        display: table;
     }
 
     .show-full-details--detail {
