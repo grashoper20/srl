@@ -18,11 +18,17 @@ class FileCache
     ];
 
     public function getNetwork($id) {
+        $network = strip_tags($id);
+        $network = 'Fox';
         return response('
-<svg version="1.1" baseProfile="full" width="100" height="100" xmlns="http://www.w3.org/2000/svg">
-  <rect width="100%" height="100%" fill="red" />
-  <text x="150" y="125" font-size="60" text-anchor="middle" fill="white">FOX</text>
-</svg>');
+<svg version="1.1" baseProfile="full" xmlns="http://www.w3.org/2000/svg">
+  <g>
+    <rect width="100%" height="100%" fill="#555" rx="15" ry="15" />
+    <text x="0" y="40" font-size="40"  fill="orange" style="font-family: sans-serif">' . $network . '</text>
+  </g>
+</svg>')
+            ->header('Content-Type', 'image/svg+xml')
+            ->header('Vary', 'Accept-Encoding');
     }
 
     public function getPoster($indexer_id, $type = 'banner', $thumbnail = FALSE) {
