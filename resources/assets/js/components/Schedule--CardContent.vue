@@ -1,5 +1,5 @@
 <template>
-    <div class="schedule-card--details">
+    <div class="schedule-card--details" @click="showDescription = !showDescription">
         <div v-if="poster" class="schedule-card--poster col-auto">
             <router-link :to="{name: 'show', params: {id: episode.showid}}">
                 <img :src="getPoster(episode.showid)"/>
@@ -16,7 +16,9 @@
                 <div class="schedule-card--airs">
                     Airs: {{episode.airdate | formatAirDate}} on {{episode.show.network}}
                 </div>
-                <div v-if="show">{{episode.description}}</div>
+                <transition name="fade">
+                    <div class="schedule-card--description" v-if="showDescription">{{episode.description}}</div>
+                </transition>
             </div>
         </div>
     </div>
@@ -30,7 +32,7 @@
     export default {
         data() {
             return {
-                show: false,
+                showDescription: false,
             };
         },
         filters: Filters,
@@ -71,6 +73,7 @@
     .schedule-card--info {
         padding: 1rem;
     }
+
     .schedule-card--banner {
         width: 100%;
     }
@@ -81,4 +84,11 @@
             width: 200px;
         }
     }
+
+    .schedule-card--description {
+        margin: 1rem -1rem 0;
+        padding: 1rem 1rem 0;
+        border-top: 1px solid $border-dark-grey;
+    }
+
 </style>
