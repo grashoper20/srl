@@ -1,10 +1,14 @@
 <template>
     <div class="schedule-card--details">
         <div v-if="poster" class="schedule-card--poster col-auto">
-            <img :src="getPoster(episode.showid)"/>
+            <router-link :to="{name: 'show', params: {id: episode.showid}}">
+                <img :src="getPoster(episode.showid)"/>
+            </router-link>
         </div>
         <div class="col">
-            <img class="schedule-card--banner" v-if="banner" :src="getBanner(episode.showid)"/>
+            <router-link :to="{name: 'show', params: {id: episode.showid}}">
+                <img class="schedule-card--banner" v-if="banner" :src="getBanner(episode.showid)"/>
+            </router-link>
             <div class="schedule-card--info">
                 <h3>{{episode.show.show_name}}</h3>
                 <div class="schedule-card--episode">Episode: {{episode | formatSeasonEpisode}} - {{episode.name}}
