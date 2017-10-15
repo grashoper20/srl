@@ -1,0 +1,56 @@
+<template>
+    <ul class="schedule-card container">
+        <li v-for="episode in episodes" :class="statusClass(episode.status) + ' row'">
+            <schedule-card-content :poster="poster" :banner="banner" :episode="episode"></schedule-card-content>
+        </li>
+    </ul>
+</template>
+
+<script>
+    import FileCache from '../mixins/FileCache';
+    import Filters from '../filters';
+    import ScheduleCardContent from './Schedule--CardContent';
+    import StatusMixin from '../mixins/Status';
+
+    export default {
+        components: {
+            ScheduleCardContent,
+            'schedule-card-content': ScheduleCardContent,
+        },
+        data() {
+            return {
+                show: false,
+            };
+        },
+        filters: Filters,
+        mixins: [StatusMixin, FileCache,],
+        props: {
+            episodes: Array,
+            banner: {
+                type: Boolean,
+                default: false,
+            },
+            poster: {
+                type: Boolean,
+                default: false,
+            },
+        },
+    };
+</script>
+
+<style lang="scss">
+    @import "../../sass/variables";
+
+
+    .schedule-card {
+        list-style: none;
+        padding: 1rem 0 0;
+
+        li {
+            border: 1px solid $border-dark-grey;
+            border-radius: 5px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+        }
+    }
+</style>

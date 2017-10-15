@@ -20,7 +20,6 @@
 <script>
     import StatusMixin from '../mixins/Status';
     import Filters from '../filters';
-    import moment from 'moment';
 
     export default {
         props: [

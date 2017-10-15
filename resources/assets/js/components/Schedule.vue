@@ -1,8 +1,9 @@
 <template>
     <div id="schedule" class="container schedule">
-        <header class="schedule--search">
+        <header class="schedule--search row">
             <h1>Schedule</h1>
             <div class="form-inline ">
+                <!--
                 <label for="search-sort">Sort</label>
                 <select class="form-control" id="search-sort">
                     <option value="date">Date</option>
@@ -19,6 +20,7 @@
                     <option value="hidden">Hidden</option>
                     <option value="shown">Shown</option>
                 </select>
+                -->
                 <label for="search-layout">Layout</label>
                 <select class="form-control" id="search-layout" :value="getScheduleLayout" @input="updateShowLayout">>
                     <option value="1">Banner</option>
@@ -29,8 +31,8 @@
             </div>
         </header>
 
-        <schedule-banner v-if="getScheduleLayout == 1" :episodes="episodes"></schedule-banner>
-        <schedule-poster v-else-if="getScheduleLayout == 2" :episodes="episodes"></schedule-poster>
+        <schedule-banner v-if="getScheduleLayout == 1" :episodes="episodes" :banner="true"></schedule-banner>
+        <schedule-poster v-else-if="getScheduleLayout == 2" :episodes="episodes" :poster="true"></schedule-poster>
         <schedule-list v-else-if="getScheduleLayout == 3" :episodes="episodes"></schedule-list>
         <calendar v-else-if="getScheduleLayout == 4"></calendar>
     </div>
@@ -39,8 +41,7 @@
 <script>
     import api from '../api';
     import Fallback from './Example.vue';
-    import ScheduleBanner from './Schedule--Banner';
-    import SchedulePoster from './Schedule--Poster';
+    import ScheduleCard from './Schedule--Card';
     import ScheduleList from './Schedule--List';
 
     export default {
@@ -51,8 +52,8 @@
             };
         },
         components: {
-            'schedule-banner': ScheduleBanner,
-            'schedule-poster': SchedulePoster,
+            'schedule-banner': ScheduleCard,
+            'schedule-poster': ScheduleCard,
             'schedule-list': ScheduleList,
             'calendar': Fallback,
         },
