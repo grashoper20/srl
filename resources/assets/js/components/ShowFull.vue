@@ -1,42 +1,20 @@
 <template>
     <div class="show-full">
         <div class="container">
-            <header class="show-full--head">
-                <h1>{{show.show_name}}</h1>
-                <div class="show-full--seasons">Seasons: <a
+            <header class="show-full--head row">
+                <h1 class="col">{{show.show_name}}</h1>
+                <div class="col-auto show-full--seasons">Seasons: <a
                         v-for="season in orderedEpisodeList" :href="'#season-' + season[0].season">{{seasonName(season)}}</a>
                 </div>
             </header>
             <div class="row">
-                <div class="col d-lg-block d-none col-3">
-                    <img v-on:click="showModal" class="show-full--poster-thumb" :src="getPosterThumbnail(id)"/>
-                    <modal name="full-poster" :height="'100%'">
-                        <div class="show-full--poster" :style="{backgroundImage: 'url(' + getPoster(id) + ')'}">
-                            <button @click="$modal.hide('full-poster')">❌</button>
-                        </div>
-                    </modal>
-                </div>
-                <div class="d-lg-none">
-                    <img class="show-full--banner" :src="getBanner(id)"/>
-                </div>
-                <div class="show-full--info col">
-                    <header class="show-full--info-header row">
-                        <div>
-                            <div>
-                                {{imdb_info.rating}} {{imdb_info.countries}} ({{imdb_info.year}}) - {{imdb_info.runtimes}} minutes
-                            </div>
-                            <div class="show-full--genres">
-                                <div class="show-full--genre" v-for="genre in genres">{{genre}}</div>
-                            </div>
-                        </div>
-                        <img class="show-full--banner-thumb d-none d-lg-block" :src="getBannerThumbnail(id)"/>
-                    </header>
-                    <show-details v-bind:show="show"></show-details>
-                </div>
+                <show-details v-bind:show="show"></show-details>
             </div>
-            <div class="show-full--episode-list">
-                <h4>Episode list</h4>
-                <episode-list v-bind:seasons="orderedEpisodeList"></episode-list>
+            <div class="row">
+                <h2 class="show-full--episode-header col-12">Episode list</h2>
+                <div class="col-12">
+                    <episode-list v-bind:seasons="orderedEpisodeList"></episode-list>
+                </div>
             </div>
         </div>
         <div class="show-full--backdrop" :style="{backgroundImage: 'url(' + getFanArt(id) + ')'}"></div>
@@ -57,7 +35,6 @@
         },
         data: () => ({
             id: 0,
-            imdb_info: {},
             episodes: [],
             errors: [],
         }),
@@ -70,25 +47,12 @@
                 .catch(e => {
                     this.errors.push(e)
                 });
-            api.imdb.getShow(this.id)
-                .then(response => {
-                    this.imdb_info = response.data;
-                })
-                .catch(e => {
-                    this.errors.push(e)
-                });
             this.$store.dispatch('shows/find', this.id);
         },
         computed: {
             ...mapGetters('shows', [
                 'getShowById'
             ]),
-            genres: function () {
-                if (typeof this.imdb_info.genres === 'undefined') {
-                    return [];
-                }
-                return this.imdb_info.genres.split('|');
-            },
             show() {
                 return this.getShowById(this.id);
             },
@@ -111,61 +75,11 @@
             seasonName(season) {
                 return season[0].season || 'Specials';
             },
-            showModal() {
-                this.$modal.show('full-poster');
-            },
         }
     }
 </script>
 <style lang="scss">
     @import "../../sass/variables";
-
-    .show-full {
-        .v--modal-overlay {
-            background-color: rgba(0, 0, 0, .75);
-        }
-    }
-
-    .show-full--poster-thumb {
-        width: 100%;
-    }
-
-    .show-full--poster {
-        background: black no-repeat center center;
-        background-size: contain;
-        height: 100%;
-        button {
-            opacity: .5;
-            transition: opacity 0.5s;
-            position: absolute;
-            right: 0;
-        }
-        &:hover button {
-            opacity: 1;
-        }
-    }
-
-    .show-full--banner-thumb {
-        max-height: 50px;
-        border: 1px solid black;
-    }
-
-    .show-full--banner {
-        width: 100%;
-        border: 1px solid black;
-    }
-
-    .show-full--genre {
-        display: inline-block;
-        border-radius: 3px;
-        background: #555;
-        border: 1px solid #111;
-        color: white;
-        font-size: .8rem;
-        padding: .2rem .25rem;
-        margin-right: .5em;
-        text-shadow: 1px 1px #000;
-    }
 
     .show-full--head {
         display: flex;
@@ -189,17 +103,8 @@
             border: none;
         }
     }
-
-    .show-full--info {
-        .show-full--info-header {
-            display: flex;
-            justify-content: space-between;
-            padding-bottom: 5px;
-        }
-    }
-
-    .show-full--episode-list {
-        margin: .5rem 0;
+    .show-full--episode-header {
+        margin-top: 1rem;
     }
 
     .show-full--backdrop {

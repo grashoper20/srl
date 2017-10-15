@@ -20,7 +20,7 @@
                     <td class="episode--tbn">{{episode.hastbn ? 'Y' : 'N'}}</td>
                     <td class="episode--episode">{{episode.episode}}</td>
                     <td class="episode--name w-100">{{episode.name}}</td>
-                    <td class="episode--airdate">{{formatAirDate(episode.airdate)}}</td>
+                    <td class="episode--airdate">{{episode.airdate | formatAirDate}}</td>
                     <td class="episode--status">{{statusText(episode.status)}}</td>
                 </tr>
                 </tbody>
@@ -30,8 +30,8 @@
 </template>
 
 <script>
+    import Filters from '../filters';
     import StatusMixin from '../mixins/Status';
-    import moment from 'moment';
 
     export default {
         props: [
@@ -39,13 +39,8 @@
         ],
         computed: {},
         mixins: [StatusMixin,],
+        filters: Filters,
         methods: {
-            formatAirDate(airdate) {
-                if (airdate === '1') {
-                    return 'Never';
-                }
-                return moment(airdate).format('YYYY-MM-DD');
-            },
             seasonName(season) {
                 return season[0].season || 'Specials';
             },
