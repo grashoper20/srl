@@ -15,13 +15,13 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr v-bind:class="statusClass(episode.status)" v-for="episode in episodes.slice().reverse()">
+                <tr v-bind:class="statusClass(episode.real_status)" v-for="episode in episodes.slice().reverse()">
                     <td class="episode--nfo">{{episode.hasnfo ? 'Y' : 'N'}}</td>
                     <td class="episode--tbn">{{episode.hastbn ? 'Y' : 'N'}}</td>
                     <td class="episode--episode">{{episode.episode}}</td>
                     <td class="episode--name w-100">{{episode.name}}</td>
                     <td class="episode--airdate">{{episode.airdate | formatAirDate}}</td>
-                    <td class="episode--status">{{statusText(episode.status)}}</td>
+                    <td class="episode--status"><quality-pill :qualities="episode.quality"></quality-pill></td>
                 </tr>
                 </tbody>
             </table>
@@ -31,14 +31,14 @@
 
 <script>
     import Filters from '../filters';
+    import QualityPill from "./QualityPill.vue";
     import StatusMixin from '../mixins/Status';
 
     export default {
-        props: [
-            'seasons'
-        ],
-        computed: {},
-        mixins: [StatusMixin,],
+        components: {
+            QualityPill,
+            'quality-pill': QualityPill,
+        },
         filters: Filters,
         methods: {
             seasonName(season) {
@@ -46,6 +46,10 @@
             },
 
         },
+        mixins: [StatusMixin,],
+        props: [
+            'seasons'
+        ],
     };
 </script>
 

@@ -8,7 +8,7 @@
             <th>Episode Name</th>
         </tr>
         </thead>
-        <tr v-for="episode in episodes" :class="statusClass(episode.status)">
+        <tr v-for="episode in episodes" :class="statusClass(episode.real_status)">
             <td>{{episode.airdate | formatAirDate}}</td>
             <td>{{episode.show.show_name}}</td>
             <td>S{{episode.season}}E{{episode.episode}}</td>

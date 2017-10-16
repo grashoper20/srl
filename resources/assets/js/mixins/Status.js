@@ -1,11 +1,12 @@
-function ensureState(state) {
-    return state > 100 ? (state % 100) : state;
-}
 
 export default {
     methods: {
+        ensureState(state) {
+            return state > 100 ? (state % 100) : state;
+        },
+
         statusClass(state) {
-            state = ensureState(state);
+            state = this.ensureState(state);
             switch (state) {
                 case 1:
                     return 'status-unaired';
@@ -29,7 +30,7 @@ export default {
             return 'status-weird-' + state;
         },
         statusText(state) {
-            state = ensureState(state);
+            state = this.ensureState(state);
             switch (state) {
                 case 1:
                     return 'unaired';

@@ -1,6 +1,6 @@
 <template>
     <ul class="schedule-card container">
-        <li v-for="episode in episodes" :class="statusClass(episode.status) + ' row'">
+        <li v-for="episode in episodes" :class="statusClass(episode.real_status) + ' row'">
             <schedule-card-content :poster="poster" :banner="banner" :episode="episode"></schedule-card-content>
         </li>
     </ul>

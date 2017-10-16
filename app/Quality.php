@@ -24,9 +24,15 @@ class Quality
     const UNKNOWN = 1 << 15;       // 32768
 
     // Combined.
-    const ANYHDTV = self::HDTV | self::FULLHDTV;           // 20
-    const ANYWEBDL = self::HDWEBDL | self::FULLHDWEBDL;    // 96
-    const ANYBLURAY = self::HDBLURAY | self::FULLHDBLURAY; // 384
+    // TODO SD Combined?
+    const COMBINED_SD = self::SDTV | self::SDDVD;
+    const COMBINED_HD_720P = self::HDTV | self::HDWEBDL | self::HDBLURAY;
+    const COMBINED_HD_1080P = self::FULLHDTV | self::FULLHDWEBDL | self::FULLHDBLURAY;
+    const COMBINED_HD = self::COMBINED_HD_720P | self::COMBINED_HD_1080P;
+    const COMBINED_UHD_4K = self::UHD_4K_TV | self::UHD_4K_WEBDL | self::UHD_4K_BLURAY;
+    const COMBINED_UHD_8K = self::UHD_8K_TV | self::UHD_8K_WEBDL | self::UHD_8K_BLURAY;
+    const COMBINED_UHD = self::COMBINED_UHD_4K | self::COMBINED_UHD_8K;
+    const COMBINED_ANY = self::COMBINED_SD | self::COMBINED_HD | self::COMBINED_UHD;
 
     const SNATCHED = [
         Status::SNATCHED + 100 * Quality::SDTV,
@@ -83,6 +89,35 @@ class Quality
         Status::SNATCHED_PROPER + 100 * Quality::UNKNOWN,
     ];
 
+    const QUALITY_STRINGS = [
+        self::NONE              => 'N/A',
+        self::SDTV              => 'SD TV',
+        self::SDDVD             => 'SD DVD',
+        self::HDTV              => '720p HDTV',
+        self::RAWHDTV           => 'RawHD',
+        self::FULLHDTV          => '1080p HDTV',
+        self::HDWEBDL           => '720p WEB-DL',
+        self::FULLHDWEBDL       => '1080p WEB-DL',
+        self::HDBLURAY          => '720p BluRay',
+        self::FULLHDBLURAY      => '1080p BluRay',
+        self::UHD_4K_TV         => '4K UHD TV',
+        self::UHD_8K_TV         => '8K UHD TV',
+        self::UHD_4K_WEBDL      => '4K UHD WEB-DL',
+        self::UHD_8K_WEBDL      => '8K UHD WEB-DL',
+        self::UHD_4K_BLURAY     => '4K UHD BluRay',
+        self::UHD_8K_BLURAY     => '8K UHD BluRay',
+        self::UNKNOWN           => 'Unknown',
+        // Combined.
+        self::COMBINED_HD_720P  => "HD 720P",
+        self::COMBINED_HD_1080P => "HD 1080P",
+        self::COMBINED_UHD_4K   => "UHD 4k",
+        self::COMBINED_UHD_8K   => "UHD 8k",
+        self::COMBINED_SD       => "SD",
+        self::COMBINED_HD       => "HD",
+        self::COMBINED_UHD      => "UHD",
+        self::COMBINED_ANY      => "Any",
+    ];
+
     /**
      * Split combined status/quality field into usable values.
      *
@@ -107,7 +142,38 @@ class Quality
         return $status + (100 * $quality);
     }
 
-//Quality.SNATCHED = [Quality.compositeStatus(SNATCHED, x) for x in Quality.qualityStrings if x is not None]
-//Quality.SNATCHED_BEST = [Quality.compositeStatus(SNATCHED_BEST, x) for x in Quality.qualityStrings if x is not None]
-//Quality.SNATCHED_PROPER = [Quality.compositeStatus(SNATCHED_PROPER, x) for x in Quality.qualityStrings if x is not None]
+    public static function getQualityText($quality)
+    {
+        $strings = [];
+        foreach (array_reverse(self::QUALITY_STRINGS,
+            true) as $bit_value => $string) {
+
+            $match = false;
+            if (!static::isPowerOfTwo($bit_value) && $quality == $bit_value) {
+                $match = true;
+            } elseif (($quality & $bit_value) === $bit_value) {
+                $match = true;
+            }
+
+            if ($match) {
+                $strings[$bit_value] = $string;
+                $quality &= ~$bit_value;
+            }
+            // If there are no more qualities left, stop looping.
+            if ($quality == 0) {
+                break;
+            }
+        }
+
+        ksort($strings);
+
+        return $strings;
+    }
+
+    private static function isPowerOfTwo($num)
+    {
+        return ($num & ($num - 1)) === 0;
+    }
+
+
 }

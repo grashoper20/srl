@@ -65,7 +65,8 @@ class tv_episode extends Model
     protected $primaryKey = 'episode_id';
 
     protected $hidden = [
-        'indexerid', //probably a key but no unique requirement or index in db so...
+        'indexerid',
+        //probably a key but no unique requirement or index in db so...
         // for now internal only.
         'indexer',
         'scene_season',
@@ -81,22 +82,23 @@ class tv_episode extends Model
     ];
 
     protected $casts = [
-        'showid' => 'integer',
-        'season' => 'integer',
-        'episode' => 'integer',
-        'hasnfo' => 'boolean',
-        'hastbn' => 'boolean',
-        'status' => 'integer',
-        'filesize' => 'integer',
+        'showid'            => 'integer',
+        'season'            => 'integer',
+        'episode'           => 'integer',
+        'hasnfo'            => 'boolean',
+        'hastbn'            => 'boolean',
+        'status'            => 'integer',
+        'file_size'         => 'integer',
         //
-        'quality' => 'integer',
-        'flatten_folders' => 'boolean',
-        'paused' => 'boolean',
-        'subtitles'=> 'boolean',
-        'anime' => 'boolean',
-        'scene' => 'boolean',
+        'flatten_folders'   => 'boolean',
+        'paused'            => 'boolean',
+        'subtitles'         => 'boolean',
+        'anime'             => 'boolean',
+        'scene'             => 'boolean',
         'default_ep_status' => 'integer',
     ];
+
+    protected $appends = ['real_status', 'quality'];
 
     public function getAirdateAttribute($value)
     {
@@ -111,7 +113,18 @@ class tv_episode extends Model
         return Date::ordinalFromDate($value);
     }
 
-    public function show() {
+    public function getRealStatusAttribute()
+    {
+        return Quality::splitCompositeStatus($this->status)[0];
+    }
+
+    public function getQualityAttribute()
+    {
+        return Quality::getQualityText(Quality::splitCompositeStatus($this->status)[1]);
+    }
+
+    public function show()
+    {
         // Show ID is the show indexer id not the show id and indexer_id is the
         // episode indexer id. Confusing but its the way things are.
         return $this->belongsTo(tv_show::class, 'showid');
