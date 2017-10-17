@@ -120,7 +120,16 @@ class tv_episode extends Model
 
     public function getQualityAttribute()
     {
-        return Quality::getQualityText(Quality::splitCompositeStatus($this->status)[1]);
+        $return = [];
+        // While handy in php, sparse arrays don't do well in vue so convert it to something it can handle better.
+        $qualities = Quality::getQualityText(Quality::splitCompositeStatus($this->status)[1]);
+        foreach ($qualities as $id => $quality) {
+            $return[] = [
+                'id' => $id,
+                'quality' => $quality,
+            ];
+        }
+        return $return;
     }
 
     public function show()

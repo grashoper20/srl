@@ -21,7 +21,7 @@
                     <td class="episode--episode">{{episode.episode}}</td>
                     <td class="episode--name w-100">{{episode.name}}</td>
                     <td class="episode--airdate">{{episode.airdate | formatAirDate}}</td>
-                    <td class="episode--status"><quality-pill :qualities="episode.quality"></quality-pill></td>
+                    <td class="episode--status"><episode-status :episode="episode"></episode-status></td>
                 </tr>
                 </tbody>
             </table>
@@ -31,13 +31,15 @@
 
 <script>
     import Filters from '../filters';
-    import QualityPill from "./QualityPill.vue";
+    import QualityPill from './QualityPill.vue';
+    import EpisodeStatus from './EpisodeStatus.vue';
     import StatusMixin from '../mixins/Status';
 
     export default {
         components: {
-            QualityPill,
+            EpisodeStatus,
             'quality-pill': QualityPill,
+            'episode-status': EpisodeStatus,
         },
         filters: Filters,
         methods: {

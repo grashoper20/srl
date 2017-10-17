@@ -33,21 +33,21 @@ export default {
             state = this.ensureState(state);
             switch (state) {
                 case 1:
-                    return 'unaired';
+                    return 'Unaired';
                 case 2:
                 case 9:
                 case 12:
-                    return 'snatched';
+                    return 'Snatched';
                 case 3:
-                    return 'wanted';
+                    return 'Wanted';
                 case 4:
-                    return 'good';
+                    return 'Downloaded';
                 case 5:
-                    return 'skipped';
+                    return 'Skipped';
                 case 6:
-                    return 'archived';
+                    return 'Archived';
                 case 7:
-                    return 'ignored';
+                    return 'Ignored';
                 case 50:
                     return 'qual';
             }
