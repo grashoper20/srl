@@ -119,12 +119,18 @@
                 }
                 return this.imdb_info.genres.split('|');
             },
+            imdb_info() {
+                if (typeof this.show.imdb_info === 'undefined') {
+                    return {};
+                }
+                return this.show.imdb_info;
+            }
         },
         created() {
         },
         data() {
             return {
-                imdb_info: {},
+//                imdb_info: {},
                 errors: [],
             };
         },
@@ -143,20 +149,6 @@
         props: [
             'show',
         ],
-        watch: {
-            show(show) {
-                if (show !== undefined) {
-                    api.imdb.getShow(this.show.indexer_id)
-                        .then(response => {
-                            this.imdb_info = response.data;
-                        })
-                        .catch(e => {
-                            this.errors.push(e)
-                        });
-                }
-            }
-        }
-
     };
 </script>
 <style lang="scss">

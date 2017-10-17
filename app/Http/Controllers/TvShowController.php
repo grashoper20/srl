@@ -27,7 +27,7 @@ class TvShowController extends Controller
      */
     public function index()
     {
-        return tv_show::all();
+        return tv_show::with('imdb_info')->get();
     }
 
     /**
@@ -59,6 +59,7 @@ class TvShowController extends Controller
      */
     public function show(tv_show $show)
     {
+        $show->load('imdb_info');
         return $show;
     }
 

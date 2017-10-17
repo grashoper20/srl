@@ -39,4 +39,9 @@ class imdb_info extends Model
 {
     protected $primaryKey = 'indexer_id';
     protected $table = 'imdb_info';
+
+    public function show()
+    {
+        return $this->belongsTo(tv_show::class, 'indexer_id', 'indexer_id');
+    }
 }
