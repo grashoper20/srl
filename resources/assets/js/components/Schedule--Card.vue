@@ -40,6 +40,7 @@
 
 <style lang="scss">
     @import "../../sass/variables";
+    @import "~material-shadows/material-shadows";
 
 
     .schedule-card {
@@ -51,6 +52,7 @@
             border-radius: 5px;
             padding: 1rem;
             margin-bottom: 1rem;
+            @include z-depth-2dp();
         }
     }
 </style>

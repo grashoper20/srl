@@ -29,7 +29,9 @@
                     <div class="col-8">
                         <div class="show-full-details--detail">
                             <div class="show-full-details--detail-label">Quality:</div>
-                            <div class="show-full-details--detail-value">{{show.quality}}</div>
+                            <div class="show-full-details--detail-value">
+                                <quality-pill :quality="quality" :key="quality.id" v-for="quality in show.quality"></quality-pill>
+                            </div>
                         </div>
                         <div class="show-full-details--detail">
                             <div class="show-full-details--detail-label">Airs:</div>
@@ -104,8 +106,12 @@
     import api from '../api';
     import Filters from '../filters';
     import FileCache from '../mixins/FileCache';
+    import QualityPill from './QualityPill.vue';
 
     export default {
+        components: {
+            'quality-pill': QualityPill,
+        },
         computed: {
             size() {
                 return this.show.stats !== undefined ? this.show.stats.show_size : 0;

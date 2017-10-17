@@ -8,12 +8,15 @@
         <div class="show--progress">
             <div class="show--progress_bar" v-bind:class="[progressClass]" v-bind:style="{width: progress +'%'}"></div>
         </div>
-        <h4 class="show--title">{{show.show_name}}</h4>
-        <div class="show--date">{{airDate}}</div>
-        <div class="show--details">
-            <div class="show--count">{{completed}}</div>
-            <div class="show--network">{{networkImage}}</div>
-            <div class="show--quality">{{show.quality}}</div>
+        <div class="show--footer">
+            <h4 class="show--title">{{show.show_name}}</h4>
+            <div class="show--date">{{airDate}}</div>
+            <div class="show--details">
+                <div class="show--count">{{completed}}</div>
+                <div class="show--network">{{networkImage}}</div>
+
+                <div class="show--quality"><quality-pill :quality="quality" :key="quality.id" v-for="quality in show.quality"></quality-pill></div>
+            </div>
         </div>
     </div>
 </template>
@@ -22,11 +25,12 @@
 
     import FileCache from '../mixins/FileCache';
     import {mapGetters} from 'vuex'
+    import QualityPill from './QualityPill.vue';
 
     export default {
-        props: [
-            'show'
-        ],
+        components: {
+            'quality-pill': QualityPill,
+        },
         computed: {
             completed() {
                 return this.show.stats === undefined
@@ -49,19 +53,24 @@
             },
         },
         mixins: [FileCache,],
+        props: [
+            'show'
+        ],
     }
 </script>
 
 <style lang="scss">
+    @import "~material-shadows/material-shadows";
+
     // use wrapper because "show" conflicts with bootstrap.
     .show--wrapper {
         width: 188px;
         margin: 4px;
         background-color: #F3F3F3;
-        border: 6px solid #F3F3F3;
-        border-radius: 6px;
+
         overflow: hidden;
-        box-shadow: 1px 1px 3px 0 rgba(0, 0, 0, 0.31);
+
+        @include z-depth-2dp();
     }
 
     .show--image img {
@@ -69,16 +78,18 @@
         max-width: 100%;
     }
 
+    .show--footer {
+        padding: 8px;
+    }
+
     .show--title {
-        white-space: nowrap;
         font-size: .8rem;
-        margin: 6px 4px 0;
+        margin: 0;
     }
 
     .show--date {
         white-space: nowrap;
         font-size: .75rem;
-        margin: 0 4px 4px;
         color: #949494;
     }
 

@@ -142,4 +142,18 @@ class tv_show extends Model
         return $this->hasOne(imdb_info::class, 'indexer_id', 'indexer_id');
     }
 
+    public function getQualityAttribute($value)
+    {
+        $return = [];
+        // While handy in php, sparse arrays don't do well in vue so convert it to something it can handle better.
+        $qualities = Quality::getQualityText($value);
+        foreach ($qualities as $id => $quality) {
+            $return[] = [
+                'id' => $id,
+                'quality' => $quality,
+            ];
+        }
+        return $return;
+    }
+
 }

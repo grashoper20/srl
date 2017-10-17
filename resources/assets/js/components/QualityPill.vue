@@ -6,6 +6,7 @@
     export default {
         computed: {
             qualityClass() {
+                // TODO fix combined status pill styling.
                 switch (this.quality.id) {
                     case 1:
                     case 2:
@@ -44,6 +45,7 @@
 
 <style lang="scss">
     @import "../../sass/helper";
+    @import "~material-shadows/material-shadows";
 
     .quality--pill {
         display: inline-block;
@@ -53,13 +55,13 @@
         border-radius: 4px;
         color: white;
 
-        box-shadow: rgba(0, 0, 0, 0.3) 3px 2px 2px;
-
         font-family: $font-family-sans-serif-small;
         font-size: 12px !important;
         vertical-align: baseline;
         white-space: nowrap;
         text-shadow: 0 1px rgba(0, 0, 0, 0.8);
+
+        @include z-depth-2dp();
     }
 
     .quality--sd {

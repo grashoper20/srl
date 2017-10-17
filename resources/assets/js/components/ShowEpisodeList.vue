@@ -1,6 +1,7 @@
 <template>
     <div class="episode_list">
-        <div class="table-responsive" v-for="episodes in seasons" :id="'season-' + episodes[0].season">
+        <div class="table-responsive show-episode-list--season" v-for="episodes in seasons"
+             :id="'season-' + episodes[0].season">
             <h4>Season {{seasonName(episodes)}}</h4>
             <!-- TODO Handle Season 0 - Specials -->
             <table class="table">
@@ -21,7 +22,9 @@
                     <td class="episode--episode">{{episode.episode}}</td>
                     <td class="episode--name w-100">{{episode.name}}</td>
                     <td class="episode--airdate">{{episode.airdate | formatAirDate}}</td>
-                    <td class="episode--status"><episode-status :episode="episode"></episode-status></td>
+                    <td class="episode--status">
+                        <episode-status :episode="episode"></episode-status>
+                    </td>
                 </tr>
                 </tbody>
             </table>
@@ -57,8 +60,17 @@
 
 <style lang="scss">
     // Variables
-    @import "../../sass/variables";
     @import "../../sass/helper";
+    @import "~material-shadows/material-shadows";
+
+    .show-episode-list--season {
+        background: $background-off-white;
+        @include z-depth-2dp();
+        h4 {
+            margin: 0;
+            padding: .5rem;
+        }
+    }
 
     @include media-breakpoint-down(md) {
         .episode--nfo,
