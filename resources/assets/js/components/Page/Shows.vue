@@ -3,15 +3,8 @@
         <header class="shows--search">
             <div class="form-inline ">
                 <label for="show-search" class="sr-only">Search</label>
-                <input class="form-control" id="show-search" type="search" v-on:input="debounceInput"
+                <input class="form-control mr-auto" id="show-search" type="search" v-on:input="debounceInput"
                        placeholder="Search">
-                <label for="search-sort">Sort</label>
-                <select class="form-control" id="search-sort" :value="getShowSortField" @input="updateSortField">
-                    <option value="show_name">Name</option>
-                    <option value="show_name">Next Episode</option>
-                    <option value="network">Network</option>
-                    <option value="progress">Progress</option>
-                </select>
                 <label for="search-layout">Layout</label>
                 <select class="form-control" id="search-layout" :value="getShowLayout" @input="updateShowLayout">
                     <option value="1">Poster</option>
@@ -19,14 +12,22 @@
                     <option value="3">Banner</option>
                     <option value="4">Simple</option>
                 </select>
+            </div>
+            <div class="form-inline ">
+                <label for="search-sort">Sort</label>
+                <select class="form-control" id="search-sort" :value="getShowSortField" @input="updateSortField">
+                    <option value="show_name">Name</option>
+                    <option value="show_name">Next Episode</option>
+                    <option value="network">Network</option>
+                    <option value="progress">Progress</option>
+                </select>
                 <label for="search-direction">Direction</label>
                 <select class="form-control" id="search-direction" :value="getShowSortDescending"
                         @input="updateSortDescending">
                     <option value="1">Asc</option>
                     <option value="2">Desc</option>
                 </select>
-            </div>
-            <div class="form-inline "><label for="search-show-type">Show type</label>
+                <label for="search-show-type">Show type</label>
                 <select class="form-control" id="search-show-type" v-model="showType">
                     <option value="1">All</option>
                     <option value="2">Shows</option>
@@ -175,8 +176,8 @@
 
 <style lang="scss">
     .shows--search {
-        .form-control {
-            margin-left: 5px;
+        .form-control, label {
+            margin-right: .5rem;
         }
     }
 </style>
