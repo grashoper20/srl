@@ -8,7 +8,6 @@ require('./bootstrap');
 
 import router from './router';
 import store from './store';
-
 import Vue from 'vue';
 
 import VModal from 'vue-js-modal';
@@ -16,6 +15,9 @@ Vue.use(VModal);
 
 import VLocalStorage from 'vue-localstorage';
 Vue.use(VLocalStorage);
+
+import {ClientTable} from 'vue-tables-2';
+Vue.use(ClientTable);
 
 const app = new Vue({
     router,

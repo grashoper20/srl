@@ -1,20 +1,10 @@
 <template>
-    <table>
-        <thead>
-        <tr>
-            <th>Airs</th>
-            <th>Show</th>
-            <th>Episode</th>
-            <th>Episode Name</th>
-        </tr>
-        </thead>
-        <tr v-for="episode in episodes" :class="statusClass(episode.real_status)">
-            <td>{{episode.airdate | formatAirDate}}</td>
-            <td>{{episode.show.show_name}}</td>
-            <td>S{{episode.season}}E{{episode.episode}}</td>
-            <td>{{episode.name}}</td>
-        </tr>
-    </table>
+    <div>
+        <v-client-table :data="tableData"
+                        :columns="columns"
+                        :headings="headings"
+                        :options="options"></v-client-table>
+    </div>
 </template>
 
 <script>
@@ -22,10 +12,53 @@
     import Filters from '../filters';
 
     export default {
+        computed: {
+            tableData() {
+                let data = [];
+                this.episodes.forEach(function (episode) {
+                    data.push({
+                        airs: Filters.formatAirDate(episode.airdate),
+                        show: episode.show.show_name,
+                        episode: Filters.formatSeasonEpisode(episode),
+                        episodeName: episode.name,
+                        status: episode.real_status,
+                    });
+                });
+                return data;
+            }
+        },
+        data() {
+            return {
+                columns: [
+                    'airs',
+                    'show',
+                    'episode',
+                    'episodeName',
+                ],
+                headings: [
+                    'Airs',
+                    'Show',
+                    'Episode',
+                    'Episode Name',
+                ],
+                options: {
+                    filterable: false,
+                    rowClassCallback: this.rowClass,
+                    skin: '',
+                    perPageValues: [10],
+                    pagination: {dropdown: false},
+                },
+            };
+        },
+        filters: Filters,
+        mixins: [StatusMixin],
+        methods: {
+            rowClass(row) {
+                return this.statusClass(row.status);
+            },
+        },
         props: [
             'episodes'
         ],
-        mixins: [StatusMixin],
-        filters: Filters,
     };
 </script>

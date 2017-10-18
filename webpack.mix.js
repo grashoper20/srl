@@ -25,5 +25,5 @@ mix.webpackConfig({
     ]
 })
     .js('resources/assets/js/app.js', 'public/js')
-        .extract(['vue', 'vuex', 'vue-js-modal', 'vue-localstorage', 'vue-router', 'lodash', 'jquery', 'popper.js', 'bootstrap', 'axios', 'moment', 'fuse.js'])
+        .extract(['vue', 'vuex', 'vue-js-modal', 'vue-localstorage', 'vue-router', 'lodash', 'jquery', 'popper.js', 'bootstrap', 'axios', 'moment', 'fuse.js', 'vue-tables-2'])
     .sass('resources/assets/sass/app.scss', 'public/css');
