@@ -34,7 +34,7 @@
 
 <script>
     import Filters from '../filters';
-    import QualityPill from './QualityPill.vue';
+    import QualityPill from './QualityPills.vue';
     import EpisodeStatus from './EpisodeStatus.vue';
     import StatusMixin from '../mixins/Status';
 

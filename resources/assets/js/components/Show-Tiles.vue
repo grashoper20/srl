@@ -7,7 +7,7 @@
 <script>
 
     import {mapState, mapGetters} from 'vuex';
-    import Show from './Show.vue';
+    import Show from './Show-Tile.vue';
 
     export default {
         components: {

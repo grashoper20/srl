@@ -1,17 +1,17 @@
 <template>
     <div>
         <span :class="{'sr-only': episode.quality.length}">{{statusText(episode.status)}}</span>
-        <quality-pill :quality="quality" :key="quality.id" v-for="quality in episode.quality"></quality-pill>
+        <quality-pills :qualities="episode.quality"></quality-pills>
     </div>
 </template>
 
 <script>
-    import QualityPill from './QualityPill.vue';
+    import QualityPills from './QualityPills.vue';
     import StatusMixin from '../mixins/Status';
 
     export default {
         components: {
-            'quality-pill': QualityPill,
+            'quality-pills': QualityPills,
         },
         mixins: [
             StatusMixin,

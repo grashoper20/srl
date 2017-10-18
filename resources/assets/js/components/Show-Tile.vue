@@ -28,7 +28,7 @@
 
     import FileCache from '../mixins/FileCache';
     import {mapGetters} from 'vuex'
-    import QualityPill from './QualityPill.vue';
+    import QualityPill from './QualityPills.vue';
 
     export default {
         components: {

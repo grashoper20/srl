@@ -1,7 +1,7 @@
 <template>
     <ul class="schedule-card container">
         <li v-for="episode in episodes" :class="statusClass(episode.real_status) + ' row'">
-            <schedule-card-content :poster="poster" :banner="banner" :episode="episode"></schedule-card-content>
+            <schedule-tile-content :poster="poster" :banner="banner" :episode="episode"></schedule-tile-content>
         </li>
     </ul>
 </template>
@@ -9,13 +9,12 @@
 <script>
     import FileCache from '../mixins/FileCache';
     import Filters from '../filters';
-    import ScheduleCardContent from './Schedule--CardContent';
+    import ScheduleTileContent from './Schedule--Tile';
     import StatusMixin from '../mixins/Status';
 
     export default {
         components: {
-            ScheduleCardContent,
-            'schedule-card-content': ScheduleCardContent,
+            'schedule-tile-content': ScheduleTileContent,
         },
         data() {
             return {

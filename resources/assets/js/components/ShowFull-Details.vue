@@ -106,7 +106,7 @@
     import api from '../api';
     import Filters from '../filters';
     import FileCache from '../mixins/FileCache';
-    import QualityPill from './QualityPill.vue';
+    import QualityPill from './QualityPills.vue';
 
     export default {
         components: {

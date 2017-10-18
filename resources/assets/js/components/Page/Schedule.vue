@@ -39,10 +39,10 @@
 </template>
 
 <script>
-    import api from '../api';
+    import api from '../../api/index';
     import Fallback from './Example.vue';
-    import ScheduleCard from './Schedule--Card';
-    import ScheduleList from './Schedule--List';
+    import ScheduleCard from '../Schedule--Tiles';
+    import ScheduleList from '../Schedule--List';
 
     export default {
         data() {

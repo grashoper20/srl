@@ -22,10 +22,10 @@
 </template>
 
 <script>
-    import api from '../api';
-    import FileCache from '../mixins/FileCache';
-    import EpisodeList from './ShowEpisodeList.vue';
-    import ShowFullDetails from './ShowFull-Details.vue';
+    import api from '../../api/index';
+    import FileCache from '../../mixins/FileCache';
+    import EpisodeList from '../ShowFull-EpisodeList.vue';
+    import ShowFullDetails from '../ShowFull-Details.vue';
     import {mapGetters} from 'vuex';
 
     export default {
@@ -79,7 +79,7 @@
     }
 </script>
 <style lang="scss">
-    @import "../../sass/variables";
+    @import "../../../sass/variables";
 
     .show-full--head {
         display: flex;

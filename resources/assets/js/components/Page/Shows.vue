@@ -36,14 +36,14 @@
         </header>
         <div class="shows" v-if="shows && shows.length && showType != 3">
             <h2>Shows</h2>
-            <show-cards v-if="getShowLayout == 1" v-bind:shows="shows"></show-cards>
+            <show-tiles v-if="getShowLayout == 1" v-bind:shows="shows"></show-tiles>
             <small-poster v-else-if="getShowLayout == 2">small-poster</small-poster>
             <banner v-else-if="getShowLayout == 3">banner</banner>
             <simple v-else-if="getShowLayout == 4">simple</simple>
         </div>
         <div class="shows" v-if="anime && anime.length && showType != 2">
             <h2>Anime</h2>
-            <show-cards v-if="getShowLayout == 1" v-bind:shows="anime"></show-cards>
+            <show-tiles v-if="getShowLayout == 1" v-bind:shows="anime"></show-tiles>
             <small-poster v-else-if="getShowLayout == 2">small-poster</small-poster>
             <banner v-else-if="getShowLayout == 3">banner</banner>
             <simple v-else-if="getShowLayout == 4">simple</simple>
@@ -58,38 +58,19 @@
 
 <script>
     import Fallback from './Example.vue';
-    import FileCache from '../mixins/FileCache';
-    import ShowCards from './Shows-Cards.vue';
+    import FileCache from '../../mixins/FileCache';
     import fuse from 'fuse.js';
     import * as _ from 'lodash';
     import {mapGetters, mapMutations} from 'vuex';
     import jQuery from 'jquery';
+    import ShowTiles from '../Show-Tiles.vue';
 
     export default {
         components: {
-            'show-cards': ShowCards,
+            'show-tiles': ShowTiles,
             'small-poster': Fallback,
             'banner': Fallback,
             'simple': Fallback,
-        },
-        data: () => ({
-            search: '',
-            showType: 1,
-            errors: [],
-            fuse_options: {
-                shouldSort: true,
-                threshold: 0.2,
-                location: 0,
-                distance: 100,
-                maxPatternLength: 32,
-                minMatchCharLength: 1,
-                keys: [
-                    'show_name',
-                ]
-            },
-        }),
-        mounted() {
-            this.$store.dispatch('shows/sync');
         },
         computed: {
             anime() {
@@ -108,7 +89,22 @@
                 'getShowLayout',
             ]),
         },
-        mixins: [FileCache,],
+        data: () => ({
+            search: '',
+            showType: 1,
+            errors: [],
+            fuse_options: {
+                shouldSort: true,
+                threshold: 0.2,
+                location: 0,
+                distance: 100,
+                maxPatternLength: 32,
+                minMatchCharLength: 1,
+                keys: [
+                    'show_name',
+                ]
+            },
+        }),
         methods: {
             updateSortField(e) {
                 this.setSetting({
@@ -169,6 +165,10 @@
                     return [];
                 }
             },
+        },
+        mixins: [FileCache,],
+        mounted() {
+            this.$store.dispatch('shows/sync');
         },
     }
 </script>

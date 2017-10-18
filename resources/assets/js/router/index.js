@@ -4,12 +4,12 @@ import VueRouter from 'vue-router';
 Vue.use(VueRouter);
 
 // Pull in some templates.
-import Shows from '../components/Shows.vue';
-import ShowsAdd from '../components/ShowsAdd.vue';
-import ShowFull from '../components/ShowFull.vue';
-import Schedule from '../components/Schedule.vue';
-import Default from '../components/Example.vue';
-import NotFound from '../components/NotFound.vue';
+import Shows from '../components/Page/Shows.vue';
+import ShowsAdd from '../components/Page/ShowsAdd.vue';
+import ShowFull from '../components/Page/ShowFull.vue';
+import Schedule from '../components/Page/Schedule.vue';
+import Default from '../components/Page/Example.vue';
+import NotFound from '../components/Page/NotFound.vue';
 
 export default new VueRouter({
     mode: 'history',
