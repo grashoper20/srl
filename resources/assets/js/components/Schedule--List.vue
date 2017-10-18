@@ -42,9 +42,7 @@
                     'Episode Name',
                 ],
                 options: {
-                    filterable: false,
                     rowClassCallback: this.rowClass,
-                    skin: '',
                     perPageValues: [10],
                     pagination: {dropdown: false},
                 },
