@@ -1,6 +1,6 @@
 <template>
     <span class="quality-pills">
-        <quality-pill :quality="quality" :key="quality.id" v-for="quality in qualities"></quality-pill>
+        <quality-pill :quality="quality" :key="quality.id" v-for="quality in getQualities"></quality-pill>
     </span>
 </template>
 
@@ -11,9 +11,21 @@
         components: {
             'quality-pill': QualityPill,
         },
-        props: [
-            'qualities',
-        ],
+        computed: {
+            getQualities() {
+                if (this.simple && this.qualities.length > 1) {
+                    return [{id: 0, quality: 'Custom'}];
+                }
+                return this.qualities;
+            }
+        },
+        props: {
+            'qualities': Array,
+            simple: {
+                type: Boolean,
+                default: false,
+            }
+        },
     };
 </script>
 

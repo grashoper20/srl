@@ -6,7 +6,6 @@
     export default {
         computed: {
             qualityClass() {
-                // TODO fix combined status pill styling.
                 switch (this.quality.id) {
                     case 1:
                     case 2:
@@ -30,10 +29,20 @@
                     case 16384:
                         return 'quality--uhd8k';
 
+                    case 0:
+                        return 'quality--custom';
+                    case 3:
+                        return 'quality--sd';
+                    case 500:
+                        return 'quality--hd';
+                    case 32759:
+                        return 'quality--any';
                     case 32768:
+                        return 'quality--unknown';
+
                     default:
                         console.log(this.quality.id);
-                        return 'quality--unknown';
+                        return 'quality--custom';
                 }
             },
         },
@@ -49,7 +58,7 @@
 
     .quality--pill {
         display: inline-block;
-        padding: 0 6px;
+        padding: 0 6px 3px 6px;
 
         border: 1px solid #888;
         border-radius: 4px;
@@ -72,6 +81,7 @@
         background-color: #CD7300;
     }
 
+    .quality--hd,
     .quality--hd720 {
         background-color: #5B990D;
     }
@@ -89,6 +99,13 @@
     }
 
     .quality--unknown {
-        background-color: #999999;
+        background-color: #999;
+    }
+
+    .quality--any {
+        background-color: #666;
+    }
+    .quality--custom {
+        background-color: #602090;
     }
 </style>

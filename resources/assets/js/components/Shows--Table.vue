@@ -30,6 +30,9 @@
         <template slot="active" slot-scope="props">
             {{!props.row.paused | formatStatus}}
         </template>
+        <template slot="quality" slot-scope="props">
+            <quality-pills :qualities="props.row.quality" :simple="true"></quality-pills>
+        </template>
     </v-client-table>
 </template>
 
@@ -38,12 +41,14 @@
     import Filters from '../filters';
     import Poster from './Poster.vue';
     import Progress from './Progress.vue';
+    import QualityPills from './QualityPills.vue';
 
     export default {
         components: {
             'poster': Poster,
             'banner': Banner,
             'progress-bar': Progress,
+            'quality-pills': QualityPills,
         },
         computed: {
             tableColumns() {
