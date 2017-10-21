@@ -5,7 +5,6 @@
 </template>
 
 <script>
-
     import {mapState, mapGetters} from 'vuex';
     import Show from './Show-Tile.vue';
 

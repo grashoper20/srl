@@ -5,15 +5,21 @@
                 <label for="show-search" class="sr-only">Search</label>
                 <input class="form-control mr-auto" id="show-search" type="search" v-on:input="debounceInput"
                        placeholder="Search">
+                <label for="search-show-type">Show type</label>
+                <select class="form-control" id="search-show-type" v-model="showType">
+                    <option value="1">All</option>
+                    <option value="2">Shows</option>
+                    <option value="3">Anime</option>
+                </select>
                 <label for="search-layout">Layout</label>
                 <select class="form-control" id="search-layout" :value="getShowLayout" @input="updateShowLayout">
-                    <option value="1">Poster</option>
-                    <option value="2">Small poster</option>
-                    <option value="3">Banner</option>
-                    <option value="4">Simple</option>
+                    <option value="1">Tiles</option>
+                    <option value="2">Table: Poster</option>
+                    <option value="3">Table: Banner</option>
+                    <option value="4">Table: Simple</option>
                 </select>
             </div>
-            <div class="form-inline ">
+            <div class="form-inline " v-show="getShowLayout === 1">
                 <label for="search-sort">Sort</label>
                 <select class="form-control" id="search-sort" :value="getShowSortField" @input="updateSortField">
                     <option value="show_name">Name</option>
@@ -27,27 +33,17 @@
                     <option value="1">Asc</option>
                     <option value="2">Desc</option>
                 </select>
-                <label for="search-show-type">Show type</label>
-                <select class="form-control" id="search-show-type" v-model="showType">
-                    <option value="1">All</option>
-                    <option value="2">Shows</option>
-                    <option value="3">Anime</option>
-                </select>
             </div>
         </header>
         <div class="shows" v-if="shows && shows.length && showType != 3">
             <h2>Shows</h2>
-            <show-tiles v-if="getShowLayout == 1" v-bind:shows="shows"></show-tiles>
-            <small-poster v-else-if="getShowLayout == 2">small-poster</small-poster>
-            <banner v-else-if="getShowLayout == 3">banner</banner>
-            <simple v-else-if="getShowLayout == 4">simple</simple>
+            <show-tiles v-if="getShowLayout == 1" :shows="shows"></show-tiles>
+            <shows-table  class="shows--poster" v-else :shows="shows" :layout="getShowLayout"></shows-table>
         </div>
         <div class="shows" v-if="anime && anime.length && showType != 2">
             <h2>Anime</h2>
-            <show-tiles v-if="getShowLayout == 1" v-bind:shows="anime"></show-tiles>
-            <small-poster v-else-if="getShowLayout == 2">small-poster</small-poster>
-            <banner v-else-if="getShowLayout == 3">banner</banner>
-            <simple v-else-if="getShowLayout == 4">simple</simple>
+            <show-tiles v-if="getShowLayout == 1" :shows="anime"></show-tiles>
+            <shows-table  class="shows--poster" v-else :shows="anime" :layout="getShowLayout"></shows-table>
         </div>
         <ul v-if="errors && errors.length">
             <li v-for="error in errors">
@@ -58,27 +54,24 @@
 </template>
 
 <script>
-    import Fallback from './Example.vue';
-    import FileCache from '../../mixins/FileCache';
     import fuse from 'fuse.js';
     import * as _ from 'lodash';
     import {mapGetters, mapMutations} from 'vuex';
     import jQuery from 'jquery';
     import ShowTiles from '../Show-Tiles.vue';
+    import ShowsTable from '../Shows--Table.vue';
 
     export default {
         components: {
             'show-tiles': ShowTiles,
-            'small-poster': Fallback,
-            'banner': Fallback,
-            'simple': Fallback,
+            'shows-table': ShowsTable,
         },
         computed: {
-            anime() {
-                return this.filterShows(this.getAnime.slice(), this.search, this.getShowSortField, this.getShowSortDescending);
-            },
             shows() {
                 return this.filterShows(this.getShows.slice(), this.search, this.getShowSortField, this.getShowSortDescending);
+            },
+            anime() {
+                return this.filterShows(this.getAnime.slice(), this.search, this.getShowSortField, this.getShowSortDescending);
             },
             ...mapGetters('shows', [
                 'getAnime',
@@ -103,7 +96,7 @@
                 minMatchCharLength: 1,
                 keys: [
                     'show_name',
-                ]
+                ],
             },
         }),
         methods: {
@@ -167,7 +160,6 @@
                 }
             },
         },
-        mixins: [FileCache,],
         mounted() {
             this.$store.dispatch('shows/sync');
         },
@@ -175,9 +167,21 @@
 </script>
 
 <style lang="scss">
+    .shows {
+        .table td {
+            vertical-align: middle;
+        }
+    }
+    .shows--poster {
+        img {
+            height: 66px;
+        }
+    }
+
     .shows--search {
         .form-control, label {
             margin-right: .5rem;
         }
     }
+
 </style>

@@ -7,7 +7,7 @@ function toNormalizedDigits(num, size) {
 export default {
     // https://stackoverflow.com/a/18650828.
     formatBytes(bytes, decimals) {
-        if (bytes == 0) return '0 Bytes';
+        if (bytes === '0' || bytes === 0) return '0 Bytes';
         let k = 1024,
             dm = decimals || 2,
             sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'],
@@ -25,5 +25,10 @@ export default {
         episode_size = episode_size || Math.max(2, episode.episode.toString().length);
         return 'S' + toNormalizedDigits(episode.season, season_size)
             + 'E' + toNormalizedDigits(episode.episode, episode_size);
-    }
+    },
+    formatStatus(status) {
+        return status
+            ? '✔'
+            : '✘';
+    },
 }

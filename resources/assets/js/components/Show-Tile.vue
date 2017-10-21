@@ -5,9 +5,7 @@
                 <img :src="getPosterThumbnail(show.indexer_id)"/>
             </router-link>
         </div>
-        <div class="show--progress">
-            <div class="show--progress_bar" v-bind:class="[progressClass]" v-bind:style="{width: progress +'%'}"></div>
-        </div>
+        <progress-bar :progress="show.progress"></progress-bar>
         <div class="show--footer">
             <h4 class="show--title">{{show.show_name}}</h4>
             <div class="show--date">{{airDate}}</div>
@@ -17,7 +15,7 @@
                 <div class="show--quality">
                     <span v-if="show.quality.length === 1">{{show.quality[0].quality}}</span>
                     <span v-else>Custom</span>
-                    <!--<quality-pill :quality="quality" :key="quality.id" v-for="quality in show.quality"></quality-pill>-->
+                    <quality-pill :quality="quality" :key="quality.id" v-for="quality in show.quality"></quality-pill>
                 </div>
             </div>
         </div>
@@ -25,14 +23,15 @@
 </template>
 
 <script>
-
     import FileCache from '../mixins/FileCache';
     import {mapGetters} from 'vuex'
+    import Progress from './Progress.vue';
     import QualityPill from './QualityPills.vue';
 
     export default {
         components: {
             'quality-pill': QualityPill,
+            'progress-bar': Progress,
         },
         computed: {
             completed() {
@@ -120,33 +119,6 @@
 
     .show--quality {
         text-align: right;
-    }
-
-    .show--progress {
-        transition: width .5s;
-        height: 7px;
-        border: 1px solid #111111;
-        border-right-width: 0;
-        border-left-width: 0;
-        overflow: hidden;
-        .show--progress_bar {
-            height: 100%;
-        }
-        .progress-100 {
-            background-image: linear-gradient(#A6CF41, #5B990D);
-        }
-        .progress-80 {
-            background-image: linear-gradient(#E1FF97, #9DB269);
-        }
-        .progress-60 {
-            background-image: linear-gradient(#FAD440, #F2A70D);
-        }
-        .progress-40 {
-            background-image: linear-gradient(#FAB543, #F2700D);
-        }
-        .progress-20 {
-            background-image: linear-gradient(#DA5945, #B11A10);
-        }
     }
 
 </style>

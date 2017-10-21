@@ -136,7 +136,6 @@
         },
         data() {
             return {
-//                imdb_info: {},
                 errors: [],
             };
         },
