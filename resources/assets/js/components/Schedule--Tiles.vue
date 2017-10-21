@@ -1,5 +1,5 @@
 <template>
-    <ul class="schedule-card container">
+    <ul class="schedule-tile container">
         <li v-for="episode in episodes" :class="statusClass(episode.real_status) + ' row'">
             <schedule-tile-content :poster="poster" :banner="banner" :episode="episode"></schedule-tile-content>
         </li>
@@ -42,7 +42,7 @@
     @import "~material-shadows/material-shadows";
 
 
-    .schedule-card {
+    .schedule-tile {
         list-style: none;
         padding: 1rem 0 0;
 

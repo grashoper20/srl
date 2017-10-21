@@ -1,23 +1,23 @@
 <template>
-    <div class="schedule-card--details" @click="showDescription = !showDescription">
-        <div v-if="poster" class="schedule-card--poster col-auto">
+    <div class="schedule-tile--details" @click="showDescription = !showDescription">
+        <div v-if="poster" class="schedule-tile--poster col-auto">
             <router-link :to="{name: 'show', params: {id: episode.showid}}">
                 <img :src="getPoster(episode.showid)"/>
             </router-link>
         </div>
         <div class="col">
             <router-link :to="{name: 'show', params: {id: episode.showid}}">
-                <img class="schedule-card--banner" v-if="banner" :src="getBanner(episode.showid)"/>
+                <img class="schedule-tile--banner" v-if="banner" :src="getBanner(episode.showid)"/>
             </router-link>
-            <div class="schedule-card--info">
+            <div class="schedule-tile--info">
                 <h3>{{episode.show.show_name}}</h3>
-                <div class="schedule-card--episode">Episode: {{episode | formatSeasonEpisode}} - {{episode.name}}
+                <div class="schedule-tile--episode">Episode: {{episode | formatSeasonEpisode}} - {{episode.name}}
                 </div>
-                <div class="schedule-card--airs">
+                <div class="schedule-tile--airs">
                     Airs: {{episode.airdate | formatAirDate}} on {{episode.show.network}}
                 </div>
                 <transition name="fade">
-                    <div class="schedule-card--description" v-if="showDescription">{{episode.description}}</div>
+                    <div class="schedule-tile--description" v-if="showDescription">{{episode.description}}</div>
                 </transition>
             </div>
         </div>
@@ -55,7 +55,7 @@
     // Variables
     @import "../../sass/variables";
 
-    .schedule-card--details {
+    .schedule-tile--details {
         background: $background-off-white;
         border: 1px solid $border-dark-grey;
         border-radius: 5px;
@@ -70,22 +70,22 @@
         }
     }
 
-    .schedule-card--info {
+    .schedule-tile--info {
         padding: 1rem;
     }
 
-    .schedule-card--banner {
+    .schedule-tile--banner {
         width: 100%;
     }
 
-    .schedule-card--poster {
+    .schedule-tile--poster {
         padding: 0;
         img {
             width: 200px;
         }
     }
 
-    .schedule-card--description {
+    .schedule-tile--description {
         margin: 1rem -1rem 0;
         padding: 1rem 1rem 0;
         border-top: 1px solid $border-dark-grey;

@@ -1,5 +1,5 @@
 <template>
-    <div class="show-cards">
+    <div class="show-tiles">
         <show v-for="show in shows" :key="show.show_id" v-bind:show="show"></show>
     </div>
 </template>
@@ -18,7 +18,7 @@
     };
 </script>
 <style lang="scss">
-    .show-cards {
+    .show-tiles {
         display: flex;
         flex-flow: row wrap;
         justify-content: center;
