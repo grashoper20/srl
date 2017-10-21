@@ -73,6 +73,13 @@
         overflow: hidden;
 
         @include z-depth-2dp();
+
+        .progress {
+            height: 7px;
+            border: 0 solid #999;
+            border-bottom-width: 1px;
+            border-radius: 0;
+        }
     }
 
     .show--image img {
