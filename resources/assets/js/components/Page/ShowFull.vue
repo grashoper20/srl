@@ -8,7 +8,7 @@
                 </div>
             </header>
             <div class="row">
-                <show-details v-bind:show="show"></show-details>
+                <show-full-details v-bind:show="show"></show-full-details>
             </div>
             <div class="row">
                 <h2 class="show-full--episode-header col-12">Episode list</h2>
@@ -30,8 +30,8 @@
 
     export default {
         components: {
-            'episode-list': EpisodeList,
-            'show-details': ShowFullDetails,
+            EpisodeList,
+            ShowFullDetails,
         },
         data: () => ({
             id: 0,
@@ -103,6 +103,7 @@
             border: none;
         }
     }
+
     .show-full--episode-header {
         margin-top: 1rem;
     }

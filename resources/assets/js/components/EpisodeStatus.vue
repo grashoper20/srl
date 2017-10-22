@@ -11,7 +11,7 @@
 
     export default {
         components: {
-            'quality-pills': QualityPills,
+            QualityPills,
         },
         mixins: [
             StatusMixin,
@@ -21,6 +21,3 @@
         ],
     }
 </script>
-
-<style lang="sass">
-</style>

@@ -2,7 +2,6 @@
 
 namespace SRL\Http\Controllers;
 
-use Grashoper\GregorianOrdinal\Date;
 use SRL\Service\EpisodeStats;
 use SRL\tv_show;
 use Illuminate\Http\Request;

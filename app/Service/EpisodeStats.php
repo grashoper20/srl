@@ -102,9 +102,10 @@ class EpisodeStats
             )
             ->groupBy('showid')
             ->pluck('total', 'showid');
+        $today = Carbon::today();
         $next_airs = \DB::table('tv_episodes')
             ->selectRaw('showid, MIN(airdate) as next_air')
-            ->where('airdate', '>=', Carbon::today())
+            ->where('airdate', '>=', Date::toOrdinal($today->year, $today->month, $today->day))
             ->whereIn('status', [Status::UNAIRED, Status::WANTED])
             ->groupBy('showid')
             ->pluck('next_air', 'showid');
@@ -127,8 +128,14 @@ class EpisodeStats
             $stat->snatched = (int)$snatched->get($indexer_id, 0);
             $stat->downloaded = (int)$downloaded->get($indexer_id, 0);
             $stat->total = (int)$totals->get($indexer_id, 0);
-            $stat->next_airs = (int)$next_airs->get($indexer_id, 0);
-            $stat->previous_air = (int)$previous_airs->get($indexer_id, 0);
+            $next = $next_airs->get($indexer_id, 0);
+            $stat->next_airs = $next == 0 ? '' :
+                Date::dateFromOrdinal($next)
+                    ->format(DATE_ISO8601);
+            $prev = $previous_airs->get($indexer_id, 0);
+            $stat->previous_air = $prev == 0 ? '' :
+                Date::dateFromOrdinal($prev)
+                    ->format(DATE_ISO8601);
             $stat->show_size = (int)$show_sizes->get($indexer_id, 0);
         }
 

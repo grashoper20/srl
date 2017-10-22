@@ -22,16 +22,19 @@
             <progress-bar :progress="props.row.progress"></progress-bar>
         </template>
         <template slot="size" slot-scope="props">
-            <span data-raw="props.row.stats.show_size">{{props.row.stats.show_size | formatBytes}}</span>
-        </template>
-        <template slot="size" slot-scope="props">
-            <span data-raw="props.row.stats.show_size">{{props.row.stats.show_size | formatBytes}}</span>
+            <span :data-raw="props.row.stats.show_size">{{props.row.stats.show_size | formatBytes}}</span>
         </template>
         <template slot="active" slot-scope="props">
             {{!props.row.paused | formatStatus}}
         </template>
         <template slot="quality" slot-scope="props">
             <quality-pills :qualities="props.row.quality" :simple="true"></quality-pills>
+        </template>
+        <template slot="nextEp" slot-scope="props">
+            {{props.row.stats.next_airs | formatDate('YYYY-MM-DD')}}
+        </template>
+        <template slot="prevEp" slot-scope="props">
+            {{props.row.stats.previous_air | formatDate('YYYY-MM-DD')}}
         </template>
     </v-client-table>
 </template>
@@ -42,6 +45,7 @@
     import Poster from './Poster.vue';
     import Progress from './Progress.vue';
     import QualityPills from './QualityPills.vue';
+    import Utility from '../mixins/Utility';
 
     export default {
         components: {
@@ -52,10 +56,10 @@
         },
         computed: {
             tableColumns() {
-                let position = 0; // 2
+                let position = 2; // 2
                 let columns = [
-                    // 'nextEp',
-                    // 'prevEp',
+                    'nextEp',
+                    'prevEp',
                     'network',
                     'quality',
                     'progress',
@@ -84,12 +88,35 @@
                     perPageValues: [10],
                     pagination: {dropdown: false},
                     skin: 'table-striped',
+                    customSorting: {
+                        active: (ascending) => {
+                            return Utility.methods.getSort(ascending, false, (a) => a.paused);
+                        },
+                        banner: (ascending) => {
+                            return Utility.methods.getSort(ascending, false, (a) => a.show_name);
+                        },
+                        nextEp: (ascending) => {
+                            return Utility.methods.getSort(ascending, false, (a) => a.stats.next_airs);
+                        },
+                        poster: (ascending) => {
+                            return Utility.methods.getSort(ascending, false, (a) => a.show_name);
+                        },
+                        prevEp: (ascending) => {
+                            return Utility.methods.getSort(ascending, false, (a) => a.stats.previous_air);
+                        },
+                        size: (ascending) => {
+                            return Utility.methods.getSort(ascending, true, (a) => a.stats.show_size);
+                        },
+                        title: (ascending) => {
+                            return Utility.methods.getSort(ascending, false, (a) => a.show_name);
+                        },
+                    },
                     headings: {
                         poster: 'Show',
                         banner: 'Show',
                         title: 'Show',
-                        nextEp: 'Next Episodes',
-                        prevEp: 'Previous Episodes',
+                        nextEp: 'Next',
+                        prevEp: 'Previous',
                         network: 'Network',
                         quality: 'Quality',
                         progress: 'Progress',

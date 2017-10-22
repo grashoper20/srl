@@ -4,6 +4,16 @@ function toNormalizedDigits(num, size) {
     return ('0000' + num).slice(-size);
 }
 
+function formatDate(d, f) {
+    if (d === '') {
+        return '';
+    }
+    if (d === '1') {
+        return 'Never';
+    }
+    return moment(d).format(f);
+}
+
 export default {
     // https://stackoverflow.com/a/18650828.
     formatBytes(bytes, decimals) {
@@ -15,10 +25,10 @@ export default {
         return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
     },
     formatAirDate(date) {
-        if (date === '1') {
-            return 'Never';
-        }
-        return moment(date).format('YYYY-MM-DD h:mm:ss a');
+        return formatDate(date, 'YYYY-MM-DD h:mm:ss a');
+    },
+    formatDate(date, format) {
+        return formatDate(date, format);
     },
     formatSeasonEpisode(episode, season_size, episode_size) {
         season_size = season_size || Math.max(2, episode.season.toString().length);

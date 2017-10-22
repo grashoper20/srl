@@ -2,52 +2,83 @@
     <div class="episode_list">
         <div class="table-responsive show-episode-list--season" v-for="episodes in seasons"
              :id="'season-' + episodes[0].season">
-            <h4>Season {{seasonName(episodes)}}</h4>
-            <!-- TODO Handle Season 0 - Specials -->
-            <table class="table">
-                <thead>
-                <tr>
-                    <th class="episode--nfo">NFO</th>
-                    <th class="episode--tbn">TBN</th>
-                    <th class="episode--episode">#</th>
-                    <th class="episode--name">Name</th>
-                    <th class="episode--airdate">Air Date</th>
-                    <th class="episode--status">Status</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr v-bind:class="statusClass(episode.real_status)" v-for="episode in episodes.slice().reverse()">
-                    <td class="episode--nfo">{{episode.hasnfo ? 'Y' : 'N'}}</td>
-                    <td class="episode--tbn">{{episode.hastbn ? 'Y' : 'N'}}</td>
-                    <td class="episode--episode">{{episode.episode}}</td>
-                    <td class="episode--name w-100">{{episode.name}}</td>
-                    <td class="episode--airdate">{{episode.airdate | formatAirDate}}</td>
-                    <td class="episode--status">
-                        <episode-status :episode="episode"></episode-status>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
+            <h4>{{seasonName(episodes)}}</h4>
+            <v-client-table :data="episodes"
+                            :columns="columns"
+                            :options="options">
+                <template slot="hasnfo" slot-scope="props">
+                    {{props.row.hasnfo ? 'Y' : 'N'}}
+                </template>
+                <template slot="hastbn" slot-scope="props">
+                    {{props.row.hastbn ? 'Y' : 'N'}}
+                </template>
+                <template slot="airdate" slot-scope="props">
+                    {{props.row.airdate | formatAirDate}}
+                </template>
+                <template slot="status" slot-scope="props">
+                    <episode-status :episode="props.row"></episode-status>
+                </template>
+            </v-client-table>
         </div>
     </div>
 </template>
 
 <script>
     import Filters from '../filters';
-    import QualityPill from './QualityPills.vue';
     import EpisodeStatus from './EpisodeStatus.vue';
     import StatusMixin from '../mixins/Status';
 
     export default {
         components: {
             EpisodeStatus,
-            'quality-pill': QualityPill,
-            'episode-status': EpisodeStatus,
+        },
+        data() {
+            return {
+                columns: [
+                    'hasnfo',
+                    'hastbn',
+                    'episode',
+                    'name',
+                    'airdate',
+                    'status',
+                ],
+                options: {
+                    perPage: 1000,
+                    perPageValues: [1000],
+                    pagination: false,
+                    orderBy: {column: 'episode', ascending: false,},
+                    headings: {
+                        hasnfo: 'NFO',
+                        hastbn: 'TBN',
+                        episode: '#',
+                        name: 'Name',
+                        airdate: 'Air Date',
+                        status: 'Status',
+                    },
+                    columnsClasses: {
+                        hasnfo: 'episode--nfo',
+                        hastbn: 'episode--tbn',
+                        episode: 'episode--episode',
+                        name: 'episode--name w-100',
+                        airdate: 'episode--airdate',
+                        status: 'episode--status w-100',
+                    },
+                    rowClassCallback: (episode) => {
+                        return this.statusClass(episode.real_status);
+                    },
+                    sortable: [],
+                },
+                tableData: []
+
+            };
         },
         filters: Filters,
         methods: {
             seasonName(season) {
-                return season[0].season || 'Specials';
+                if (season[0].season) {
+                    return 'Season ' + season[0].season;
+                }
+                return 'Specials';
             },
 
         },
@@ -102,6 +133,9 @@
         }
         .episode--name {
             text-align: left;
+        }
+        .VuePagination__count {
+            display: none;
         }
     }
 </style>

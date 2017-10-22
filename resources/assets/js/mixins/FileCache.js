@@ -1,9 +1,9 @@
-import Url from './Url';
+import Utility from './Utility';
 
 export default {
     methods: {
         getFileCacheUrl: (type, id, subtype) => {
-            return Url.methods.url('/filecache/' + type + '/' + id + '/' + subtype);
+            return Utility.methods.url('/filecache/' + type + '/' + id + '/' + subtype);
         },
         getFileCacheImageUrl: function (id, type) {
             if (typeof id === 'undefined') {

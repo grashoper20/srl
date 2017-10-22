@@ -30,7 +30,8 @@
                         <div class="show-full-details--detail">
                             <div class="show-full-details--detail-label">Quality:</div>
                             <div class="show-full-details--detail-value">
-                                <quality-pill :quality="quality" :key="quality.id" v-for="quality in show.quality"></quality-pill>
+                                <quality-pill :quality="quality" :key="quality.id"
+                                              v-for="quality in show.quality"></quality-pill>
                             </div>
                         </div>
                         <div class="show-full-details--detail">
@@ -61,40 +62,40 @@
                         </div>
                         <div class="show-full-details--detail">
                             <div class="show-full-details--detail-label">Subtitles:</div>
-                            <div class="show-full-details--detail-value">{{formatStatus(show.subtitles)}}</div>
+                            <div class="show-full-details--detail-value">{{show.subtitles | formatStatus}}</div>
                         </div>
                         <div class="show-full-details--detail">
                             <div class="show-full-details--detail-label">Subtitle SR Metadata:</div>
-                            <div class="show-full-details--detail-value">{{formatStatus(show.sub_use_sr_metadata)}}
+                            <div class="show-full-details--detail-value">{{show.sub_use_sr_metadata | formatStatus}}
                             </div>
                         </div>
                         <div class="show-full-details--detail">
                             <div class="show-full-details--detail-label">Season Folders:</div>
-                            <div class="show-full-details--detail-value">{{formatStatus(!show.flatten_folders)}}</div>
+                            <div class="show-full-details--detail-value">{{show.flatten_folders | formatStatus}}</div>
                         </div>
                         <div class="show-full-details--detail">
                             <div class="show-full-details--detail-label">Paused:</div>
-                            <div class="show-full-details--detail-value">{{formatStatus(show.paused)}}</div>
+                            <div class="show-full-details--detail-value">{{show.paused | formatStatus}}</div>
                         </div>
                         <div class="show-full-details--detail">
                             <div class="show-full-details--detail-label">Air-by date:</div>
-                            <div class="show-full-details--detail-value">{{formatStatus(show.air_by_date)}}</div>
+                            <div class="show-full-details--detail-value">{{show.air_by_date | formatStatus}}</div>
                         </div>
                         <div class="show-full-details--detail">
                             <div class="show-full-details--detail-label">Sports:</div>
-                            <div class="show-full-details--detail-value">{{formatStatus(show.sports)}}</div>
+                            <div class="show-full-details--detail-value">{{show.sports | formatStatus}}</div>
                         </div>
                         <div class="show-full-details--detail">
                             <div class="show-full-details--detail-label">Anime:</div>
-                            <div class="show-full-details--detail-value">{{formatStatus(show.anime)}}</div>
+                            <div class="show-full-details--detail-value">{{show.anime | formatStatus}}</div>
                         </div>
                         <div class="show-full-details--detail">
                             <div class="show-full-details--detail-label">DVD Order:</div>
-                            <div class="show-full-details--detail-value">{{formatStatus(show.dvdorder)}}</div>
+                            <div class="show-full-details--detail-value">{{show.dvdorder | formatStatus}}</div>
                         </div>
                         <div class="show-full-details--detail">
                             <div class="show-full-details--detail-label">Scene Numbering:</div>
-                            <div class="show-full-details--detail-value">{{formatStatus(show.scene)}}</div>
+                            <div class="show-full-details--detail-value">{{show.scene | formatStatus}}</div>
                         </div>
                     </div>
                 </div>
@@ -110,7 +111,7 @@
 
     export default {
         components: {
-            'quality-pill': QualityPill,
+            QualityPill,
         },
         computed: {
             size() {
@@ -132,20 +133,8 @@
                 return this.show.imdb_info;
             }
         },
-        created() {
-        },
-        data() {
-            return {
-                errors: [],
-            };
-        },
         filters: Filters,
         methods: {
-            formatStatus(status) {
-                return status
-                    ? '✔'
-                    : '✘';
-            },
             showModal() {
                 this.$modal.show('full-poster');
             },

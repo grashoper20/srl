@@ -45,6 +45,7 @@
                     rowClassCallback: this.rowClass,
                     perPageValues: [10],
                     pagination: {dropdown: false},
+                    orderBy: {column: 'airs'},
                 },
             };
         },
