@@ -71,7 +71,7 @@ class tv_episode extends Model
         'indexer',
         'scene_season',
         'scene_episode',
-        'absolute_number',
+//        'absolute_number',
         'scene_absolute_number',
         'version',
         'release_group',

@@ -19,6 +19,9 @@
                 return this.qualities;
             }
         },
+        options: {
+            name: 'quality-pills',
+        },
         props: {
             'qualities': Array,
             simple: {

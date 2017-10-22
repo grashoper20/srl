@@ -99,7 +99,7 @@ class TvEpisodeController extends Controller
 
     public function indexByShow(tv_show $show)
     {
-        return $show->episodes()->get();
+        return $show->episodes()->orderBy('absolute_number', 'desc')->get();
     }
 
 }
