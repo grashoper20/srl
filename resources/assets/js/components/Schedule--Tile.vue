@@ -1,28 +1,29 @@
 <template>
-    <div class="schedule-tile--details container" @click="showDescription = !showDescription">
-        <div class="row schedule-tile--main">
-            <div v-if="poster" class="schedule-tile--poster col-auto">
+    <div :class="getClass" @click="showDescription = !showDescription">
+        <router-link :to="{name: 'show', params: {id: episode.showid}}">
+            <img class="schedule-tile--poster card-img-top" v-if="poster" :src="getPosterThumbnail(episode.showid)"
+                 :alt="episode.show.show_name"/>
+            <img class="schedule-tile--banner card-img-top" v-if="banner" :src="getBannerThumbnail(episode.showid)"
+                 :alt="episode.show.show_name"/>
+        </router-link>
+        <div :class="poster ? 'card-img-overlay' : 'card-body'">
+            <h3 class="card-title">
                 <router-link :to="{name: 'show', params: {id: episode.showid}}">
-                    <img :src="getPoster(episode.showid)"/>
+                    {{episode.name}}
                 </router-link>
-            </div>
-            <div class="col">
-                <router-link :to="{name: 'show', params: {id: episode.showid}}">
-                    <img class="schedule-tile--banner" v-if="banner" :src="getBanner(episode.showid)"/>
-                </router-link>
-                <div class="schedule-tile--info">
-                    <h3>{{episode.show.show_name}}</h3>
-                    <div class="schedule-tile--episode">Episode: {{episode | formatSeasonEpisode}} - {{episode.name}}
-                    </div>
-                    <div class="schedule-tile--airs">
-                        Airs: {{episode.airdate | formatAirDate}} on {{episode.show.network}}
-                    </div>
-                </div>
-            </div>
+            </h3>
         </div>
-        <transition name="fade">
-            <div class="row schedule-tile--description" v-if="showDescription">{{episode.description}}</div>
-        </transition>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+                <strong>Episode:</strong> {{episode | formatSeasonEpisode}}
+            </li>
+            <li class="list-group-item">
+                <strong>Airs:</strong> {{episode.airdate | formatAirDate}}
+            </li>
+            <li class="list-group-item">
+                <strong>Network:</strong> {{episode.show.network}}
+            </li>
+        </ul>
     </div>
 </template>
 
@@ -32,6 +33,18 @@
     import Filters from '../filters';
 
     export default {
+        computed: {
+            getClass() {
+                let classes = 'schedule-tile card';
+                if (this.banner) {
+                    classes += ' schedule-tile--banner';
+                }
+                if (this.poster) {
+                    classes += ' schedule-tile--poster';
+                }
+                return classes;
+            },
+        },
         data() {
             return {
                 showDescription: false,
@@ -56,38 +69,45 @@
 <style lang="scss">
     // Variables
     @import "../../sass/variables";
+    @import "~material-shadows/material-shadows";
 
-    .schedule-tile--details {
+    .schedule-tile {
         background: $background-off-white;
-        border: 1px solid $border-dark-grey;
-        border-radius: 5px;
+        margin: 15px;
         overflow: hidden;
-        transition: height 1s ease-in-out;
-        padding: 0;
+        @include z-depth-2dp();
 
         h3 {
-            font-size: 1.25rem;
+            font-size: 1.1rem;
+            margin-bottom: 0;
+            a {
+                color: black;
+            }
         }
-    }
-
-    .schedule-tile--info {
-        padding: 15px;
-    }
-
-    .schedule-tile--banner {
-        width: 100%;
+        .card-img-overlay {
+            background: linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, .5) 15%, transparent 25%);
+        }
+        .list-group {
+            font-size: .9rem;
+        }
     }
 
     .schedule-tile--poster {
-        padding: 0 0 0 15px;
-        img {
-            height: 110px;
+        width: 200px;
+        h3 {
+            &, a {
+                color: #eee;
+            }
         }
     }
 
+    .schedule-tile--banner {
+        width: 270px;
+    }
+
     .schedule-tile--description {
-        margin: 0;
-        padding: 1rem;
+        margin: 1rem -1.25rem 0;
+        padding: 1rem 1.25rem 0;
         border-top: 1px solid $border-dark-grey;
     }
 

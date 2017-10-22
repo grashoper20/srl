@@ -1,23 +1,18 @@
 <template>
-    <ul class="schedule-tile container">
-        <li v-for="episode in episodes" :class="statusClass(episode.real_status) + ' row'">
-            <schedule-tile :poster="poster" :banner="banner" :episode="episode"></schedule-tile>
-        </li>
-    </ul>
+    <div class="schedule-tiles">
+        <schedule-tile :poster="poster" :banner="banner" :episode="episode"
+                       :key="episode.episode_id" v-for="episode in episodes">
+        </schedule-tile>
+    </div>
 </template>
 
 <script>
-    import FileCache from '../mixins/FileCache';
-    import Filters from '../filters';
     import ScheduleTile from './Schedule--Tile';
-    import StatusMixin from '../mixins/Status';
 
     export default {
         components: {
             ScheduleTile,
         },
-        filters: Filters,
-        mixins: [FileCache, StatusMixin,],
         props: {
             episodes: Array,
             banner: {
@@ -33,24 +28,9 @@
 </script>
 
 <style lang="scss">
-    @import "../../sass/variables";
-    @import "~material-shadows/material-shadows";
-
-    .schedule-tile {
-        list-style: none;
-        padding: 1rem 0 0;
-
-        li {
-            border: 1px solid $border-dark-grey;
-            border-bottom-width: 0;
-            /*border-radius: 5px;*/
-            padding: 1rem;
-            border-collapse: collapse;
-            /*margin-bottom: 1rem;*/
-//            @include z-depth-2dp();
-        }
-        li:last-child{
-            border-bottom-width: 1px;
-        }
+    .schedule-tiles {
+        display: flex;
+        flex-wrap: wrap;
+        margin: 0 -15px 0;
     }
 </style>

@@ -1,6 +1,6 @@
 <template>
     <div id="schedule" class="container schedule">
-        <header class="schedule--search row">
+        <header class="schedule--search">
             <h1>Schedule</h1>
             <div class="form-inline ">
                 <!--
@@ -31,16 +31,29 @@
             </div>
         </header>
 
-        <schedule-banner v-if="getScheduleLayout == 1" :episodes="episodes" :banner="true"></schedule-banner>
-        <schedule-poster v-else-if="getScheduleLayout == 2" :episodes="episodes" :poster="true"></schedule-poster>
+        <div v-if="getScheduleLayout == 1">
+            <div v-for="(episodeList, groupDate) in groupedEpisodes">
+                <h3 style="margin:0">{{groupDate | formatDate('dddd L')}}</h3>
+                <schedule-banner :episodes="episodeList" :banner="true"></schedule-banner>
+            </div>
+        </div>
+        <div v-if="getScheduleLayout == 2">
+            <div v-for="(episodeList, groupDate) in groupedEpisodes">
+                <h3 style="margin:0">{{groupDate | formatDate('dddd L')}}</h3>
+                <schedule-poster :episodes="episodeList" :poster="true"></schedule-poster>
+            </div>
+        </div>
         <schedule-list v-else-if="getScheduleLayout == 3" :episodes="episodes"></schedule-list>
         <calendar v-else-if="getScheduleLayout == 4"></calendar>
     </div>
 </template>
 
 <script>
+    import * as _ from 'lodash';
     import api from '../../api/index';
+    import moment from 'moment';
     import Fallback from './Example.vue';
+    import Filters from '../../filters';
     import ScheduleCard from '../Schedule--Tiles';
     import ScheduleList from '../Schedule--List';
 
@@ -57,21 +70,24 @@
             'schedule-list': ScheduleList,
             'calendar': Fallback,
         },
-        mounted() {
-            api.schedule.getEpisodes()
-                .then(response => {
-                    this.episodes = response.data.data;
-                });
-        },
         computed: {
             getScheduleLayout() {
                 return this.layout;
             },
+            groupedEpisodes() {
+                return _.groupBy(this.episodes, (episode) => moment(episode.airdate).startOf('day'));
+            },
         },
+        filters: Filters,
         methods: {
             updateShowLayout(e) {
                 this.layout = e.target.value;
             },
+        },
+        mounted() {
+            api.schedule.getEpisodes().then(response => {
+                this.episodes = response.data.data;
+            });
         },
     }
 </script>
@@ -100,7 +116,6 @@
         th {
             padding-bottom: .1rem;
         }
-
     }
 
 </style>
