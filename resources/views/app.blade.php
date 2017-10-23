@@ -18,7 +18,7 @@
     </head>
     <body>
         <div id="app">
-            <headnav></headnav>
+            <head-nav></head-nav>
             <section>
                 <router-view></router-view>
             </section>

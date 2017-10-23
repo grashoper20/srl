@@ -15,7 +15,6 @@
                 <div class="show--quality">
                     <span v-if="show.quality.length === 1">{{show.quality[0].quality}}</span>
                     <span v-else>Custom</span>
-                    <quality-pill :quality="quality" :key="quality.id" v-for="quality in show.quality"></quality-pill>
                 </div>
             </div>
         </div>
@@ -24,14 +23,13 @@
 
 <script>
     import FileCache from '../mixins/FileCache';
-    import {mapGetters} from 'vuex'
-    import Progress from './Progress.vue';
-    import QualityPill from './QualityPills.vue';
+    import ProgressBar from './ProgressBar.vue';
+    import QualityPills from './QualityPills.vue';
 
     export default {
         components: {
-            'quality-pill': QualityPill,
-            'progress-bar': Progress,
+            'quality-pills': QualityPills,
+            'progress-bar': ProgressBar,
         },
         computed: {
             completed() {

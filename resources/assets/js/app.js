@@ -6,6 +6,7 @@
 
 require('./bootstrap');
 
+import components from './components';
 import router from './router';
 import store from './store';
 import Vue from 'vue';
@@ -25,9 +26,7 @@ Vue.use(ClientTable, {
 const app = new Vue({
     router,
     store,
-    components: {
-        'headnav': require('./components/Headnav.vue'),
-    },
+    components: components,
     mounted() {
         let ShowPoller = setInterval(() => {
             this.$store.dispatch('shows/sync');

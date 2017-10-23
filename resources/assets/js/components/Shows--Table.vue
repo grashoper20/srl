@@ -43,7 +43,7 @@
     import Banner from './Banner.vue';
     import Filters from '../filters';
     import Poster from './Poster.vue';
-    import Progress from './Progress.vue';
+    import ProgressBar from './ProgressBar.vue';
     import QualityPills from './QualityPills.vue';
     import Utility from '../mixins/Utility';
 
@@ -51,7 +51,7 @@
         components: {
             'poster': Poster,
             'banner': Banner,
-            'progress-bar': Progress,
+            'progress-bar': ProgressBar,
             'quality-pills': QualityPills,
         },
         computed: {
