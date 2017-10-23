@@ -1,13 +1,11 @@
 <template>
-    <div class="show--wrapper">
-        <div class="show--image">
-            <router-link :to="{name: 'show', params: {id: show.indexer_id}}">
-                <img :src="getPosterThumbnail(show.indexer_id)"/>
-            </router-link>
-        </div>
+    <div class="show-tile card">
+        <router-link :to="{name: 'show', params: {id: show.indexer_id}}">
+            <img class="card-img-top" :src="getPosterThumbnail(show.indexer_id)" :alt="show.show_name"/>
+        </router-link>
         <progress-bar :progress="show.progress"></progress-bar>
-        <div class="show--footer">
-            <h4 class="show--title">{{show.show_name}}</h4>
+        <div class="card-body">
+            <h4 class="card-title">{{show.show_name}}</h4>
             <div class="show--date">{{airDate}}</div>
             <div class="show--details">
                 <div class="show--count">{{completed}}</div>
@@ -63,7 +61,7 @@
     @import "~material-shadows/material-shadows";
 
     // use wrapper because "show" conflicts with bootstrap.
-    .show--wrapper {
+    .show-tile {
         width: 188px;
         margin: 4px;
         background-color: #F3F3F3;
@@ -78,23 +76,13 @@
             border-bottom-width: 1px;
             border-radius: 0;
         }
-    }
-
-    .show--image img {
-        overflow: hidden;
-        max-width: 100%;
-    }
-
-    .show--footer {
-        padding: 8px;
-    }
-
-    .show--title {
-        // overflow: hidden;
-        // text-overflow: ellipsis;
-        // white-space: nowrap;
-        font-size: .8rem;
-        margin: 0;
+        .card-body {
+            padding: 8px;
+        }
+        .card-title {
+            font-size: .8rem;
+            margin: 0;
+        }
     }
 
     .show--date {
