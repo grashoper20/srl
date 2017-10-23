@@ -19,7 +19,7 @@
                     <option value="4">Table: Simple</option>
                 </select>
             </div>
-            <div class="form-inline " v-show="getShowLayout === 1">
+            <div class="form-inline " v-show="getShowLayout === '1'">
                 <label for="search-sort">Sort</label>
                 <select class="form-control" id="search-sort" :value="getShowSortField" @input="updateSortField">
                     <option value="show_name">Name</option>
@@ -181,6 +181,9 @@
     .shows--search {
         .form-control, label {
             margin-right: .5rem;
+        }
+        .form-inline {
+            margin: 10px 0;
         }
     }
 
