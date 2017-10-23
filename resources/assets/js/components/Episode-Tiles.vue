@@ -1,17 +1,17 @@
 <template>
-    <div class="schedule-tiles">
-        <schedule-tile :poster="poster" :banner="banner" :episode="episode"
+    <div class="episode-tiles">
+        <episode-tile :poster="poster" :banner="banner" :episode="episode"
                        :key="episode.episode_id" v-for="episode in episodes">
-        </schedule-tile>
+        </episode-tile>
     </div>
 </template>
 
 <script>
-    import ScheduleTile from './Schedule--Tile';
+    import EpisodeTile from './Episode-Tile';
 
     export default {
         components: {
-            ScheduleTile,
+            EpisodeTile,
         },
         props: {
             episodes: Array,
@@ -28,7 +28,7 @@
 </script>
 
 <style lang="scss">
-    .schedule-tiles {
+    .episode-tiles {
         display: flex;
         flex-wrap: wrap;
         margin: 0 -15px 0;

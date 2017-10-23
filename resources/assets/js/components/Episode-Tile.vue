@@ -1,9 +1,9 @@
 <template>
     <div :class="getClass" @click="showDescription = !showDescription">
         <router-link :to="{name: 'show', params: {id: episode.showid}}">
-            <img class="schedule-tile--poster card-img-top" v-if="poster" :src="getPosterThumbnail(episode.showid)"
+            <img class="episode-tile--poster card-img-top" v-if="poster" :src="getPosterThumbnail(episode.showid)"
                  :alt="episode.show.show_name"/>
-            <img class="schedule-tile--banner card-img-top" v-if="banner" :src="getBannerThumbnail(episode.showid)"
+            <img class="episode-tile--banner card-img-top" v-if="banner" :src="getBannerThumbnail(episode.showid)"
                  :alt="episode.show.show_name"/>
         </router-link>
         <div :class="poster ? 'card-img-overlay' : 'card-body'">
@@ -28,19 +28,18 @@
 </template>
 
 <script>
-    import StatusMixin from '../mixins/Status';
     import FileCache from '../mixins/FileCache';
     import Filters from '../filters';
 
     export default {
         computed: {
             getClass() {
-                let classes = 'schedule-tile card';
+                let classes = 'episode-tile card';
                 if (this.banner) {
-                    classes += ' schedule-tile--banner';
+                    classes += ' episode-tile--banner';
                 }
                 if (this.poster) {
-                    classes += ' schedule-tile--poster';
+                    classes += ' episode-tile--poster';
                 }
                 return classes;
             },
@@ -51,7 +50,7 @@
             };
         },
         filters: Filters,
-        mixins: [StatusMixin, FileCache,],
+        mixins: [FileCache,],
         props: {
             episode: Object,
             banner: {
@@ -71,7 +70,7 @@
     @import "../../sass/variables";
     @import "~material-shadows/material-shadows";
 
-    .schedule-tile {
+    .episode-tile {
         background: $background-off-white;
         margin: 15px;
         overflow: hidden;
@@ -92,7 +91,7 @@
         }
     }
 
-    .schedule-tile--poster {
+    .episode-tile--poster {
         width: 200px;
         h3 {
             &, a {
@@ -101,11 +100,11 @@
         }
     }
 
-    .schedule-tile--banner {
+    .episode-tile--banner {
         width: 270px;
     }
 
-    .schedule-tile--description {
+    .episode-tile--description {
         margin: 1rem -1.25rem 0;
         padding: 1rem 1.25rem 0;
         border-top: 1px solid $border-dark-grey;

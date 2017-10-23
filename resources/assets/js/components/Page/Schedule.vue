@@ -52,9 +52,9 @@
     import * as _ from 'lodash';
     import api from '../../api/index';
     import moment from 'moment';
+    import EpisodeTiles from '../Episode-Tiles';
     import Fallback from './Example.vue';
     import Filters from '../../filters';
-    import ScheduleCard from '../Schedule--Tiles';
     import ScheduleList from '../Schedule--List';
 
     export default {
@@ -65,8 +65,8 @@
             };
         },
         components: {
-            'schedule-banner': ScheduleCard,
-            'schedule-poster': ScheduleCard,
+            'schedule-banner': EpisodeTiles,
+            'schedule-poster': EpisodeTiles,
             'schedule-list': ScheduleList,
             'calendar': Fallback,
         },
