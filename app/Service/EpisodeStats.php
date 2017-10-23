@@ -131,11 +131,11 @@ class EpisodeStats
             $next = $next_airs->get($indexer_id, 0);
             $stat->next_airs = $next == 0 ? '' :
                 Date::dateFromOrdinal($next)
-                    ->format(DATE_ISO8601);
+                    ->format(\DateTime::RFC2822);
             $prev = $previous_airs->get($indexer_id, 0);
             $stat->previous_air = $prev == 0 ? '' :
                 Date::dateFromOrdinal($prev)
-                    ->format(DATE_ISO8601);
+                    ->format(\DateTime::RFC2822);
             $stat->show_size = (int)$show_sizes->get($indexer_id, 0);
         }
 

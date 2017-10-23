@@ -104,7 +104,7 @@ class tv_episode extends Model
     {
         return $value > 1
             ? Date::dateFromOrdinal($value)
-                ->format(DATE_RFC2822)
+                ->format(\DateTime::RFC2822)
             : $value;
     }
 
