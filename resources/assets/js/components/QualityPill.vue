@@ -58,7 +58,7 @@
 
     .quality--pill {
         display: inline-block;
-        padding: 0 6px 3px 6px;
+        padding: 0 6px;
 
         border: 1px solid #888;
         border-radius: 4px;

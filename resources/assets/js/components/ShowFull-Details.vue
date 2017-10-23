@@ -30,8 +30,7 @@
                         <div class="show-full-details--detail">
                             <div class="show-full-details--detail-label">Quality:</div>
                             <div class="show-full-details--detail-value">
-                                <quality-pill :quality="quality" :key="quality.id"
-                                              v-for="quality in show.quality"></quality-pill>
+                                <quality-pills :qualities="show.quality"></quality-pills>
                             </div>
                         </div>
                         <div class="show-full-details--detail">
@@ -107,11 +106,11 @@
     import api from '../api';
     import Filters from '../filters';
     import FileCache from '../mixins/FileCache';
-    import QualityPill from './QualityPills.vue';
+    import QualityPills from './QualityPills.vue';
 
     export default {
         components: {
-            QualityPill,
+            QualityPills,
         },
         computed: {
             size() {
@@ -236,7 +235,7 @@
     }
 
     .show-full-details--detail-label {
-        padding: 0 .5em;
+        padding: .25em .5em;
         display: table-cell;
         white-space: nowrap;
     }
