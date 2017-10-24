@@ -22,7 +22,7 @@
                 </select>
                 -->
                 <label for="search-layout">Layout</label>
-                <select class="form-control" id="search-layout" :value="getScheduleLayout" @input="updateShowLayout">>
+                <select class="form-control" id="search-layout" :value="getScheduleLayout" @input="updateScheduleLayout">>
                     <option value="1">Banner</option>
                     <option value="2">Poster</option>
                     <option value="3">List</option>
@@ -51,6 +51,7 @@
 <script>
     import * as _ from 'lodash';
     import api from '../../api/index';
+    import {mapGetters, mapMutations} from 'vuex';
     import moment from 'moment';
     import EpisodeTiles from '../Episode-Tiles';
     import Fallback from './Example.vue';
@@ -61,7 +62,6 @@
         data() {
             return {
                 episodes: [],
-                layout: 1,
             };
         },
         components: {
@@ -71,18 +71,24 @@
             'calendar': Fallback,
         },
         computed: {
-            getScheduleLayout() {
-                return this.layout;
-            },
             groupedEpisodes() {
                 return _.groupBy(this.episodes, (episode) => moment(episode.airdate).startOf('day'));
             },
+            ...mapGetters('settings', [
+                'getScheduleLayout',
+            ]),
         },
         filters: Filters,
         methods: {
-            updateShowLayout(e) {
-                this.layout = e.target.value;
+            updateScheduleLayout(e) {
+                this.setSetting({
+                    key: 'scheduleLayout',
+                    value: e.target.value,
+                });
             },
+            ...mapMutations('settings', {
+                setSetting: 'setScheduleSetting',
+            }),
         },
         mounted() {
             api.schedule.getEpisodes().then(response => {
