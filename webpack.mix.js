@@ -22,7 +22,15 @@ mix.webpackConfig({
         new webpack.ProvidePlugin({
             Popper: ['popper.js', 'default']
         })
-    ]
+    ],
+    resolve: {
+        alias: {
+            "icons": path.resolve(__dirname, "node_modules/vue-material-design-icons")
+        },
+        extensions: [
+            ".vue"
+        ]
+    }
 })
     .js('resources/assets/js/app.js', 'public/js')
         .extract(['vue', 'vuex', 'vue-js-modal', 'vue-localstorage', 'vue-router', 'lodash', 'jquery', 'popper.js', 'bootstrap', 'axios', 'moment', 'fuse.js', 'vue-tables-2'])

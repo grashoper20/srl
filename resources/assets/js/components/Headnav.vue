@@ -38,15 +38,21 @@
                         </li>
                     </ul>
                 </li>
-                <li class="nav-item"><a class="nav-link">Gear</a></li>
-                <li class="nav-item"><a class="nav-link">Toolbox</a></li>
+                <li class="nav-item"><a class="nav-link"><icon-settings></icon-settings></a></li>
+                <li class="nav-item"><a class="nav-link"><icon-wrench></icon-wrench></a></li>
             </ul>
         </div>
     </nav>
 </template>
 
 <script>
+    import IconSettings from 'icons/settings';
+    import IconWrench from 'icons/wrench';
     export default {
+        components: {
+            'icon-settings': IconSettings,
+            'icon-wrench': IconWrench,
+        },
         mounted() {
 //            console.log('HEAD!')
         }
