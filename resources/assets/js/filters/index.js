@@ -1,4 +1,5 @@
 import moment from 'moment';
+import Status from '../mixins/Status';
 
 function toNormalizedDigits(num, size) {
     return ('0000' + num).slice(-size);
@@ -27,6 +28,9 @@ export default {
     formatAirDate(date) {
         return formatDate(date, 'YYYY-MM-DD h:mm:ss a');
     },
+    formatIsoDate(date) {
+        return moment(date).toISOString();
+    },
     formatDate(date, format) {
         return formatDate(date, format);
     },
@@ -41,4 +45,7 @@ export default {
             ? '✔'
             : '✘';
     },
+    formatStatusText(status) {
+        return Status.methods.statusText(status);
+    }
 }

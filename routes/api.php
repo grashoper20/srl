@@ -16,6 +16,7 @@ use Illuminate\Http\Request;
 Route::resource('/show', 'TvShowController');
 Route::resource('/imdb', 'ImdbInfoController');
 Route::resource('/episode', 'TvEpisodeController');
+Route::resource('/history', 'HistoryController');
 Route::get('/show/{show}/episodes', 'TvEpisodeController@indexByShow'); // List episodes.
 Route::get('/schedule', 'ScheduleController@get');
 

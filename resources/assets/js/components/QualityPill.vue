@@ -40,6 +40,8 @@
                     case 32768:
                         return 'quality--unknown';
 
+                    case -1:
+                        return 'quality--' + this.quality.custom;
                     default:
                         console.log(this.quality.id);
                         return 'quality--custom';
@@ -62,6 +64,7 @@
 
         border: 1px solid #888;
         border-radius: 4px;
+        background-color: black;
         color: white;
 
         font-family: $font-family-sans-serif-small;
@@ -105,7 +108,12 @@
     .quality--any {
         background-color: #666;
     }
+
     .quality--custom {
         background-color: #602090;
+    }
+
+    .quality--proper {
+        background-color: #3F7F00;
     }
 </style>

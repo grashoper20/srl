@@ -4,12 +4,13 @@ import VueRouter from 'vue-router';
 Vue.use(VueRouter);
 
 // Pull in some templates.
+import Default from '../components/Page/Example.vue';
+import History from '../components/Page/History.vue';
+import NotFound from '../components/Page/NotFound.vue';
+import Schedule from '../components/Page/Schedule.vue';
+import ShowFull from '../components/Page/ShowFull.vue';
 import Shows from '../components/Page/Shows.vue';
 import ShowsAdd from '../components/Page/ShowsAdd.vue';
-import ShowFull from '../components/Page/ShowFull.vue';
-import Schedule from '../components/Page/Schedule.vue';
-import Default from '../components/Page/Example.vue';
-import NotFound from '../components/Page/NotFound.vue';
 
 export default new VueRouter({
     mode: 'history',
@@ -41,7 +42,10 @@ export default new VueRouter({
             component: Schedule,
             name: 'schedule',
         },
-        {path: '/history', component: Default},
+        {
+            path: '/history',
+            component: History,
+        },
         // TODO Mass update, backlog overview, search, and episode management are probably just one page.
         {
             path: '/manage',

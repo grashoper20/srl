@@ -61,7 +61,7 @@
                         episode: 'episode--episode',
                         name: 'episode--name w-100',
                         airdate: 'episode--airdate',
-                        status: 'episode--status w-100',
+                        status: 'episode--status',
                     },
                     rowClassCallback: (episode) => {
                         return this.statusClass(episode.real_status);

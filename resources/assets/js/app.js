@@ -17,7 +17,8 @@ Vue.use(VModal);
 import VLocalStorage from 'vue-localstorage';
 Vue.use(VLocalStorage);
 
-import {ClientTable} from 'vue-tables-2';
+import {ServerTable, ClientTable} from 'vue-tables-2';
+Vue.use(ServerTable, {});
 Vue.use(ClientTable, {
     filterable: false,
     skin: '',
