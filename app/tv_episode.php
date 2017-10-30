@@ -59,6 +59,9 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\SRL\tv_episode whereSubtitlesSearchcount($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\SRL\tv_episode whereVersion($value)
  * @mixin \Eloquent
+ * @property-read mixed $quality
+ * @property-read mixed $real_status
+ * @property-read \SRL\tv_show|null $show
  */
 class tv_episode extends Model
 {

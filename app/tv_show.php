@@ -72,6 +72,10 @@ use SRL\Service\EpisodeStats;
  * @method static \Illuminate\Database\Eloquent\Builder|\SRL\tv_show whereSubtitles($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\SRL\tv_show whereTmdbId($value)
  * @mixin \Eloquent
+ * @property-read \Illuminate\Database\Eloquent\Collection|\SRL\tv_episode[] $episodes
+ * @property-read mixed $progress
+ * @property-read mixed $stats
+ * @property-read \SRL\imdb_info $imdb_info
  */
 class tv_show extends Model
 {

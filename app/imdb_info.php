@@ -34,6 +34,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\SRL\imdb_info whereVotes($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\SRL\imdb_info whereYear($value)
  * @mixin \Eloquent
+ * @property-read \SRL\tv_show|null $show
  */
 class imdb_info extends Model
 {
