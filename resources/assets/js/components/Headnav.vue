@@ -18,9 +18,9 @@
                     <router-link to="/history" class="nav-link">History</router-link>
                 </li>
                 <li class="nav-item dropdown dropdown-hover">
-                    <a class="nav-link dropdown-toggle" id="dropdown02" data-toggle="dropdown"
+                    <a class="nav-link dropdown-toggle" id="dropdown-manage" data-toggle="dropdown"
                        aria-haspopup="true" aria-expanded="false" href="#">Manage</a>
-                    <ul class="dropdown-menu" aria-labelledby="dropdown02">
+                    <ul class="dropdown-menu" aria-labelledby="dropdown-manage">
                         <li class="dropdown-item">
                             <router-link :to="{name: 'manage_update'}">Mass update</router-link>
                         </li>
@@ -38,8 +38,30 @@
                         </li>
                     </ul>
                 </li>
-                <li class="nav-item"><a class="nav-link"><icon-settings></icon-settings></a></li>
-                <li class="nav-item"><a class="nav-link"><icon-wrench></icon-wrench></a></li>
+                <li class="nav-item dropdown dropdown-hover">
+                    <a class="nav-link dropdown-toggle" id="dropdown-settings" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false" href="#"><icon-settings></icon-settings></a>
+                    <ul class="dropdown-menu" aria-labelledby="dropdown-settings">
+                        <li class="dropdown-item">
+                            <a href="#"><icon-settings></icon-settings> General</a>
+                        </li>
+                        <li class="dropdown-item">
+                            <a href="#"><icon-search></icon-search> Search Settings</a>
+                        </li>
+                        <li class="dropdown-item">
+                            <a href="#"><icon-provider></icon-provider> Provider Settings</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown dropdown-hover">
+                    <a class="nav-link dropdown-toggle" id="dropdown-x" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false" href="#"><icon-wrench></icon-wrench></a>
+                    <ul class="dropdown-menu" aria-labelledby="dropdown-x">
+                        <li class="dropdown-item">
+                            <a href="#">Tools TBD</a>
+                        </li>
+                    </ul>
+                </li>
             </ul>
         </div>
     </nav>
@@ -48,14 +70,15 @@
 <script>
     import IconSettings from 'icons/settings';
     import IconWrench from 'icons/wrench';
+    import IconSearch from 'icons/magnify';
+    import IconProvider from 'icons/power-plug';
     export default {
         components: {
             'icon-settings': IconSettings,
             'icon-wrench': IconWrench,
+            'icon-search': IconSearch,
+            'icon-provider': IconProvider,
         },
-        mounted() {
-//            console.log('HEAD!')
-        }
     }
 </script>
 
