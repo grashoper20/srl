@@ -5,7 +5,7 @@ RUN composer install --no-dev -o \
     && find ./vendor -name tests -exec rm -rf {} + \
     && find ./vendor -name Tests -exec rm -rf {} +
 
-FROM node:alpine
+FROM node:8-alpine
 COPY . /app
 RUN cd /app && yarn install && yarn run production
 
