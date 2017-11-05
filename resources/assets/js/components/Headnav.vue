@@ -1,5 +1,5 @@
 <template>
-    <nav class="main navbar navbar-expand-md navbar-static-top navbar-dark">
+    <nav class="main navbar navbar-expand-sm navbar-static-top navbar-dark">
         <router-link :to="{name: 'show_list'}" class="navbar-brand">SRL</router-link>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
                 data-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false"
@@ -92,10 +92,10 @@
                 @include z-depth-2dp();
             }
             .dropdown-toggle,
-            & > a {
+            & a.nav-link {
                 transition: box-shadow 500ms;
                 display: inline-block;
-                padding: 0 10px;
+                padding: 0 15px;
             }
             & > .router-link-active {
                 background: $background-dark;
