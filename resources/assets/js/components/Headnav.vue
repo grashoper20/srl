@@ -61,13 +61,15 @@
 
 <style lang="scss">
     $height: 50px;
-    $background-light: #555;
+    $background-light: #444;
     $background-dark: #333;
+
+    @import "~material-shadows/material-shadows";
 
     nav.main {
         min-height: $height;
         color: white;
-        background: $background-light linear-gradient($background-light, $background-dark);
+        background: $background-light;
         margin-bottom: .5rem;
         border-bottom: 1px solid $background-dark;
 
@@ -86,8 +88,12 @@
             font-size: 2.0rem;
         }
         .nav-item {
+            & > a:hover {
+                @include z-depth-2dp();
+            }
             .dropdown-toggle,
             & > a {
+                transition: box-shadow 500ms;
                 display: inline-block;
                 padding: 0 10px;
             }
