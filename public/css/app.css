@@ -3083,7 +3083,7 @@ tbody.collapse.show {
   color: #000;
   text-align: left;
   list-style: none;
-  background-color: #F5F1E4;
+  background-color: #fff;
   background-clip: padding-box;
   border: 1px solid rgba(0, 0, 0, 0.15);
   border-radius: 0.25rem;
@@ -3120,7 +3120,7 @@ tbody.collapse.show {
 .dropdown-item:active {
   color: #fff;
   text-decoration: none;
-  background-color: #F5F1E4;
+  background-color: #007bff;
 }
 
 .dropdown-item.disabled,
@@ -9194,22 +9194,6 @@ a.text-dark:hover {
 html,
 body {
   height: 100vh;
-}
-
-@media (min-width: 768px) {
-  nav.main .dropdown-menu:after {
-    position: absolute;
-    top: -12px;
-    right: 12px;
-    display: inline-block;
-    border: 6px solid transparent;
-    border-bottom-color: #F5F1E4;
-    content: "";
-  }
-
-  .dropdown-hover:hover > .dropdown-menu {
-    display: block;
-  }
 }
 
 .status-unaired {

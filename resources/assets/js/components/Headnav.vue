@@ -40,22 +40,32 @@
                 </li>
                 <li class="nav-item dropdown dropdown-hover">
                     <a class="nav-link dropdown-toggle" id="dropdown-settings" data-toggle="dropdown"
-                       aria-haspopup="true" aria-expanded="false" href="#"><icon-settings></icon-settings></a>
+                       aria-haspopup="true" aria-expanded="false" href="#">
+                        <icon-settings></icon-settings>
+                    </a>
                     <ul class="dropdown-menu" aria-labelledby="dropdown-settings">
                         <li class="dropdown-item">
-                            <a href="#"><icon-settings></icon-settings> General</a>
+                            <a href="#">
+                                <icon-settings></icon-settings>
+                                General</a>
                         </li>
                         <li class="dropdown-item">
-                            <a href="#"><icon-search></icon-search> Search Settings</a>
+                            <a href="#">
+                                <icon-search></icon-search>
+                                Search Settings</a>
                         </li>
                         <li class="dropdown-item">
-                            <a href="#"><icon-provider></icon-provider> Provider Settings</a>
+                            <a href="#">
+                                <icon-provider></icon-provider>
+                                Provider Settings</a>
                         </li>
                     </ul>
                 </li>
                 <li class="nav-item dropdown dropdown-hover">
                     <a class="nav-link dropdown-toggle" id="dropdown-x" data-toggle="dropdown"
-                       aria-haspopup="true" aria-expanded="false" href="#"><icon-wrench></icon-wrench></a>
+                       aria-haspopup="true" aria-expanded="false" href="#">
+                        <icon-wrench></icon-wrench>
+                    </a>
                     <ul class="dropdown-menu" aria-labelledby="dropdown-x">
                         <li class="dropdown-item">
                             <a href="#">Tools TBD</a>
@@ -72,6 +82,7 @@
     import IconWrench from 'icons/wrench';
     import IconSearch from 'icons/magnify';
     import IconProvider from 'icons/power-plug';
+
     export default {
         components: {
             'icon-settings': IconSettings,
@@ -86,10 +97,32 @@
     $height: 50px;
     $background-light: #444;
     $background-dark: #333;
+    $dropdown-background: #F5F1E4;
 
+    @import "../../sass/helper";
+    @import "~bootstrap/scss/mixins";
     @import "~material-shadows/material-shadows";
 
+    @include media-breakpoint-up(sm) {
+        nav.main {
+            .dropdown-menu:after {
+                position: absolute;
+                top: -12px;
+                right: 12px;
+                display: inline-block;
+                border: 6px solid transparent;
+                border-bottom-color: $dropdown-background;
+                content: "";
+            }
+
+            .dropdown-hover:hover > .dropdown-menu {
+                display: block;
+            }
+        }
+    }
+
     nav.main {
+
         min-height: $height;
         color: white;
         background: $background-light;
@@ -124,10 +157,12 @@
                 background: $background-dark;
             }
         }
+
         .dropdown-menu {
             margin: 0;
             left: auto;
             right: 0;
+            background-color: $dropdown-background;
 
             li {
                 padding: 0;
@@ -137,6 +172,11 @@
                 padding: 0.25rem 1.5rem;
                 color: $background-dark;
             }
+        }
+
+        .dropdown-item.active,
+        .dropdown-item:active {
+            background-color: $dropdown-background;
         }
     }
 

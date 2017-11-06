@@ -12,24 +12,6 @@ html, body {
   height: 100vh;
 }
 
-@include media-breakpoint-up(md) {
-  nav.main {
-    .dropdown-menu:after {
-      position: absolute;
-      top: -12px;
-      right: 12px;
-      display: inline-block;
-      border: 6px solid transparent;
-      border-bottom-color: $dropdown-bg;
-      content: "";
-    }
-  }
-
-  .dropdown-hover:hover > .dropdown-menu {
-    display: block;
-  }
-}
-
 .status-unaired {
   background-color: #F5F1E4;
 }
