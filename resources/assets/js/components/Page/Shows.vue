@@ -1,10 +1,28 @@
 <template>
     <div id="content" class="container">
-        <header class="shows--search">
-            <div class="form-inline ">
+        <header class="shows--search form-inline row">
+            <div class="col-md shows--search">
                 <label for="show-search" class="sr-only">Search</label>
-                <input class="form-control mr-auto" id="show-search" type="search" v-on:input="debounceInput"
+                <input class="form-control" id="show-search" type="search" v-on:input="debounceInput"
                        placeholder="Search">
+            </div>
+            <div class="col-md shows--sort form-inline input-group" v-show="getShowLayout == '1'">
+                <label for="search-sort" class="input-group-addon">Sort</label>
+                <select class="form-control custom-select" id="search-sort" :value="getShowSortField"
+                        @input="updateSortField">
+                    <option value="show_name">Name</option>
+                    <option value="show_name">Next Episode</option>
+                    <option value="network">Network</option>
+                    <option value="progress">Progress</option>
+                </select>
+                <span class="input-group-btn">
+                    <button @click="toggleDirection" class="btn btn-secondary">
+                        <icon-chevron-up v-show="getShowSortDescending == 1"></icon-chevron-up>
+                        <icon-chevron-down v-show="getShowSortDescending == 2"></icon-chevron-down>
+                    </button>
+                </span>
+            </div>
+            <div class="col-md shows--filter">
                 <div class="btn-group">
                     <div id="layout-select" class="btn-group">
                         <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown"
@@ -21,20 +39,9 @@
                     <button @click="toggleShow" :class="typeBtnClass('tv')">TV</button>
                     <button @click="toggleAnime" :class="typeBtnClass('anime')">Anime</button>
                 </div>
-            </div>
-            <div class="form-inline input-group" v-show="getShowLayout === '1'">
-                <label for="search-sort" class="input-group-addon">Sort</label>
-                <select class="form-control custom-select" id="search-sort" :value="getShowSortField"
-                        @input="updateSortField">
-                    <option value="show_name">Name</option>
-                    <option value="show_name">Next Episode</option>
-                    <option value="network">Network</option>
-                    <option value="progress">Progress</option>
-                </select>
-                <span class="input-group-btn"><button @click="toggleDirection" class="btn btn-secondary">
-                    <icon-chevron-up v-show="getShowSortDescending == 1"></icon-chevron-up>
-                    <icon-chevron-down v-show="getShowSortDescending == 2"></icon-chevron-down>
-                </button></span>
+                <div class="shows--filter-warning" v-if="!showTypeShow && !showTypeAnime">
+                    No show types selected.
+                </div>
             </div>
         </header>
         <div class="shows" v-if="shows && shows.length && showTypeShow">
@@ -46,9 +53,6 @@
             <h2>Anime</h2>
             <show-tiles v-if="getShowLayout == 1" :shows="anime"></show-tiles>
             <shows-table class="shows--poster" v-else :shows="anime" :layout="getShowLayout"></shows-table>
-        </div>
-        <div class="shows" v-if="!showTypeShow && !showTypeAnime">
-            No show types selected.
         </div>
         <ul v-if="errors && errors.length">
             <li v-for="error in errors">
@@ -136,9 +140,6 @@
                     value: e.target.value,
                 });
             },
-            updateSortDescending(e) {
-                this.setSortDescending(e.target.value);
-            },
             setSortDescending(value) {
                 this.setSetting({
                     key: 'sortDescending',
@@ -202,6 +203,30 @@
 </script>
 
 <style lang="scss">
+    @import "../../../sass/helper";
+
+    .shows--search {
+        .col-md {
+            margin: .25rem 0;
+        }
+    }
+
+    #show-search {
+        justify-content: flex-start;
+    }
+
+    .shows--filter-warning {
+        position: absolute;
+        bottom: -1.5rem;
+    }
+
+    @include media-breakpoint-up(md) {
+        .shows--filter {
+            display: flex;
+            justify-content: flex-end;
+        }
+    }
+
     #layout-select {
         border-right: 2px solid #666;
     }
@@ -215,12 +240,6 @@
     .shows--poster {
         img {
             height: 66px;
-        }
-    }
-
-    .shows--search {
-        .form-inline {
-            margin: 10px 0;
         }
     }
 

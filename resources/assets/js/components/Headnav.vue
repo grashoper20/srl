@@ -100,7 +100,6 @@
     $dropdown-background: #F5F1E4;
 
     @import "../../sass/helper";
-    @import "~bootstrap/scss/mixins";
     @import "~material-shadows/material-shadows";
 
     @include media-breakpoint-up(sm) {
