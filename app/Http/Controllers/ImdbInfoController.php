@@ -4,6 +4,8 @@ namespace SRL\Http\Controllers;
 
 use SRL\imdb_info;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class ImdbInfoController extends Controller
 {
@@ -24,7 +26,7 @@ class ImdbInfoController extends Controller
      */
     public function create()
     {
-        //
+        throw new NotFoundHttpException();
     }
 
     /**
@@ -35,7 +37,7 @@ class ImdbInfoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        throw new MethodNotAllowedHttpException(['GET']);
     }
 
     /**
@@ -57,7 +59,7 @@ class ImdbInfoController extends Controller
      */
     public function edit(imdb_info $imdb)
     {
-        //
+        throw new NotFoundHttpException();
     }
 
     /**
@@ -69,7 +71,7 @@ class ImdbInfoController extends Controller
      */
     public function update(Request $request, imdb_info $imdb)
     {
-        //
+        throw new MethodNotAllowedHttpException(['GET']);
     }
 
     /**
@@ -80,6 +82,6 @@ class ImdbInfoController extends Controller
      */
     public function destroy(imdb_info $imdb)
     {
-        //
+        throw new MethodNotAllowedHttpException(['GET']);
     }
 }

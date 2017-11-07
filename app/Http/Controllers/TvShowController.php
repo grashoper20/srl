@@ -5,6 +5,8 @@ namespace SRL\Http\Controllers;
 use SRL\Service\EpisodeStats;
 use SRL\tv_show;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class TvShowController extends Controller
 {
@@ -36,7 +38,7 @@ class TvShowController extends Controller
      */
     public function create()
     {
-        //
+        throw new NotFoundHttpException();
     }
 
     /**
@@ -47,7 +49,7 @@ class TvShowController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        throw new MethodNotAllowedHttpException(['GET']);
     }
 
     /**
@@ -59,6 +61,7 @@ class TvShowController extends Controller
     public function show(tv_show $show)
     {
         $show->load('imdb_info');
+
         return $show;
     }
 
@@ -70,7 +73,7 @@ class TvShowController extends Controller
      */
     public function edit(tv_show $show)
     {
-        //
+        throw new NotFoundHttpException();
     }
 
     /**
@@ -82,7 +85,7 @@ class TvShowController extends Controller
      */
     public function update(Request $request, tv_show $show)
     {
-        //
+        throw new MethodNotAllowedHttpException(['GET']);
     }
 
     /**
@@ -93,7 +96,7 @@ class TvShowController extends Controller
      */
     public function destroy(tv_show $show)
     {
-        //
+        throw new MethodNotAllowedHttpException(['GET']);
     }
 
 }

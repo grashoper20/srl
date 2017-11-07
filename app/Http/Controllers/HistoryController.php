@@ -4,6 +4,8 @@ namespace SRL\Http\Controllers;
 
 use SRL\history;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class HistoryController extends Controller
 {
@@ -27,7 +29,7 @@ class HistoryController extends Controller
      */
     public function create()
     {
-        //
+        throw new NotFoundHttpException();
     }
 
     /**
@@ -38,7 +40,7 @@ class HistoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        throw new MethodNotAllowedHttpException(['GET']);
     }
 
     /**
@@ -49,7 +51,7 @@ class HistoryController extends Controller
      */
     public function show(history $history)
     {
-        //
+        throw new NotFoundHttpException();
     }
 
     /**
@@ -60,7 +62,7 @@ class HistoryController extends Controller
      */
     public function edit(history $history)
     {
-        //
+        throw new NotFoundHttpException();
     }
 
     /**
@@ -72,7 +74,7 @@ class HistoryController extends Controller
      */
     public function update(Request $request, history $history)
     {
-        //
+        throw new MethodNotAllowedHttpException(['GET']);
     }
 
     /**
@@ -83,6 +85,6 @@ class HistoryController extends Controller
      */
     public function destroy(history $history)
     {
-        //
+        throw new MethodNotAllowedHttpException(['GET']);
     }
 }
