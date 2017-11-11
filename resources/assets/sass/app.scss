@@ -12,6 +12,23 @@ html, body {
   height: 100vh;
 }
 
+table {
+  width: 100%;
+}
+
+th {
+  background-color: #ddd;
+  padding-bottom: .1rem;
+}
+
+th, td {
+  white-space: nowrap;
+}
+
+.form-inline label {
+  padding: 0 5px;
+}
+
 .status-unaired {
   background-color: #F5F1E4;
 }
@@ -40,6 +57,7 @@ html, body {
 .fade-enter-active, .fade-leave-active {
   transition: opacity .5s
 }
+
 .fade-enter, .fade-leave-to {
   opacity: 0
 }
@@ -58,4 +76,10 @@ html, body {
     position: absolute;
     bottom: -0.125em;
   }
+}
+
+// Work around https://github.com/twbs/bootstrap/issues/24760
+.btn-group .btn:not([disabled]):not(.disabled):active,
+.btn-group .btn:not([disabled]):not(.disabled).active {
+  box-shadow: none;
 }

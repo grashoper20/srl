@@ -6,11 +6,13 @@ Vue.use(VueRouter);
 // Pull in some templates.
 import Default from '../components/Page/Example.vue';
 import History from '../components/Page/History.vue';
+import Logs from '../components/Page/Logs.vue';
 import NotFound from '../components/Page/NotFound.vue';
 import Schedule from '../components/Page/Schedule.vue';
 import ShowFull from '../components/Page/ShowFull.vue';
 import Shows from '../components/Page/Shows.vue';
 import ShowsAdd from '../components/Page/ShowsAdd.vue';
+import Status from '../components/Page/Status.vue';
 
 export default new VueRouter({
     mode: 'history',
@@ -71,6 +73,16 @@ export default new VueRouter({
             path: '/manage/episodes',
             component: Default,
             name: 'manage_episodes',
+        },
+        {
+            path: '/tools/logs',
+            component: Logs,
+            name: 'tools_logs',
+        },
+        {
+            path: '/tools/status',
+            component: Status,
+            name: 'tools_status',
         },
     ]
 });

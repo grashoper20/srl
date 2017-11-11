@@ -42,10 +42,14 @@
                     'Episode Name',
                 ],
                 options: {
-                    rowClassCallback: this.rowClass,
+                    columnsClasses: {
+                        episodeName: 'w-100',
+                    },
+                    orderBy: {column: 'airs'},
                     perPageValues: [10],
                     pagination: {dropdown: false},
-                    orderBy: {column: 'airs'},
+                    rowClassCallback: this.rowClass,
+                    skin: 'table-bordered',
                 },
             };
         },

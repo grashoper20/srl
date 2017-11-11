@@ -104,24 +104,4 @@
         justify-content: space-between;
     }
 
-    .form-inline label {
-        padding: 0 5px;
-    }
-
-    .schedule {
-        table {
-            width: 100%;
-            background-color: #ddd;
-        }
-        th, td {
-            border: 1px solid white;
-            white-space: nowrap;
-            text-align: center;
-            padding: .25rem .75rem;
-        }
-        th {
-            padding-bottom: .1rem;
-        }
-    }
-
 </style>

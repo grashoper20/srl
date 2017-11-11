@@ -54,11 +54,6 @@
             <show-tiles v-if="getShowLayout == 1" :shows="anime"></show-tiles>
             <shows-table class="shows--poster" v-else :shows="anime" :layout="getShowLayout"></shows-table>
         </div>
-        <ul v-if="errors && errors.length">
-            <li v-for="error in errors">
-                {{error.message}}
-            </li>
-        </ul>
     </div>
 </template>
 
@@ -101,7 +96,6 @@
             showTypeShow: true,
             showTypeAnime: true,
             showType: 1,
-            errors: [],
             fuse_options: {
                 shouldSort: true,
                 threshold: 0.2,
@@ -170,30 +164,24 @@
                 this.search = e.target.value.trim();
             }, 250),
             sortHelper(list, field, descending) {
-                try {
-                    let isNumber = false;
-                    list.forEach((x) => {
-                        isNumber |= jQuery.isNumeric(x);
+                let isNumber = false;
+                list.forEach((x) => {
+                    isNumber |= jQuery.isNumeric(x);
+                });
+                return list.sort(function (a, b) {
+                    let comp_strings = [];
+                    // Stringify.
+                    [a[field], b[field]].forEach((x) => {
+                        comp_strings.push((typeof x === 'undefined' || x === null)
+                            ? ''
+                            : x.toString());
                     });
-                    return list.sort(function (a, b) {
-                        let comp_strings = [];
-                        // Stringify.
-                        [a[field], b[field]].forEach((x) => {
-                            comp_strings.push((typeof x === 'undefined' || x === null)
-                                ? ''
-                                : x.toString());
-                        });
-                        // Compare.
-                        let comparison = comp_strings[0]
-                            .localeCompare(comp_strings[1], {numeric: isNumber});
-                        // Apply direction.
-                        return (descending ? comparison * -1 : comparison);
-                    });
-                }
-                catch (e) {
-                    console.error(e);
-                    return [];
-                }
+                    // Compare.
+                    let comparison = comp_strings[0]
+                        .localeCompare(comp_strings[1], {numeric: isNumber});
+                    // Apply direction.
+                    return (descending ? comparison * -1 : comparison);
+                });
             },
         },
         mounted() {

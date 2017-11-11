@@ -8,7 +8,7 @@
                 <img v-on:click="showModal" class="show-full-details--poster-thumb" :src="getPosterThumbnail(id)"/>
                 <modal name="full-poster" :height="'100%'">
                     <div class="show-full-details--poster" :style="{backgroundImage: 'url(' + getPoster(id) + ')'}">
-                        <button @click="$modal.hide('full-poster')">❌</button>
+                        <button @click="$modal.hide('full-poster')"><icon-x></icon-x></button>
                     </div>
                 </modal>
             </div>
@@ -106,11 +106,13 @@
     import api from '../api';
     import Filters from '../filters';
     import FileCache from '../mixins/FileCache';
+    import IconX from 'icons/close';
     import QualityPills from './QualityPills.vue';
 
     export default {
         components: {
             QualityPills,
+            'icon-x': IconX,
         },
         computed: {
             size() {

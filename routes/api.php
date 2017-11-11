@@ -19,6 +19,7 @@ Route::resource('/episode', 'TvEpisodeController');
 Route::resource('/history', 'HistoryController');
 Route::get('/show/{show}/episodes', 'TvEpisodeController@indexByShow'); // List episodes.
 Route::get('/schedule', 'ScheduleController@get');
+Route::get('/tools', 'ToolsController@get');
 
 //Route::middleware('auth:api')->get('/user', function (Request $request) {
 //    return $request->user();
