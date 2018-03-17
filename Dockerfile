@@ -7,9 +7,11 @@ RUN composer install --no-dev -o \
 
 FROM node:8-alpine
 COPY . /app
-RUN cd /app && yarn install && yarn run production
+RUN cd /app \
+ && yarn install \
+ && yarn run production
 
-FROM php:7.1-fpm-alpine
+FROM php:7.2-fpm-alpine
 ENTRYPOINT ["/entrypoint.sh"]
 ENV DEPS "autoconf make g++ sqlite-dev zlib-dev pcre-dev py-pip"
 RUN apk -U add $DEPS \
