@@ -1,17 +1,30 @@
-/node_modules
-/public/hot
-/public/storage
+# General Laravel stuff
 /storage/*.key
 /vendor
-/.idea
-/.vagrant
+.env
 Homestead.json
 Homestead.yaml
+
+# Node noise.
 npm-debug.log
 yarn-error.log
-.env
+package-lock.json
+/node_modules
+
+# Ignore ide helper files.
 .phpstorm.meta.php
 _ide_helper.php
-package-lock.json
-public/mix-manifest.json
-public/js/app.js
+
+# Ignore sublime files.
+*.sublime-project
+*.sublime-workspace
+
+# Ignore Phpstorm files.
+/.idea
+
+# VS Code
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
