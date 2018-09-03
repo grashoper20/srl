@@ -5,16 +5,16 @@
     "license": "MIT",
     "type": "project",
     "require": {
-        "php": ">=7.0.0",
+        "php": ">=7.2.0",
         "doctrine/dbal": "^2.5",
-        "fideloper/proxy": "~3.3",
-        "laravel/framework": "5.5.*",
+        "fideloper/proxy": "~4.0",
+        "laravel/framework": "5.6.*",
         "laravel/tinker": "~1.0",
         "grashoper20/gregorian-ordinal": "^1.0",
         "grashoper20/laravel-vuetables": "master-dev"
     },
     "require-dev": {
-        "barryvdh/laravel-ide-helper": "v2.4.1",
+        "barryvdh/laravel-ide-helper": "~2.4",
         "filp/whoops": "~2.0",
         "fzaninotto/faker": "~1.4",
         "mockery/mockery": "0.9.*",
