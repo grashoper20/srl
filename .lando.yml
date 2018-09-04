@@ -1,0 +1,32 @@
+name: srl
+config:
+  via: nginx
+  database: mariadb
+  php: '7.2'
+recipe: laravel
+services:
+  # application:
+  #   overrides:
+  #     services:
+  #       volumes:
+  #       - ./resources/data:/var/www/sickrage/:ro
+  node:
+    type: node
+    extra:
+    - apk -U add libpng-dev jpeg-dev autoconf automake libtool g++ file nasm make ncurses
+    - yarn install
+tooling:
+  npm:
+    service: node
+  yarn:
+    service: node
+    cmd: yarn --cwd /app/web/themes/custom/apqc_v2
+  build-dev:
+    service: node
+    cmd: yarn run development
+  build-prod:
+    service: node
+    cmd: yarn run production
+  watch:
+    service: node
+    cmd: yarn run watch
